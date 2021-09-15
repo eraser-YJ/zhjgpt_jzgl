@@ -1,0 +1,31 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/rabbit
+        http://www.springframework.org/schema/rabbit/spring-rabbit.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!-- 配置连接工厂 -->
+    <rabbit:connection-factory id="connectionFactory"
+                               host="${rabbitmq.host}" port="${rabbitmq.port}"
+                               username="${rabbitmq.userName}" password="${rabbitmq.password}"
+                               publisher-confirms="true" publisher-returns="true" />
+
+    <!-- 定义消费者 -->
+    <bean name="queuehandler" class="com.jc.csmp.rabbitmq.MqRecvHandler" />
+
+    <rabbit:queue name="92fb97716dd54d3c8ac5facb926e0bf5" id="92fb97716dd54d3c8ac5facb926e0bf5" durable="true" auto-delete="false" exclusive="false" />
+
+    <!-- 定义消费者监听队列 acknowledge设置消费者手动确认消息 原因是：rabbitmq默认是自动确认消息的，不管消费者有没有消费成功
+    只要消费者收到消息后就直接确认了，确认后rabbitmq就会将队列中的消息删除掉 如果消费者收到消息后实际没有消费成功，就会导致消息丢失
+        -->
+    <rabbit:listener-container
+            connection-factory="connectionFactory" acknowledge="manual">
+        <rabbit:listener ref="queuehandler" queues="92fb97716dd54d3c8ac5facb926e0bf5" />
+    </rabbit:listener-container>
+
+</beans>

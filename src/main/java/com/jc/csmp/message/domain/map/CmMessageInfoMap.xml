@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.csmp.message.domain.CmMessageInfo">
+
+	<insert id="insert" parameterType="com.jc.csmp.message.domain.CmMessageInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into cm_message_info (id, title, content, receive_id, receive_dept_id, receive_dept_code, read_status, read_date,
+		DELETE_FLAG, CREATE_USER, CREATE_USER_DEPT, CREATE_DATE, CREATE_USER_ORG, MODIFY_USER, MODIFY_DATE, EXT_STR1, EXT_STR2, EXT_STR3, EXT_STR4, EXT_STR5, EXT_DATE1, EXT_DATE2, EXT_NUM1, EXT_NUM2, EXT_NUM3)
+		values (#{id}, #{title}, #{content}, #{receiveId}, #{receiveDeptId}, #{receiveDeptCode}, #{readStatus}, #{readDate},
+		#{deleteFlag}, #{createUser}, #{createUserDept}, #{createDate}, #{createUserOrg}, #{modifyUser}, #{modifyDate}, #{extStr1}, #{extStr2}, #{extStr3}, #{extStr4}, #{extStr5}, #{extDate1}, #{extDate2}, #{extNum1}, #{extNum2}, #{extNum3})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		insert into cm_message_info (id, title, content, receive_id, receive_dept_id, receive_dept_code, read_status, read_date,
+		DELETE_FLAG, CREATE_USER, CREATE_USER_DEPT, CREATE_DATE, CREATE_USER_ORG, MODIFY_USER, MODIFY_DATE, EXT_STR1, EXT_STR2, EXT_STR3, EXT_STR4, EXT_STR5, EXT_DATE1, EXT_DATE2, EXT_NUM1, EXT_NUM2, EXT_NUM3)
+			VALUES
+			<foreach collection="list" item="item" index="index" separator=",">
+				(#{item.id}, #{item.title}, #{item.content}, #{item.receiveId}, #{item.receiveDeptId}, #{item.receiveDeptCode}, #{item.readStatus}, #{item.readDate},
+				#{item.deleteFlag}, #{item.createUser}, #{item.createUserDept}, #{item.createDate}, #{item.createUserOrg}, #{item.modifyUser}, #{item.modifyDate}, #{item.extStr1}, #{item.extStr2}, #{item.extStr3}, #{item.extStr4}, #{item.extStr5}, #{item.extDate1}, #{item.extDate2}, #{item.extNum1}, #{item.extNum2}, #{item.extNum3})
+			</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.csmp.message.domain.CmMessageInfo">
+		update cm_message_info set
+		<if test="title != null"> title = #{title}, </if>
+		<if test="content != null"> content = #{content}, </if>
+		<if test="receiveId != null"> receive_id = #{receiveId}, </if>
+		<if test="receiveDeptId != null"> receive_dept_id = #{receiveDeptId}, </if>
+		<if test="receiveDeptCode != null"> receive_dept_code = #{receiveDeptCode}, </if>
+		<if test="readStatus != null"> read_status = #{readStatus}, </if>
+		<if test="readDate != null"> read_date = #{readDate}, </if>
+		<if test="deleteFlag != null"> DELETE_FLAG = #{deleteFlag}, </if>
+		<if test="createUser != null"> CREATE_USER = #{createUser}, </if>
+		<if test="createUserDept != null"> CREATE_USER_DEPT = #{createUserDept}, </if>
+		<if test="createUserOrg != null"> CREATE_USER_ORG = #{createUserOrg}, </if>
+		<if test="createDate != null"> CREATE_DATE = #{createDate}, </if>
+		<if test="modifyUser != null"> MODIFY_USER = #{modifyUser}, </if>
+		<if test="extStr1 != null"> EXT_STR1 = #{extStr1}, </if>
+		<if test="extStr2 != null"> EXT_STR2 = #{extStr2}, </if>
+		<if test="extStr3 != null"> EXT_STR3 = #{extStr3}, </if>
+		<if test="extStr4 != null"> EXT_STR4 = #{extStr4}, </if>
+		<if test="extStr5 != null"> EXT_STR5 = #{extStr5}, </if>
+		<if test="extDate1 != null"> EXT_DATE1 = #{extDate1}, </if>
+		<if test="extDate2 != null"> EXT_DATE2 = #{extDate2}, </if>
+		<if test="extNum1 != null"> EXT_NUM1 = #{extNum1}, </if>
+		<if test="extNum2 != null"> EXT_NUM2 = #{extNum2}, </if>
+		<if test="extNum3 != null"> EXT_NUM3 = #{extNum3}, </if>
+	   	MODIFY_DATE = #{modifyDateNew} where ID = #{id}
+	</update>
+
+	<sql id="Base_Column_List" >
+		t.id, t.title, t.content, t.receive_id receiveId, t.receive_dept_id receiveDeptId, t.receive_dept_code receiveDeptCode, t.read_status readStatus, t.read_date readDate,
+		t.DELETE_FLAG deleteFlag, t.CREATE_DATE createDate, t.CREATE_USER createUser, t.CREATE_USER_DEPT createUserDept, t.CREATE_USER_ORG createUserOrg,
+		t.MODIFY_DATE modifyDate, t.MODIFY_USER modifyUser, t.EXT_STR1 extStr1, t.EXT_STR2 extStr2, t.EXT_STR3 extStr3, t.EXT_STR4 extStr4, t.EXT_STR5 extStr5,
+		t.EXT_DATE1 extDate1, t.EXT_DATE2 extDate2, t.EXT_NUM1 extNum1, t.EXT_NUM2 extNum2, t.EXT_NUM3 extNum3
+	</sql>
+
+	<sql id="Base_Query_Where" >
+		<where>
+			<if test="id != null"> and t.id = #{id} </if>
+			<if test="title != null"> and t.title = #{title} </if>
+			<if test="content != null"> and t.content = #{content} </if>
+			<if test="receiveId != null"> and t.receive_id = #{receiveId} </if>
+			<if test="receiveDeptId != null"> and t.receive_dept_id = #{receiveDeptId} </if>
+			<if test="receiveDeptCode != null"> and t.receive_dept_code = #{receiveDeptCode} </if>
+			<if test="readStatus != null"> and t.read_status = #{readStatus} </if>
+			<if test="readDate != null"> and t.read_date = #{readDate} </if>
+			<if test="deleteFlag != null"> and t.DELETE_FLAG = #{deleteFlag} </if>
+			<if test="createUser != null"> and t.CREATE_USER = #{createUser} </if>
+			<if test="createUserDept != null"> and t.CREATE_USER_DEPT = #{createUserDept} </if>
+			<if test="createUserOrg != null"> and t.CREATE_USER_ORG = #{createUserOrg} </if>
+			<if test="createDate != null"> and t.CREATE_DATE = #{createDate} </if>
+			<if test="createDateBegin != null"> and t.CREATE_DATE &gt;= #{createDateBegin} </if>
+			<if test="createDateEnd != null"> and t.CREATE_DATE &lt;= #{createDateEnd} </if>
+			<if test="modifyDate != null"> and t.MODIFY_DATE = #{modifyDate} </if>
+			<if test="modifyDateBegin != null"> and t.MODIFY_DATE &gt;= #{modifyDateBegin} </if>
+			<if test="modifyDateEnd != null"> and t.MODIFY_DATE &lt;= #{modifyDateEnd} </if>
+			<if test="modifyUser != null"> and t.MODIFY_USER = #{modifyUser} </if>
+			<if test="extStr1 != null"> and t.EXT_STR1 = #{extStr1} </if>
+			<if test="extStr2 != null"> and t.EXT_STR2 = #{extStr2} </if>
+			<if test="extStr3 != null"> and t.EXT_STR3 = #{extStr3} </if>
+			<if test="extStr4 != null"> and t.EXT_STR4 = #{extStr4} </if>
+			<if test="extStr5 != null"> and t.EXT_STR5 = #{extStr5} </if>
+			<if test="extDate1 != null"> and t.EXT_DATE1 = #{extDate1} </if>
+			<if test="extDate1Begin != null"> and t.EXT_DATE1 &gt;= #{extDate1Begin} </if>
+			<if test="extDate1End != null"> and t.EXT_DATE1 &lt;= #{extDate1End} </if>
+			<if test="extDate2 != null"> and t.EXT_DATE2 = #{extDate2} </if>
+			<if test="extDate2Begin != null"> and t.EXT_DATE2 &gt;= #{extDate2Begin} </if>
+			<if test="extDate2End != null"> and t.EXT_DATE2 &lt;= #{extDate2End} </if>
+			<if test="extNum1 != null"> and t.EXT_NUM1 = #{extNum1} </if>
+			<if test="extNum2 != null"> and t.EXT_NUM2 = #{extNum2} </if>
+			<if test="extNum3 != null"> and t.EXT_NUM3 = #{extNum3} </if>
+		</where>
+	</sql>
+
+	<select id="query" parameterType="com.jc.csmp.message.domain.CmMessageInfo" resultType="com.jc.csmp.message.domain.CmMessageInfo">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM cm_message_info t
+		<include refid="Base_Query_Where"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.csmp.message.domain.CmMessageInfo" resultType="java.lang.Long">
+		SELECT count(distinct t.ID) FROM cm_message_info t
+		<include refid="Base_Query_Where"/>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.csmp.message.domain.CmMessageInfo">
+    	delete from cm_message_info where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.csmp.message.domain.CmMessageInfo">
+    	UPDATE cm_message_info t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate} where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+ 	</update>
+
+	<select id="workflowTodoQuery" parameterType="com.jc.csmp.message.domain.CmMessageInfo" resultType="com.jc.csmp.message.domain.CmMessageInfo">
+		select
+		d.definitionId_ AS "workflowBean.definitionId_",
+		d.business_Key_ AS "workflowBean.business_Key_",
+		d.act_id AS "workflowBean.curNodeId_",
+		d.proc_inst_id AS "workflowBean.instanceId_",
+		d.task_id AS "workflowBean.taskId_",
+		d.workflowTitle_ AS workflowTitle,
+		d.CREATE_TIME AS workflowCreateTime FROM workflow_todo d
+		<include refid="Base_TodoQuery_Where"/>
+		order by d.create_time desc
+	</select>
+
+	<select id="workflowTodoQueryCount" parameterType="com.jc.csmp.message.domain.CmMessageInfo" resultType="java.lang.Long">
+		SELECT count(d.ID) FROM workflow_todo d
+		<include refid="Base_TodoQuery_Where"/>
+	</select>
+
+	<sql id="Base_TodoQuery_Where">
+		<where>
+			<if test="curUserId != null"> and d.assignee = #{curUserId} </if>
+			<if test="workflowTitle != null"> and d.workflowTitle_ = #{workflowTitle} </if>
+			<if test="isMobile != null"> and d.workflowTitle_ not in ('ndjh', 'gcbj') </if>
+		</where>
+	</sql>
+
+	<select id="workflowDoneQuery" parameterType="com.jc.csmp.message.domain.CmMessageInfo" resultType="com.jc.csmp.message.domain.CmMessageInfo">
+		select
+		d.definitionId_ AS "workflowBean.definitionId_",
+		d.business_Key_ AS "workflowBean.business_Key_",
+		d.act_id AS "workflowBean.curNodeId_",
+		d.proc_inst_id AS "workflowBean.instanceId_",
+		d.task_id AS "workflowBean.taskId_",
+		i.workflowTitle_ AS workflowTitle,
+		d.start_time_ AS workflowCreateTime FROM workflow_done d
+		join workflow_instance i on d.business_key_ = i.business_key_
+		<include refid="Base_DoneQuery_Where"/>
+		order by d.start_time_ desc
+	</select>
+
+	<select id="workflowDoneQueryCount" parameterType="com.jc.csmp.message.domain.CmMessageInfo" resultType="java.lang.Long">
+		SELECT count(d.ID) FROM workflow_done d
+		join workflow_instance i on d.business_key_ = i.business_key_
+		<include refid="Base_DoneQuery_Where"/>
+	</select>
+
+	<sql id="Base_DoneQuery_Where">
+		<where>
+			<if test="curUserId != null"> and d.assignee = #{curUserId} </if>
+			<if test="workflowTitle != null"> and i.workflowTitle_ = #{workflowTitle} </if>
+			<if test="isMobile != null"> and i.workflowTitle_ not in ('ndjh', 'gcbj') </if>
+		</where>
+	</sql>
+</mapper>

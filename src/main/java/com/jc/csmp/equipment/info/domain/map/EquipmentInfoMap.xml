@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.csmp.equipment.info.domain.EquipmentInfo">
+
+	<insert id="insert" parameterType="com.jc.csmp.equipment.info.domain.EquipmentInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into scs_equipment_info (id,data_status,longitude,latitude,work_position,work_area,work_space,work_status,project_code,project_name,use_company_code,use_company_name,equipment_type,equipment_code,equipment_name,video_code,warn_info,driver1,driver1_mobile,driver2,driver2_mobile,signalman,signalman_mobile,remark,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,CREATE_USER_ORG,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3)
+		values (#{id},#{dataStatus},#{longitude},#{latitude},#{workPosition},#{workArea},#{workSpace},#{workStatus},#{projectCode},#{projectName},#{useCompanyCode},#{useCompanyName},#{equipmentType},#{equipmentCode},#{equipmentName},#{videoCode},#{warnInfo},#{driver1},#{driver1Mobile},#{driver2},#{driver2Mobile},#{signalman},#{signalmanMobile},#{remark},#{deleteFlag},#{createUser},#{createUserDept},#{createDate},#{createUserOrg},#{modifyUser},#{modifyDate},#{extStr1},#{extStr2},#{extStr3},#{extStr4},#{extStr5},#{extDate1},#{extDate2},#{extNum1},#{extNum2},#{extNum3})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		insert into scs_equipment_info (id,data_status,longitude,latitude,work_position,work_area,work_space,work_status,project_code,project_name,use_company_code,use_company_name,equipment_type,equipment_code,equipment_name,video_code,warn_info,driver1,driver1_mobile,driver2,driver2_mobile,signalman,signalman_mobile,remark,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,CREATE_USER_ORG,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id},#{item.dataStatus},#{item.longitude},#{item.latitude},#{item.workPosition},#{item.workArea},#{item.workSpace},#{item.workStatus},#{item.projectCode},#{item.projectName},#{item.useCompanyCode},#{item.useCompanyName},#{item.equipmentType},#{item.equipmentCode},#{item.equipmentName},#{item.videoCode},#{item.warnInfo},#{item.driver1},#{item.driver1Mobile},#{item.driver2},#{item.driver2Mobile},#{item.signalman},#{item.signalmanMobile},#{item.remark},#{item.deleteFlag},#{item.createUser},#{item.createUserDept},#{item.createDate},#{item.createUserOrg},#{item.modifyUser},#{item.modifyDate},#{item.extStr1},#{item.extStr2},#{item.extStr3},#{item.extStr4},#{item.extStr5},#{item.extDate1},#{item.extDate2},#{item.extNum1},#{item.extNum2},#{item.extNum3})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.csmp.equipment.info.domain.EquipmentInfo">
+		update scs_equipment_info set
+		<if test="id != null">id=#{id},</if>
+		<if test="dataStatus != null">data_status=#{dataStatus},</if>
+		<if test="longitude != null">longitude=#{longitude},</if>
+		<if test="latitude != null">latitude=#{latitude},</if>
+		<if test="workPosition != null">work_position=#{workPosition},</if>
+		<if test="workArea != null">work_area=#{workArea},</if>
+		<if test="workSpace != null">work_space=#{workSpace},</if>
+		<if test="workStatus != null">work_status=#{workStatus},</if>
+		<if test="projectCode != null">project_code=#{projectCode},</if>
+		<if test="projectName != null">project_name=#{projectName},</if>
+		<if test="useCompanyCode != null">use_company_code=#{useCompanyCode},</if>
+		<if test="useCompanyName != null">use_company_name=#{useCompanyName},</if>
+		<if test="equipmentType != null">equipment_type=#{equipmentType},</if>
+		<if test="equipmentCode != null">equipment_code=#{equipmentCode},</if>
+		<if test="equipmentName != null">equipment_name=#{equipmentName},</if>
+		<if test="videoCode != null">video_code=#{videoCode},</if>
+		<if test="warnInfo != null">warn_info=#{warnInfo},</if>
+		<if test="driver1 != null">driver1=#{driver1},</if>
+		<if test="driver1Mobile != null">driver1_mobile=#{driver1Mobile},</if>
+		<if test="driver2 != null">driver2=#{driver2},</if>
+		<if test="driver2Mobile != null">driver2_mobile=#{driver2Mobile},</if>
+		<if test="signalman != null">signalman=#{signalman},</if>
+		<if test="signalmanMobile != null">signalman_mobile=#{signalmanMobile},</if>
+		<if test="remark != null">remark=#{remark},</if>
+		<if test="deleteFlag != null">DELETE_FLAG=#{deleteFlag},</if>
+		<if test="createUser != null">CREATE_USER=#{createUser},</if>
+		<if test="createUserDept != null">CREATE_USER_DEPT=#{createUserDept},</if>
+		<if test="createDate != null">CREATE_DATE=#{createDate},</if>
+		<if test="createUserOrg != null">CREATE_USER_ORG=#{createUserOrg},</if>
+		<if test="modifyUser != null">MODIFY_USER=#{modifyUser},</if>
+		<if test="modifyDate != null">MODIFY_DATE=#{modifyDate},</if>
+		<if test="extStr1 != null">EXT_STR1=#{extStr1},</if>
+		<if test="extStr2 != null">EXT_STR2=#{extStr2},</if>
+		<if test="extStr3 != null">EXT_STR3=#{extStr3},</if>
+		<if test="extStr4 != null">EXT_STR4=#{extStr4},</if>
+		<if test="extStr5 != null">EXT_STR5=#{extStr5},</if>
+		<if test="extDate1 != null">EXT_DATE1=#{extDate1},</if>
+		<if test="extDate2 != null">EXT_DATE2=#{extDate2},</if>
+		<if test="extNum1 != null">EXT_NUM1=#{extNum1},</if>
+		<if test="extNum2 != null">EXT_NUM2=#{extNum2},</if>
+		<if test="extNum3 != null">EXT_NUM3=#{extNum3},</if>
+	   	MODIFY_DATE = #{modifyDateNew} where ID = #{id}
+	</update>
+
+
+	<sql id="Base_Column_List" >
+		t.id id,
+		t.data_status dataStatus,
+		t.work_position workPosition,
+		t.longitude longitude,
+		t.latitude latitude,
+		t.work_area workArea,
+		t.work_space workSpace,
+		t.project_code projectCode,
+		t.work_status workStatus,
+		t.project_name projectName,
+		t.use_company_code useCompanyCode,
+		t.use_company_name useCompanyName,
+		t.equipment_type equipmentType,
+		t.equipment_code equipmentCode,
+		t.equipment_name equipmentName,
+		t.video_code videoCode,
+		t.warn_info warnInfo,
+		t.driver1 driver1,
+		t.driver1_mobile driver1Mobile,
+		t.driver2 driver2,
+		t.driver2_mobile driver2Mobile,
+		t.signalman signalman,
+		t.signalman_mobile signalmanMobile,
+		t.remark remark,
+		t.DELETE_FLAG deleteFlag,
+		t.CREATE_USER createUser,
+		t.CREATE_USER_DEPT createUserDept,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_ORG createUserOrg,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5,
+		t.EXT_DATE1 extDate1,
+		t.EXT_DATE2 extDate2,
+		t.EXT_NUM1 extNum1,
+		t.EXT_NUM2 extNum2,
+		t.EXT_NUM3 extNum3
+	</sql>
+	
+	<sql id="Base_Query_Where" >
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="dataStatus != null">
+				and t.data_status = #{dataStatus}
+			</if>
+			<if test="workPosition != null">
+				and t.work_position = #{workPosition}
+			</if>
+			<if test="longitude != null">
+				and t.longitude = #{longitude}
+			</if>
+			<if test="latitude != null">
+				and t.latitude = #{latitude}
+			</if>
+			<if test="workArea != null">
+				and t.work_area = #{workArea}
+			</if>
+			<if test="workSpace != null">
+				and t.work_space = #{workSpace}
+			</if>
+			<if test="workStatus != null">
+				and t.work_status = #{workStatus}
+			</if>
+			<if test="projectCode != null">
+				and t.project_code = #{projectCode}
+			</if>
+			<if test="projectName != null">
+				and t.project_name like concat('%',#{projectName},'%')
+			</if>
+			<if test="useCompanyCode != null">
+				and t.use_company_code = #{useCompanyCode}
+			</if>
+			<if test="useCompanyName != null">
+				and t.use_company_name = #{useCompanyName}
+			</if>
+			<if test="equipmentType != null">
+				and t.equipment_type = #{equipmentType}
+			</if>
+			<if test="equipmentCode != null">
+				and t.equipment_code = #{equipmentCode}
+			</if>
+			<if test="equipmentName != null">
+				and t.equipment_name like concat('%',#{equipmentName},'%')
+			</if>
+			<if test="videoCode != null">
+				and t.video_code = #{videoCode}
+			</if>
+			<if test="warnInfo != null">
+				and t.warn_info = #{warnInfo}
+			</if>
+			<if test="driver1 != null">
+				and t.driver1 = #{driver1}
+			</if>
+			<if test="driver1Mobile != null">
+				and t.driver1_mobile = #{driver1Mobile}
+			</if>
+			<if test="driver2 != null">
+				and t.driver2 = #{driver2}
+			</if>
+			<if test="driver2Mobile != null">
+				and t.driver2_mobile = #{driver2Mobile}
+			</if>
+			<if test="signalman != null">
+				and t.signalman = #{signalman}
+			</if>
+			<if test="signalmanMobile != null">
+				and t.signalman_mobile = #{signalmanMobile}
+			</if>
+			<if test="remark != null">
+				and t.remark = #{remark}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.EXT_DATE1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.EXT_DATE1 &lt;= #{extDate1End}
+			</if>
+			<if test="extDate1 != null">
+				and t.EXT_DATE1 = #{extDate1}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.EXT_DATE2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.EXT_DATE2 &lt;= #{extDate2End}
+			</if>
+			<if test="extDate2 != null">
+				and t.EXT_DATE2 = #{extDate2}
+			</if>
+			<if test="extNum1 != null">
+				and t.EXT_NUM1 = #{extNum1}
+			</if>
+			<if test="extNum2 != null">
+				and t.EXT_NUM2 = #{extNum2}
+			</if>
+			<if test="extNum3 != null">
+				and t.EXT_NUM3 = #{extNum3}
+			</if>
+			<if test="equipmentCodes != null">
+				and t.equipment_code in
+				<foreach collection="equipmentCodes" item="equipmentCodeValue" index="index" open="(" close=")" separator=",">
+					#{equipmentCodeValue}
+				</foreach>
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+	</sql>
+	<select id="query" parameterType="com.jc.csmp.equipment.info.domain.EquipmentInfo" resultType="com.jc.csmp.equipment.info.domain.EquipmentInfo">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM scs_equipment_info t
+		<include refid="Base_Query_Where"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.csmp.equipment.info.domain.EquipmentInfo" resultType="java.lang.Long">
+		SELECT count(t.ID) FROM scs_equipment_info t
+		<include refid="Base_Query_Where"/>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.csmp.equipment.info.domain.EquipmentInfo">
+    	delete from scs_equipment_info
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.csmp.equipment.info.domain.EquipmentInfo">
+    	UPDATE scs_equipment_info t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</update>
+</mapper>

@@ -1,0 +1,2415 @@
+{
+	"resourceId": "55c7fe48c763404cb9edf1341c162228",
+	"properties": {
+		"process_id": "yanshi",
+		"process_name": "演示流程",
+		"process_org": {
+			"id": "all",
+			"name": "通用流程"
+		},
+		"process_type": {
+			"id": "61a75752f3404baea4431f76d6fc31dd",
+			"name": "发文"
+		},
+		"form_apply": {
+			"id": "93fb8d6e91a84f108f1b961236d4e7c2",
+			"name": "发文"
+		},
+		"administrator": "",
+		"signaldefinitions": "",
+		"exceed": {
+			"type": "working",
+			"days": "1"
+		},
+		"exceed_mode": {
+			"type": "stop",
+			"event": ""
+		},
+		"namespace": "http://www.activiti.org/processdef"
+	},
+	"stencil": {
+		"id": "BPMNDiagram"
+	},
+	"childShapes": [{
+		"resourceId": "sid-215732E5-9A01-4556-89BB-329BFAB11144",
+		"properties": {
+			"overrideid": "startnoneevent1",
+			"name": "开始1",
+			"transactor": "",
+			"operation": {
+				"buttons": {
+					"todoSystemList": [{
+						"id": 1,
+						"name": "提交",
+						"selected": true
+					}, {
+						"id": 2,
+						"name": "暂存",
+						"selected": false
+					}, {
+						"id": 3,
+						"name": "退回",
+						"selected": false
+					}, {
+						"id": 4,
+						"name": "转办",
+						"selected": false
+					}, {
+						"id": 5,
+						"name": "跳转",
+						"selected": false
+					}, {
+						"id": 6,
+						"name": "终止",
+						"selected": false
+					}, {
+						"id": 7,
+						"name": "暂停",
+						"selected": false
+					}, {
+						"id": 8,
+						"name": "恢复",
+						"selected": false
+					}],
+					"haveSystemList": [{
+						"id": 1001,
+						"name": "拿回",
+						"selected": false
+					}]
+				}
+			},
+			"field_attribute": {
+				"version": 1532504919930,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"orderBy": null,
+					"dbtype": "mysql",
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"orderBy": null,
+					"dbtype": "mysql",
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"orderBy": null,
+					"dbtype": "mysql",
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"orderBy": null,
+					"dbtype": "mysql",
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"orderBy": null,
+					"dbtype": "mysql",
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"orderBy": null,
+					"dbtype": "mysql",
+					"privilege": "readonly"
+				}]
+			},
+			"event_apply": [],
+			"status": "1"
+		},
+		"stencil": {
+			"id": "StartNoneEvent"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-42147677-6A31-4329-820F-877C103BF672"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 99,
+				"y": 249
+			},
+			"upperLeft": {
+				"x": 45,
+				"y": 195
+			}
+		},
+		"dockers": []
+	}, {
+		"resourceId": "sid-1B2DC1F0-98FA-4F3F-A02D-AB440E18A356",
+		"properties": {
+			"overrideid": "endnoneevent3",
+			"name": "退回",
+			"field_attribute": {
+				"version": 1532504919930,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"orderBy": null,
+					"dbtype": "mysql",
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"orderBy": null,
+					"dbtype": "mysql",
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"orderBy": null,
+					"dbtype": "mysql",
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"orderBy": null,
+					"dbtype": "mysql",
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"orderBy": null,
+					"dbtype": "mysql",
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"orderBy": null,
+					"dbtype": "mysql",
+					"privilege": "readonly"
+				}]
+			},
+			"event_apply": [],
+			"status": "1"
+		},
+		"stencil": {
+			"id": "EndNoneEvent"
+		},
+		"childShapes": [],
+		"outgoing": [],
+		"pointToMy": [{
+			"resourceId": "sid-B14CF69D-9DF5-424A-B369-77B2E86FC9DC"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 909,
+				"y": 249.00000000000003
+			},
+			"upperLeft": {
+				"x": 855,
+				"y": 195
+			}
+		},
+		"dockers": []
+	}, {
+		"resourceId": "sid-9837CB17-3541-4611-9F5B-79F253BE5932",
+		"properties": {
+			"overrideid": "usertask1",
+			"name": "申请者",
+			"usertask_type": {
+				"id": 1,
+				"name": "单选"
+			},
+			"transactor_type": {
+				"id": "1001",
+				"name": "单人签核"
+			},
+			"candidate": {
+				"id": 1,
+				"name": "否"
+			},
+			"exceed": {
+				"type": "natural",
+				"days": ""
+			},
+			"exceed_mode": {
+				"type": "stop",
+				"event": ""
+			},
+			"transactor": "",
+			"operation": {
+				"buttons": {
+					"todoSystemList": [{
+						"id": 1,
+						"name": "提交",
+						"selected": true
+					}, {
+						"id": 2,
+						"name": "暂存",
+						"selected": false
+					}, {
+						"id": 3,
+						"name": "退回",
+						"selected": false
+					}, {
+						"id": 4,
+						"name": "转办",
+						"selected": false
+					}, {
+						"id": 5,
+						"name": "跳转",
+						"selected": false
+					}, {
+						"id": 6,
+						"name": "终止",
+						"selected": false
+					}, {
+						"id": 7,
+						"name": "暂停",
+						"selected": false
+					}, {
+						"id": 8,
+						"name": "恢复",
+						"selected": false
+					}],
+					"haveSystemList": [{
+						"id": 1001,
+						"name": "拿回",
+						"selected": false
+					}]
+				}
+			},
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"event_apply": [],
+			"multiinstance_type": "None",
+			"isforcompensation": "false",
+			"status": "3"
+		},
+		"stencil": {
+			"id": "UserTask"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-30F23A87-32B3-4B6D-ABF1-C7405E28262F"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-42147677-6A31-4329-820F-877C103BF672"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 246,
+				"y": 273
+			},
+			"upperLeft": {
+				"x": 180,
+				"y": 194.99999999999997
+			}
+		},
+		"dockers": []
+	}, {
+		"resourceId": "sid-1BB59926-2883-42DC-8A41-C1EC68FE474F",
+		"properties": {
+			"overrideid": "usertask2",
+			"name": "省厅审批",
+			"usertask_type": {
+				"id": 1,
+				"name": "单选"
+			},
+			"transactor_type": {
+				"id": "1001",
+				"name": "单人签核"
+			},
+			"candidate": {
+				"id": 1,
+				"name": "否"
+			},
+			"exceed": {
+				"type": "natural",
+				"days": ""
+			},
+			"exceed_mode": {
+				"type": "stop",
+				"event": ""
+			},
+			"transactor": "",
+			"operation": {
+				"buttons": {
+					"todoSystemList": [{
+						"id": 1,
+						"name": "提交",
+						"selected": true
+					}, {
+						"id": 2,
+						"name": "暂存",
+						"selected": false
+					}, {
+						"id": 3,
+						"name": "退回",
+						"selected": false
+					}, {
+						"id": 4,
+						"name": "转办",
+						"selected": false
+					}, {
+						"id": 5,
+						"name": "跳转",
+						"selected": false
+					}, {
+						"id": 6,
+						"name": "终止",
+						"selected": false
+					}, {
+						"id": 7,
+						"name": "暂停",
+						"selected": false
+					}, {
+						"id": 8,
+						"name": "恢复",
+						"selected": false
+					}],
+					"haveSystemList": [{
+						"id": 1001,
+						"name": "拿回",
+						"selected": false
+					}]
+				}
+			},
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"event_apply": [],
+			"multiinstance_type": "None",
+			"isforcompensation": "false",
+			"status": "2"
+		},
+		"stencil": {
+			"id": "UserTask"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-2F631695-9452-4874-8734-4DFF2F060BFD"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-FDDE2005-EC68-4DF9-B620-7683C712C933"
+		}, {
+			"resourceId": "sid-10D8F5F3-676B-462C-86FB-69391BAAF1FE"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 389,
+				"y": 438
+			},
+			"upperLeft": {
+				"x": 323,
+				"y": 360
+			}
+		},
+		"dockers": []
+	}, {
+		"resourceId": "sid-324DC589-22A9-4C2F-BF87-FB8B90F23EC8",
+		"properties": {
+			"overrideid": "inclusivegateway1",
+			"name": "",
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"status": "1"
+		},
+		"stencil": {
+			"id": "InclusiveGateway"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-FDDE2005-EC68-4DF9-B620-7683C712C933"
+		}, {
+			"resourceId": "sid-77D7D51A-B751-4DFF-AB9C-D56151AC7316"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-30F23A87-32B3-4B6D-ABF1-C7405E28262F"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 383.1615,
+				"y": 261.1605
+			},
+			"upperLeft": {
+				"x": 328.8385,
+				"y": 206.8395
+			}
+		},
+		"dockers": []
+	}, {
+		"resourceId": "sid-9A93804B-B9DB-4AFF-A515-4F5EC7D5721A",
+		"properties": {
+			"overrideid": "usertask3",
+			"name": "省厅窗口",
+			"usertask_type": {
+				"id": 1,
+				"name": "单选"
+			},
+			"transactor_type": {
+				"id": "1001",
+				"name": "单人签核"
+			},
+			"candidate": {
+				"id": 1,
+				"name": "否"
+			},
+			"exceed": {
+				"type": "natural",
+				"days": ""
+			},
+			"exceed_mode": {
+				"type": "stop",
+				"event": ""
+			},
+			"transactor": "",
+			"operation": {
+				"buttons": {
+					"todoSystemList": [{
+						"id": 1,
+						"name": "提交",
+						"selected": true
+					}, {
+						"id": 2,
+						"name": "暂存",
+						"selected": false
+					}, {
+						"id": 3,
+						"name": "退回",
+						"selected": false
+					}, {
+						"id": 4,
+						"name": "转办",
+						"selected": false
+					}, {
+						"id": 5,
+						"name": "跳转",
+						"selected": false
+					}, {
+						"id": 6,
+						"name": "终止",
+						"selected": false
+					}, {
+						"id": 7,
+						"name": "暂停",
+						"selected": false
+					}, {
+						"id": 8,
+						"name": "恢复",
+						"selected": false
+					}],
+					"haveSystemList": [{
+						"id": 1001,
+						"name": "拿回",
+						"selected": false
+					}]
+				}
+			},
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"event_apply": [],
+			"multiinstance_type": "None",
+			"isforcompensation": "false",
+			"status": "1"
+		},
+		"stencil": {
+			"id": "UserTask"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-7F3E2C14-2E0A-413F-AD6C-BCA3AF4C8B99"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-77D7D51A-B751-4DFF-AB9C-D56151AC7316"
+		}, {
+			"resourceId": "sid-8B4F0F0C-25CA-493D-B3C1-4DE23FD47333"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 555,
+				"y": 273
+			},
+			"upperLeft": {
+				"x": 489,
+				"y": 194.99999999999997
+			}
+		},
+		"dockers": []
+	}, {
+		"resourceId": "sid-7C10A53D-76A5-4D98-A4C8-8F1198C9D166",
+		"properties": {
+			"overrideid": "inclusivegateway2",
+			"name": "",
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"status": "1"
+		},
+		"stencil": {
+			"id": "InclusiveGateway"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-B14CF69D-9DF5-424A-B369-77B2E86FC9DC"
+		}, {
+			"resourceId": "sid-10D8F5F3-676B-462C-86FB-69391BAAF1FE"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-7F3E2C14-2E0A-413F-AD6C-BCA3AF4C8B99"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 729.1614999999999,
+				"y": 261.16049999999996
+			},
+			"upperLeft": {
+				"x": 674.8385,
+				"y": 206.8395
+			}
+		},
+		"dockers": []
+	}, {
+		"resourceId": "sid-4C30EB4C-6073-4AE5-9D22-D2903EE567FF",
+		"properties": {
+			"overrideid": "inclusivegateway3",
+			"name": "",
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"status": "1"
+		},
+		"stencil": {
+			"id": "InclusiveGateway"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-806740C0-D962-4C72-B4F4-4CCFF982C30C"
+		}, {
+			"resourceId": "sid-8B4F0F0C-25CA-493D-B3C1-4DE23FD47333"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-2F631695-9452-4874-8734-4DFF2F060BFD"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 534.3230000000001,
+				"y": 414.32099999999997
+			},
+			"upperLeft": {
+				"x": 480,
+				"y": 360
+			}
+		},
+		"dockers": []
+	}, {
+		"resourceId": "sid-A236816B-A58C-424F-A8BF-8B705975B730",
+		"properties": {
+			"overrideid": "endnoneevent4",
+			"name": "完结",
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"event_apply": [],
+			"status": "1"
+		},
+		"stencil": {
+			"id": "EndNoneEvent"
+		},
+		"childShapes": [],
+		"outgoing": [],
+		"pointToMy": [{
+			"resourceId": "sid-806740C0-D962-4C72-B4F4-4CCFF982C30C"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 684,
+				"y": 414
+			},
+			"upperLeft": {
+				"x": 630,
+				"y": 360
+			}
+		},
+		"dockers": []
+	}, {
+		"resourceId": "sid-30F23A87-32B3-4B6D-ABF1-C7405E28262F",
+		"properties": {
+			"overrideid": "sequenceflow2",
+			"name": "",
+			"union": {
+				"id": 1,
+				"name": "并集"
+			},
+			"transactor": "",
+			"relation": "",
+			"routing_conditions": "",
+			"event_apply": [],
+			"defaultflow": "false",
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"showdiamondmarker": false,
+			"status": "1"
+		},
+		"stencil": {
+			"id": "SequenceFlow"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-324DC589-22A9-4C2F-BF87-FB8B90F23EC8"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-9837CB17-3541-4611-9F5B-79F253BE5932"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 328.446620986657,
+				"y": 229.94369734615097
+			},
+			"upperLeft": {
+				"x": 240.03221875000003,
+				"y": 225
+			}
+		},
+		"dockers": [{
+			"x": 30,
+			"y": 30.000000000000014
+		}, {
+			"x": 287.41925000000003,
+			"y": 225
+		}, {
+			"x": 287.41925000000003,
+			"y": 229.94369734615097
+		}, {
+			"x": 21.13311611967555,
+			"y": 23.104197346150972
+		}],
+		"target": {
+			"resourceId": "sid-324DC589-22A9-4C2F-BF87-FB8B90F23EC8"
+		},
+		"line": "M240.03221875000003 225L287.41925000000003 225 L287.41925000000003 229.94369734615097 L328.446620986657 229.94369734615097 ",
+		"textPath": ["rotate(360 240 225)", "248", "217"]
+	}, {
+		"resourceId": "sid-77D7D51A-B751-4DFF-AB9C-D56151AC7316",
+		"properties": {
+			"overrideid": "sequenceflow4",
+			"name": "网络上报",
+			"union": {
+				"id": 1,
+				"name": "并集"
+			},
+			"transactor": "",
+			"relation": "",
+			"routing_conditions": "",
+			"event_apply": [],
+			"defaultflow": "false",
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"status": "1"
+		},
+		"stencil": {
+			"id": "SequenceFlow"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-9A93804B-B9DB-4AFF-A515-4F5EC7D5721A"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-324DC589-22A9-4C2F-BF87-FB8B90F23EC8"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 488.57696748805597,
+				"y": 234
+			},
+			"upperLeft": {
+				"x": 383.76551624980704,
+				"y": 228.97160442014362
+			}
+		},
+		"dockers": [{
+			"x": 14.816999999999993,
+			"y": 14.816000000000003
+		}, {
+			"x": 411.3333333333333,
+			"y": 234
+		}, {
+			"x": 466.6666666666667,
+			"y": 234
+		}, {
+			"x": 30,
+			"y": 30.000000000000014
+		}],
+		"target": {
+			"resourceId": "sid-9A93804B-B9DB-4AFF-A515-4F5EC7D5721A"
+		},
+		"line": "M383.76551624980704 228.97160442014362L411.3333333333333 234 L466.6666666666667 234 L488.57696748805597 230.23198648294579 ",
+		"textPath": ["rotate(10.337163926449364 383 228)", "391", "220"]
+	}, {
+		"resourceId": "sid-FDDE2005-EC68-4DF9-B620-7683C712C933",
+		"properties": {
+			"overrideid": "sequenceflow3",
+			"name": "省厅申报",
+			"union": {
+				"id": 1,
+				"name": "并集"
+			},
+			"transactor": "",
+			"relation": "",
+			"routing_conditions": "",
+			"event_apply": [],
+			"defaultflow": "false",
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"status": "1"
+		},
+		"stencil": {
+			"id": "SequenceFlow"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-1BB59926-2883-42DC-8A41-C1EC68FE474F"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-324DC589-22A9-4C2F-BF87-FB8B90F23EC8"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 356,
+				"y": 359.5625
+			},
+			"upperLeft": {
+				"x": 352.3527919206366,
+				"y": 262.05744876608554
+			}
+		},
+		"dockers": [{
+			"x": 14.816999999999993,
+			"y": 14.816000000000003
+		}, {
+			"x": 356,
+			"y": 279
+		}, {
+			"x": 33,
+			"y": 39
+		}],
+		"target": {
+			"resourceId": "sid-1BB59926-2883-42DC-8A41-C1EC68FE474F"
+		},
+		"line": "M352.3527919206366 262.05744876608554L356 279 L356 359.5625 ",
+		"textPath": ["rotate(77.8513825258832 352 262)", "360", "254"]
+	}, {
+		"resourceId": "sid-8B4F0F0C-25CA-493D-B3C1-4DE23FD47333",
+		"properties": {
+			"overrideid": "sequenceflow8",
+			"name": "返回",
+			"union": {
+				"id": 1,
+				"name": "并集"
+			},
+			"transactor": "",
+			"relation": "",
+			"routing_conditions": "",
+			"event_apply": [],
+			"defaultflow": "false",
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"showdiamondmarker": false,
+			"status": "1"
+		},
+		"stencil": {
+			"id": "SequenceFlow"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-9A93804B-B9DB-4AFF-A515-4F5EC7D5721A"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-4C30EB4C-6073-4AE5-9D22-D2903EE567FF"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 519.4925337524326,
+				"y": 359.70997439567714
+			},
+			"upperLeft": {
+				"x": 507.2105912475674,
+				"y": 255.31346310432286
+			}
+		},
+		"dockers": [{
+			"x": 24,
+			"y": 27
+		}, {
+			"x": 33,
+			"y": 39.000000000000014
+		}],
+		"target": {
+			"resourceId": "sid-9A93804B-B9DB-4AFF-A515-4F5EC7D5721A"
+		},
+		"line": "M507.2105912475674 359.70997439567714L519.4925337524326 255.31346310432286 ",
+		"textPath": ["rotate(276.70983680775703 507 359)", "515", "351"]
+	}, {
+		"resourceId": "sid-806740C0-D962-4C72-B4F4-4CCFF982C30C",
+		"properties": {
+			"overrideid": "sequenceflow9",
+			"name": "办结",
+			"union": {
+				"id": 1,
+				"name": "并集"
+			},
+			"transactor": "",
+			"relation": "",
+			"routing_conditions": "",
+			"event_apply": [],
+			"defaultflow": "false",
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"status": "1"
+		},
+		"stencil": {
+			"id": "SequenceFlow"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-A236816B-A58C-424F-A8BF-8B705975B730"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-4C30EB4C-6073-4AE5-9D22-D2903EE567FF"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 629.0208333333333,
+				"y": 387
+			},
+			"upperLeft": {
+				"x": 534.9143272342944,
+				"y": 381.25697537263596
+			}
+		},
+		"dockers": [{
+			"x": 14.817000000000027,
+			"y": 14.815999999999988
+		}, {
+			"x": 570.6666666666666,
+			"y": 387
+		}, {
+			"x": 27,
+			"y": 27
+		}],
+		"target": {
+			"resourceId": "sid-A236816B-A58C-424F-A8BF-8B705975B730"
+		},
+		"line": "M534.9143272342944 381.25697537263596L570.6666666666666 387 L629.0208333333333 387 ",
+		"textPath": ["rotate(9.125666181179724 534 381)", "542", "373"]
+	}, {
+		"resourceId": "sid-2F631695-9452-4874-8734-4DFF2F060BFD",
+		"properties": {
+			"overrideid": "sequenceflow7",
+			"name": "",
+			"union": {
+				"id": 1,
+				"name": "并集"
+			},
+			"transactor": "",
+			"relation": "",
+			"routing_conditions": "",
+			"event_apply": [],
+			"defaultflow": "false",
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"status": "1"
+		},
+		"stencil": {
+			"id": "SequenceFlow"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-4C30EB4C-6073-4AE5-9D22-D2903EE567FF"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-1BB59926-2883-42DC-8A41-C1EC68FE474F"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 479.397328125,
+				"y": 388.5321785212055
+			},
+			"upperLeft": {
+				"x": 383.49884389817754,
+				"y": 387.16049999999996
+			}
+		},
+		"dockers": [{
+			"x": 30,
+			"y": 30
+		}, {
+			"x": 412,
+			"y": 387.16049999999996
+		}, {
+			"x": 27.161500000000046,
+			"y": 27.160499999999985
+		}],
+		"target": {
+			"resourceId": "sid-4C30EB4C-6073-4AE5-9D22-D2903EE567FF"
+		},
+		"line": "M383.49884389817754 388.5321785212055L412 387.16049999999996 L479.397328125 387.16049999999996 ",
+		"textPath": ["rotate(357.2446452447106 383 388)", "391", "380"]
+	}, {
+		"resourceId": "sid-B14CF69D-9DF5-424A-B369-77B2E86FC9DC",
+		"properties": {
+			"overrideid": "sequenceflow6",
+			"name": "退回",
+			"union": {
+				"id": 1,
+				"name": "并集"
+			},
+			"transactor": "",
+			"relation": "",
+			"routing_conditions": "",
+			"event_apply": [],
+			"defaultflow": "false",
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"status": "1"
+		},
+		"stencil": {
+			"id": "SequenceFlow"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-1B2DC1F0-98FA-4F3F-A02D-AB440E18A356"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-7C10A53D-76A5-4D98-A4C8-8F1198C9D166"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 854.7029019945641,
+				"y": 221.95110933630608
+			},
+			"upperLeft": {
+				"x": 729.7254749585609,
+				"y": 221.7272676168189
+			}
+		},
+		"dockers": [{
+			"x": 14.816999999999993,
+			"y": 14.815999999999988
+		}, {
+			"x": 27,
+			"y": 27.00000000000001
+		}],
+		"target": {
+			"resourceId": "sid-1B2DC1F0-98FA-4F3F-A02D-AB440E18A356"
+		},
+		"line": "M729.7254749585609 221.7272676168189L854.7029019945641 221.95110933630608 ",
+		"textPath": ["rotate(0.10261990821737754 729 221)", "737", "213"]
+	}, {
+		"resourceId": "sid-10D8F5F3-676B-462C-86FB-69391BAAF1FE",
+		"properties": {
+			"overrideid": "sequenceflow10",
+			"name": "呈报",
+			"union": {
+				"id": 1,
+				"name": "并集"
+			},
+			"transactor": "",
+			"relation": "",
+			"routing_conditions": "",
+			"event_apply": [],
+			"defaultflow": "false",
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"status": "1"
+		},
+		"stencil": {
+			"id": "SequenceFlow"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-1BB59926-2883-42DC-8A41-C1EC68FE474F"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-7C10A53D-76A5-4D98-A4C8-8F1198C9D166"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 711,
+				"y": 477
+			},
+			"upperLeft": {
+				"x": 356,
+				"y": 261.5521631481493
+			}
+		},
+		"dockers": [{
+			"x": 14.816999999999993,
+			"y": 14.815999999999988
+		}, {
+			"x": 711,
+			"y": 477
+		}, {
+			"x": 356,
+			"y": 477
+		}, {
+			"x": 33,
+			"y": 39
+		}],
+		"target": {
+			"resourceId": "sid-1BB59926-2883-42DC-8A41-C1EC68FE474F"
+		},
+		"line": "M692.9905016411775 261.5521631481493L711 477 L356 477 L356 420.71875 ",
+		"textPath": ["rotate(85.22169769279623 692 261)", "700", "253"]
+	}, {
+		"resourceId": "sid-7F3E2C14-2E0A-413F-AD6C-BCA3AF4C8B99",
+		"properties": {
+			"overrideid": "sequenceflow5",
+			"name": "",
+			"union": {
+				"id": 1,
+				"name": "并集"
+			},
+			"transactor": "",
+			"relation": "",
+			"routing_conditions": "",
+			"event_apply": [],
+			"defaultflow": "false",
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"status": "1"
+		},
+		"stencil": {
+			"id": "SequenceFlow"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-7C10A53D-76A5-4D98-A4C8-8F1198C9D166"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-9A93804B-B9DB-4AFF-A515-4F5EC7D5721A"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 674.0469128050394,
+				"y": 233.75692967656556
+			},
+			"upperLeft": {
+				"x": 549.7431506043229,
+				"y": 228.6168412475674
+			}
+		},
+		"dockers": [{
+			"x": 30,
+			"y": 30.000000000000014
+		}, {
+			"x": 587,
+			"y": 233
+		}, {
+			"x": 27.16149999999999,
+			"y": 27.160499999999985
+		}],
+		"target": {
+			"resourceId": "sid-7C10A53D-76A5-4D98-A4C8-8F1198C9D166"
+		},
+		"line": "M549.7431506043229 228.6168412475674L587 233 L674.0469128050394 233.75692967656556 ",
+		"textPath": ["rotate(6.709836807756972 549 228)", "557", "220"]
+	}, {
+		"resourceId": "sid-42147677-6A31-4329-820F-877C103BF672",
+		"properties": {
+			"overrideid": "sequenceflow1",
+			"name": "",
+			"union": {
+				"id": 1,
+				"name": "并集"
+			},
+			"transactor": "",
+			"relation": "",
+			"routing_conditions": "",
+			"event_apply": [],
+			"defaultflow": "false",
+			"field_attribute": {
+				"version": 1534137582014,
+				"have": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}],
+				"todo": [{
+					"id": "411266a2b97949a88030b6b434bdea38",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "zhubansuggestTextareaContent",
+					"columnName": "",
+					"formName": "zhubansuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "8a252c6aac064a149c7a9edb37c60f2e",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "bangongshisuggestTextareaContent",
+					"columnName": "",
+					"formName": "bangongshisuggestTextareaContent",
+					"type": 12,
+					"typeLabel": "意见域",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}, {
+					"id": "a7398f294edf4e9eabb521d57e36bf77",
+					"formId": "93fb8d6e91a84f108f1b961236d4e7c2",
+					"itemName": "title",
+					"columnName": "",
+					"formName": "title",
+					"type": 1,
+					"typeLabel": "文本输入框",
+					"dbtype": "mysql",
+					"orderBy": null,
+					"privilege": "readonly"
+				}]
+			},
+			"status": "1"
+		},
+		"stencil": {
+			"id": "SequenceFlow"
+		},
+		"childShapes": [],
+		"outgoing": [{
+			"resourceId": "sid-9837CB17-3541-4611-9F5B-79F253BE5932"
+		}],
+		"pointToMy": [{
+			"resourceId": "sid-215732E5-9A01-4556-89BB-329BFAB11144"
+		}],
+		"bounds": {
+			"lowerRight": {
+				"x": 179.46882085414683,
+				"y": 224.63653358159698
+			},
+			"upperLeft": {
+				"x": 99.25,
+				"y": 222
+			}
+		},
+		"dockers": [{
+			"x": 27,
+			"y": 27
+		}, {
+			"x": 124.5,
+			"y": 222
+		}, {
+			"x": 126,
+			"y": 224
+		}, {
+			"x": 30,
+			"y": 30.000000000000014
+		}],
+		"target": {
+			"resourceId": "sid-9837CB17-3541-4611-9F5B-79F253BE5932"
+		},
+		"line": "M99.25 222L124.5 222 L126 224 L179.46882085414683 224.63653358159698 ",
+		"textPath": ["rotate(360 99 222)", "107", "214"]
+	}],
+	"bounds": {
+		"lowerRight": {
+			"x": 1200,
+			"y": 1050
+		},
+		"upperLeft": {
+			"x": 0,
+			"y": 0
+		}
+	},
+	"stencilset": {
+		"url": "stencilsets/bpmn2.0/bpmn2.0.json",
+		"namespace": "http://b3mn.org/stencilset/bpmn2.0#"
+	},
+	"ssextensions": []
+}

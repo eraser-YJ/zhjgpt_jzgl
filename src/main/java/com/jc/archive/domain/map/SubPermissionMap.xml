@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.archive.domain.SubPermission">
+
+	<select id="query" parameterType="com.jc.archive.domain.SubPermission" resultType="com.jc.archive.domain.SubPermission">
+		SELECT 
+			t.id id,
+			t.permission_id permissionId,
+			t.data_type dataType,
+			t.control_id controlId,
+			t.folder_id folderId,
+			t.control_name controlName
+			
+		FROM toa_archive_sub_permission t
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+
+			<if test="permissionId != null">
+				and t.permission_id = #{permissionId}
+			</if>
+			<if test="folderId != null">
+				and t.folder_id = #{folderId}
+			</if>
+
+			<if test="dataType != null">
+				and t.data_type = #{dataType}
+			</if>
+
+			<if test="controlId != null">
+				and t.control_id = #{controlId}
+			</if>
+
+			<if test="controlName != null">
+				and t.control_name = #{controlName}
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="queryCount" parameterType="com.jc.archive.domain.SubPermission" resultType="java.lang.Long">
+		SELECT count(id) 
+		FROM toa_archive_sub_permission t
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="folderId != null">
+				and t.folder_id = #{folderId}
+			</if>
+			<if test="permissionId != null">
+				and t.permission_id = #{permissionId}
+			</if>
+
+			<if test="dataType != null">
+				and t.data_type = #{dataType}
+			</if>
+
+			<if test="controlId != null">
+				and t.control_id = #{controlId}
+			</if>
+
+			<if test="controlName != null">
+				and t.control_name = #{controlName}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.archive.domain.SubPermission">
+    	delete from toa_archive_sub_permission
+      		where permission_id = #{permissionId}
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.archive.domain.SubPermission">
+    	UPDATE toa_archive_sub_permission t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+
+	<insert id="insert" parameterType="com.jc.archive.domain.SubPermission" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO toa_archive_sub_permission(id,folder_id,permission_id,data_type,control_id,control_name)
+			VALUES (#{id},#{folderId},#{permissionId},#{dataType},#{controlId},#{controlName,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		INSERT INTO toa_archive_sub_permission(id,folder_id,permission_id,data_type,control_id,control_name)
+			VALUES
+			<foreach collection="list" item="item" index="index" separator=","> 
+				(#{item.id},#{item.folderId},#{item.permissionId},#{item.dataType},#{item.controlId},#{item.controlName,jdbcType=VARCHAR})
+			</foreach> 
+	</insert>
+
+	<update id="update" parameterType="com.jc.archive.domain.SubPermission">
+	UPDATE toa_archive_sub_permission set
+	   	<if test="permissionId != null">
+	   		permission_id = #{permissionId},
+	   	</if>
+	   	<if test="dataType != null">
+	   		data_type = #{dataType},
+	   	</if>
+	   	<if test="controlId != null">
+	   		control_id = #{controlId},
+	   	</if>
+	   	<if test="controlName != null">
+	   		control_name = #{controlName},
+	   	</if>
+	   	MODIFY_DATE = #{modifyDateNew} where id = #{id} and MODIFY_DATE = #{modifyDate}
+	</update>
+
+</mapper>

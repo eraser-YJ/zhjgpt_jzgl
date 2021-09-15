@@ -1,0 +1,49 @@
+总结：
+1. [:] = map，[] = 数组/List
+2. 长度都是size()
+3. list或数组去重复unique()，没有发现对应java的Set写法
+
+
+import com.jc.api.util.ObjectUtil;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
+def process(paraJson){
+	def jsonSlurper = new groovy.json.JsonSlurper();
+    def resData = [:];
+    def resData1 = [];
+    def resData2 = [];
+
+    println(output.size());
+    for(i=0;i<output.size();i++){
+         resData1[i] = output[i]['gzjgtz'];
+         resData2[i] = output[i]['sjdw'];
+    }
+    resData1.unique();
+    resData2.unique();
+    def resData3 = [:];
+    for(a=0;a<resData1.size();a++){
+      def resDataTemp = [];
+       for(b=0;b<resData2.size();b++){
+              for(d=0;d<output.size();d++){
+                   if( output[d] == null ||  output[d]['gzjgtz'] == null || output[d]['sjdw'] == null){
+                        continue;
+                   }
+                   if(resData1[a] == output[d]['gzjgtz']&&resData2[b] == output[d]['sjdw']){
+                       resDataTemp[b] = output[d]['cc'];
+                   }
+               }
+               if( resDataTemp[b] == null){
+                     resDataTemp[b] = 0;
+               }
+        }
+
+        resData3[resData1[a]] = resDataTemp;
+    }
+    resData['legend'] =   resData1;
+    resData['xAxis'] =   resData2;
+    resData['data'] =   resData3;
+	return resData ;
+}

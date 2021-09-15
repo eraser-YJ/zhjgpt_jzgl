@@ -1,0 +1,24 @@
+<div ng-controller="KisBpmExceedPropertyCtrl" style="line-height: 20px;margin-left: 20px;">
+    <label class="radio-inline" for="exceedWorking" style="padding: 0;">
+        <input type="radio"
+               id="exceedWorking"
+               name="exceedInlineRadioOptions"
+               ng-checked="exceedType == 'natural'"
+               ng-click="clickExceedRadioValue('natural')">自然天
+    </label>
+    <label class="radio-inline" for="exceedNatural" style="padding: 0;padding-left: 20px;">
+        <input type="radio"
+               id="exceedNatural"
+               name="exceedInlineRadioOptions"
+               ng-checked="exceedType == 'working'"
+               ng-click="clickExceedRadioValue('working')">工作日
+    </label>
+    <input type="text" class="form-control" style="width:50px;display: inline-block;margin-left: 20px;"
+           id="exceedDaysId"
+           ng-keyup="clickExceedRadioValue();"
+           ng-blur="clickExceedRadioValue();"
+           ng-model="exceedDays"
+          maxlength="4">
+    <span style="margin-left: 5px;">天</span>
+    <span class="text-danger" ng-show="exceedError">请输入一个正确的数字!!!</span>
+</div>

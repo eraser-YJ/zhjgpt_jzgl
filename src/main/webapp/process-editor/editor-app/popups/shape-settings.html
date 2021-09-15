@@ -1,0 +1,35 @@
+
+<div class="modal" ng-controller="KisBpmShapeSettingsCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-hidden="true" ng-click="close()">&times;</button>
+                <h2>{{title}}</h2>
+            </div>
+            <div class="modal-body ztree-centent">
+                <form class="form-horizontal">
+                    <ul class="nav nav-tabs">
+
+                        <li ng-repeat="proper in listItems" ng-class="{'active' : $index == 0}">
+                            <a href="#home_{{$index}}" aria-controls="home" role="tab" data-toggle="tab" ng-click="switchType(proper.type)">{{proper.name}}</a>
+                        </li>
+                    </ul>
+                    <!--添加一个loading-->
+                    <div class="progress progress-striped active" ng-if="false">
+                        <div class="progress-bar progress-bar-success" role="progressbar"
+                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                             style="width: 100%;">
+                            <span class="sr-only">40% 完成</span>
+                        </div>
+                    </div>
+
+                    <ng-include src="shapeFormUrl"></ng-include>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <span class="text-danger">{{vaildDefErrorInfo}}</span>
+                <button ng-disabled="!!vaildDefErrorInfo" ng-click="cancel()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+            </div>
+        </div>
+    </div>
+</div>

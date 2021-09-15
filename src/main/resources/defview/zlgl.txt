@@ -1,0 +1,26 @@
+SELECT
+  t.id,
+  t.code,
+  t.title,
+  t.question_meta,
+  t.create_date,
+  t.project_id,
+  info.project_number,
+  info.project_name,
+  t.contract_id,
+  con.contract_code,
+  con.contract_name,
+  t.rectification_company,
+  dept.name dept_ame
+FROM cm_project_question t
+  INNER JOIN cm_project_info info ON t.project_id = info.id
+  INNER JOIN cm_contract_info con ON t.contract_id = con.id
+  INNER JOIN tty_sys_department dept ON dept.id = t.rectification_company
+WHERE t.question_type = 'quality'
+<if test="id != null">
+ and t.id = #{id}
+</if>
+<if test="projectCode != null">
+ and info.project_number = #{projectCode}
+</if>
+ORDER BY t.CREATE_DATE DESC 

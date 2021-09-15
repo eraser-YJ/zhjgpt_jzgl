@@ -1,0 +1,17 @@
+[{
+	"id":"1",
+	"x_point":"125.4728844",
+	"y_point":"43.7796059",
+	"title":"polygon",
+	"content":"http://124.235.224.2:6080/arcgis/rest/services/CHCGML/A04M_1W/MapServer",
+	"attrBox":"test"
+},
+{
+	"id":"2",
+	"x_point":"127.4728844",
+	"y_point":"45.7796059",
+	"title":"polygon",
+	"content":"http://124.235.224.2:6080/arcgis/rest/services/CHCGML/A04M_1W/MapServer",
+	"attrBox":"test"
+}
+]

@@ -1,0 +1,7 @@
+<div ng-controller="KisBpmRadioPropertyPopupCtrl" style="line-height: 20px">
+    <label class="radio-inline" ng-repeat="radiodata in radioDataArray">
+        <input type="radio" name="inlineRadioOptions"
+               ng-checked="radiodata.selected"
+               ng-click="changeRadioValue($index);"> {{radiodata.name}}
+    </label>
+</div>

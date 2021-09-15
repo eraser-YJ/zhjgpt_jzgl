@@ -1,0 +1,382 @@
+﻿/*!
+ * 图标定义
+ *
+ * Copyright 2012 Stefan Petre
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
+.fa,.table-sort:after{
+	display:inline-block;
+	font-family:YixunFont;
+	font-style:normal;
+	font-weight:normal;
+	line-height:1;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale
+}
+.fa-lg{font-size:1.3333333333333333em;line-height:.75em;vertical-align:-15%}
+.fa-2x{font-size:2em}
+.fa-3x{font-size:3em}
+.fa-4x{font-size:4em}
+.fa-5x{font-size:5em}
+.fa-fw{width:1.2857142857142858em;text-align:center}
+.fa-ul{padding-left:0;margin-left:2.142857142857143em;list-style-type:none}
+.fa-ul>li{position:relative}
+.fa-li{position:absolute;left:-2.142857142857143em;width:2.142857142857143em;top:.14285714285714285em;text-align:center}
+.fa-li.fa-lg{left:-1.8571428571428572em}
+.fa-border{padding:.2em .25em .15em;border:solid .08em #eee;border-radius:.1em}
+.fa.pull-left{margin-right:.3em}
+.fa.pull-right{margin-left:.3em}
+.fa-spin{-webkit-animation:spin 2s infinite linear;-moz-animation:spin 2s infinite linear;-o-animation:spin 2s infinite linear;animation:spin 2s infinite linear}
+.fa-stacks{position:relative;display:inline-block;width:2em;height:2em;line-height:2em;vertical-align:middle}
+.fa-stacks-1x,.fa-stacks-2x{position:absolute;left:0;width:100%;text-align:center}
+.fa-stacks-1x{line-height:inherit}
+.fa-stacks-2x{font-size:2em}
+.fa-inverse{color:#fff}
+.fa-tag:before{content:"\e600" !important}
+.fa-volume-down:before{content:"\e601" !important}
+.fa-volume-up:before{content:"\e602" !important}
+.fa-volume-off:before{content:"\e603" !important}
+.fa-mail:before{content:"\e604" !important}
+.fa-chat:before{content:"\e605" !important}
+.fa-eye:before{content:"\e606" !important}
+.fa-car:before{content:"\e607" !important}
+.fa-bookmark:before{content:"\e608" !important}
+.fa-tools:before{content:"\e609" !important}
+.fa-files:before{content:"\e60a" !important}
+.fa-appointment:before{content:"\e60b" !important}
+.fa-edit:before{content:"\e60c" !important}
+.fa-clipboard:before{content:"\e60d" !important}
+.fa-calendar:before{content:"\e60e" !important}
+.fa-clock:before{content:"\e60f" !important}
+.fa-user:before{content:"\e610" !important}
+.fa-box:before{content:"\e611" !important}
+.fa-th-list:before{content:"\e612" !important}
+.fa-group:before{content:"\e613" !important}
+.fa-chevron-left:before{content:"\e614" !important}
+.fa-chevron-right:before{content:"\e615" !important}
+.fa-download-alt:before{content:"\e616" !important}
+.fa-off:before{content:"\e617" !important}
+.fa-chevron-up:before{content:"\e618" !important}
+.fa-chevron-down:before{content:"\e619" !important}
+.fa-caret-down:before{content:"\e61a" !important}
+.fa-caret-up:before{content:"\e61b" !important}
+.fa-caret-left:before{content:"\e61c" !important}
+.fa-caret-right:before{content:"\e61d" !important}
+.fa-sort:before{content:"\e61e" !important}
+.fa-double-angle-left:before{content:"\e61f" !important}
+.fa-double-angle-right:before{content:"\e620" !important} 
+.fa-angle-left:before{content:"\e621" !important}
+.fa-angle-right:before{content:"\e622" !important}
+.fa-double-angle-up:before{content:"\e623" !important}
+.fa-double-angle-down:before{content:"\e624" !important}
+.fa-angle-up:before{content:"\e625" !important}
+.fa-angle-down:before{content:"\e626" !important}
+.fa-sort-down:before{content:"\e627" !important}
+.fa-sort-up:before{content:"\e628" !important}
+.fa-list-ul:before{content:"\e629" !important}
+.fa-tasks:before{content:"\e62a" !important}
+.fa-edit2:before{content:"\e62b" !important}
+.fa-search:before{content:"\e62c" !important}
+.fa-ok:before{content:"\e62d" !important}
+.fa-remove:before{content:"\e62e" !important}
+.fa-wrench:before{content:"\e62f" !important}
+.fa-cog:before{content:"\e630" !important}
+.fa-check:before{content:"\e631" !important}
+.fa-share:before{content:"\e632" !important}
+.fa-plus:before{content:"\e633" !important}
+.fa-minus:before{content:"\e634" !important}
+.fa-refresh:before{content:"\e635" !important}
+.fa-repeat:before{content:"\e636" !important}
+.fa-trash2:before{content:"\e637" !important}
+.fa-folder-close:before{content:"\e638" !important}
+.fa-folder-open:before{content:"\e639" !important}
+.fa-signout:before{content:"\e63a" !important}
+.fa-signin:before{content:"\e63b" !important}
+.fa-step-backward:before{content:"\e63c" !important}
+.fa-step-forward:before{content:"\e63d" !important}
+.fa-fast-backward:before{content:"\e63e" !important}
+.fa-fast-forward:before{content:"\e63f" !important}
+.fa-forward:before{content:"\e640" !important}
+.fa-backward:before{content:"\e641" !important}
+.fa-align-justify:before{content:"\e642" !important}
+.fa-list:before{content:"\e643" !important}
+.fa-bell-alt:before{content:"\e644" !important}
+.fa-folder-close-white:before{content:"\e645" !important}
+.fa-folder-open-white:before{content:"\e646" !important}
+.fa-users:before{content:"\e647" !important}
+.fa-smiley:before{content:"\e648" !important}
+.fa-smiley2:before{content:"\e649" !important}
+.fa-sad:before{content:"\e64a" !important}
+.fa-sad2:before{content:"\e64b" !important}
+.fa-wink:before{content:"\e64c" !important}
+.fa-confused:before{content:"\e64d" !important}
+.fa-confused2:before{content:"\e64e" !important}
+.fa-user2:before{content:"\e64f" !important}
+.fa-stack:before{content:"\e650" !important}
+.fa-sitemap:before{content:"\e651" !important}
+.fa-star-half-fu:before{content:"\e652" !important}
+.fa-hdd:before{content:"\e653" !important}
+.fa-plus2:before{content:"\e654" !important}
+.fa-minus2:before{content:"\e655" !important}
+.fa-plus3:before{content:"\e656" !important}
+.fa-minus3:before{content:"\e657" !important}
+.fa-cross:before{content:"\e658" !important}
+.fa-lock-open:before{content:"\e659" !important}
+.fa-lock-closed:before{content:"\e65a" !important}
+.fa-key:before{content:"\e65b" !important}
+.fa-book:before{content:"\e65c" !important}
+.fa-file-add:before{content:"\e65d" !important}
+.fa-folder-add:before{content:"\e65e" !important}
+.fa-calendar2:before{content:"\e65f" !important}
+.fa-newspaper:before{content:"\e660" !important}
+.fa-forbid:before{content:"\e661" !important}
+.fa-comment:before{content:"\e662" !important}
+.fa-review:before{content:"\e663" !important}
+.fa-progress:before{content:"\e664" !important}
+.fa-file-text:before{content:"\e665" !important}
+.fa-Reminders:before{content:"\e666" !important}
+.fa-checkmark:before{content:"\e667" !important}
+.fa-clock2:before{content:"\e668" !important}
+.fa-bookmark2:before{content:"\e669" !important}
+.fa-pointer:before{content:"\e66a" !important}
+.fa-newspaper2:before{content:"\e66b" !important}
+.fa-history:before{content:"\e66c" !important}
+.fa-clock3:before{content:"\e66d" !important}
+.fa-indent-increase:before{content:"\e66e" !important}
+.fa-indent-decrease:before{content:"\e66f" !important}
+.fa-reply-all:before{content:"\e670" !important}
+.fa-export:before{content:"\e671" !important}
+.fa-share2:before{content:"\e672" !important}
+.fa-arrow:before{content:"\e673" !important}
+.fa-book2:before{content:"\e674" !important}
+.fa-search2:before{content:"\e675" !important}
+.fa-comment2:before{content:"\e676" !important}
+.fa-heart:before{content:"\e677" !important}
+.fa-foursquare:before{content:"\e678" !important}
+.fa-office:before{content:"\e679" !important}
+.fa-flag:before{content:"\e67a" !important}
+.fa-book3:before{content:"\e67b" !important}
+.fa-drawer:before{content:"\e67c" !important}
+.fa-thumbsup:before{content:"\e67d" !important}
+.fa-bookmarks:before{content:"\e67e" !important}
+.fa-alarm:before{content:"\e67f" !important}
+.fa-trash:before{content:"\e680" !important}
+.fa-books:before{content:"\e681" !important}
+.fa-libreoffice:before{content:"\e682" !important}
+.fa-newspaper1:before{content:"\e683" !important}
+.fa-search3:before{content:"\e684" !important}
+.fa-user3:before{content:"\e685" !important}
+.fa-monitor:before{content:"\e686" !important}
+.fa-search4:before{content:"\e687" !important}
+.fa-archive:before{content:"\e688" !important}
+.fa-info:before{content:"\e689" !important}
+/*信息管理*/
+.fa-arrow-forward:before{content:"\e68a" !important}
+.fa-edit3:before{content:"\e68b" !important}
+.fa-envelope:before{content:"\e68c" !important}
+.fa-star:before{content:"\e68d" !important}
+.fa-star-empty:before{content:"\e68e" !important}
+.fa-email-open:before{content:"\e68f" !important}
+.fa-align-justify1:before{content:"\e690" !important}
+.fa-paper-clip:before{content:"\e691" !important}
+.fa-media-play:before{content:"\e692" !important}
+.fa-compose:before{content:"\e693" !important}
+.fa-menu:before{content:"\e694" !important}
+.fa-list2:before{content:"\e695" !important}
+.fa-recover-doc:before{content:"\e696" !important}
+.fa-bac-setting:before{content:"\e697" !important}
+.fa-doc-exchange:before{content:"\e698" !important}
+.fa-doc-distribution:before{content:"\e699" !important}
+.fa-send-doc:before{content:"\e69a" !important}
+.fa-table:before{content:"\e69b" !important}
+.fa-handle:before{content:"\e69c" !important}
+.fa-point-up:before{content:"\e69d" !important}
+.fa-paste:before{content:"\e69e" !important}
+.fa-remove-sign:before{content:"\e69f" !important}
+.fa-ok-sign:before{content:"\e6a0" !important}
+.fa-question-sign:before{content:"\e6a1" !important}
+.fa-info-sign:before{content:"\e6a2" !important}
+.fa-exclamation-sign:before{content:"\e6a3" !important}
+.fa-start:before{content:"\e6a4" !important}
+.fa-eject-outline:before{content:"\e6a5" !important}
+.fa-submit:before{content:"\e6a6" !important}
+.fa-cancel-voiture:before{content:"\e6a7" !important}
+.fa-satisfaction:before{content:"\e6a8" !important}
+.fa-summary-archive-file:before{content:"\e6a9" !important}
+.fa-return-voiture:before{content:"\e6aa" !important}
+.fa-drive:before{content:"\e6ab" !important}
+.fa-voiture-management:before{content:"\e6ac" !important}
+.fa-view-history:before{content:"\e6ad" !important}
+.fa-view-summary:before{content:"\e6ae" !important}
+.fa-view-receipt:before{content:"\e6af" !important}
+.fa-no-drive:before{content:"\e6b0" !important}
+.fa-book4:before{content:"\e6b1" !important}
+.fa-book-alt:before{content:"\e6b2" !important}
+.fa-briefcase:before{content:"\e6b3" !important}
+.fa-wrench1:before{content:"\e6b4" !important}
+.fa-bars:before{content:"\e6b5" !important}
+.fa-movie:before{content:"\e6b6" !important}
+.fa-wallet:before{content:"\e6b7" !important}
+.fa-popout:before{content:"\e6b8" !important}
+.fa-group1:before{content:"\e6b9" !important}
+.fa-called-task:before{content:"\e6ba" !important}
+.fa-wand:before{content:"\e6bb" !important}
+.fa-menu2:before{content:"\e6bc" !important}
+.fa-lead-schedule:before{content:"\e6bd" !important}
+.fa-insert-log:before{content:"\e6be" !important}
+.fa-layers:before{content:"\e6bf" !important}
+
+.fa-stick:before{content:"\e6c0" !important}
+.fa-unstick:before{content:"\e6c1" !important}
+.fa-list-nested:before{content:"\e6c2" !important}
+.fa-upload:before{content:"\e6c3" !important}
+.fa-lines:before{content:"\e6c4" !important}
+.fa-print:before{content:"\e6c5" !important}
+.fa-file-word:before{content:"\e6c6" !important}
+.fa-book5:before{content:"\e6c7" !important}
+.fa-document-text:before{content:"\e6c8" !important}
+.fa-clipboard2:before{content:"\e6c9" !important}
+.fa-file-pdf:before{content:"\e6ca" !important}
+.fa-file-excel:before{content:"\e6cb" !important}
+.fa-file-zip:before{content:"\e6cc" !important}
+.fa-file-powerpoint:before{content:"\e6cd" !important}
+.fa-file-xml:before{content:"\e6ce" !important}
+.fa-attendance:before{content:"\e6cf" !important}
+.fa-cancel-vacation:before{content:"\e6d0" !important}
+.fa-badge:before{content:"\e6d1" !important}
+.fa-doc-query:before{content:"\e6d2" !important}
+.fa-issued-task:before{content:"\e6d3" !important}
+.fa-unaccept-task:before{content:"\e6d4" !important}
+.fa-locked:before{content:"\e6d5" !important}
+.fa-upload1:before{content:"\e6d6" !important}
+.fa-download:before{content:"\e6d7" !important}
+.fa-gallery:before{content:"\e6d8" !important}
+.fa-reply:before{content:"\e6d9" !important}
+.fa-more-list:before{content:"\e6da" !important}
+.fa-taken-query:before{content:"\e6db" !important}
+.fa-system-task:before{content:"\e6dc" !important}
+.fa-entrust-management:before{content:"\e6dd" !important}
+.fa-flow-calc:before{content:"\e6de" !important}
+.fa-flow-jurisdiction:before{content:"\e6df" !important}
+.fa-relation-map:before{content:"\e6e0" !important}
+.fa-start-flow:before{content:"\e6e1" !important}
+.fa-gtasks-query:before{content:"\e6e2" !important}
+.fa-pause:before{content:"\e6e3" !important}
+.fa-play-alt:before{content:"\e6e4" !important}
+.fa-list3:before{content:"\e6e5" !important}
+.fa-stop:before{content:"\e6e6" !important}
+.fa-knowledge-statistics:before{content:"\e6e7" !important}
+.fa-knowledge-directory:before{content:"\e6e8" !important}
+.fa-knowledge-management:before{content:"\e6e9" !important}
+.fa-knowledge-publish:before{content:"\e6ea" !important}
+.fa-knowledge-subscription:before{content:"\e6eb" !important}
+.fa-file-follow:before{content:"\e6ec" !important}
+.fa-recover-file:before{content:"\e6ed" !important}
+.fa-signin-file:before{content:"\e6ee" !important}
+.fa-signin-company:before{content:"\e6ef" !important}
+.fa-refused-documents:before{content:"\e6f0" !important}
+.fa-document-response:before{content:"\e6f1" !important}
+.fa-stamp:before{content:"\e6f2" !important}
+.fa-send-official-document:before{content:"\e6f3" !important}
+.fa-cancel-knowledge-subscription:before{content:"\e6f4" !important}
+.fa-audit:before{content:"\e6f5" !important}
+.fa-publish:before{content:"\e6f6" !important}
+.fa-version:before{content:"\e6f7" !important}
+.fa-corner-mark:before{content:"\e6f8" !important}
+.fa-cut:before{content:"\f0c4" !important}
+.fa-copy:before{content:"\f0c5" !important}
+.fa-drawer:before{content:"\e6f9" !important}
+.fa-clipboard:before{content:"\e6fb" !important} 
+.fa-text:before{content:"\e6fc" !important}
+.fa-sort-xia:before{content:"\e6fd" !important}
+.fa-sort-shang:before{content:"\e6fe" !important}
+.fa-message:before{content:"\e6ff" !important}
+.fa-photo:before{content:"\f03e" !important}
+.fa-check-alert:before{content:"\f00c" !important}
+.fa-flash:before{content:"\f0e7" !important}
+.fa-layout-1:before{content:"\e734" !important}
+/*门户布局*/
+.fa-layout-111:before{content:"\e70b" !important}
+.fa-layout-311:before{content:"\e70c" !important}
+.fa-layout-121:before{content:"\e707" !important}
+.fa-layout-13:before{content:"\e732" !important}
+.fa-layout-31:before{content:"\e733" !important}
+.fa-layout-211:before{content:"\e735" !important}
+.fa-Export-agenda:before{content:"\e70d" !important}/*导出日程*/
+.fa-document:before{content:"\e702" !important}/*公共文档*/
+.fa-file-director:before{content:"\e703" !important}/*归档目录*/
+.fa-recycle-bin:before{content:"\e704" !important}/*回收站*/
+.fa-my-favorite:before{content:"\e705" !important}/*我的收藏*/
+.fa-my-documents:before{content:"\e706" !important}/*我的文档*/
+.fa-mouse:before{content:"\e701" !important}/*我的操作*/
+.fa-align-justi:before{content:"\e70f" !important}/*信息中心*/
+.fa-my-sup:before{content:"\e713" !important}/*我的督办*/
+.fa-sup-handle:before{content:"\e712" !important}/*督办回馈*/
+.fa-Change-info:before{content:"\e70e" !important}/*修改信息*/
+.fa-my-issue:before{content:"\e710" !important}/*我的发布*/
+.fa-align-center:before{content:"\f037" !important}/*栏目设置*/
+.fa-infomation:before{content:"\e711" !important}/*信息发布*/
+.fa-infor-search:before{content:"\e714" !important}/*信息查询*/
+.fa-alert:before{content:"\e717" !important}/*紧急邮件*/
+.fa-column-selection:before{content:"\f03a" !important}/*栏目选择*/
+.fa-blocked:before{content:"\e718" !important}/*无日志*/
+.fa-official:before{content:"\e719" !important}/*公文管理*/
+.fa-administrative:before{content:"\e71a" !important}/*行政办公*/
+.fa-personage:before{content:"\e71b" !important}/*个人办公*/
+.fa-camera:before{content:"\e71c" !important}/*流程监控*/
+.fa-por-Settings:before{content:"\e722" !important}/*个人门户设置*/
+.fa-drafts:before{content:"\e720" !important}/*草稿箱*/
+.fa-outbox:before{content:"\e721" !important}/*发件箱*/
+.fa-flag-group:before{content:"\e71d" !important}/*公共组别*/
+.fa-accessibility:before{content:"\e71e" !important}/*个人组别*/
+.fa-file-powerpoint:before{content:"\e71f" !important}/*信息分析*/
+.fa-browser:before{content:"\e723" !important}/*门户管理*/
+.fa-mhsz:before{content:"\e724" !important}/*门户设置*/
+.fa-mhywzj:before{content:"\e725" !important}/*门户业务组件*/
+.fa-mhgnzj:before{content:"\e726" !important}/*门户功能组件*/
+.fa-my-center:before{content:"\e727" !important}/*个人中心*/
+.fa-interaction:before{content:"\e728" !important}/*互动交流*/
+.fa-decision:before{content:"\e729" !important}/*决策分析*/
+.fa-message:before{content:"\e72a" !important}/*信息管理*/
+.fa-flow:before{content:"\e72b" !important}/*流程管理*/
+.fa-document-gl:before{content:"\e72c" !important}/*文档管理*/
+.fa-system:before{content:"\e72d" !important}/*系统管理*/
+.fa-Outbox:before{content:"\e72e" !important}/*发件箱*/
+.fa-wastebox:before{content:"\e72f" !important}/*废件箱*/
+.fa-draftbox:before{content:"\e730" !important}/*草稿箱*/
+.fa-dictionary:before{content:"\e708" !important}/*字典类型*/
+.fa-link:before{content:"\e709" !important}/*友情连接*/
+.fa-imei:before{content:"\e70a" !important}/*串号*/
+.fa-toolkit:before{content:"\e736" !important}/*工具箱*/
+.fa-pro-launch:before{content:"\e737" !important}/*参与流程*/
+.fa-demand-flow:before{content:"\e738" !important}/*查询流程*/
+.fa-Process-agent:before{content:"\e739" !important}/*代办流程*/
+.fa-Process-backlog:before{content:"\e73a" !important}/*待办流程*/
+.fa-post-box:before{content:"\e73b" !important}/*发文草稿箱*/
+.fa-Post-retrieval:before{content:"\e73c" !important}/*发文检索*/
+.fa-officiaofficial-document:before{content:"\e73d" !important}/*公文下发*/
+.fa-Application-Process:before{content:"\e73e" !important}/*申请流程*/
+.fa-Receipt-box:before{content:"\e73f" !important}/*收文草稿箱*/
+.fa-searching:before{content:"\e740" !important}/*收文检索*/
+.fa-all-postings:before{content:"\e741" !important}/*所有发文*/
+.fa-all-addressee:before{content:"\e742" !important}/*所有收文*/
+.fa-settle-Process:before{content:"\e743" !important}/*已办结流程*/
+.fa-do-process:before{content:"\e744" !important}/*已办流程*/
+.fa-git-compare:before{content:"\f0ac" !important}/*接收转收*/
+.fa-upload2:before{content:"\e745" !important}/*已传公文*/
+.fa-download:before{content:"\e746" !important}/* 已接公文*/
+.fa-mobile-bind:before{content:"\e747" !important;} /* 手机绑定*/
+
+.badge{background-color:#bebebe;}
+.badge.up{position:relative;top:-10px;padding:3px 6px;}
+.badge-sm{font-size:85%;padding:1px 5px !important;}
+.label-sm{padding-top:0;padding-bottom:0;}
+/* icon 公共项目右上角小图片 */
+[class^="icon-"]:before,[class*=" icon-"]:before{content:"";display:inline-block;width:20px;height:20px;line-height:20px;vertical-align:bottom;background-image:url("../images/demoimg/navSprites.png");background-repeat:no-repeat;margin-right:5px;}
+.icon-help:before {background-position: -270px -95px;}
+.icon-voice:before{background-position: -270px -70px;}
+.icon-no-voice:before{background-position: -246px -70px;}
+.icon-search:before {background-position: -246px -95px;}
+.icon-exit:before {background-position: -222px -95px;margin-left:15px;}
+.icon-skin:before {background-position: -222px -70px;margin-left:15px;}

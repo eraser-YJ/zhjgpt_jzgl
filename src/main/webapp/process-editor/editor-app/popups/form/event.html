@@ -1,0 +1,13 @@
+<div ng-repeat="property in selectedItem">
+    <div ng-controller="ActivitiEventApplyCtrl">
+
+        <div ng-if="translationsEventRetrieved" class="kis-listener-grid personModal" ng-grid="gridEventOptions">
+        </div>
+
+        <div class="btn-group">
+            <a class="btn" ng-click="addEventSetting();">添加</a>
+            <a class="btn" ng-click="deleteEventSetting();">删除</a>
+            <a class="btn" ng-click="deleteAllEventSetting();">全删</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.csmp.ptProject.domain.ProjectInfo">
+
+	<insert id="insert" parameterType="com.jc.csmp.ptProject.domain.ProjectInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into pt_project_info (projectNumber,projectName,projectAddress,buildDeptId,buildDept,projectType,buildArea,projectMoney,realStartDate,realFinishDate,dlh_data_id_,dlh_data_modify_date_,dlh_data_src_,dlh_data_user_,construction_organization,projectManager)
+		values (#{projectnumber},#{projectname},#{projectaddress},#{builddeptid},#{builddept},#{projecttype},#{buildarea},#{projectmoney},#{realstartdate},#{realfinishdate},#{dlhDataId},#{dlhDataModifyDate},#{dlhDataSrc},#{dlhDataUser},#{constructionOrganization},#{projectmanager})		
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		insert into pt_project_info (projectNumber,projectName,projectAddress,buildDeptId,buildDept,projectType,buildArea,projectMoney,realStartDate,realFinishDate,dlh_data_id_,dlh_data_modify_date_,dlh_data_src_,dlh_data_user_,construction_organization,projectManager)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.projectnumber},#{item.projectname},#{item.projectaddress},#{item.builddeptid},#{item.builddept},#{item.projecttype},#{item.buildarea},#{item.projectmoney},#{item.realstartdate},#{item.realfinishdate},#{item.dlhDataId},#{item.dlhDataModifyDate},#{item.dlhDataSrc},#{item.dlhDataUser},#{item.constructionOrganization},#{item.projectmanager})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.csmp.ptProject.domain.ProjectInfo">
+		update pt_project_info set
+		<if test="projectnumber != null">projectNumber=#{projectnumber},</if>
+		<if test="projectname != null">projectName=#{projectname},</if>
+		<if test="projectaddress != null">projectAddress=#{projectaddress},</if>
+		<if test="builddeptid != null">buildDeptId=#{builddeptid},</if>
+		<if test="builddept != null">buildDept=#{builddept},</if>
+		<if test="projecttype != null">projectType=#{projecttype},</if>
+		<if test="buildarea != null">buildArea=#{buildarea},</if>
+		<if test="projectmoney != null">projectMoney=#{projectmoney},</if>
+		<if test="realstartdate != null">realStartDate=#{realstartdate},</if>
+		<if test="realfinishdate != null">realFinishDate=#{realfinishdate},</if>
+		<if test="dlhDataId != null">dlh_data_id_=#{dlhDataId},</if>
+		<if test="dlhDataModifyDate != null">dlh_data_modify_date_=#{dlhDataModifyDate},</if>
+		<if test="dlhDataSrc != null">dlh_data_src_=#{dlhDataSrc},</if>
+		<if test="dlhDataUser != null">dlh_data_user_=#{dlhDataUser},</if>
+		<if test="constructionOrganization != null">construction_organization=#{constructionOrganization},</if>
+		<if test="projectmanager != null">projectManager=#{projectmanager},</if>
+		<if test="projectArea != null">project_area=#{projectArea},</if>
+		<if test="approvalNumber != null">approvalNumber=#{approvalNumber},</if>
+		<if test="approvalDate != null">approvalDate=#{approvalDate},</if>
+		<if test="projectCate != null">projectCate=#{projectCate},</if>
+		<if test="productionTotal != null">productionTotal=#{productionTotal},</if>
+		<if test="pcpXq != null">pcp_xq=#{pcpXq},</if>
+		<if test="pcpZbfs != null">pcp_zbfs=#{pcpZbfs},</if>
+		<if test="pcpZbje != null">pcp_zbje=#{pcpZbje},</if>
+		<if test="buildType != null">build_type=#{buildType},</if>
+		dlh_data_modify_date_ = #{dlhDataModifyDate} where dlh_data_id_ = #{dlhDataId}
+	</update>
+
+
+	<sql id="Base_Column_List" >
+		t.projectNumber projectnumber,
+		t.projectName projectname,
+		t.projectAddress projectaddress,
+		t.buildDeptId builddeptid,
+		t.buildDept builddept,
+		t.projectType projecttype,
+		t.buildArea buildarea,
+		t.projectMoney projectmoney,
+		t.realStartDate realstartdate,
+		t.realFinishDate realfinishdate,
+		t.dlh_data_id_ dlhDataId,
+		t.dlh_data_modify_date_ dlhDataModifyDate,
+		t.dlh_data_src_ dlhDataSrc,
+		t.dlh_data_user_ dlhDataUser,
+		t.construction_organization constructionOrganization,
+		t.projectManager projectmanager,
+		t.project_area projectArea,
+		t.approvalNumber approvalNumber,
+		t.approvalDate approvalDate,
+		t.projectCate projectCate,
+		t.productionTotal productionTotal,
+		t.pcp_xq pcpXq,
+		t.pcp_zbfs pcpZbfs,
+		t.pcp_zbje pcpZbje,
+		t.build_type buildType,
+		t.longitude longitude,
+		t.latitude latitude,
+		t.building_types buildingTypes,
+		t.structure_type structureType,
+		t.high_build highBuild
+	</sql>
+	
+	<sql id="Base_Query_Where" >
+		<where>
+			<if test="projectnumber != null">
+				and t.projectNumber = #{projectnumber}
+			</if>
+			<if test="projectname != null">
+				and t.projectName like <![CDATA['%${projectname}%']]>
+			</if>
+			<if test="projectaddress != null">
+				and t.projectAddress = #{projectaddress}
+			</if>
+			<if test="builddeptid != null">
+				and t.buildDeptId = #{builddeptid}
+			</if>
+			<if test="builddept != null">
+				and t.buildDept = #{builddept}
+			</if>
+			<if test="projecttype != null">
+				and t.projectType = #{projecttype}
+			</if>
+			<if test="buildarea != null">
+				and t.buildArea = #{buildarea}
+			</if>
+			<if test="projectmoney != null">
+				and t.projectMoney = #{projectmoney}
+			</if>
+			<if test="realstartdateBegin != null">
+				and t.realStartDate &gt;= #{realstartdateBegin}
+			</if>
+			<if test="realstartdateEnd != null">
+				and t.realStartDate &lt;= #{realstartdateEnd}
+			</if>
+			<if test="realstartdate != null">
+				and t.realStartDate = #{realstartdate}
+			</if>
+			<if test="realfinishdateBegin != null">
+				and t.realFinishDate &gt;= #{realfinishdateBegin}
+			</if>
+			<if test="realfinishdateEnd != null">
+				and t.realFinishDate &lt;= #{realfinishdateEnd}
+			</if>
+			<if test="realfinishdate != null">
+				and t.realFinishDate = #{realfinishdate}
+			</if>
+			<if test="dlhDataId != null">
+				and t.dlh_data_id_ = #{dlhDataId}
+			</if>
+			<if test="dlhDataModifyDateBegin != null">
+				and t.dlh_data_modify_date_ &gt;= #{dlhDataModifyDateBegin}
+			</if>
+			<if test="dlhDataModifyDateEnd != null">
+				and t.dlh_data_modify_date_ &lt;= #{dlhDataModifyDateEnd}
+			</if>
+			<if test="dlhDataModifyDate != null">
+				and t.dlh_data_modify_date_ = #{dlhDataModifyDate}
+			</if>
+			<if test="dlhDataSrc != null">
+				and t.dlh_data_src_ = #{dlhDataSrc}
+			</if>
+			<if test="dlhDataUser != null">
+				and t.dlh_data_user_ = #{dlhDataUser}
+			</if>
+			<if test="constructionOrganization != null">
+				and t.construction_organization = #{constructionOrganization}
+			</if>
+			<if test="projectmanager != null">
+				and t.projectManager = #{projectmanager}
+			</if>
+			<if test="projectArea != null">
+				and t.project_area = #{projectArea}
+			</if>
+			<if test="longitude != null">
+				and t.longitude is not null
+			</if>
+			<if test="latitude != null">
+				and t.latitude is not null
+			</if>
+			<if test="highBuild != null">
+				and t.high_build = #{highBuild}
+			</if>
+			<if test="projectCate != null">
+				and t.projectCate = #{projectCate}
+			</if>
+
+			<if test="isFinish != null and isFinish eq '0'.toString()">
+				and pf.finishDate IS NULL
+			</if>
+			<if test="isFinish != null and isFinish eq '1'.toString()">
+				and pf.finishDate IS NOT NULL
+			</if>
+			<if test="companyName != null">
+				and c.company_name like <![CDATA['%${companyName}%']]>
+			</if>
+			<if test="companyType != null">
+				and c.company_type = #{companyType}
+			</if>
+
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+	</sql>
+	<select id="query" parameterType="com.jc.csmp.ptProject.domain.ProjectInfo" resultType="com.jc.csmp.ptProject.domain.ProjectInfo">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM pt_project_info t
+		<include refid="Base_Query_Where"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.csmp.ptProject.domain.ProjectInfo" resultType="java.lang.Long">
+		SELECT count(t.dlh_data_id_) FROM pt_project_info t
+		<include refid="Base_Query_Where"/>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.csmp.ptProject.domain.ProjectInfo">
+    	delete from pt_project_info
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.csmp.ptProject.domain.ProjectInfo">
+    	UPDATE pt_project_info t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</update>
+
+
+	<select id="queryEchartsForArea" resultType="com.jc.csmp.ptProject.vo.EchartsVo">
+		SELECT
+		  dic.value,
+		  IFNULL(aj.cc,0) cc
+		FROM
+		  (SELECT
+			CODE,
+			VALUE
+		  FROM
+			tty_sys_dics t
+		  WHERE t.parent_id = 'region') dic
+		  LEFT OUTER JOIN
+			(
+			SELECT
+		  c.project_area,
+		  COUNT(*) cc
+		FROM (SELECT i.project_area project_area FROM `pt_company_projects_sgxk` t ,`pt_project_info` i WHERE i.`projectNumber`= t.pcp_project_num) c
+		GROUP BY  c.project_area) aj
+			ON dic.code =  aj.project_area
+	</select>
+	<select id="queryEchartsForBuildingTypes" resultType="com.jc.csmp.ptProject.vo.EchartsVo">
+		SELECT
+		  dic.value,
+		  IFNULL(aj.cc,0) cc
+		FROM
+		  (SELECT
+			CODE,
+			VALUE
+		  FROM
+			tty_sys_dics t
+		  WHERE t.parent_id = 'buildingTypes') dic
+		  LEFT OUTER JOIN
+			(
+			SELECT
+		  c.building_types,
+		  COUNT(*) cc
+		FROM (SELECT t.building_types FROM `pt_project_info` t ) c
+		GROUP BY  c.building_types) aj
+			ON dic.code =  aj.building_types
+	</select>
+	<select id="queryEchartsForStructureType" resultType="com.jc.csmp.ptProject.vo.EchartsVo">
+		SELECT
+		  dic.value,
+		  IFNULL(aj.cc,0) cc
+		FROM
+		  (SELECT
+			CODE,
+			VALUE
+		  FROM
+			tty_sys_dics t
+		  WHERE t.parent_id = 'structure_type') dic
+		  LEFT OUTER JOIN
+			(
+			SELECT
+		  c.structure_type,
+		  COUNT(*) cc
+		FROM (SELECT t.structure_type FROM `pt_project_info` t ) c
+		GROUP BY  c.structure_type) aj
+			ON dic.code =  aj.structure_type
+	</select>
+	<select id="queryProjectJd" resultType="com.jc.csmp.ptProject.vo.EchartsVo">
+		SELECT
+		  "立项许可" AS NAME,
+		  COUNT(a.dlh_data_id_) cc1,
+		  ((SELECT COUNT(t.projectNumber) FROM `pt_project_info` t)-COUNT(a.dlh_data_id_)) cc2
+		FROM
+		  `pt_project_approval` a
+		UNION
+		SELECT
+		  "施工许可" AS NAME,
+		  COUNT(a.dlh_data_id_) cc1,
+		 ((SELECT COUNT(t.projectNumber) FROM `pt_project_info` t)-COUNT(a.dlh_data_id_)) cc2
+		FROM
+		  `pt_project_construction` a
+		UNION
+		SELECT
+		  "竣工验收" AS NAME,
+		 COUNT(a.dlh_data_id_) cc1,
+		 ((SELECT COUNT(t.projectNumber) FROM `pt_project_info` t)-COUNT(a.dlh_data_id_)) cc2
+		FROM
+		  `pt_company_projects_jgys` a
+	</select>
+	<select id="queryAverageDay" resultType="com.jc.csmp.ptProject.vo.EchartsVo">
+		SELECT
+		  "立项许可" AS NAME,
+		  FORMAT(SUM(DATEDIFF(approvalDate,approvalStartDate))/COUNT(*),1) cc
+		FROM
+		  `pt_project_approval`
+		UNION
+		SELECT
+		  "施工许可" AS NAME,
+		  FORMAT(IFNULL(SUM(DATEDIFF(sendDate,application_date))/COUNT(*),0),1) cc
+		FROM
+		  `pt_project_construction`
+		UNION
+		SELECT
+		  "竣工验收" AS NAME,
+		  FORMAT(IFNULL(SUM(DATEDIFF(pcp_zbtzs,application_date))/COUNT(*),0),1) cc
+		FROM
+		  `pt_company_projects_jgys`
+	</select>
+	<select id="queryProjectPass" resultType="com.jc.csmp.ptProject.vo.EchartsVo">
+		SELECT
+		  "立项许可" AS NAME,
+		  (SELECT COUNT(*) FROM pt_project_approval WHERE isPass = 'isPass_1') cc,
+		  (SELECT COUNT(*) FROM pt_project_approval WHERE isPass = 'isPass_2') cc1
+		UNION
+		SELECT
+		  "施工许可" AS NAME,
+		  (SELECT COUNT(*) FROM pt_project_construction WHERE isPass = 'isPass_1') cc,
+		  (SELECT COUNT(*) FROM pt_project_construction WHERE isPass = 'isPass_2') cc1
+		UNION
+		SELECT
+		  "竣工验收" AS NAME,
+		  (SELECT COUNT(*) FROM pt_company_projects_jgys WHERE isPass = 'isPass_1') cc,
+		  (SELECT COUNT(*) FROM pt_company_projects_jgys WHERE isPass = 'isPass_2') cc1
+
+	</select>
+
+	<select id="queryEchartsForSgxk" resultType="com.jc.csmp.ptProject.vo.EchartsVo">
+		SELECT COUNT(t.id) cc,
+		(SELECT COUNT(*) FROM pt_project_info) AS allCc
+		FROM `pt_project_info` i LEFT JOIN `pt_company_projects_sgxk` t ON i.`projectNumber`= t.pcp_project_num
+	</select>
+	<select id="queryAverageAccept" resultType="com.jc.csmp.ptProject.vo.EchartsVo">
+		SELECT
+		  FORMAT((SELECT COUNT(*) FROM `pt_project_construction`)/(SELECT COUNT(*) FROM `pt_project_info`),1) cc,
+		  FORMAT((SELECT COUNT(*) FROM `pt_project_construction`)/(SELECT COUNT(*) FROM `pt_project_info`),1) cc1,
+		  FORMAT((SELECT COUNT(*) FROM `pt_company_projects_jgys`)/(SELECT COUNT(*) FROM `pt_project_info`),1) cc2
+	</select>
+
+	<select id="queryCompanyForArea" resultType="com.jc.supervise.gis.vo.GisVo">
+		SELECT
+		  dic.value areaName,
+		  aj.pcp_htlb pcpHtlb,
+		  IFNULL(aj.cc,0) cc
+		FROM
+		  (SELECT
+			CODE,
+			VALUE
+		  FROM
+			tty_sys_dics t
+		  WHERE t.parent_id = 'region') dic
+		  LEFT OUTER JOIN
+			(
+
+			SELECT
+		  c.company_area,
+		  ph.pcp_htlb,
+		  COUNT(c.company_zznum) cc
+		FROM pt_company_info c LEFT JOIN pt_company_projects_htba ph
+		ON c.company_zznum = ph.partyBid WHERE ph.pcp_htlb IS NOT NULL
+		GROUP BY  c.company_area,ph.pcp_htlb) aj
+			ON dic.code =  aj.company_area
+			WHERE aj.pcp_htlb IS NOT NULL
+	</select>
+
+	<select id="queryMoneyForArea" resultType="com.jc.supervise.gis.vo.GisVo">
+        SELECT
+		  dic.value areaName,
+		  IFNULL(a.productionTotal, 0) productionTotal,
+		  IFNULL(b.amountCompleted, 0) amountCompleted
+		FROM
+		  (SELECT
+			CODE,
+			VALUE
+		  FROM
+			tty_sys_dics t
+		  WHERE t.parent_id = 'region') dic
+		  LEFT OUTER JOIN
+			(
+			SELECT
+			    SUM(productionTotal) productionTotal,
+			    project_area
+			  FROM
+			    pt_project_info WHERE projectCate='社会'
+			  GROUP BY project_area
+			) a
+			ON dic.code =  a.project_area
+
+			LEFT OUTER JOIN (
+				SELECT
+			      SUM(productionTotal) amountCompleted,
+			      project_area
+			    FROM
+			      pt_project_info p WHERE projectCate='政府'
+--			      LEFT JOIN pt_project_finish pf
+--				ON p.projectNumber = pf.projectNumber
+-- 			    WHERE pf.finishDate IS NOT NULL
+			    GROUP BY project_area
+			) b
+			ON dic.code =  b.project_area
+	</select>
+
+	<select id="queryJwd" parameterType="com.jc.csmp.ptProject.domain.ProjectInfo" resultType="com.jc.csmp.ptProject.domain.ProjectInfo">
+		SELECT
+			t.projectNumber projectnumber,
+			t.projectName projectname,
+			t.projectAddress projectaddress,
+			t.buildDeptId builddeptid,
+			t.buildDept builddept,
+			t.projectType projecttype,
+			t.buildArea buildarea,
+			t.projectMoney projectmoney,
+			t.realStartDate realstartdate,
+			t.realFinishDate realfinishdate,
+			t.dlh_data_id_ dlhDataId,
+			t.dlh_data_modify_date_ dlhDataModifyDate,
+			t.dlh_data_src_ dlhDataSrc,
+			t.dlh_data_user_ dlhDataUser,
+			t.construction_organization constructionOrganization,
+			t.projectManager projectmanager,
+			t.project_area projectArea,
+			t.approvalNumber approvalNumber,
+			t.approvalDate approvalDate,
+			t.projectCate projectCate,
+			t.productionTotal productionTotal,
+			t.pcp_xq pcpXq,
+			t.pcp_zbfs pcpZbfs,
+			t.pcp_zbje pcpZbje,
+			t.build_type buildType,
+			t.longitude longitude,
+			t.latitude latitude,
+			t.high_build highBuild,
+			IFNULL(stage1.stageCount1, 0) stageCount1,
+			IFNULL(stage2.stageCount2, 0) stageCount2,
+			IFNULL(stage3.stageCount3, 0) stageCount3,
+			IFNULL(stage4.stageCount4, 0) stageCount4,
+			IFNULL(stage5.stageCount5, 0) stageCount5,
+			IFNULL(stage6.stageCount6, 0) stageCount6,
+			IFNULL(stage7.stageCount7, 0) stageCount7,
+			IFNULL(stage8.stageCount8, 0) stageCount8
+		FROM
+		pt_project_info t
+		LEFT JOIN pt_project_finish pf
+		ON t.projectNumber = pf.projectNumber
+		LEFT JOIN
+		(SELECT
+		COUNT(tn.projectNumber) stageCount1,
+		pt.projectNumber projectNumber
+		FROM
+		pt_project_approval tn
+		LEFT JOIN pt_project_info pt
+		ON tn.projectNumber = pt.projectNumber
+		GROUP BY pt.projectNumber) stage1
+		ON t.projectNumber = stage1.projectNumber
+		LEFT JOIN
+		(SELECT
+		COUNT(tn.projectNumber) stageCount2,
+		pt.projectNumber projectNumber
+		FROM
+		pt_project_design tn
+		LEFT JOIN pt_project_info pt
+		ON tn.projectNumber = pt.projectNumber
+		GROUP BY pt.projectNumber) stage2
+		ON t.projectNumber = stage2.projectNumber
+		LEFT JOIN
+		(SELECT
+		COUNT(tn.pcp_project_num) stageCount3,
+		pt.projectNumber projectNumber
+		FROM
+		pt_company_projects_ztb tn
+		LEFT JOIN pt_project_info pt
+		ON tn.pcp_project_num = pt.projectNumber
+		GROUP BY pt.projectNumber) stage3
+		ON t.projectNumber = stage3.projectNumber
+		LEFT JOIN
+		(SELECT
+		COUNT(tn.pcp_project_num) stageCount4,
+		pt.projectNumber projectNumber
+		FROM
+		pt_company_projects_htba tn
+		LEFT JOIN pt_project_info pt
+		ON tn.pcp_project_num = pt.projectNumber
+		GROUP BY pt.projectNumber) stage4
+		ON t.projectNumber = stage4.projectNumber
+		LEFT JOIN
+		(SELECT
+		COUNT(tn.projectNumber) stageCount5,
+		pt.projectNumber projectNumber
+		FROM
+		pt_project_finish tn
+		LEFT JOIN pt_project_info pt
+		ON tn.projectNumber = pt.projectNumber
+		GROUP BY pt.projectNumber) stage5
+		ON t.projectNumber = stage5.projectNumber
+		LEFT JOIN
+		(SELECT
+		COUNT(tn.project_num) stageCount6,
+		pt.projectNumber projectNumber
+		FROM
+		pt_project_safe tn
+		LEFT JOIN pt_project_info pt
+		ON tn.project_num = pt.projectNumber
+		GROUP BY pt.projectNumber) stage6
+		ON t.projectNumber = stage6.projectNumber
+		LEFT JOIN
+		(SELECT
+		COUNT(tn.project_num) stageCount7,
+		pt.projectNumber projectNumber
+		FROM
+		pt_project_quality tn
+		LEFT JOIN pt_project_info pt
+		ON tn.project_num = pt.projectNumber
+		GROUP BY pt.projectNumber) stage7
+		ON t.projectNumber = stage7.projectNumber
+		LEFT JOIN
+		(SELECT
+		COUNT(tn.pcp_project_num) stageCount8,
+		pt.projectNumber projectNumber
+		FROM
+		pt_company_projects_sgxk tn
+		LEFT JOIN pt_project_info pt
+		ON tn.pcp_project_num = pt.projectNumber
+		GROUP BY pt.projectNumber) stage8
+		ON t.projectNumber = stage8.projectNumber
+		<include refid="Base_Query_Where"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+    <sql id="Base_Company_Query_Where" >
+        <if test="contractType != null">
+            and ph.pcp_htlb = #{contractType}
+        </if>
+        <if test="companyName != null">
+            and c.company_name like <![CDATA['%${companyName}%']]>
+        </if>
+    </sql>
+
+	<select id="queryJwdByCompany" parameterType="com.jc.csmp.ptProject.domain.ProjectInfo" resultType="com.jc.csmp.ptProject.domain.ProjectInfo">
+		SELECT
+			c.dlh_data_id_ companyId,
+			c.company_name projectname,
+			c.longitude longitude,
+			c.latitude latitude,
+			ph.partyBid companyZznum,
+			ph.pcp_project_num projectnumber
+		FROM
+			pt_company_projects_htba ph
+			LEFT JOIN pt_company_info c
+			ON c.company_zznum = ph.partyBid
+			where c.longitude IS NOT NULL
+		<include refid="Base_Company_Query_Where"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="queryByStage" parameterType="com.jc.csmp.ptProject.domain.ProjectInfo" resultType="com.jc.csmp.ptProject.domain.ProjectInfo">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM ${tableName} tn
+		LEFT JOIN pt_project_info t
+		ON tn.${columnName} = t.projectNumber
+		<include refid="Base_Query_Where"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+</mapper>

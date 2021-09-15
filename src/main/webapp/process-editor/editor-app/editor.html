@@ -1,0 +1,187 @@
+<div ng-controller="StencilController">
+  <div class="subheader editor-toolbar" id="editor-header">
+	  <div class="row p-t-10">
+		  	<!-- 按钮侧 -->
+			<div class="btn-toolbar col-xs-2" ng-controller="ToolbarController" ng-cloak>
+				<button id="{{item.id}}"
+						title="{{item.title | translate}}"
+						ng-repeat="item in items"
+						ng-switch on="item.type"
+						class="btn btn-inverse" ng-class="{'separator': item.type == 'separator'}"
+						ng-disabled="item.type == 'separator' || item.enabled == false"
+						ng-click="toolbarButtonClicked($index)">
+					<i ng-switch-when="button" ng-class="item.cssClass" class="toolbar-button" data-toggle="tooltip" title="{{item.title | translate}}"></i>
+					<div ng-switch-when="separator" ng-class="item.cssClass"></div>
+				</button>
+			  </div>
+
+			<!-- 工具 -->
+		  	<div ng-if="quickMenuItemArray.length > 1" class="col-xs-10 stencil-menu-right-container">
+				<ul class="stencil-menu-group">
+					<li ng-repeat="item in quickMenuItemArray" class="stencil-item"
+						ng-if="item.visible"
+						id="{{item.id}}"
+						title="{{item.description}}"
+						ng-model="draggedElement"
+						data-drag="true"
+						jqyoui-draggable="{onStart:'startDragCallback', onDrag:'dragCallback'}"
+						data-jqyoui-options="{revert: 'invalid', helper: 'clone', opacity : 0.5}">
+
+						<img ng-src="../process-editor/editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}" class="menu-img" width="16px;" height="16px;" title="{{item.name}}"/>
+					</li>
+				</ul>
+				<div class="stencil-menu-right">
+					<div id="uploader"></div>
+					<div>
+						<button class="btn btn-inverse" ng-click="export()">导出</button>&nbsp;&nbsp;
+					</div>
+					<div id="multiuploader"></div>
+					<div>
+						<button class="btn-lg btn-inverse" ng-click="multiexport()">批量导出</button>
+					</div>
+				</div>
+			</div>
+			<!--<div ng-if="stencilItemGroups.length > 1" class="col-xs-10">
+				<div ng-repeat="group in stencilItemGroups">
+
+					<ul ng-if="group.visible && group.items" class="stencil-group"  ng-class="{collapsed: !group.expanded, 'first': $first}">
+						<li ng-repeat="item in group.paletteItems" class="stencil-item"
+						id="{{item.id}}"
+						title="{{item.description}}"
+						ng-model="draggedElement"
+						data-drag="true"
+						jqyoui-draggable="{onStart:'startDragCallback', onDrag:'dragCallback'}"
+						data-jqyoui-options="{revert: 'invalid', helper: 'clone', opacity : 0.5}">
+
+						<img ng-src="../process-editor/editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}" width="16px;" height="16px;" title="{{item.name}}"/>
+						</li>
+					</ul>
+				</div>
+			</div>-->
+	  </div>
+        <!--<div class="btn-group btn-close" ng-show="!secondaryItems.length">
+	        <div class="btn-toolbar pull-right" ng-controller="ToolbarController">
+        	<button title="{{item.title | translate}}" ng-repeat="item in secondaryItems" ng-switch on="item.type" class="btn btn-inverse" ng-class="{'separator': item.type == 'separator'}"
+                ng-disabled="item.type == 'separator'" ng-click="toolbarSecondaryButtonClicked($index)" id="{{item.id}}">
+        		<i ng-switch-when="button" ng-class="item.cssClass" class="toolbar-button" data-toggle="tooltip" title="{{item.title | translate}}"></i>
+	            <div ng-switch-when="separator" ng-class="item.cssClass"></div>
+        	</button>
+  		  </div>
+        </div>-->
+  </div>
+  	<div ng-show="waitingView" ng-style="waitingViewStyle" class="waiting">
+		<p class="title">欢迎您访问jcworkflow 流程设计器</p>
+		<p> 1 :　点击左侧流程可直接查看.</p>
+		<p> 2 :　点击左上角 + 按钮可直接新建流程. 点击新建流程填写好参数后.</p>
+		<p> 3 :　点击新建按钮后设计器面板变成空白,可直接在上方拖拽节点开始绘制.</p>
+		<p> 4 :　点击左侧流程后,再点击左上角删除按钮可删除该选中流程.</p>
+	</div>
+	<div class="full">
+      <div class="row row-no-gutter">
+	      <div id="paletteHelpWrapper" class="col-xs-2 p-r-none">
+	      		<div class="stencils" id="paletteSection">
+					<ul class="ztree" id="ztreeSection"></ul>
+			    <!--<div ng-if="stencilItemGroups.length == 1">
+	                <ul class="stencil-group">
+	                    <li ng-repeat="item in stencilItemGroups[0].paletteItems" class="stencil-item"
+	                         id="{{item.id}}"
+	                         title="{{item.description}}"
+	                         ng-model="draggedElement"
+	                         data-drag="true"
+	                         jqyoui-draggable="{onStart:'startDragCallback', onDrag:'dragCallback'}"
+	                         data-jqyoui-options="{revert: 'invalid', helper: 'clone', opacity : 0.5}">
+
+	                        <img ng-src="editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}" width="16px;" height="16px;"/>
+	                        {{item.name}}
+	                    </li>
+                    </ul>
+			     </div>
+		      </div>-->
+				</div>
+	      </div>
+	      <div id="canvasHelpWrapper" class="col-xs-10 p-none">
+	      	<div class="canvas-wrapper" id="canvasSection" 
+	      		ng-model="droppedElement"
+                  ng-model="droppedElement"
+                  data-drop="true"
+                  data-jqyoui-options
+                  jqyoui-droppable="{onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}"> 
+            	<div class="canvas-message" id="model-modified-date"></div>
+            	<div class="Oryx_button" 
+            	     id="delete-button" 
+            	     title="{{'BUTTON.ACTION.DELETE.TOOLTIP' | translate}}"
+            	     ng-click="deleteShape()"
+            	     style="display:none">
+            	    <img src="../process-editor/editor-app/images/delete.png"/>
+            	</div>
+            	<div class="Oryx_button" 
+            	     id="morph-button"
+            	     title="{{'BUTTON.ACTION.MORPH.TOOLTIP' | translate}}"
+            	     ng-click="morphShape()"
+            	     style="display:none">
+            	    <img src="../process-editor/editor-app/images/wrench.png"/>
+            	</div>
+				<div class="Oryx_button_modify btn btn-default"
+					 id="modify-button"
+					 title="{{'BUTTON.ACTION.MODIFY.TOOLTIP' | translate}}"
+					 ng-click="processUpdate()">
+					配置流程
+				</div>
+            	<div class="Oryx_button"
+            		 ng-repeat="item in quickMenuItems"
+	                 id="{{item.id}}"
+	                 title="{{item.description}}"
+	                 ng-click="quickAddItem(item.id)"
+            	     ng-model="draggedElement"
+	                 data-drag="true"
+	                 jqyoui-draggable="{onStart:'startDragCallbackQuickMenu', onDrag:'dragCallbackQuickMenu'}"
+	                 data-jqyoui-options="{revert: 'invalid', helper: 'clone', opacity : 0.5}"
+	                 style="display:none">
+	             	<img ng-src="../process-editor/editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}"/>
+	             </div>
+	         </div>
+           </div>
+           <!--<div id="propertiesHelpWrapper" class="col-xs-10 p-none">
+            	<div class="propertySection" id="propertySection"
+                	ng-class="{collapsed: propertyWindowState.collapsed}">
+	                <div class="selected-item-section">
+	                	<div class="clearfix">
+		                    <div class="pull-right" ng-if="selectedItem.auditData.createDate">
+		                        <strong>{{'ELEMENT.DATE_CREATED' | translate}}: </strong> {{selectedItem.auditData.createDate}}
+		                    </div>
+		                    <div class="pull-right" ng-if="selectedItem.auditData.author">
+		                        <strong>{{'ELEMENT.AUTHOR' | translate}}: </strong> {{selectedItem.auditData.author}}
+		                    </div>
+		                    <div class="selected-item-title">
+		                        <a ng-click="propertyWindowState.toggle()"> 
+		                            <i class="glyphicon" ng-class="{'glyphicon-chevron-right': propertyWindowState.collapsed, 'glyphicon-chevron-down': !propertyWindowState.collapsed}"></i>
+		                            <span ng-show="selectedItem.title != undefined && selectedItem.title != null && selectedItem.title.length > 0">{{selectedItem.title}}</span> 
+		                            <span ng-show="!selectedItem || selectedItem.title == undefined || selectedItem.title == null || selectedItem.title.length == 0">{{modelData.name}}</span>
+		                        </a>
+		                    </div>
+		                </div>
+                    	<div class="selected-item-body">
+	                        <div>
+	                             <div class="property-row" ng-repeat="property in selectedItem.properties"
+	                                ng-click="propertyClicked($index)" ng-class="{'clear' : $index%2 == 0}">
+	                                <span class="title" ng-if="!property.hidden">{{ property.title }}&nbsp;:</span>
+	                                <span class="title-removed" ng-if="property.hidden"><i>{{ property.title }}&nbsp;({{'PROPERTY.REMOVED' | translate}})&nbsp;:</i></span>
+	                                <span class="value"> 
+	                                    <ng-include
+	                                        src="getPropertyTemplateUrl($index)" ng-if="!property.hasReadWriteMode"></ng-include>
+
+	                                    <ng-include src="getPropertyReadModeTemplateUrl($index)"
+	                                        ng-if="property.hasReadWriteMode && property.mode == 'read'"></ng-include>
+
+	                                    <ng-include src="getPropertyWriteModeTemplateUrl($index)"
+	                                        ng-if="property.hasReadWriteMode && property.mode == 'write'"></ng-include>
+	                                </span>
+	                            </div>
+	                        </div>
+	                    </div>
+	    			</div>     
+    			</div>            
+            </div>-->
+	      </div>
+    </div>
+</div>

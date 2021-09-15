@@ -1,0 +1,38 @@
+<div ng-repeat="property in selectedItem">
+    <div ng-controller="ActivitiRelationCtrl">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-inline" style="margin-bottom: 10px;">
+                    <div class="form-group" style="margin: 0;">
+                        <label style="margin-bottom: 0;">关系名称</label>
+                        <input type="text" class="form-control" style="width: 225px;" ng-model="newName"/>
+                    </div>
+                    <div class="form-group" style="margin: 0;margin-left: 20px;">
+                        <label style="margin-bottom: 0;">关系路径</label>
+                        <input type="text" class="form-control" style="width: 225px;" ng-model="newClass"/>
+                    </div>
+                    <button type="button" class="btn pull-right" ng-click="newRelation();">添加新的关系</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div ng-if="relationRetrieved" class="kis-listener-grid personModal" ng-grid="gridRelationOptions">
+                </div>
+                <div class="btn-group">
+                    <a class="btn" ng-click="deleteRelation();">删除1</a>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <select multiple style="width: 100%;height: 300px;margin-bottom: 8px;" id="selectRelationQuery">
+                    <option value="directlyLeader" style="padding:3px;">部门领导</option>
+                    <option value="addLeader" style="padding:3px;">直接领导</option>
+                    <option value="deptUser" style="padding:3px;">同部门人员</option>
+                </select>
+                <div class="btn-group">
+                    <a class="btn" ng-click="addRelation();">添加1</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.csmp.project.domain.CmProjectInfo">
+
+	<insert id="insert" parameterType="com.jc.csmp.project.domain.CmProjectInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into cm_project_info (id, resource_date_id, production_total, lng, lat, if_finish, project_type, build_type, approval_number, project_number, project_name, project_address, project_trade, plan_amount, build_area, land_nature, land_area, investment_amount, plan_start_date, plan_end_date,project_content, remark, region, supervise_dept_id, build_dept_id,project_approval_date,
+		DELETE_FLAG, CREATE_USER, CREATE_USER_DEPT, CREATE_DATE, CREATE_USER_ORG, MODIFY_USER, MODIFY_DATE, EXT_STR1, EXT_STR2, EXT_STR3, EXT_STR4, EXT_STR5, EXT_DATE1, EXT_DATE2, EXT_NUM1, EXT_NUM2, EXT_NUM3)
+		values (#{id}, #{resourceDataId}, #{productionTotal},#{lng},#{lat},#{ifFinish}, #{projectType}, #{buildType}, #{approvalNumber}, #{projectNumber}, #{projectName}, #{projectAddress}, #{projectTrade}, #{planAmount}, #{buildArea}, #{landNature}, #{landArea}, #{investmentAmount}, #{planStartDate}, #{planEndDate}, #{projectContent}, #{remark}, #{region}, #{superviseDeptId}, #{buildDeptId}, #{projectApprovalDate},
+		#{deleteFlag}, #{createUser}, #{createUserDept}, #{createDate}, #{createUserOrg}, #{modifyUser}, #{modifyDate}, #{extStr1}, #{extStr2}, #{extStr3}, #{extStr4}, #{extStr5}, #{extDate1}, #{extDate2}, #{extNum1}, #{extNum2}, #{extNum3})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		insert into cm_project_info (id, resource_date_id, production_total, lng, lat,if_finish, project_type, build_type, approval_number, project_number, project_name, project_address, project_trade, plan_amount, build_area, land_nature, land_area, investment_amount, plan_start_date, plan_end_date,project_content, remark, region, supervise_dept_id, build_dept_id, project_approval_date,
+		DELETE_FLAG, CREATE_USER, CREATE_USER_DEPT, CREATE_DATE, CREATE_USER_ORG, MODIFY_USER, MODIFY_DATE, EXT_STR1, EXT_STR2, EXT_STR3, EXT_STR4, EXT_STR5, EXT_DATE1, EXT_DATE2, EXT_NUM1, EXT_NUM2, EXT_NUM3)
+			VALUES
+			<foreach collection="list" item="item" index="index" separator=",">
+				(#{item.id}, #{item.resourceDataId}, #{item.productionTotal},#{item.lng},#{item.lat},#{item.ifFinish}, #{item.projectType}, #{item.buildType}, #{item.approvalNumber}, #{item.projectNumber}, #{item.projectName}, #{item.projectAddress}, #{item.projectTrade}, #{item.planAmount}, #{item.buildArea}, #{item.landNature}, #{item.landArea}, #{item.investmentAmount}, #{item.planStartDate}, #{item.planEndDate}, #{item.projectContent}, #{item.remark}, #{item.region}, #{item.superviseDeptId}, #{item.buildDeptId}, #{item.projectApprovalDate},
+				#{item.deleteFlag}, #{item.createUser}, #{item.createUserDept}, #{item.createDate}, #{item.createUserOrg}, #{item.modifyUser}, #{item.modifyDate}, #{item.extStr1}, #{item.extStr2}, #{item.extStr3}, #{item.extStr4}, #{item.extStr5}, #{item.extDate1}, #{item.extDate2}, #{item.extNum1}, #{item.extNum2}, #{item.extNum3})
+			</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.csmp.project.domain.CmProjectInfo">
+		update cm_project_info set
+		<if test="id != null"> id = #{id}, </if>
+		<if test="resourceDataId != null"> resource_date_id = #{resourceDataId}, </if>
+		<if test="ifFinish != null"> if_finish = #{ifFinish}, </if>
+		<if test="productionTotal != null"> production_total = #{productionTotal}, </if>
+		<if test="lng != null"> lng = #{lng}, </if>
+		<if test="lat != null"> lat = #{lat}, </if>
+		<if test="projectType != null"> project_type = #{projectType}, </if>
+		<if test="buildType != null"> build_type = #{buildType}, </if>
+		<if test="approvalNumber != null"> approval_number = #{approvalNumber}, </if>
+		<if test="projectNumber != null"> project_number = #{projectNumber}, </if>
+		<if test="projectName != null"> project_name = #{projectName}, </if>
+		<if test="projectAddress != null"> project_address = #{projectAddress}, </if>
+		<if test="projectTrade != null"> project_trade = #{projectTrade}, </if>
+		<if test="planAmount != null"> plan_amount = #{planAmount}, </if>
+		<if test="buildArea != null"> build_area = #{buildArea}, </if>
+		<if test="landNature != null"> land_nature = #{landNature}, </if>
+		<if test="landArea != null"> land_area = #{landArea}, </if>
+		<if test="region != null"> region = #{region}, </if>
+		<if test="investmentAmount != null"> investment_amount = #{investmentAmount}, </if>
+		<if test="planStartDate != null"> plan_start_date = #{planStartDate}, </if>
+		<if test="planEndDate != null"> plan_end_date = #{planEndDate}, </if>
+		<if test="projectContent != null"> project_content = #{projectContent}, </if>
+		<if test="projectApprovalDate != null"> project_approval_date = #{projectApprovalDate}, </if>
+		<if test="remark != null"> remark = #{remark}, </if>
+		<if test="deleteFlag != null"> DELETE_FLAG = #{deleteFlag}, </if>
+		<if test="createUser != null"> CREATE_USER = #{createUser}, </if>
+		<if test="createUserDept != null"> CREATE_USER_DEPT = #{createUserDept}, </if>
+		<if test="createUserOrg != null"> CREATE_USER_ORG = #{createUserOrg}, </if>
+		<if test="createDate != null"> CREATE_DATE = #{createDate}, </if>
+		<if test="modifyUser != null"> MODIFY_USER = #{modifyUser}, </if>
+		<if test="extStr1 != null"> EXT_STR1 = #{extStr1}, </if>
+		<if test="extStr2 != null"> EXT_STR2 = #{extStr2}, </if>
+		<if test="extStr3 != null"> EXT_STR3 = #{extStr3}, </if>
+		<if test="extStr4 != null"> EXT_STR4 = #{extStr4}, </if>
+		<if test="extStr5 != null"> EXT_STR5 = #{extStr5}, </if>
+		<if test="extDate1 != null"> EXT_DATE1 = #{extDate1}, </if>
+		<if test="extDate2 != null"> EXT_DATE2 = #{extDate2}, </if>
+		<if test="extNum1 != null"> EXT_NUM1 = #{extNum1}, </if>
+		<if test="extNum2 != null"> EXT_NUM2 = #{extNum2}, </if>
+		<if test="extNum3 != null"> EXT_NUM3 = #{extNum3}, </if>
+		<if test="superviseDeptId != null"> supervise_dept_id = #{superviseDeptId}, </if>
+		<if test="buildDeptId != null"> build_dept_id = #{buildDeptId}, </if>
+	   	MODIFY_DATE = #{modifyDateNew} where ID = #{id}
+	</update>
+
+	<sql id="Base_Column_List" >
+		distinct t.id, t.project_number as projectNumber, t.project_name projectName, t.project_address projectAddress, t.project_trade projectTrade,
+		t.plan_amount planAmount, t.build_area buildArea, t.land_nature landNature, t.land_area landArea, t.investment_amount investmentAmount,
+		t.plan_start_date planStartDate, t.plan_end_date planEndDate, t.project_content projectContent, t.remark, t.region, t.resource_date_id resourceDataId,
+		t.project_type projectType, t.build_type buildType, t.if_finish ifFinish,t.lng,t.lat,t.production_total, t.production_total productionTotal,
+		t.supervise_dept_id superviseDeptId, t.build_dept_id buildDeptId, t.project_approval_date projectApprovalDate, t.approval_number approvalNumber,
+		t.DELETE_FLAG deleteFlag, t.CREATE_DATE createDate, t.CREATE_USER createUser, t.CREATE_USER_DEPT createUserDept, t.CREATE_USER_ORG createUserOrg,
+		t.MODIFY_DATE modifyDate, t.MODIFY_USER modifyUser, t.EXT_STR1 extStr1, t.EXT_STR2 extStr2, t.EXT_STR3 extStr3, t.EXT_STR4 extStr4, t.EXT_STR5 extStr5,
+		t.EXT_DATE1 extDate1, t.EXT_DATE2 extDate2, t.EXT_NUM1 extNum1, t.EXT_NUM2 extNum2, t.EXT_NUM3 extNum3
+	</sql>
+
+	<sql id="Base_Query_Where" >
+		<where>
+			<if test="id != null"> and t.id = #{id} </if>
+			<if test="resourceDataId != null"> and t.resource_date_id = #{resourceDataId} </if>
+			<if test="ifFinish != null"> and t.if_finish = #{ifFinish} </if>
+			<if test="productionTotal != null"> production_total = #{productionTotal} </if>
+			<if test="lng != null"> and lng = #{lng} </if>
+			<if test="lat != null"> and lat = #{lat} </if>
+			<if test="projectType != null"> and t.project_type = #{projectType} </if>
+			<if test="buildType != null"> and t.build_type = #{buildType} </if>
+			<if test="approvalNumber != null"> and t.approval_number = #{approvalNumber} </if>
+			<if test="projectNumber != null"> and t.project_number = #{projectNumber} </if>
+			<if test="projectName != null"> and t.project_name like <![CDATA['%${projectName}%']]> </if>
+			<if test="projectAddress != null"> and t.project_address = #{projectAddress} </if>
+			<if test="projectTrade != null"> and t.project_trade = #{projectTrade} </if>
+			<if test="planAmount != null"> and t.plan_amount = #{planAmount} </if>
+			<if test="buildArea != null"> and t.build_area = #{buildArea} </if>
+			<if test="region != null"> and t.region = #{region} </if>
+			<if test="landNature != null"> and t.land_nature = #{landNature} </if>
+			<if test="landArea != null"> and t.land_area = #{landArea} </if>
+			<if test="investmentAmount != null"> and t.investment_amount = #{investmentAmount} </if>
+			<if test="planStartDate != null"> and t.plan_start_date &gt;= #{planStartDate} </if>
+			<if test="planEndDate != null"> and t.plan_end_date &lt;= #{planEndDate} </if>
+			<if test="projectContent != null"> and t.project_content = #{projectContent} </if>
+			<if test="remark != null"> and t.remark = #{remark} </if>
+			<if test="deleteFlag != null"> and t.DELETE_FLAG = #{deleteFlag} </if>
+			<if test="createUser != null"> and t.CREATE_USER = #{createUser} </if>
+			<if test="createUserDept != null"> and t.CREATE_USER_DEPT = #{createUserDept} </if>
+			<if test="createUserOrg != null"> and t.CREATE_USER_ORG = #{createUserOrg} </if>
+			<if test="createDate != null"> and t.CREATE_DATE = #{createDate} </if>
+			<if test="createDateBegin != null"> and t.CREATE_DATE &gt;= #{createDateBegin} </if>
+			<if test="createDateEnd != null"> and t.CREATE_DATE &lt;= #{createDateEnd} </if>
+			<if test="modifyDate != null"> and t.MODIFY_DATE = #{modifyDate} </if>
+			<if test="modifyDateBegin != null"> and t.MODIFY_DATE &gt;= #{modifyDateBegin} </if>
+			<if test="modifyDateEnd != null"> and t.MODIFY_DATE &lt;= #{modifyDateEnd} </if>
+			<if test="modifyUser != null"> and t.MODIFY_USER = #{modifyUser} </if>
+			<if test="extStr1 != null"> and t.EXT_STR1 = #{extStr1} </if>
+			<if test="extStr2 != null"> and t.EXT_STR2 = #{extStr2} </if>
+			<if test="extStr3 != null"> and t.EXT_STR3 = #{extStr3} </if>
+			<if test="extStr4 != null"> and t.EXT_STR4 = #{extStr4} </if>
+			<if test="extStr5 != null"> and t.EXT_STR5 = #{extStr5} </if>
+			<if test="extDate1 != null"> and t.EXT_DATE1 = #{extDate1} </if>
+			<if test="extDate1Begin != null"> and t.EXT_DATE1 &gt;= #{extDate1Begin} </if>
+			<if test="extDate1End != null"> and t.EXT_DATE1 &lt;= #{extDate1End} </if>
+			<if test="extDate2 != null"> and t.EXT_DATE2 = #{extDate2} </if>
+			<if test="extDate2Begin != null"> and t.EXT_DATE2 &gt;= #{extDate2Begin} </if>
+			<if test="extDate2End != null"> and t.EXT_DATE2 &lt;= #{extDate2End} </if>
+			<if test="extNum1 != null"> and t.EXT_NUM1 = #{extNum1} </if>
+			<if test="extNum2 != null"> and t.EXT_NUM2 = #{extNum2} </if>
+			<if test="extNum3 != null"> and t.EXT_NUM3 = #{extNum3} </if>
+			<if test="deptIdArray != null"> and person.company_id in <foreach collection="deptIdArray" item="dept" index="index" open="(" close=")" separator=","> #{dept} </foreach> </if>
+			<if test="deptCodeCondition != null"> and person.dept_code like <![CDATA['${deptCodeCondition}%']]> </if>
+			<if test="superviseDeptId != null"> and t.supervise_dept_id = #{superviseDeptId} </if>
+			<if test="buildDeptId != null"> and t.build_dept_id = #{buildDeptId} </if>
+		</where>
+	</sql>
+
+	<select id="query" parameterType="com.jc.csmp.project.domain.CmProjectInfo" resultType="com.jc.csmp.project.domain.CmProjectInfo">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM cm_project_info t
+		left join cm_project_person person on person.project_id = t.id
+		<include refid="Base_Query_Where"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.csmp.project.domain.CmProjectInfo" resultType="java.lang.Long">
+		SELECT count(distinct t.ID) FROM cm_project_info t
+		left join cm_project_person person on person.project_id = t.id
+		<include refid="Base_Query_Where"/>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.csmp.project.domain.CmProjectInfo">
+    	delete from cm_project_info where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.csmp.project.domain.CmProjectInfo">
+    	UPDATE cm_project_info t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate} where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+ 	</update>
+
+	<update id="finishByProjectNumbers"  parameterType="com.jc.csmp.project.domain.CmProjectInfo">
+		UPDATE cm_project_info t set t.if_finish = 1, t.modify_date = #{modifyDate} where t.project_number in
+		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+	</update>
+
+
+
+	<select id="queryProjectSafety" parameterType="com.jc.csmp.project.domain.CmProjectInfo" resultType="com.jc.csmp.project.domain.CmProjectInfo">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM cm_project_info t
+		WHERE NOT EXISTS(SELECT * FROM `cm_safety_supervision` t1 WHERE t.id=t1.project_id)
+		<if test="id != null"> and t.id = #{id} </if>
+		<if test="resourceDataId != null"> and t.resource_date_id = #{resourceDataId} </if>
+		<if test="ifFinish != null"> and t.if_finish = #{ifFinish} </if>
+		<if test="productionTotal != null"> production_total = #{productionTotal} </if>
+		<if test="lng != null"> and lng = #{lng} </if>
+		<if test="lat != null"> and lat = #{lat} </if>
+		<if test="projectType != null"> and t.project_type = #{projectType} </if>
+		<if test="buildType != null"> and t.build_type = #{buildType} </if>
+		<if test="approvalNumber != null"> and t.approval_number = #{approvalNumber} </if>
+		<if test="projectNumber != null"> and t.project_number = #{projectNumber} </if>
+		<if test="projectName != null"> and t.project_name like <![CDATA['%${projectName}%']]> </if>
+		<if test="projectAddress != null"> and t.project_address = #{projectAddress} </if>
+		<if test="projectTrade != null"> and t.project_trade = #{projectTrade} </if>
+		<if test="planAmount != null"> and t.plan_amount = #{planAmount} </if>
+		<if test="buildArea != null"> and t.build_area = #{buildArea} </if>
+		<if test="region != null"> and t.region = #{region} </if>
+		<if test="landNature != null"> and t.land_nature = #{landNature} </if>
+		<if test="landArea != null"> and t.land_area = #{landArea} </if>
+		<if test="investmentAmount != null"> and t.investment_amount = #{investmentAmount} </if>
+		<if test="planStartDate != null"> and t.plan_start_date &gt;= #{planStartDate} </if>
+		<if test="planEndDate != null"> and t.plan_end_date &lt;= #{planEndDate} </if>
+		<if test="projectContent != null"> and t.project_content = #{projectContent} </if>
+		<if test="remark != null"> and t.remark = #{remark} </if>
+		<if test="deleteFlag != null"> and t.DELETE_FLAG = #{deleteFlag} </if>
+		<if test="createUser != null"> and t.CREATE_USER = #{createUser} </if>
+		<if test="createUserDept != null"> and t.CREATE_USER_DEPT = #{createUserDept} </if>
+		<if test="createUserOrg != null"> and t.CREATE_USER_ORG = #{createUserOrg} </if>
+		<if test="createDate != null"> and t.CREATE_DATE = #{createDate} </if>
+		<if test="createDateBegin != null"> and t.CREATE_DATE &gt;= #{createDateBegin} </if>
+		<if test="createDateEnd != null"> and t.CREATE_DATE &lt;= #{createDateEnd} </if>
+		<if test="modifyDate != null"> and t.MODIFY_DATE = #{modifyDate} </if>
+		<if test="modifyDateBegin != null"> and t.MODIFY_DATE &gt;= #{modifyDateBegin} </if>
+		<if test="modifyDateEnd != null"> and t.MODIFY_DATE &lt;= #{modifyDateEnd} </if>
+		<if test="modifyUser != null"> and t.MODIFY_USER = #{modifyUser} </if>
+		<if test="extStr1 != null"> and t.EXT_STR1 = #{extStr1} </if>
+		<if test="extStr2 != null"> and t.EXT_STR2 = #{extStr2} </if>
+		<if test="extStr3 != null"> and t.EXT_STR3 = #{extStr3} </if>
+		<if test="extStr4 != null"> and t.EXT_STR4 = #{extStr4} </if>
+		<if test="extStr5 != null"> and t.EXT_STR5 = #{extStr5} </if>
+		<if test="extDate1 != null"> and t.EXT_DATE1 = #{extDate1} </if>
+		<if test="extDate1Begin != null"> and t.EXT_DATE1 &gt;= #{extDate1Begin} </if>
+		<if test="extDate1End != null"> and t.EXT_DATE1 &lt;= #{extDate1End} </if>
+		<if test="extDate2 != null"> and t.EXT_DATE2 = #{extDate2} </if>
+		<if test="extDate2Begin != null"> and t.EXT_DATE2 &gt;= #{extDate2Begin} </if>
+		<if test="extDate2End != null"> and t.EXT_DATE2 &lt;= #{extDate2End} </if>
+		<if test="extNum1 != null"> and t.EXT_NUM1 = #{extNum1} </if>
+		<if test="extNum2 != null"> and t.EXT_NUM2 = #{extNum2} </if>
+		<if test="extNum3 != null"> and t.EXT_NUM3 = #{extNum3} </if>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+	<select id="queryProjectSafetyCount" parameterType="com.jc.csmp.project.domain.CmProjectInfo" resultType="java.lang.Long">
+		SELECT count(distinct t.ID) FROM cm_project_info t
+	WHERE NOT EXISTS(SELECT * FROM `cm_safety_supervision` t1 WHERE t.id=t1.project_id)
+		<if test="id != null"> and t.id = #{id} </if>
+		<if test="resourceDataId != null"> and t.resource_date_id = #{resourceDataId} </if>
+		<if test="ifFinish != null"> and t.if_finish = #{ifFinish} </if>
+		<if test="productionTotal != null"> production_total = #{productionTotal} </if>
+		<if test="lng != null"> and lng = #{lng} </if>
+		<if test="lat != null"> and lat = #{lat} </if>
+		<if test="projectType != null"> and t.project_type = #{projectType} </if>
+		<if test="buildType != null"> and t.build_type = #{buildType} </if>
+		<if test="approvalNumber != null"> and t.approval_number = #{approvalNumber} </if>
+		<if test="projectNumber != null"> and t.project_number = #{projectNumber} </if>
+		<if test="projectName != null"> and t.project_name like <![CDATA['%${projectName}%']]> </if>
+		<if test="projectAddress != null"> and t.project_address = #{projectAddress} </if>
+		<if test="projectTrade != null"> and t.project_trade = #{projectTrade} </if>
+		<if test="planAmount != null"> and t.plan_amount = #{planAmount} </if>
+		<if test="buildArea != null"> and t.build_area = #{buildArea} </if>
+		<if test="region != null"> and t.region = #{region} </if>
+		<if test="landNature != null"> and t.land_nature = #{landNature} </if>
+		<if test="landArea != null"> and t.land_area = #{landArea} </if>
+		<if test="investmentAmount != null"> and t.investment_amount = #{investmentAmount} </if>
+		<if test="planStartDate != null"> and t.plan_start_date &gt;= #{planStartDate} </if>
+		<if test="planEndDate != null"> and t.plan_end_date &lt;= #{planEndDate} </if>
+		<if test="projectContent != null"> and t.project_content = #{projectContent} </if>
+		<if test="remark != null"> and t.remark = #{remark} </if>
+		<if test="deleteFlag != null"> and t.DELETE_FLAG = #{deleteFlag} </if>
+		<if test="createUser != null"> and t.CREATE_USER = #{createUser} </if>
+		<if test="createUserDept != null"> and t.CREATE_USER_DEPT = #{createUserDept} </if>
+		<if test="createUserOrg != null"> and t.CREATE_USER_ORG = #{createUserOrg} </if>
+		<if test="createDate != null"> and t.CREATE_DATE = #{createDate} </if>
+		<if test="createDateBegin != null"> and t.CREATE_DATE &gt;= #{createDateBegin} </if>
+		<if test="createDateEnd != null"> and t.CREATE_DATE &lt;= #{createDateEnd} </if>
+		<if test="modifyDate != null"> and t.MODIFY_DATE = #{modifyDate} </if>
+		<if test="modifyDateBegin != null"> and t.MODIFY_DATE &gt;= #{modifyDateBegin} </if>
+		<if test="modifyDateEnd != null"> and t.MODIFY_DATE &lt;= #{modifyDateEnd} </if>
+		<if test="modifyUser != null"> and t.MODIFY_USER = #{modifyUser} </if>
+		<if test="extStr1 != null"> and t.EXT_STR1 = #{extStr1} </if>
+		<if test="extStr2 != null"> and t.EXT_STR2 = #{extStr2} </if>
+		<if test="extStr3 != null"> and t.EXT_STR3 = #{extStr3} </if>
+		<if test="extStr4 != null"> and t.EXT_STR4 = #{extStr4} </if>
+		<if test="extStr5 != null"> and t.EXT_STR5 = #{extStr5} </if>
+		<if test="extDate1 != null"> and t.EXT_DATE1 = #{extDate1} </if>
+		<if test="extDate1Begin != null"> and t.EXT_DATE1 &gt;= #{extDate1Begin} </if>
+		<if test="extDate1End != null"> and t.EXT_DATE1 &lt;= #{extDate1End} </if>
+		<if test="extDate2 != null"> and t.EXT_DATE2 = #{extDate2} </if>
+		<if test="extDate2Begin != null"> and t.EXT_DATE2 &gt;= #{extDate2Begin} </if>
+		<if test="extDate2End != null"> and t.EXT_DATE2 &lt;= #{extDate2End} </if>
+		<if test="extNum1 != null"> and t.EXT_NUM1 = #{extNum1} </if>
+		<if test="extNum2 != null"> and t.EXT_NUM2 = #{extNum2} </if>
+		<if test="extNum3 != null"> and t.EXT_NUM3 = #{extNum3} </if>
+	</select>
+</mapper>

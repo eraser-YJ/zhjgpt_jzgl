@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.jc.system.dic.domain.Dic">
+	<insert id="insert" parameterType="com.jc.system.dic.domain.Dic" useGeneratedKeys="true" keyProperty="id">
+	INSERT INTO tty_sys_dics(id,code,dic_type,value,parent_id,parent_type,use_flag,type_flag,dic_flag,default_value,order_flag,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,MODIFY_USER,MODIFY_DATE)
+		VALUES
+		(#{id,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR},#{dicType,jdbcType=VARCHAR},#{value,jdbcType=VARCHAR},#{parentId,jdbcType=VARCHAR},#{parentType,jdbcType=VARCHAR},#{useFlag,jdbcType=NUMERIC},#{typeFlag,jdbcType=NUMERIC},#{dicFlag,jdbcType=NUMERIC},#{defaultValue,jdbcType=NUMERIC},#{orderFlag,jdbcType=NUMERIC},#{createUser,jdbcType=VARCHAR},#{createUserDept,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{modifyUser,jdbcType=VARCHAR},#{modifyDate,jdbcType=TIMESTAMP})
+	</insert>
+	<update id="update" parameterType="com.jc.system.dic.domain.Dic">
+	UPDATE tty_sys_dics
+	   <set>
+	   	<if test="code != null">
+	   		code = #{code},
+	   	</if>
+	   	<if test="dicType != null">
+	   		dic_type = #{dicType},
+	   	</if>
+	   	<if test="value != null">
+	   		value = #{value},
+	   	</if>
+	   	<if test="parentId != null">
+	   		parent_id = #{parentId},
+	   	</if>
+	   	<if test="parentType != null">
+	   		parent_type = #{parentType},
+	   	</if>
+	   	<if test="useFlag != null">
+	   		use_flag = #{useFlag},
+	   	</if>
+	   	<if test="typeFlag != null">
+	   		type_flag = #{typeFlag},
+	   	</if>
+	   	<if test="dicFlag != null">
+	   		dic_flag = #{dicFlag},
+	   	</if>
+	   	<if test="defaultValue != null">
+	   		default_value = #{defaultValue},
+	   	</if>
+	   	<if test="orderFlag != null">
+	   		order_flag = #{orderFlag},
+	   	</if>
+	   	
+	   </set>
+	   where id = #{id} or (code = #{code,jdbcType=VARCHAR} and parent_id = #{parentId,jdbcType=NUMERIC})
+	</update><select id="query" parameterType="com.jc.system.dic.domain.Dic" resultType="com.jc.system.dic.domain.Dic">
+		SELECT 
+			t.id id,
+			t.code code,
+			t.dic_type dicType,
+			t.value value,
+			t.parent_id parentId,
+			t.parent_type parentType,
+			t.use_flag useFlag,
+			t.type_flag typeFlag,
+			t.dic_flag dicFlag,
+			t.default_value defaultValue,
+			t.order_flag orderFlag
+		FROM tty_sys_dics t
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="code != null">
+				and t.code = #{code}
+			</if>
+			<if test="dicType != null">
+	   			and t.dic_type = #{dicType}
+	   		</if>
+			<if test="value != null">
+				and t.value = #{value}
+			</if>
+			<if test="parentId != null">
+				and t.parent_id = #{parentId}
+			</if>
+			<if test="parentType != null">
+	   			and t.parent_type = #{parentType}
+	   		</if>
+			<if test="useFlag != null">
+				and t.use_flag = #{useFlag}
+			</if>
+			<if test="typeFlag != null">
+				and t.type_flag = #{typeFlag}
+			</if>
+			<if test="dicFlag != null">
+				and t.dic_flag = #{dicFlag}
+			</if>
+			<if test="defaultValue != null">
+				and t.default_value = #{defaultValue}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+		</where>
+		order by t.order_flag asc
+	</select><select id="queryCount" parameterType="com.jc.system.dic.domain.Dic" resultType="java.lang.Integer">
+		SELECT count(id) 
+		FROM tty_sys_dics t
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="code != null">
+				and t.code = #{code}
+			</if>
+			<if test="dicType != null">
+	   			and t.dic_type = #{dicType}
+	   		</if>
+			<if test="value != null">
+				and t.value = #{value}
+			</if>
+			<if test="parentId != null">
+				and t.parent_id = #{parentId}
+			</if>
+			<if test="parentType != null">
+	   			and t.parent_type = #{parentType}
+	   		</if>
+			<if test="useFlag != null">
+				and t.use_flag = #{useFlag}
+			</if>
+			<if test="typeFlag != null">
+				and t.type_flag = #{typeFlag}
+			</if>
+			<if test="dicFlag != null">
+				and t.dic_flag = #{dicFlag}
+			</if>
+			<if test="defaultValue != null">
+				and t.default_value = #{defaultValue}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+		</where>
+	</select><delete id="deletePhysical" parameterType="com.jc.system.dic.domain.Dic">
+    	delete from tty_sys_dics
+      	<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="code != null">
+				and code = #{code}
+			</if>
+			<if test="dicType != null">
+	   			and dic_type = #{dicType}
+	   		</if>
+			<if test="parentId != null">
+				and parent_id = #{parentId}
+			</if>
+			<if test="parentType != null">
+	   			and parent_type = #{parentType}
+	   		</if>
+		</where>
+ 	</delete><update id="deleteLogic" parameterType="com.jc.system.dic.domain.Dic">
+    	UPDATE tty_sys_dics t set t.delete_flag = 1,t.modify_user = #{modifyUser,jdbcType=NUMERIC},t.modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+      		where parent_id = #{parentId} and ID not in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update><select id="queryDuty" parameterType="com.jc.system.dic.domain.Dic" resultType="com.jc.system.dic.domain.Dic">
+		SELECT 
+			t.id id,
+			t.code code,
+			t.dic_type dicType,
+			t.value value,
+			t.order_flag orderFlag
+		FROM tty_sys_dics t
+		<where>
+			<if test="parentId != null">
+				and t.parent_id = #{parentId}
+			</if>
+			<if test="useFlag != null">
+				and t.use_flag = #{useFlag}
+			</if>
+		</where>
+		ORDER BY t.order_flag,t.code,t.id ASC
+	</select></mapper>

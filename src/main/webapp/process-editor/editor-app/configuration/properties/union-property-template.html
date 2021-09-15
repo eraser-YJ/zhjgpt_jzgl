@@ -1,0 +1,7 @@
+<div ng-controller="KisBpmUnionPropertyPopupCtrl" style="line-height: 20px">
+    <label class="radio-inline" ng-repeat="cdata in unionData">
+        <input type="radio" name="inlineUnionOptions"
+               ng-checked="cdata.selected"
+               ng-click="changeValue($index);"> {{cdata.name}}
+    </label>
+</div>

@@ -1,0 +1,164 @@
+﻿/*!
+ * 登录页面
+ *
+ * Copyright 2012 Stefan Petre
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
+.loginBodyBg{
+	background: #0063a6;
+}
+.loginBox{
+	width: 900px;
+	height: 410px;
+	margin-left: -450px;
+	margin-top: -205px;
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	z-index: 1;
+	h1{
+		height: 90px;
+		color: #fff;
+		font-size: 36px;
+		font-family: Microsoft YaHei;
+		margin: 0;
+		padding: 0;
+		font-weight: normal;
+	}
+}
+.loginImgBox{
+	width: 500px;
+	height: 320px;
+	overflow: hidden;
+	float: left;
+	img{
+		width: 240px;
+		height: 155px;
+		margin: 0 10px 10px 0;
+		float: left;
+	}
+}
+
+
+.loginFormBox{
+	width: 400px;
+	height: 320px;
+	background: #fff;
+	float: left;
+	position: relative;
+	h2{
+		font-size:25px;
+		font-family: Utsaah;
+		font-weight: normal;
+		line-height: 75px;
+		height: 75px;
+		padding: 0 30px;
+		margin: 0;
+	}
+	p{
+		&.inputText{
+			min-height: 35px;
+			padding: 0 30px;
+			margin: 0;
+			margin-bottom: 10px;
+			font-size: 14px;
+			font-family: Microsoft YaHei;
+			&>input{
+				height: 33px;
+				width: 100%;
+				border: #ccc solid 1px;
+				background: #f9f9f9;
+				color: #666;
+				&:hover{
+					border: #408cec solid 1px;
+				}
+				&:focus{
+					border: #0063a6 solid 1px;
+					background: #fff;
+				}
+			}
+		}
+		&.inputPassword{
+			min-height: 35px;
+			padding: 0 30px;
+			margin: 0;
+			margin-bottom: 10px;
+			font-size: 14px;
+			font-family: Microsoft YaHei;
+			&>input{
+				height: 33px;
+				width: 100%;
+				border: #ccc solid 1px;
+				background: #f9f9f9;
+				color: #666;
+				&:hover{
+					border: #408cec solid 1px;
+				}
+				&:focus{
+					border: #0063a6 solid 1px;
+					background: #fff;
+				}
+			}
+		}
+		&.Buttons{
+			height: 30px;
+			line-height: 30px;
+			padding: 0 30px;
+			vertical-align: middle;
+			font-size: 14px;
+			font-family: Microsoft YaHei;
+			color: #666;
+			input{
+				vertical-align: middle;
+				margin: 0;
+				margin-right: .5em;
+				position: relative;
+				top: 5px;
+			}
+			input,label{
+				cursor: pointer;
+				float: left;
+			}
+			a{
+				display: block;
+				text-decoration: none;
+				width: 84px;
+				height: 30px;
+				line-height: 30px;
+				float: right;
+				background: #0063a6;
+				text-align: center;
+				color: #fff;
+				font-size: 14px;
+				font-family: Microsoft YaHei;
+				&:hover{
+					background: #005995;
+				}
+			}
+		}
+	}
+	.ForgotPassword{
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+		text-align: center;
+		background: #e5e5e5;
+		font-size: 14px;
+		font-family: Microsoft YaHei;
+		color: #666;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		z-index: 2;
+		a{
+			text-decoration: none;
+			font-size: 14px;
+			font-family: Microsoft YaHei;
+			color: #666;
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+	}
+}

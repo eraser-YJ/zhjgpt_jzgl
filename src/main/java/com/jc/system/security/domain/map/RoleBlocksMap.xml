@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.RoleBlocks">
+
+	<select id="query" parameterType="com.jc.system.security.domain.RoleBlocks" resultType="com.jc.system.security.domain.RoleBlocks">
+		SELECT 	
+		ROLE_ID as roleId, 
+		DEPT_ID as deptId,
+		IS_CHECKED as isChecked
+		FROM tty_sys_role_block where 1 = 1
+			<if test="roleId != null">
+				and ROLE_ID = #{roleId}
+			</if>
+			<if test="isChecked != null">
+				and IS_CHECKED = #{isChecked}
+			</if>
+			<if test="roleIds != null">
+				and ROLE_ID in 
+				<foreach collection="roleIds" item="roled" index="index"
+		            open="(" close=")" separator=",">
+		            #{roled}
+		        </foreach>
+	        </if>
+	        <if test="deptIds != null">
+				and DEPT_ID in 
+				<foreach collection="deptIds" item="deptd" index="index"
+		            open="(" close=")" separator=",">
+		            #{deptd}
+		        </foreach>
+	        </if>
+	</select>
+	
+	<insert id="insertList" parameterType="com.jc.system.security.domain.RoleBlocks">
+	INSERT INTO tty_sys_role_block 
+		(ID,ROLE_ID, DEPT_ID,IS_CHECKED,CREATE_USER,CREATE_DATE)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator="," >
+	    	(#{item.id},#{item.roleId},#{item.deptId},#{item.isChecked},#{item.createUser},#{item.createDate})
+	    </foreach>
+	</insert>
+	
+	<update id="deleteByIds" parameterType="com.jc.system.security.domain.RoleBlocks">
+    	UPDATE t_role_menus SET DELETE_FLAG = 1 where ROLE_ID = #{roleId}
+ 	</update>
+ 	
+ 	<update id="deleteLogic"  parameterType="com.jc.system.security.domain.RoleBlocks">
+		<![CDATA[
+    		UPDATE tty_sys_role_block set DELETE_FLAG = 1, MODIFY_USER = #{modifyUser}, MODIFY_DATE = #{modifyDate}
+    	]]>
+      	<where>			
+			<if test="roleId != null">
+				 ROLE_ID = #{roleId}
+			</if>
+		</where>
+ 	</update>
+	<delete id="deletePhysical"  parameterType="com.jc.system.security.domain.RoleBlocks">
+    	delete from tty_sys_role_block
+      	where ROLE_ID in
+      	<foreach collection="primaryKeys" item="primaryKey" index="index"
+	         open="(" close=")" separator=",">
+	         #{primaryKey}
+	    </foreach>
+ 	</delete>
+</mapper>

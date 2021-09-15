@@ -1,0 +1,72 @@
+
+<div class="modal" ng-controller="SaveModelDefController">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>新建流程</h2>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group form-container">
+                        <label class="col-sm-3 control-label">
+                            <span class="required">*</span> 流程ID：
+                        </label>
+                        <div class="col-sm-9 form-right">
+                            <input type="text" class="form-control" ng-model="defId"/>
+                        </div>
+                    </div>
+                    <div class="form-group form-container">
+                        <label class="col-sm-3 control-label">
+                            <span class="required">*</span>流程名称：
+                        </label>
+                        <div class="col-sm-9 form-right">
+                            <input type="text" class="form-control" ng-model="defName"/>
+                        </div>
+                    </div>
+                    <div class="form-group form-container" ng-show="orgTree.length">
+                        <label class="col-sm-3 control-label">
+                            <span class="required">*</span>流程所属机构：
+                        </label>
+                        <div class="col-sm-9 form-right">
+                            <select class="form-control"
+                                    ng-model="org"
+                                    ng-options="org.name for org in orgTree">
+                                <option value="">- 请选择 -</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group form-container" ng-show="types.length">
+                        <label class="col-sm-3 control-label">
+                            <span class="required">*</span>流程类型：
+                        </label>
+                        <div class="col-sm-9 form-right">
+                            <select class="form-control"
+                                    ng-model="type"
+                                    ng-options="type.name for type in types">
+                                <option value="">- 请选择 -</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group form-container" ng-show="forms.length">
+                        <label class="col-sm-3 control-label">
+                            <span class="required">*</span>表单选择：
+                        </label>
+                        <div class="col-sm-9 form-right">
+                            <select class="form-control"
+                                    ng-model="form"
+                                    ng-options="form.name for form in forms">
+                                <option value="">- 请选择 -</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <span class="text-danger">{{formvaild}}</span>
+                <button class="btn btn-primary" ng-click="newDef()" ng-disabled="status.loading" ng-show="!error" translate>ACTION.NEW</button>
+                <button type="button" class="btn" ng-click="close()" ng-disabled="status.loading" translate>ACTION.CANCEL</button>
+            </div>
+        </div>
+    </div>
+</div>

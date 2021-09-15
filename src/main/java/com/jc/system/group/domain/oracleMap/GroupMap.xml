@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.jc.system.group.domain.Group"><select id="query" parameterType="com.jc.system.group.domain.Group" resultType="com.jc.system.group.domain.Group">
+		SELECT 
+			t.id id,
+			t.name name,
+			t.group_type groupType,
+			t.CREATE_USER createUser,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_USER_ORG createUserOrg,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.DELETE_FLAG deleteFlag,
+			t.EXT_DATE1 extDate1,
+			t.EXT_DATE2 extDate2,
+			t.EXT_NUM1 extNum1,
+			t.EXT_NUM2 extNum2,
+			t.EXT_NUM3 extNum3,
+			t.EXT_STR1 extStr1,
+			t.EXT_STR2 extStr2,
+			t.EXT_STR3 extStr3,
+			t.EXT_STR4 extStr4,
+			t.EXT_STR5 extStr5
+			
+		FROM tty_sys_group t
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="name != null">
+				and t.name like <![CDATA['%${name}%']]>
+			</if>
+			<if test="groupType != null">
+	   			and t.group_type = #{groupType}
+	   		</if>
+	   		<if test="createUser != null">
+	   			and t.CREATE_USER = #{createUser}
+	   		</if>
+	   		<if test="createUserDept != null">
+	   			and t.CREATE_USER_DEPT = #{createUserDept}
+	   		</if>
+	   		<if test="createUserOrg != null">
+	   			and t.CREATE_USER_ORG = #{createUserOrg}
+	   		</if>
+		</where>
+	</select><select id="queryCount" parameterType="com.jc.system.group.domain.Group" resultType="java.lang.Long">
+		SELECT count(id) 
+		FROM tty_sys_group t
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="name != null">
+				and t.name like <![CDATA['%${name}%']]>
+			</if>
+			<if test="groupType != null">
+	   			and t.group_type = #{groupType}
+	   		</if>
+	   		<if test="createUser != null">
+	   			and t.CREATE_USER = #{createUser}
+	   		</if>
+	   		<if test="createUserDept != null">
+	   			and t.CREATE_USER_DEPT = #{createUserDept}
+	   		</if>
+	   		<if test="createUserOrg != null">
+	   			and t.CREATE_USER_ORG = #{createUserOrg}
+	   		</if>
+		</where>
+	</select><select id="querySameGroupCount" parameterType="com.jc.system.group.domain.Group" resultType="com.jc.system.group.domain.Group">
+		SELECT t.id, t.name 
+		FROM tty_sys_group t
+		<where>
+			<if test="name != null">
+				and t.name = #{name}
+			</if>
+			<if test="groupType != null">
+	   			and t.group_type = #{groupType}
+	   		</if>
+	   		<if test="createUser != null">
+	   			and t.CREATE_USER = #{createUser}
+	   		</if>
+	   		<if test="createUserDept != null">
+	   			and t.CREATE_USER_DEPT = #{createUserDept}
+	   		</if>
+	   		<if test="createUserOrg != null">
+	   			and t.CREATE_USER_ORG = #{createUserOrg}
+	   		</if>
+		</where>
+	</select>
+	<insert id="insert" parameterType="com.jc.system.group.domain.Group" useGeneratedKeys="true" keyProperty="id">
+	INSERT INTO tty_sys_group(ID,id,name,group_type,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE)
+		VALUES (#{id},#{name},#{groupType},#{createUser},#{createUserDept},#{createUserOrg},#{createDate},#{modifyUser},#{modifyDate})
+	</insert>
+	<delete id="deletePhysical" parameterType="com.jc.system.group.domain.Group">
+    	delete from tty_sys_group
+      		where id in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete><update id="update" parameterType="com.jc.system.group.domain.Group">
+	UPDATE tty_sys_group
+	   <set>
+	   	<if test="name != null">
+	   		name = #{name},
+	   	</if>
+	   	<if test="groupType != null">
+	   		group_type = #{groupType},
+	   	</if>
+	   	<if test="modifyUser != null">
+	   		MODIFY_USER = #{modifyUser},
+	   	</if>
+	   	<if test="modifyDate != null">
+	   		MODIFY_DATE = #{modifyDateNew},
+	   	</if>
+	   </set>
+	   where id = #{id}
+	</update><resultMap type="com.jc.system.group.domain.Group" id="getAllUsers"><id property="id" column="id"/><result property="name" column="name"/><result property="groupType" column="group_type"/><result property="deleteFlag" column="deleteFlag"/><result property="createUser" column="createUser"/><result property="createUserDept" column="createUserDept"/><result property="createUserOrg" column="createUserOrg"/><result property="createDate" column="createDate"/><result property="modifyUser" column="modifyUser"/><result property="modifyDate" column="modifyDate"/><result property="extDate1" column="extDate1"/><result property="extDate2" column="extDate2"/><result property="extNum3" column="extNum3"/><result property="extNum1" column="extNum1"/><result property="extNum2" column="extNum2"/><result property="extStr1" column="extStr1"/><result property="extStr2" column="extStr2"/><result property="extStr3" column="extStr3"/><result property="extStr4" column="extStr4"/><result property="extStr5" column="extStr5"/><association property="lstGroupUser" javaType="com.jc.system.group.domain.GroupUser"><result property="groupId" column="groupId"/><result property="userId" column="userId"/><result property="displayName" column="displayName"/><result property="orderNo" column="orderNo"/></association></resultMap><select id="queryAllGroupUsers" parameterType="com.jc.system.group.domain.Group" resultMap="getAllUsers">
+		SELECT 
+			t.id id,
+			t.name name,
+			t.group_type groupType,
+			d.group_id groupId,
+			d.user_id userId,
+			u.display_name displayName,
+			u.ORDER_NO orderNo,
+			t.CREATE_USER createUser,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_USER_ORG createUserOrg,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.DELETE_FLAG deleteFlag,
+			t.EXT_DATE1 extDate1,
+			t.EXT_DATE2 extDate2,
+			t.EXT_NUM1 extNum1,
+			t.EXT_NUM2 extNum2,
+			t.EXT_NUM3 extNum3,
+			t.EXT_STR1 extStr1,
+			t.EXT_STR2 extStr2,
+			t.EXT_STR3 extStr3,
+			t.EXT_STR4 extStr4,
+			t.EXT_STR5 extStr5
+			
+		FROM tty_sys_group t, tty_sys_group_user d, tty_sys_user u
+		<where>
+			t.id = d.group_id and d.user_id = u.id 
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="name != null">
+				and t.name like <![CDATA['%${name}%']]>
+			</if>
+			<if test="groupType != null">
+	   			and t.group_type = #{groupType}
+	   		</if>
+	   		<if test="createUser != null">
+	   			and t.CREATE_USER = #{createUser}
+	   		</if>
+	   		<if test="createUserDept != null">
+	   			and t.CREATE_USER_DEPT = #{createUserDept}
+	   		</if>
+	   		<if test="createUserOrg != null">
+	   			and t.CREATE_USER_ORG = #{createUserOrg}
+	   		</if>
+		</where>
+	</select></mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RealtimeInfoDao">
+
+	<select id="query_statis" parameterType="com.jc.csmp.warn.info.domain.RealtimeInfo" resultType="com.jc.csmp.warn.info.domain.RealtimeInfo">
+		SELECT
+		  t.project_code     AS projectCode,
+		  any_value(t.project_name) AS projectName,
+		  t.equipment_type equipmentType,
+		  SUM(IF(t.work_status = 'warn',1,0))    warnNum,
+		  SUM(IF(t.work_status = 'normarl',1,0))    normarlNum,
+		  SUM(IF(t.work_status = 'outline' OR t.work_status IS NULL,1,0))    outLineNum
+		FROM scs_equipment_info t
+		WHERE t.data_status = '1'
+		<if test="projectCode != null">
+			and t.project_code = #{projectCode}
+		</if>
+		<if test="projectName != null">
+			and t.project_name like concat('%',#{projectName},'%')
+		</if>
+		<if test="equipmentType != null">
+			and t.equipment_type like concat('%',#{equipmentType},'%')
+		</if>
+		GROUP BY t.project_code,t.equipment_type
+		ORDER BY t.project_code,t.equipment_type
+	</select>
+
+	<select id="query_warn" parameterType="com.jc.csmp.warn.info.domain.WarnStatisInfo" resultType="com.jc.csmp.warn.info.domain.WarnStatisInfo">
+		SELECT
+		  t.project_code     AS projectCode,
+		  any_value(t.project_name) AS projectName,
+		  t.equipment_type equipmentType,
+		  SUM(IF(w.warn_status = 'processed',1,0))    processedNum,
+		  SUM(IF(w.warn_status != 'processed' OR w.warn_status IS NULL,1,0))    initNum
+		FROM scs_equipment_info t,scs_warn_info w
+		WHERE t.id=w.target_id
+		and t.data_status = '1'
+		<if test="warnTimeBegin != null">
+			and w.warn_time &gt;= #{warnTimeBegin}
+		</if>
+		<if test="warnTimeEnd != null">
+			and w.warn_time &lt;= #{warnTimeEnd}
+		</if>
+		<if test="equipmentType != null">
+			and t.equipment_type like concat('%',#{equipmentType},'%')
+		</if>
+		GROUP BY t.project_code,t.equipment_type
+		ORDER BY t.project_code,t.equipment_type
+	</select>
+
+
+	<select id="query_warn_statis" parameterType="com.jc.csmp.warn.info.domain.WarnStatisInfo" resultType="com.jc.csmp.warn.info.domain.WarnStatisInfo">
+		SELECT
+		  t.target_code equipmentCode,
+		  COUNT(*) warnNum
+		FROM scs_warn_info t
+		WHERE 1=1
+		<if test="equipmentCodes != null">
+			and t.target_code in
+			<foreach collection="equipmentCodes" item="equipmentCodeValue" index="index" open="(" close=")" separator=",">
+				#{equipmentCodeValue}
+			</foreach>
+		</if>
+		<if test="warnTimeBegin != null">
+			and t.warn_time &gt;= #{warnTimeBegin}
+		</if>
+		<if test="warnTimeEnd != null">
+			and t.warn_time &lt;= #{warnTimeEnd}
+		</if>
+		GROUP BY t.target_code
+	</select>
+</mapper>

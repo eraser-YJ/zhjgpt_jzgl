@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Info>
+    <!-- 调试信息开关true,true,true,true   false,false,false,false< -->
+    <!--1.方法进入和退出,2.判断条件执行,3.参数变量,4.信息提示 -->
+    <DEBUG>true,true,true</DEBUG>
+    <!-- hzwfcc 增加了库表字段 -->
+    <Version>31</Version>
+    <!--  文档锁定时间,超时默认解锁分钟-->
+    <LockLimit>30</LockLimit>
+    <!-- 人员信息清空时间(小时)-->
+    <ClearUserInfoTime>1</ClearUserInfoTime>
+    <!-- 默认定时器执行间隔(小时),用于自动节点执行检查 -->
+    <PeriodHour>4</PeriodHour>
+    <!-- true表示流程引擎为单独使用,不带平台 -->
+    <WorkflowAutocephaly>true</WorkflowAutocephaly>
+    <!-- 下面六个类,如果应用有特殊需求,建议直接继承系统类,覆盖需要重写的方法,不要去实现接口类 -->
+    <!-- 跟组织库相关的实现类名称,此类必须实现接口:com.horizon.workflow.flowengine.impl.XMLOrgInterface -->
+    <XMLOrgClassName>com.horizon.workflow.flowengine.impl.entity.XMLOrg</XMLOrgClassName>
+    <!-- 跟待办相关的实现类名称  此类必须实现接口:com.horizon.workflow.flowengine.impl.XMLTodoInterface-->
+    <XMLTodoClassName>com.jc.workflow.core.implement.XmlTodo</XMLTodoClassName>
+    <!-- 跟应用相关的实现类名称 此类必须实现接口:com.horizon.workflow.flowengine.impl.XMLAppInterface-->
+    <XMLAppClassName>com.horizon.workflow.flowengine.impl.example.XMLApp</XMLAppClassName>
+    <!-- 跟数据库读写相关的实现类名称 此类必须实现接口:com.horizon.workflow.flowengine.impl.XMLAccessInterface-->
+    <XMLAccessClassName>com.horizon.workflow.flowengine.impl.entity.XMLAccess</XMLAccessClassName>
+    <!-- 流程日志记录接口此类必须实现接口:com.horizon.workflow.flowengine.impl.XMLHistoryInterface  -->
+    <XMLHistoryInterface>com.horizon.workflow.flowengine.impl.entity.XMLHistory</XMLHistoryInterface>
+    <!-- 扩展功能的实现类 此类必须实现接口:com.horizon.workflow.flowengine.impl.XMLExpendInterface-->
+    <XMLExpendClassName>com.horizon.example.XMLExpend</XMLExpendClassName>
+    <!-- webservice调用的表单解析类 -->
+    <XMLFormInterface>com.horizon.workflow.flowengine.impl.entity.XMLFormParse</XMLFormInterface>
+    <!-- 流程数据对应的数据源标识符名称，默认为空，使用默认数据源  -->
+    <FlowIdentifier>system</FlowIdentifier>
+    <!-- 业务数据对应的数据源标识符名称，默认为空，使用默认数据源-->
+    <DataIdentifier>system</DataIdentifier>
+
+    <!-- 流转处于多个活动节点时,是否允许进行撤办操作(如果允许,则表示所有活动节点撤销) -->
+    <MuiltActiveCancle>false</MuiltActiveCancle>
+    <!-- 流程结束后是否删除实例的过程历史版本信息-->
+    <DelOldHistory>true</DelOldHistory>
+    <!-- 流程正常结束时是否使用结束节点设置(结束节点读者设置类型 1=仅当前结束节点设置的读者人员 2=流程关系人(不包含当前节点设置人员) 3=流程关系人(包含当前节点设置人员))-->
+    <ReplaceAuth>true</ReplaceAuth>
+    <!-- 是否允许管理员在流程结束后通过跳转功能使流程重新进入流转状态 -->
+    <FlowReStart>true</FlowReStart>
+    <!-- 是否需要在提交时重新指定发送消息的方式 -->
+    <ReChgMsgFlag>true</ReChgMsgFlag>
+    <!-- 除提交/暂存/退回外的当前作者可以执行的其他系统操作(move|jiaqian|huiqian|addreader|subflow)在执行时是否保存应用数据 -->
+    <SaveAppData>true</SaveAppData>
+    <SetAuthToData>false</SetAuthToData>
+    <!-- 写入应用的权限  -->
+    <AuthAuthor>AUTHOR</AuthAuthor>
+    <AuthDone>DONE</AuthDone>
+    <AuthReader>READER</AuthReader>
+    <AuthReaded>READED</AuthReaded>
+    <AuthYReader>YREADER</AuthYReader>
+    <AuthYReaded>YREADED</AuthYReaded>
+    <AuthCreator>CREATOR</AuthCreator>
+    <AuthDraft>DRAFT</AuthDraft>
+    <AuthManager>MANAGER</AuthManager>
+    <AuthCReader>CREADER</AuthCReader>
+
+    <!-- 跟应用相关数据的配置  -->
+    <!-- 标题字段名称 -->			<TitleName>title</TitleName>
+    <!-- 紧急程度字段名称 -->	<UrgencyName>IMPORTANCE</UrgencyName>
+    <!-- URL默认地址-->				<UrlRule>/horizon/workflow/xmlwork.index.jsp?workid=|workid|</UrlRule>
+    <!--个人后缀,只能为字母-->		<UserFix>U</UserFix>
+    <!--部门后缀,只能为字母-->		<DeptFix>D</DeptFix>
+    <!--角色后缀,只能为字母-->		<RoleFix>R</RoleFix>
+    <!--部门后缀,只能为字母-->		<GroupFix>G</GroupFix>
+    <!-- 节点流入事件类型标识--><NodeEventIn>flowin</NodeEventIn>
+    <!-- 节点流出事件类型标识--><NodeEventOut>flowout</NodeEventOut>
+    <!-- 路由流出事件类型标识--><RouterEventForward>forward</RouterEventForward>
+    <!-- 路由返回事件类型标识--><RouterEventBackForward>backforward</RouterEventBackForward>
+    <!-- 应用表单信息是否在配置XML中的标识-->
+    <FormIDName>FORMID</FormIDName>
+    <!-- 用来获取表名的字段名称 -->
+    <TableName>TABLENAME</TableName>
+    <!-- 流程跟踪和历史版本表单ID -->
+    <FlowTrack>FlowTrack</FlowTrack>
+    <FlowTrackName>流程跟踪</FlowTrackName>
+    <!-- 预留 -->
+    <HistoricalVersion>HistoricalVersion</HistoricalVersion>
+    <!-- 手写意见地址-->
+    <SXCommentsURL>/|apppath|/download.do?id=</SXCommentsURL>
+    <SXCommentsStyle>onclick='openImg(this)' style='width:170;cursor:pointer'</SXCommentsStyle>
+    <!--日志显示操作内容的长度设定-->
+    <LogMemoLength>150</LogMemoLength>
+
+
+    <!-- 流程引擎需要用到的提示信息文本，替换文本是请注意，不要替换竖线之间的文本，如："节点|nodename|已经完成" -->
+    <!-- 内置操作按钮显示文本(顺序不能改变): 提交,暂存,退回,加签,会签,替换办理人,终止,暂停,阅知,拿回,催办,转办,跳转,撤办,已阅,启动子流程,恢复-->
+    <ActionName>提交,暂存,退回,加签,会签,替换办理人,终止,暂停,阅知,拿回,催办,转办,跳转,撤办,已阅,启动子流程,恢复</ActionName>
+    <ExitActionName>关闭</ExitActionName>
+    <MsgFlagCN>待办,邮件,系统消息,短信,即时消息,自定义,待阅</MsgFlagCN>
+    <!-- 办理类型名称 -->
+    <DoType_Order>多人顺序</DoType_Order>
+    <DoType_Single>单一签核</DoType_Single>
+    <DoType_Parallel>多人处理</DoType_Parallel>
+    <DoType_Everyone>多人单一签核</DoType_Everyone>
+    <!-- 权限-->
+    <Manager>管理员</Manager>
+    <MainDo>当前节点主办理人</MainDo>
+    <SecondDo>当前节点协办者</SecondDo>
+    <SecondDone>当前节点协办者(已办)</SecondDone>
+    <CurDone>当前节点已办理者</CurDone>
+    <PreDone>上一节点办理者</PreDone>
+    <Creator>创建者</Creator>
+    <Done>已办理者</Done>
+    <Huiqian>会签提出者</Huiqian>
+    <Reader>读者</Reader>
+    <NoRole>无权限者</NoRole>
+
+    <WorkDay>日</WorkDay>
+    <NormalDay>天</NormalDay>
+
+    <!-- 代办人提示信息，用于显示 XX授权给:XX -->
+    <AgentMsg>授权给:</AgentMsg>
+
+    <!-- 系统提示信息，默认使用系统语言目录下的对应文件，只有语言文件不存在时使用下面的配置 -->
+    <WF_00001>获取流程定义数据出现异常,请与管理员联系.</WF_00001>
+    <WF_00002>流程定义数据(XML)未能正常初始化.</WF_00002>
+    <WF_00003>流程被禁用.</WF_00003>
+    <WF_00004>您不具有启动此流程的权限</WF_00004>
+    <WF_00005>流程实例创建成功!</WF_00005>
+    <WF_00006>获取实例数据出现异常,请与管理员联系.(|workid|)</WF_00006>
+    <WF_00007>实例数据(XML)未能正常初始化.</WF_00007>
+    <WF_00008>替换后：实例数据(XML)未能正常初始化.</WF_00008>
+    <WF_00009>您无权查看此流程.</WF_00009>
+
+    <WF_00010>当前文档由|user|在|time|锁定.</WF_00010>
+    <WF_00011>当前文档锁定失败.请联系管理员.</WF_00011>
+    <WF_00012>实例初始化成功.</WF_00012>
+    <WF_00013>前台实例数据(XML)未能正常初始化.</WF_00013>
+    <WF_00014>由于你停留的时间超过了规定的锁定时间,系统已经由其他人处理过,为保证数据的一致性,请重新打开后再进行处理.</WF_00014>
+    <WF_00015>实例恢复成功.</WF_00015>
+    <WF_00016>从前台获取字段值异常.</WF_00016>
+    <WF_00017>保存</WF_00017>
+    <WF_00018>保存成功!</WF_00018>
+    <WF_00019>成功</WF_00019>
+
+    <WF_00020>正常流转</WF_00020>
+    <WF_00021><![CDATA[顺签人员顺序出现异常.<br>设置顺序为|user1|,<br>|已经办理人员顺序为：|user2|]]></WF_00021>
+    <WF_00022>流程已经结束</WF_00022>
+    <WF_00023>|title|(|workid|)流程已经结束.</WF_00023>
+    <WF_00024>流程处于暂停状态</WF_00024>
+    <WF_00025>|title|(|workid|):流程处于暂停状态</WF_00025>
+    <WF_00026>|title|,请关注.</WF_00026>
+    <WF_00027>|title|,请办理.</WF_00027>
+    <WF_00028>顺序处理.下一处理人:|user|</WF_00028>
+    <WF_00029>并行处理.等候其他人处理.</WF_00029>
+
+    <WF_00030>会签.返回会签提出人:|user|</WF_00030>
+    <WF_00031>会签.等候其他人处理</WF_00031>
+    <WF_00032>你提出的会签已经全部返回,请继续处理!</WF_00032>
+    <WF_00033>下一节点:|node|(|user|)</WF_00033>
+    <WF_00034>流转结束</WF_00034>
+    <WF_00035>|title|,流转结束.</WF_00035>
+    <WF_00036>域值写入执行失败</WF_00036>
+    <WF_00037>提交</WF_00037>
+    <WF_00038>没有指定接收人.</WF_00038>
+    <WF_00039>没有指定会签接收人</WF_00039>
+
+    <WF_00040>没有指定加签接收人</WF_00040>
+    <WF_00041>没有指定转办接收人</WF_00041>
+    <WF_00042>没有指定替换接收人</WF_00042>
+    <WF_00043>转由|user|处理</WF_00043>
+    <WF_00044>转办</WF_00044>
+    <WF_00045>转办：|title|</WF_00045>
+    <WF_00046>转办</WF_00046>
+    <WF_00047>转办:|user|</WF_00047>
+    <WF_00048>转办:|title|</WF_00048>
+    <WF_00049>加签</WF_00049>
+
+    <WF_00050>加签:|title|</WF_00050>
+    <WF_00051>加签:|user|</WF_00051>
+    <WF_00052>会签</WF_00052>
+    <WF_00053>会签:|title|</WF_00053>
+    <WF_00054>会签:|user|</WF_00054>
+    <WF_00055>退回</WF_00055>
+    <WF_00056>退回:|title|</WF_00056>
+    <WF_00057>退回:|node|(|user|)</WF_00057>
+    <WF_00058>退回通知:|title|,由(|user|)退回到节点(|node|)</WF_00058>
+    <WF_00059>您没有执行拿回操作的权限.</WF_00059>
+
+    <WF_00060>办理人已经处理,不能拿回.</WF_00060>
+    <WF_00061>领导办理文件提醒：|title|</WF_00061>
+    <WF_00062>跳转</WF_00062>
+    <WF_00063>跳转:|title|</WF_00063>
+    <WF_00064>附件</WF_00064>
+    <WF_00065>跳转通知：|title|,已跳转到节点|node|</WF_00065>
+    <WF_00066>跳转:|node|(|user|)</WF_00066>
+    <WF_00067>拿回</WF_00067>
+    <WF_00068>拿回:上一节点(|node|)|user|</WF_00068>
+    <WF_00069>拿回通知:|title|,已经被上一节点办理人|user|拿回.</WF_00069>
+
+    <WF_00070>拿回:当前节点(|user|)</WF_00070>
+    <WF_00071>拿回通知:|title|,被当前节点已办理人|user|拿回.</WF_00071>
+    <WF_00072>在当前已办理人员中未找到您.</WF_00072>
+    <WF_00073>撤销</WF_00073>
+    <WF_00074>恢复撤销</WF_00074>
+    <WF_00075>恢复撤销:|title|</WF_00075>
+    <WF_00076>撤销:|title|(放入回收站)</WF_00076>
+    <WF_00077>撤销:|title|(已删除)</WF_00077>
+    <WF_00078>暂停</WF_00078>
+    <WF_00079>暂停通知:|title|</WF_00079>
+
+    <WF_00080>暂停恢复</WF_00080>
+    <WF_00081>暂停恢复:|title|</WF_00081>
+    <WF_00082>阅知</WF_00082>
+    <WF_00083>阅知：|user|</WF_00083>
+    <WF_00084>阅知:|title|</WF_00084>
+    <WF_00085>终止流转</WF_00085>
+    <WF_00086>终止流转通知:|title|</WF_00086>
+    <WF_00087>无</WF_00087>
+    <WF_00088>保存实例数据失败.</WF_00088>
+    <WF_00089>业务数据保存失败.</WF_00089>
+
+    <WF_00090>更新任务失败</WF_00090>
+    <WF_00091>|memo|:|title|(|workid|),更新数据失败.(已催办次数:|number|)</WF_00091>
+    <WF_00092>|memo|:|title|(|workid|)催办成功(已催办次数:|number|)</WF_00092>
+    <WF_00093>|memo|:|title|(|workid|)催办成功,但是发送待办消息失败(已催办次数:|number|)</WF_00093>
+    <WF_00094>发送待办消息失败</WF_00094>
+    <WF_00095>|title|(|workid|):成功!但是发送待办消息失败</WF_00095>
+    <WF_00096>催办:发送待办消息失败</WF_00096>
+    <WF_00097>当前待办更新失败</WF_00097>
+    <WF_00098>子流程结束:标记主流程时,保存失败!</WF_00098>
+    <WF_00099>起草</WF_00099>
+
+    <WF_00100>没有指定节点</WF_00100>
+    <WF_00101>子流程启动失败:|message|</WF_00101>
+    <WF_00102>启动子流程</WF_00102>
+
+    <WF_00103><![CDATA[启动子流程:<a href="#" onclick="OpenWork('|workid|')">查看</a>]]></WF_00103>
+    <WF_00104>您无权启动指定的子流程:|flowname|(|flowid|)</WF_00104>
+    <WF_00105>催办次数(|number1|)已经达到或者超过规定次数(|number2|)</WF_00105>
+    <WF_00106>催办</WF_00106>
+    <WF_00107>|user|催办</WF_00107>
+    <WF_00108>催办:|title|(|comments|)</WF_00108>
+    <WF_00109>自动催办</WF_00109>
+
+    <WF_00110>系统</WF_00110>
+    <WF_00111>管理员</WF_00111>
+    <WF_00112>超期</WF_00112>
+    <WF_00113>超期:|flowname|</WF_00113>
+    <WF_00114>超期处理，返回上一节点</WF_00114>
+    <WF_00115>超期处理，返回上一节点:|node|(|user|)</WF_00115>
+    <WF_00116>超期处理，返回上一节点:|flowname|</WF_00116>
+    <WF_00117>不处理</WF_00117>
+    <WF_00118>通知管理员</WF_00118>
+    <WF_00119>流程挂起</WF_00119>
+
+    <WF_00120>返回上一节点</WF_00120>
+    <WF_00121>失败</WF_00121>
+    <WF_00122>WorkID无效</WF_00122>
+    <WF_00123>代填意见</WF_00123>
+    <WF_00124>代填意见:|user|</WF_00124>
+    <WF_00125>非法操作</WF_00125>
+    <WF_00126>办理人为空</WF_00126>
+    <WF_00127>升级流程实例</WF_00127>
+    <WF_00128>更新业务权限失败</WF_00128>
+    <WF_00129>已由他人处理</WF_00129>
+
+    <WF_00130>等待子流程返回</WF_00130>
+    <WF_00131>启动流程</WF_00131>
+    <WF_00132>恢复实例版本</WF_00132>
+    <WF_00133>恢复实例版本(|ver1|->|ver2|)</WF_00133>
+    <WF_00134>已阅标记成功</WF_00134>
+    <WF_00135>已阅标记失败</WF_00135>
+    <WF_00136>已阅标记成功,待阅信息未成功更新.</WF_00136>
+    <WF_00137>选择人员已存在于办理列表中</WF_00137>
+    <WF_00138>无法获取对应的workid</WF_00138>
+    <WF_00139>查看全部</WF_00139>
+
+    <WF_00140>[代办:|user|]|memo|</WF_00140>
+    <WF_00141>0天0时0分</WF_00141>
+    <WF_00142>工作移交</WF_00142>
+    <WF_00143>工作移交:|user1|->|user2|</WF_00143>
+    <WF_00144>没有定义事件</WF_00144>
+    <WF_00145>描述</WF_00145>
+    <WF_00146>|user|于|time| |action|</WF_00146>
+    <WF_00147>累计</WF_00147>
+    <WF_00148>意见</WF_00148>
+    <WF_00149>无法获取下一节点,请检查流程配置</WF_00149>
+
+    <WF_00150>路由多于一个,请检查流程配置是否合理</WF_00150>
+    <WF_00151>获取失败</WF_00151>
+    <WF_00152>参数错误：workid,flowid,dataid至少要提供一个</WF_00152>
+    <WF_00153>操作名称(ActionName)为空,系统无法继续执行</WF_00153>
+    <WF_00154>请记录您是怎么执行到这个地方来的,并通知管理员:|action|</WF_00154>
+    <WF_00155>版本</WF_00155>
+    <WF_00156>节点名称</WF_00156>
+    <WF_00157>处理人</WF_00157>
+    <WF_00158>操作时间</WF_00158>
+    <WF_00159>操作</WF_00159>
+
+    <WF_00160>操作内容</WF_00160>
+    <WF_00161>累计时间</WF_00161>
+    <WF_00162>规定时限</WF_00162>
+    <WF_00163>代办设置成功!</WF_00163>
+    <WF_00164>代办设置</WF_00164>
+    <WF_00165>|user|(dept)设置以下流程由您代为办理:|list|</WF_00165>
+    <WF_00166>|user|(dept)取消以下流程的代理设置:|list|</WF_00166>
+    <WF_00167><![CDATA[<br>代办通知失败! ]]></WF_00167>
+    <WF_00168><![CDATA[<BR>指定流程设置的代办人为空.忽略已有待办转移操作 ]]></WF_00168>
+    <WF_00169><![CDATA[<BR>对应实例为空,已有待办转移失败 ]]></WF_00169>
+
+    <WF_00170><![CDATA[<BR>已有待办转移失败! ]]></WF_00170>
+    <WF_00171><![CDATA[|workid|,成功！<br>]]></WF_00171>
+    <WF_00172><![CDATA[|workid|,失败!(文档可能被锁定)<br>]]></WF_00172>
+    <WF_00173>XML数据保存失败!</WF_00173>
+    <WF_00174>|title|(|workid|):失败(系统锁定状态,不能执行,锁定人:|user|)</WF_00174>
+    <WF_00175>|title|(|workid|):失败</WF_00175>
+    <WF_00176>|title|(|workid|):成功</WF_00176>
+    <WF_00177>获取历史版本错误:|workid|(|version|)</WF_00177>
+    <WF_00178>更新作者权限失败</WF_00178>
+    <WF_00179>更新已办理权限失败</WF_00179>
+
+    <WF_00180>更新读者权限失败</WF_00180>
+    <WF_00181>保存数据失败</WF_00181>
+    <WF_00182>|title|(|workid|):失败(流程已结束)</WF_00182>
+    <WF_00183>失败(当前节点丢失)</WF_00183>
+    <WF_00184>传入xml不合法,解析失败.</WF_00184>
+    <WF_00185>执行失败(系统锁定状态,不能执行,锁定人:|user|)</WF_00185>
+    <!-- webservice解析部分使用 -->
+    <WF_00186>当前节点信息</WF_00186>
+    <WF_00187>当前所处节点</WF_00187>
+    <WF_00188>获取workid为|workid|的实例失败！</WF_00188>
+    <WF_00189>当前处理人</WF_00189>
+
+    <WF_00190>办理状态</WF_00190>
+    <WF_00191>当前环节</WF_00191>
+    <WF_00192>正在办理</WF_00192>
+    <WF_00193>流程状态</WF_00193>
+    <WF_00194>用户身份</WF_00194>
+    <!-- 用于获取正文表单的关键字 -->
+    <WF_00195>正文</WF_00195>
+    <WF_00196>操作名称不合法</WF_00196>
+    <WF_00197>保存成功！</WF_00197>
+    <WF_00198>撤办成功!</WF_00198>
+    <WF_00199>恢复撤办成功!</WF_00199>
+
+    <WF_00200>拿回成功!</WF_00200>
+    <WF_00201>阅知成功！</WF_00201>
+    <WF_00202>会签成功！</WF_00202>
+    <WF_00203>加签成功！</WF_00203>
+    <WF_00204>转办成功！</WF_00204>
+    <WF_00205>替换处理人成功！</WF_00205>
+    <WF_00206>恢复流转成功！</WF_00206>
+    <WF_00207>暂停流转成功！</WF_00207>
+    <WF_00208>终止流转成功!</WF_00208>
+    <WF_00209>流程未能找到下一节点,请检查路由条件是否为空</WF_00209>
+
+    <WF_00210>下一节点没有设置办理人,且不能跳过</WF_00210>
+    <WF_00211>流程已经正常结束,不能再进行任何操作了</WF_00211>
+    <WF_00212>子流程还未正常结束,主流程不能进行提交操作</WF_00212>
+    <WF_00213>流程暂停时,只能进行恢复操</WF_00213>
+    <WF_00214>流程异常结束,不能再进行任何操作了</WF_00214>
+    <WF_00215>请选择路由</WF_00215>
+    <WF_00216>请选择办理人</WF_00216>
+    <WF_00217>文件已经提交至:[|node|]|user|</WF_00217>
+    <WF_00218>文件即将提交至:[|node|]|user|</WF_00218>
+    <WF_00219>没有获取到退回节点列表！</WF_00219>
+
+    <WF_00220>退回成功！</WF_00220>
+    <WF_00221>没有获取到可以跳转的节点！</WF_00221>
+    <WF_00222>跳转成功！</WF_00222>
+    <WF_00223>节点办理人为空！</WF_00223>
+    <WF_00224>节点处理方式</WF_00224>
+    <WF_00225>办理过程记录</WF_00225>
+    <WF_00226>隐藏暂存记录</WF_00226>
+    <WF_00227>文档被锁定</WF_00227>
+    <WF_00228>填写意见</WF_00228>
+    <WF_00229>详细意见</WF_00229>
+
+    <WF_00230>确认</WF_00230>
+    <WF_00231>取消</WF_00231>
+    <WF_00232>文件已经提交至：</WF_00232>
+    <WF_00233>流程提交成功！</WF_00233>
+    <WF_00234>子流程创建成功!</WF_00234>
+    <WF_00235>打开</WF_00235>
+    <WF_00236>催办成功！</WF_00236>
+    <!-- 按钮名称 -->
+    <WF_00237>完成</WF_00237>
+    <WF_00238>流程跟踪</WF_00238>
+    <WF_00239>隐藏流程图</WF_00239>
+
+    <WF_00240>返回</WF_00240>
+    <WF_00241>网络忙,请重试或者重新打开页面。</WF_00241>
+    <WF_00242>正在处理...</WF_00242>
+    <WF_00243>查看完整内容</WF_00243>
+    <WF_00244>请选择要跳转到哪个节点？</WF_00244>
+    <WF_00245>请选择要退回到哪个节点？</WF_00245>
+    <WF_00246>请输入催办意见:</WF_00246>
+    <WF_00247>继续</WF_00247>
+    <WF_00248>替换处理人成功!</WF_00248>
+    <WF_00249>您已经启动过子流程,列表如下:</WF_00249>
+
+    <WF_00250>查看子流程</WF_00250>
+    <WF_00251>您确认还需要启动新的子流程吗?</WF_00251>
+    <WF_00252>请选择要启动的子流程：</WF_00252>
+    <WF_00253>选择子流程</WF_00253>
+    <WF_00254>确认信息</WF_00254>
+    <WF_00255>文件即将流转结束</WF_00255>
+    <WF_00256>提交至</WF_00256>
+    <WF_00257>请确认是否提交？</WF_00257>
+    <WF_00258>上一步</WF_00258>
+    <WF_00259>文件已经流转结束.</WF_00259>
+
+    <WF_00260>暂停流转结果如下:</WF_00260>
+    <WF_00261>恢复流转结果如下:</WF_00261>
+    <WF_00262>终止流转结果如下:</WF_00262>
+    <WF_00263>删除流程成功！</WF_00263>
+    <WF_00264>删除流程失败！</WF_00264>
+    <WF_00265>选择人员...</WF_00265>
+    <WF_00266>请选择节点：</WF_00266>
+    <WF_00267>选择节点....</WF_00267>
+    <WF_00268>查看XML</WF_00268>
+    <WF_00269>流程已结束或者过程数据已删除!	</WF_00269>
+
+    <WF_00270>消息发送方式</WF_00270>
+    <WF_00271>文档正在其他引擎中流转!</WF_00271>
+    <WF_00272>当前活动节点信息获取异常</WF_00272>
+    <WF_00273>当前节点ID信息获取异常(trackid|nodeid)</WF_00273>
+    <WF_00274>从库表中获取活动节点信息失败</WF_00274>
+    <WF_00275>打开旧实例时,转换活动节点信息存储失败</WF_00275>
+    <WF_00276>多人并行处理,异步提交下一节点(当前节点未全部提交结束)</WF_00276>
+    <WF_00277>多人并行处理,异步提交下一节点(当前节点全部提交结束)</WF_00277>
+    <WF_00278>办理人参数错误:单个节点(或者不分节点)时为[user1|user2],多个节点时[node1=user1|user2&amp;node2=user3]</WF_00278>
+    <WF_00279>当前流转处于多活动节点,不允许进行撤办操作。</WF_00279>
+    <WF_00280>|title|,当前处于多个活动节点,或者流程已经结束.</WF_00280>
+    <WF_00281>合并节点</WF_00281>
+    <WF_00282>退回节点为空。</WF_00282>
+    <WF_00283>|nodename|,条件不满足,等待下次轮询！</WF_00283>
+    <WF_00284>|nodename|,不属于自动提交的节点！</WF_00284>
+    <WF_00285>自动节点接口实现方法未能正确获取.</WF_00285>
+    <WF_00286>执行失败!请重新打开然后再执行一次.</WF_00286>
+    <WF_00287>当前实例正在被后台服务处理!请稍后重新打开.</WF_00287>
+    <WF_00288>路由事件执行失败.</WF_00288>
+    <WF_00289>节点事件执行失败.</WF_00289>
+    <WF_00290>实例打开数量超过license规定上限</WF_00290>
+    <WF_00291>逐级审批,办理人:|user|</WF_00291>
+    <WF_00292>当前license不支持多路并发处理</WF_00292>
+    <WF_00293>当前license不支持多引擎处理</WF_00293>
+</Info>

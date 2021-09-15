@@ -1,0 +1,40 @@
+SELECT
+  t.lzry_xm              lzry_xm,
+  t.lzry_sex             lzry_sex,
+  tsex.value             lzry_sex_value,
+  t.lzry_sfz_num         lzry_sfz_num,
+  t.lzry_tel             lzry_tel,
+  t.lzry_kqny            lzry_kqny,
+  tkq.value              lzry_cqts,
+  bz.class_bzmc          class_bzmc,
+  t.lzry_project_name    project_name,
+  t.pcp_project_num      project_num,
+  t.data_resource        dataSrc
+FROM pt_person_work t
+  LEFT OUTER JOIN pt_class_info bz
+    ON bz.class_num = t.class_num
+  LEFT OUTER JOIN tty_sys_dics tsex
+    ON tsex.code = t.lzry_sex
+      AND tsex.parent_id = 'sex'
+  LEFT OUTER JOIN tty_sys_dics tkq
+    ON tkq.code = t.lzry_cqts
+      AND tkq.parent_id = 'lzry_cqts'
+WHERE 1 = 1
+<if test="personName != null">
+    and t.lzry_xm like concat('%',#{personName},'%')
+</if>
+<if test="personCertNum != null">
+    and t.lzry_sfz_num like concat('%',#{personCertNum},'%')
+</if>
+<if test="kqnyBegin != null">
+    and t.lzry_kqny >= #{kqnyBegin,javatype=datetime}
+</if>
+<if test="kqnyEnd != null">
+    and t.lzry_kqny < #{kqnyEnd,javatype=datetime}
+</if>
+<if test="cqts != null">
+    and t.lzry_cqts = #{cqts}
+</if>
+<if test="dataSrc != null">
+    and t.data_resource = #{dataSrc}
+</if>

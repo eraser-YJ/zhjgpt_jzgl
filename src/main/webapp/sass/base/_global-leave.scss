@@ -1,0 +1,27 @@
+﻿.table.dataTable .sorting, .table.dataTable .sorting_desc, .table.dataTable .sorting_asc{
+	padding-right: 30px;
+	white-space: nowrap;
+}
+.table.dataTable.dataTable-scroll-x{border-collapse: separate;max-width: none;}
+.table.dataTable.dataTable-scroll-x td{white-space: nowrap;}
+.table.dataTable th:focus{outline: none;}
+.table.dataTable.dataTable-reorder th:hover{cursor: move;}
+/*.table.dataTable th,.table.dataTable td{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;}*/
+.fixedNav{position:fixed;top:20px;width:200px;z-index:1000;}
+input.error,select.error{border-color: red !important;}
+.select2-container.error,.select2-choices.error{border:1px solid red !important;}
+.slimScrollBar{border-radius:0 !important;}
+.taskArrangement a{display: block;}
+.taskArrangement a:hover{color: #000;}
+/*label去掉冒号*/
+.input-group label.p-r{padding-right:15px;}
+.input-group label.p-l{padding-left:15px;}
+.panel .form-table .select-md{width:200px;}
+.panel .form-control.distab{display: table;width: 50%;}
+.panel .form-control.distab.hide{display: none}
+
+/*控制打印，防止打印出现空白页*/
+@media print{.onprint{display:none;}.jcGOA{background-color:#fff;height:auto;overflow:auto;}.jcGOA body{height:auto;overflow:auto;}}
+@media print\0{.jcGOA{background-color:#fff;height:auto;overflow:auto;}.jcGOA body{height:auto;overflow:auto;}}
+
+.table-left tr td{text-align: left !important;}

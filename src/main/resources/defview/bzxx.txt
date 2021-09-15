@@ -1,0 +1,38 @@
+SELECT
+  t.id                  id,
+  t.class_num           class_num,
+  t.class_bzmc          class_bzmc,
+  t.class_bzgz          class_bzgz,
+  pro.projectName       projectName,
+  t.class_jcrq          class_jcrq,
+  t.class_ccrq          class_ccrq,
+  rel.class_map_rymc    class_map_rymc,
+  p.person_cert_num     person_cert_num,
+  p.person_cert_type    person_cert_type,
+  tptType.value         person_cert_type_value,
+  p.person_tel          person_tel,
+  t.data_resource       dataSrc
+FROM pt_class_info t
+  INNER JOIN pt_project_info pro
+    ON t.pcp_project_num = pro.projectNumber
+  LEFT OUTER JOIN pt_class_person_map rel
+    ON rel.class_num = t.class_num
+      AND rel.class_map_bz = 'Y'
+  LEFT OUTER JOIN pt_person_info p
+    ON rel.person_num = p.person_cert_num
+  LEFT OUTER JOIN tty_sys_dics tptType
+    ON tptType.code = p.person_cert_type
+      AND tptType.parent_id = 'person_cert_type'
+WHERE 1 = 1
+<if test="classNum != null">
+    and t.class_num like concat('%',#{classNum},'%')
+</if>
+<if test="classBzmc != null">
+    and t.class_bzmc like concat('%',#{classBzmc},'%')
+</if>
+<if test="projectName != null">
+    and pro.projectName like concat('%',#{projectName},'%')
+</if>
+<if test="dataSrc != null">
+    and t.data_resource = #{dataSrc}
+</if>

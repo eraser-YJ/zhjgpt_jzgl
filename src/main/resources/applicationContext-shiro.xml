@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <!-- <property name="loginUrl" value="/login"/> -->
+        <property name="loginUrl"
+                  value="#{'${cas.start}'=='true'?'${cas.casServerUrl}/login?service=${cas.localUrl}/login':'/login'}"/>
+        <property name="successUrl" value="#{'${cas.start}'=='true'?'${cas.localUrl}':'/'}"/>
+        <property name="filters">
+            <map>
+                <entry key="casFilter" value-ref="casFilter"/>
+                <entry key="sessionValidate" value-ref="sessionValidateFilter"/>
+                <entry key="authc" value-ref="loginFormAuthenticationFilter"/>
+                <entry key="logout" value-ref="logout"/>
+                <entry key="roles" value-ref="roles"/>
+                <entry key="apiAuthFilter" value-ref="apiAuthFilter"/>
+            </map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                /login = #{'${cas.start}'=='true'?'casFilter':'authc'}
+                /css/** = anon <!-- 匿名使用 -->
+                /js/** = anon
+                /img/** = anon
+                /images/** = anon
+                /fonts/** = anon
+                /plugin/** = anon
+                /install/** = anon
+                /*.ico = anon
+                /system/getRegFile.action = anon
+                /sys/user/forgetPwd.action = anon
+                /rsaKey.action = anon
+                /linceseMes.action = anon
+                /system/i18n/** = anon
+                /anon/** = anon
+                /android/system/login4M.action = anon
+                /loginForDesktop = anon  <!--桌面精灵使用 -->
+                /Kaptcha = anon
+
+                <!-- /login = authc shiro使用 表示需要认证 -->
+                /logout = logout <!--shiro使用 退出登录 -->
+                /sys/datasync/** = anon
+                /cache/** = anon
+                /sys/securitysync/** = anon
+                /process-editor/** = anon
+
+                /api/system/** = anon
+                /api/pinDepartment/** = anon
+                /api/department/** = anon
+                /api/subDepartment/** = anon
+                /api/** = apiAuthFilter
+                /mobile/** = apiAuthFilter
+                /gateway/** =anon
+                /TDTLib/** =anon
+                /websocket/** = anon
+                /mockequi/** = anon
+                /basic/DepartmentEx/ex/exportDepartment.action = anon
+
+                /csmp/ptProject/queryEchartsForArea.action = anon
+                /csmp/ptProject/queryEchartsForSgxk.action = anon
+
+                /supervise/gis/projectGisList.action = anon
+
+                /archive/folder/** = anon
+                /archive/** = anon
+                /common/api/** = anon
+                /mobile/** = anon
+                /digital/api/** = anon
+                /resource/restful/** = anon
+                /third/** = anon
+                /monitors/** = anon
+                /api/test/** = anon
+                /towerCrane/** = anon
+                /hoist/** = anon
+
+                /test/** = anon
+                /swagger*/** = anon
+                /doc*/** = anon
+                /v2/** = anon
+                /commonmessage/** = anon
+                /system/message/info/channelCallback.action = anon
+                /webjars/** = anon
+
+                <!--APP下载-->
+                /csmp/ptProject/download.action = anon
+
+                /** = user <!--shiro使用 表示必须存在用户-->
+                /** = sessionValidate<!-- ,roles,kickout -->
+            </value>
+        </property>
+    </bean>
+
+    <!-- 自定义过滤器 -->
+    <bean id="sessionValidateFilter" class="com.jc.system.security.filter.SessionValidateFilter"/>
+    <bean id="loginFormAuthenticationFilter" class="com.jc.system.security.filter.LoginFormAuthenticationFilter"/>
+    <bean id="casFilter" class="org.apache.shiro.cas.CasFilter">
+        <!-- 配置验证错误时的失败页面  -->
+        <property name="failureUrl" value="#{'${cas.start}'=='true'?'${cas.localUrl}':'/'}"/>
+    </bean>
+    <bean id="casRealm" class="org.ext.control.MyShiorCasRealm">
+        <property name="defaultRoles" value="ROLE_USER"/>
+        <property name="casServerUrlPrefix" value="#{'${cas.start}'=='true'?'${cas.casServerUrl}':'/'}"/>
+        <!-- 客户端的回调地址设置，必须和下面的shiro-cas过滤器拦截的地址一致 -->
+        <property name="casService" value="#{'${cas.start}'=='true'?'${cas.localUrl}':'/'}/login"/>
+    </bean>
+
+    <bean id="systemRealm" class="com.jc.system.security.SystemAuthorizingRealm"/>
+
+    <bean id="logout" class="com.jc.system.security.filter.JCLogoutFilter">
+        <property name="redirectUrl"
+                  value="/login"/>
+    </bean>
+
+    <bean id="roles" class="com.jc.system.security.filter.RolesFilter">
+
+    </bean>
+
+    <!-- zhanglg start -->
+    <bean id="apiAuthRealm" class="com.jc.system.gateway.realm.ApiAuthRealm"/>
+    <bean id="apiAuthFilter" class="com.jc.system.gateway.filter.ApiAuthFilter"/>
+    <!-- zhanglg end -->
+
+    <!-- 用户授权信息Cache, 采用EhCache -->
+    <bean id="cacheManagerShiro" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>
+    </bean>
+
+    <!-- 定义 Shiro 主要业务对象 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!--<property name="realm" ref="#{'${cas.start}'=='true'?'casRealm':'systemRealm'}" />-->
+        <property name="realms">
+            <list>
+                <ref bean="#{'${cas.start}'=='true'?'casRealm':'systemRealm'}"/>
+                <!--ref bean="apiAuthRealm"/ -->
+            </list>
+        </property>
+        <property name="subjectFactory" ref="casSubjectFactory"/>
+        <property name="sessionManager" ref="#{'${cas.start}'=='true'?'casSessionManager':'sessionManager'}"/>
+        <property name="cacheManager" ref="cacheManagerShiro"/>
+    </bean>
+
+    <bean id="casSubjectFactory" class="org.apache.shiro.cas.CasSubjectFactory"/>
+    <!-- 项目自定义的 Realm 。-->
+    <!--<bean id="systemRealm" class="com.jc.system.security.SystemAuthorizingRealm"/>-->
+
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="sid"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="-1"/>
+    </bean>
+
+    <bean id="casSessionManager" class="org.apache.shiro.web.session.mgt.ServletContainerSessionManager"/>
+    <!-- 配置session-->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionIdCookieEnabled" value="true"/>
+        <property name="sessionIdCookie" ref="sessionIdCookie"/>
+        <property name="sessionDAO" ref="sessionDAO"/>
+        <property name="sessionValidationInterval" value="1800000"/><!-- 相隔多久检查一次session的有效性 -->
+        <property name="globalSessionTimeout" value="1800000"/><!-- session 有效时间为半小时 （毫秒单位）-->
+    </bean>
+    <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.MemorySessionDAO"/>
+
+    <bean id="CASWebFilter" class="com.jc.system.security.filter.AuthenticationFilter">
+        <property name="casServerUrlPrefix" value="#{'${cas.start}'=='true'?'${cas.casServerUrl}':'/'}"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+</beans>

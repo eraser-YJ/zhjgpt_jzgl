@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.sys.domain.SubDepartment">
+
+	<insert id="insert" parameterType="com.jc.sys.domain.SubDepartment" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO tty_sys_sub_department(ID,CODE,NAME,FULL_NAME,WEIGHT,LEADER_ID,PARENT_ID,ORGANIZATION_ID,DEPT_TYPE,QUEUE,DELETE_FLAG,DELETE_USER,DELETE_DATE,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+			VALUES (#{id},#{code},#{name},#{fullName},#{weight},#{leaderId},#{parentId},#{organizationId},#{deptType},#{queue},#{deleteFlag},#{deleteUser},#{deleteDate},#{createUser},#{createUserDept},#{createUserOrg},#{createDate},#{modifyUser},#{modifyDate},#{extStr1},#{extStr2},#{extStr3},#{extStr4},#{extStr5})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		INSERT INTO tty_sys_sub_department(ID,CODE,NAME,FULL_NAME,WEIGHT,LEADER_ID,PARENT_ID,ORGANIZATION_ID,DEPT_TYPE,QUEUE,DELETE_FLAG,DELETE_USER,DELETE_DATE,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+			VALUES
+			<foreach collection="list" item="item" index="index" separator=","> 
+				(#{item.id},#{item.code},#{item.name},#{item.fullName},#{item.weight},#{item.leaderId},#{item.parentId},#{item.organizationId},#{item.deptType},#{item.queue},#{item.deleteFlag},#{item.deleteUser},#{item.deleteDate},#{item.createUser},#{item.createUserDept},#{item.createUserOrg},#{item.createDate},#{item.modifyUser},#{item.modifyDate},#{item.extStr1},#{item.extStr2},#{item.extStr3},#{item.extStr4},#{item.extStr5})
+			</foreach> 
+	</insert>
+
+	<update id="update" parameterType="com.jc.sys.domain.SubDepartment">
+	UPDATE tty_sys_sub_department set
+	   	<if test="code != null">
+	   		CODE = #{code},
+	   	</if>
+	   	<if test="name != null">
+	   		NAME = #{name},
+	   	</if>
+	   	<if test="fullName != null">
+	   		FULL_NAME = #{fullName},
+	   	</if>
+	   	<if test="weight != null">
+	   		WEIGHT = #{weight},
+	   	</if>
+	   	<if test="leaderId != null">
+	   		LEADER_ID = #{leaderId},
+	   	</if>
+	   	<if test="parentId != null">
+	   		PARENT_ID = #{parentId},
+	   	</if>
+	   	<if test="organizationId != null">
+	   		ORGANIZATION_ID = #{organizationId},
+	   	</if>
+	   	<if test="deptType != null">
+	   		DEPT_TYPE = #{deptType},
+	   	</if>
+	   	<if test="queue != null">
+	   		QUEUE = #{queue},
+	   	</if>
+	   	<if test="deleteFlag != null">
+	   		DELETE_FLAG = #{deleteFlag},
+	   	</if>
+	   	<if test="deleteUser != null">
+	   		DELETE_USER = #{deleteUser},
+	   	</if>
+	   	<if test="deleteDate != null">
+	   		DELETE_DATE = #{deleteDate},
+	   	</if>
+	   	<if test="createUser != null">
+	   		CREATE_USER = #{createUser},
+	   	</if>
+	   	<if test="createUserDept != null">
+	   		CREATE_USER_DEPT = #{createUserDept},
+	   	</if>
+	   	<if test="createUserOrg != null">
+	   		CREATE_USER_ORG = #{createUserOrg},
+	   	</if>
+	   	<if test="createDate != null">
+	   		CREATE_DATE = #{createDate},
+	   	</if>
+	   	<if test="modifyUser != null">
+	   		MODIFY_USER = #{modifyUser},
+	   	</if>
+	   	<if test="extStr1 != null">
+	   		EXT_STR1 = #{extStr1},
+	   	</if>
+	   	<if test="extStr2 != null">
+	   		EXT_STR2 = #{extStr2},
+	   	</if>
+	   	<if test="extStr3 != null">
+	   		EXT_STR3 = #{extStr3},
+	   	</if>
+	   	<if test="extStr4 != null">
+	   		EXT_STR4 = #{extStr4},
+	   	</if>
+	   	<if test="extStr5 != null">
+	   		EXT_STR5 = #{extStr5},
+	   	</if>
+	   	MODIFY_DATE = #{modifyDateNew} where ID = #{id}
+	</update>
+
+	<select id="query" parameterType="com.jc.sys.domain.SubDepartment" resultType="com.jc.sys.domain.SubDepartment">
+		SELECT
+			u.`DISPLAY_NAME` displayName,
+			t.ID id,
+			t.CODE code,
+			t.NAME name,
+			t.FULL_NAME fullName,
+			t.WEIGHT weight,
+			t.LEADER_ID leaderId,
+			t.PARENT_ID parentId,
+			t.ORGANIZATION_ID organizationId,
+			t.DEPT_TYPE deptType,
+			t.QUEUE queue,
+			t.DELETE_FLAG deleteFlag,
+			t.DELETE_USER deleteUser,
+			t.DELETE_DATE deleteDate,
+			t.CREATE_USER createUser,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_USER_ORG createUserOrg,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.EXT_STR1 extStr1,
+			t.EXT_STR2 extStr2,
+			t.EXT_STR3 extStr3,
+			t.EXT_STR4 extStr4,
+			t.EXT_STR5 extStr5
+			
+		FROM tty_sys_sub_department t left join tty_sys_user u ON t.LEADER_ID = u.id
+		<where>
+
+			<if test="deptIds != null">
+				and t.id in
+				<foreach item="item" index="index" collection="deptIds.split(',')"  open="(" separator="," close=")">
+					'${item}'
+				</foreach>
+			</if>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="code != null">
+				and t.CODE = #{code}
+			</if>
+			<if test="name != null">
+				and t.NAME = #{name}
+			</if>
+			<if test="fullName != null">
+				and t.FULL_NAME = #{fullName}
+			</if>
+			<if test="weight != null">
+				and t.WEIGHT = #{weight}
+			</if>
+			<if test="leaderId != null">
+				and t.LEADER_ID = #{leaderId}
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="organizationId != null">
+				and t.ORGANIZATION_ID = #{organizationId}
+			</if>
+			<if test="deptType != null">
+				and t.DEPT_TYPE = #{deptType}
+			</if>
+			<if test="queue != null">
+				and t.QUEUE = #{queue}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="deleteUser != null">
+				and t.DELETE_USER = #{deleteUser}
+			</if>
+			<if test="deleteDate != null">
+				and t.DELETE_DATE = #{deleteDate}
+			</if>
+			<if test="deleteDateBegin != null">
+				and t.DELETE_DATE &gt;= #{deleteDateBegin}
+			</if>
+			<if test="deleteDateEnd != null">
+				and t.DELETE_DATE &lt;= #{deleteDateEnd}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+		order by t.QUEUE asc, t.DEPT_TYPE desc
+	</select>
+	
+	
+	<select id="queryCount" parameterType="com.jc.sys.domain.SubDepartment" resultType="java.lang.Long">
+		SELECT count(t.ID) 
+		FROM tty_sys_sub_department t left join tty_sys_user u ON t.LEADER_ID = u.id
+		<where>
+
+			<if test="deptIds != null">
+				and t.id in
+				<foreach item="item" index="index" collection="deptIds.split(',')"  open="(" separator="," close=")">
+					'${item}'
+				</foreach>
+			</if>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="code != null">
+				and t.CODE = #{code}
+			</if>
+			<if test="name != null">
+				and t.NAME = #{name}
+			</if>
+			<if test="fullName != null">
+				and t.FULL_NAME = #{fullName}
+			</if>
+			<if test="weight != null">
+				and t.WEIGHT = #{weight}
+			</if>
+			<if test="leaderId != null">
+				and t.LEADER_ID = #{leaderId}
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="organizationId != null">
+				and t.ORGANIZATION_ID = #{organizationId}
+			</if>
+			<if test="deptType != null">
+				and t.DEPT_TYPE = #{deptType}
+			</if>
+			<if test="queue != null">
+				and t.QUEUE = #{queue}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="deleteUser != null">
+				and t.DELETE_USER = #{deleteUser}
+			</if>
+			<if test="deleteDate != null">
+				and t.DELETE_DATE = #{deleteDate}
+			</if>
+			<if test="deleteDateBegin != null">
+				and t.DELETE_DATE &gt;= #{deleteDateBegin}
+			</if>
+			<if test="deleteDateEnd != null">
+				and t.DELETE_DATE &lt;= #{deleteDateEnd}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.sys.domain.SubDepartment">
+    	delete from tty_sys_sub_department
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.sys.domain.SubDepartment">
+    	UPDATE tty_sys_sub_department t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+
+	<delete id="deleteAll"  parameterType="com.jc.sys.domain.SubDepartment">
+		delete from tty_sys_sub_department
+	</delete>
+
+	<select id="queryOne" parameterType="com.jc.sys.domain.SubDepartment" resultType="com.jc.sys.domain.SubDepartment">
+		SELECT
+		(SELECT
+		t2.name
+		FROM
+		tty_sys_sub_department t2
+		WHERE t2.id = t.`PARENT_ID`) parentName,
+		t.ID id,
+		t.CODE code,
+		t.NAME name,
+		t.FULL_NAME fullName,
+		t.WEIGHT weight,
+		t.LEADER_ID leaderId,
+		t.PARENT_ID parentId,
+		t.ORGANIZATION_ID organizationId,
+		t.DEPT_TYPE deptType,
+		t.QUEUE queue,
+		t.DELETE_FLAG deleteFlag,
+		t.DELETE_USER deleteUser,
+		t.DELETE_DATE deleteDate,
+		t.CREATE_USER createUser,
+		t.CREATE_USER_DEPT createUserDept,
+		t.CREATE_USER_ORG createUserOrg,
+		t.CREATE_DATE createDate,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5
+
+		FROM tty_sys_sub_department t
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+		</where>
+	</select>
+
+	<select id="queryByDeptId" parameterType="String" resultType="com.jc.sys.domain.SubDepartment">
+		SELECT
+			t.ID id,
+			t.CODE code,
+			t.NAME name,
+			t.FULL_NAME fullName,
+			t.WEIGHT weight,
+			t.LEADER_ID leaderId,
+			t.PARENT_ID parentId,
+			t.ORGANIZATION_ID organizationId,
+			t.DEPT_TYPE deptType,
+			t.QUEUE queue,
+			t.DELETE_FLAG deleteFlag,
+			t.DELETE_USER deleteUser,
+			t.DELETE_DATE deleteDate,
+			t.CREATE_USER createUser,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_USER_ORG createUserOrg,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.EXT_STR1 extStr1,
+			t.EXT_STR2 extStr2,
+			t.EXT_STR3 extStr3,
+			t.EXT_STR4 extStr4,
+			t.EXT_STR5 extStr5
+		FROM tty_sys_sub_department t
+		WHERE t.DELETE_FLAG = 0
+		AND FIND_IN_SET(
+		t.id,
+		F_SUBDEPARTMENT_FINDCHILDLIST(#{id})
+		)
+		order by queue asc
+	</select>
+
+</mapper>

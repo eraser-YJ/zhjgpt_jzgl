@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.csmp.doc.dept.domain.SysDepartment">
+
+	<insert id="insert" parameterType="com.jc.csmp.doc.dept.domain.SysDepartment" useGeneratedKeys="true" keyProperty="id">
+		insert into tty_sys_department (ID,CODE,NAME,FULL_NAME,DEPT_DESC,LEADER_ID,CHARGE_LEADER_ID,LEADER_ID2,PARENT_ID,MANAGER_DEPT,ORGANIZATION_ID,DEPT_TYPE,QUEUE,SHORT_NAME,USER_NAME,PASSWORD,TYPE,STATUS,OPEN_DAY,END_DAY,FILE_SPACE,USED_SPACE,BALANCE,SMS_BALANCE,LOGO,CONT,TELP,EMAIL,MEMO,DELETE_FLAG,DELETE_USER,DELETE_DATE,CREATE_USER,CREATE_USER_DEP,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,CREATE_USER_ORG,resource_id)
+		values (#{id},#{code},#{name},#{fullName},#{deptDesc},#{leaderId},#{chargeLeaderId},#{leaderId2},#{parentId},#{managerDept},#{organizationId},#{deptType},#{queue},#{shortName},#{userName},#{password},#{type},#{status},#{openDay},#{endDay},#{fileSpace},#{usedSpace},#{balance},#{smsBalance},#{logo},#{cont},#{telp},#{email},#{memo},#{deleteFlag},#{deleteUser},#{deleteDate},#{createUser},#{createUserDep},#{createDate},#{modifyUser},#{modifyDate},#{extStr1},#{extStr2},#{extStr3},#{extStr4},#{extStr5},#{createUserOrg},#{resourceId})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		insert into tty_sys_department (ID,CODE,NAME,FULL_NAME,DEPT_DESC,LEADER_ID,CHARGE_LEADER_ID,LEADER_ID2,PARENT_ID,MANAGER_DEPT,ORGANIZATION_ID,DEPT_TYPE,QUEUE,SHORT_NAME,USER_NAME,PASSWORD,TYPE,STATUS,OPEN_DAY,END_DAY,FILE_SPACE,USED_SPACE,BALANCE,SMS_BALANCE,LOGO,CONT,TELP,EMAIL,MEMO,DELETE_FLAG,DELETE_USER,DELETE_DATE,CREATE_USER,CREATE_USER_DEP,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,CREATE_USER_ORG,resource_id)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id},#{item.code},#{item.name},#{item.fullName},#{item.deptDesc},#{item.leaderId},#{item.chargeLeaderId},#{item.leaderId2},#{item.parentId},#{item.managerDept},#{item.organizationId},#{item.deptType},#{item.queue},#{item.shortName},#{item.userName},#{item.password},#{item.type},#{item.status},#{item.openDay},#{item.endDay},#{item.fileSpace},#{item.usedSpace},#{item.balance},#{item.smsBalance},#{item.logo},#{item.cont},#{item.telp},#{item.email},#{item.memo},#{item.deleteFlag},#{item.deleteUser},#{item.deleteDate},#{item.createUser},#{item.createUserDep},#{item.createDate},#{item.modifyUser},#{item.modifyDate},#{item.extStr1},#{item.extStr2},#{item.extStr3},#{item.extStr4},#{item.extStr5},#{item.createUserOrg},#{item.resourceId})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.csmp.doc.dept.domain.SysDepartment">
+		update tty_sys_department set
+		<if test="id != null">ID=#{id},</if>
+		<if test="code != null">CODE=#{code},</if>
+		<if test="name != null">NAME=#{name},</if>
+		<if test="fullName != null">FULL_NAME=#{fullName},</if>
+		<if test="deptDesc != null">DEPT_DESC=#{deptDesc},</if>
+		<if test="leaderId != null">LEADER_ID=#{leaderId},</if>
+		<if test="chargeLeaderId != null">CHARGE_LEADER_ID=#{chargeLeaderId},</if>
+		<if test="leaderId2 != null">LEADER_ID2=#{leaderId2},</if>
+		<if test="parentId != null">PARENT_ID=#{parentId},</if>
+		<if test="managerDept != null">MANAGER_DEPT=#{managerDept},</if>
+		<if test="organizationId != null">ORGANIZATION_ID=#{organizationId},</if>
+		<if test="deptType != null">DEPT_TYPE=#{deptType},</if>
+		<if test="queue != null">QUEUE=#{queue},</if>
+		<if test="shortName != null">SHORT_NAME=#{shortName},</if>
+		<if test="userName != null">USER_NAME=#{userName},</if>
+		<if test="password != null">PASSWORD=#{password},</if>
+		<if test="type != null">TYPE=#{type},</if>
+		<if test="status != null">STATUS=#{status},</if>
+		<if test="openDay != null">OPEN_DAY=#{openDay},</if>
+		<if test="endDay != null">END_DAY=#{endDay},</if>
+		<if test="fileSpace != null">FILE_SPACE=#{fileSpace},</if>
+		<if test="usedSpace != null">USED_SPACE=#{usedSpace},</if>
+		<if test="balance != null">BALANCE=#{balance},</if>
+		<if test="smsBalance != null">SMS_BALANCE=#{smsBalance},</if>
+		<if test="logo != null">LOGO=#{logo},</if>
+		<if test="cont != null">CONT=#{cont},</if>
+		<if test="telp != null">TELP=#{telp},</if>
+		<if test="email != null">EMAIL=#{email},</if>
+		<if test="memo != null">MEMO=#{memo},</if>
+		<if test="deleteFlag != null">DELETE_FLAG=#{deleteFlag},</if>
+		<if test="deleteUser != null">DELETE_USER=#{deleteUser},</if>
+		<if test="deleteDate != null">DELETE_DATE=#{deleteDate},</if>
+		<if test="createUser != null">CREATE_USER=#{createUser},</if>
+		<if test="createUserDep != null">CREATE_USER_DEP=#{createUserDep},</if>
+		<if test="createDate != null">CREATE_DATE=#{createDate},</if>
+		<if test="modifyUser != null">MODIFY_USER=#{modifyUser},</if>
+		<if test="modifyDate != null">MODIFY_DATE=#{modifyDate},</if>
+		<if test="extStr1 != null">EXT_STR1=#{extStr1},</if>
+		<if test="extStr2 != null">EXT_STR2=#{extStr2},</if>
+		<if test="extStr3 != null">EXT_STR3=#{extStr3},</if>
+		<if test="extStr4 != null">EXT_STR4=#{extStr4},</if>
+		<if test="extStr5 != null">EXT_STR5=#{extStr5},</if>
+		<if test="createUserOrg != null">CREATE_USER_ORG=#{createUserOrg},</if>
+		<if test="resourceId != null">resource_id=#{resourceId},</if>
+	   	MODIFY_DATE = #{modifyDateNew} where ID = #{id}
+	</update>
+
+
+	<sql id="Base_Column_List" >
+		t.ID id,
+		t.CODE code,
+		t.NAME name,
+		t.FULL_NAME fullName,
+		t.DEPT_DESC deptDesc,
+		t.LEADER_ID leaderId,
+		t.CHARGE_LEADER_ID chargeLeaderId,
+		t.LEADER_ID2 leaderId2,
+		t.PARENT_ID parentId,
+		t.MANAGER_DEPT managerDept,
+		t.ORGANIZATION_ID organizationId,
+		t.DEPT_TYPE deptType,
+		t.QUEUE queue,
+		t.SHORT_NAME shortName,
+		t.USER_NAME userName,
+		t.PASSWORD password,
+		t.TYPE type,
+		t.STATUS status,
+		t.OPEN_DAY openDay,
+		t.END_DAY endDay,
+		t.FILE_SPACE fileSpace,
+		t.USED_SPACE usedSpace,
+		t.BALANCE balance,
+		t.SMS_BALANCE smsBalance,
+		t.LOGO logo,
+		t.CONT cont,
+		t.TELP telp,
+		t.EMAIL email,
+		t.MEMO memo,
+		t.DELETE_FLAG deleteFlag,
+		t.DELETE_USER deleteUser,
+		t.DELETE_DATE deleteDate,
+		t.CREATE_USER createUser,
+		t.CREATE_USER_DEP createUserDep,
+		t.CREATE_DATE createDate,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5,
+		t.CREATE_USER_ORG createUserOrg,
+		t.resource_id resourceId
+	</sql>
+	
+	<sql id="Base_Query_Where" >
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="code != null">
+				and t.CODE like concat('%',#{code},'%')
+			</if>
+			<if test="name != null">
+				and t.NAME like concat('%',#{name},'%')
+			</if>
+			<if test="fullName != null">
+				and t.FULL_NAME like concat('%',#{fullName},'%')
+			</if>
+			<if test="deptDesc != null">
+				and t.DEPT_DESC = #{deptDesc}
+			</if>
+			<if test="leaderId != null">
+				and t.LEADER_ID = #{leaderId}
+			</if>
+			<if test="chargeLeaderId != null">
+				and t.CHARGE_LEADER_ID = #{chargeLeaderId}
+			</if>
+			<if test="leaderId2 != null">
+				and t.LEADER_ID2 = #{leaderId2}
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="managerDept != null">
+				and t.MANAGER_DEPT = #{managerDept}
+			</if>
+			<if test="organizationId != null">
+				and t.ORGANIZATION_ID = #{organizationId}
+			</if>
+			<if test="deptType != null">
+				and t.DEPT_TYPE = #{deptType}
+			</if>
+			<if test="queue != null">
+				and t.QUEUE = #{queue}
+			</if>
+			<if test="shortName != null">
+				and t.SHORT_NAME = #{shortName}
+			</if>
+			<if test="userName != null">
+				and t.USER_NAME = #{userName}
+			</if>
+			<if test="password != null">
+				and t.PASSWORD = #{password}
+			</if>
+			<if test="type != null">
+				and t.TYPE = #{type}
+			</if>
+			<if test="status != null">
+				and t.STATUS = #{status}
+			</if>
+			<if test="openDayBegin != null">
+				and t.OPEN_DAY &gt;= #{openDayBegin}
+			</if>
+			<if test="openDayEnd != null">
+				and t.OPEN_DAY &lt;= #{openDayEnd}
+			</if>
+			<if test="openDay != null">
+				and t.OPEN_DAY = #{openDay}
+			</if>
+			<if test="endDayBegin != null">
+				and t.END_DAY &gt;= #{endDayBegin}
+			</if>
+			<if test="endDayEnd != null">
+				and t.END_DAY &lt;= #{endDayEnd}
+			</if>
+			<if test="endDay != null">
+				and t.END_DAY = #{endDay}
+			</if>
+			<if test="fileSpace != null">
+				and t.FILE_SPACE = #{fileSpace}
+			</if>
+			<if test="usedSpace != null">
+				and t.USED_SPACE = #{usedSpace}
+			</if>
+			<if test="balance != null">
+				and t.BALANCE = #{balance}
+			</if>
+			<if test="smsBalance != null">
+				and t.SMS_BALANCE = #{smsBalance}
+			</if>
+			<if test="logo != null">
+				and t.LOGO = #{logo}
+			</if>
+			<if test="cont != null">
+				and t.CONT = #{cont}
+			</if>
+			<if test="telp != null">
+				and t.TELP = #{telp}
+			</if>
+			<if test="email != null">
+				and t.EMAIL = #{email}
+			</if>
+			<if test="memo != null">
+				and t.MEMO = #{memo}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="deleteUser != null">
+				and t.DELETE_USER = #{deleteUser}
+			</if>
+			<if test="deleteDateBegin != null">
+				and t.DELETE_DATE &gt;= #{deleteDateBegin}
+			</if>
+			<if test="deleteDateEnd != null">
+				and t.DELETE_DATE &lt;= #{deleteDateEnd}
+			</if>
+			<if test="deleteDate != null">
+				and t.DELETE_DATE = #{deleteDate}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDep != null">
+				and t.CREATE_USER_DEP = #{createUserDep}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="resourceId != null">
+				and t.resource_id = #{resourceId}
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+	</sql>
+	<select id="query" parameterType="com.jc.csmp.doc.dept.domain.SysDepartment" resultType="com.jc.csmp.doc.dept.domain.SysDepartment">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM tty_sys_department t
+		<include refid="Base_Query_Where"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.csmp.doc.dept.domain.SysDepartment" resultType="java.lang.Long">
+		SELECT count(t.ID) FROM tty_sys_department t
+		<include refid="Base_Query_Where"/>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.csmp.doc.dept.domain.SysDepartment">
+    	delete from tty_sys_department
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.csmp.doc.dept.domain.SysDepartment">
+    	UPDATE tty_sys_department t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</update>
+</mapper>

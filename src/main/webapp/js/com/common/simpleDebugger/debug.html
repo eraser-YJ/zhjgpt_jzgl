@@ -1,0 +1,98 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Simple Debugger</title>
+		<link rel="icon" href="./images/debug.ico" />
+		<link rel="shortcut icon" href="./images/debug.ico" />
+		<link rel="stylesheet" type="text/css" href="./css/debug.css" charset="utf-8"></link>
+		<script type="text/javascript" src="../../../jquery.min.js"></script>
+		<script type="text/javascript" src="jquery.debug.js"></script>
+        <script type="text/javascript" src="Debugger.js"></script>
+        <script type="text/javascript">
+        	function init(){
+        		var json = (window.opener||dialogArguments)["simpleDebugArguments"];
+        		var showFunction = false;
+        		var domNode =document.getElementById("treeNode");
+        		if(typeof(json)=="string"){				
+					var d= document.createElement("DIV");
+					d.className = "content";
+					d.innerHTML = "非json对象，内容如下：<p>&nbsp;&nbsp;" + json +"</p>";
+					domNode.appendChild(d);
+					return ;		
+				}  
+				new Debugger(json,domNode,showFunction);
+	        
+        	}
+
+			function reset(){
+				document.getElementById("evalInput").value="";
+			}
+
+        	//清空控制台
+        	function clearConsole(){
+	        	document.getElementById("treeNode").innerHTML="";
+	        }
+	        //执行脚本
+	        function  inspectOrExecute(){
+			    try{
+					var json = (window.opener||dialogArguments)["simpleDebugArguments"];
+			    	var inputValue = document.getElementById("evalInput").value;
+					var domNode = document.getElementById("treeNode");		
+					if(!inputValue){
+						clearConsole();//如果没有输入值，重新渲染，先清空
+						new Debugger(json,domNode,false);
+						return;
+					}
+					var exp = ['json'];
+					for(var i=0,arr = inputValue.split('.'),j=arr.length;i<j;i++){
+						exp.push(arr[i]);
+					}
+					var obj = eval(exp.join("."));
+			    	if(obj){					
+						new Debugger(obj,domNode,false,inputValue);
+					}
+			    }catch(e){
+			    	alert("error"+e.description);
+			    }
+			}
+			//用jquery debug显示
+			function textDebugShow(){
+				clearConsole();
+				var debug = new jQuery.debug({
+				    padding : '10px',
+					width : '100%',
+					height : '100%',
+					background : '#EEEEEE',
+					color : '#000',
+					parent : '#treeNode'
+				});
+				var json = (window.opener||dialogArguments)["simpleDebugArguments"];
+				debug.dump(json);
+			}
+        	
+        </script>
+	</head>
+	<body onload="init()">
+		<div id="btn">
+			<table height="100%" border=0>
+				<tr>
+					<td>
+						<input id="evalInput" type="images/text" style="margin-bottom:6px;"/> 		
+					</td>
+					<td valign="top">	
+						<button class="btn" onclick="inspectOrExecute();"  title="查看/Watch/执行">执行</button>
+					</td>
+					<td valign="top">	
+						<button class="btn"  onclick="reset();" title="清空控制台">清空</button>
+					</td>
+					<td valign="top">	
+						<button class="btn"  onclick="textDebugShow();" title="文本显示">文本</button>
+					</td>
+				</tr>	
+			</table>
+		</div>
+		<div id="cbody">
+			<div id="treeNode" ></div>
+		</div>
+	</body>
+</html>

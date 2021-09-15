@@ -1,0 +1,74 @@
+<div ng-repeat="property in selectedItem">
+    <div ng-controller="ActivitiPersonSelectCtrl">
+        <!-- Nav tabs -->
+        <!--<ul class="nav nav-tabs short ng-hide" role="tablist" ng-hide="isAdministrator">
+            <li role="presentation" ng-class="{'active': selectTypeActive == 'all'}">
+                <a href="javascript:void(0);" ng-click="tabs('all')">全部</a>
+            </li>
+            <li role="presentation" ng-class="{'active': selectTypeActive == 'user'}">
+                <a href="javascript:void(0);" ng-click="tabs('user')">用户</a>
+            </li>
+            <li role="presentation" ng-class="{'active': selectTypeActive == 'dept'}">
+                <a href="javascript:void(0);" ng-click="tabs('dept')">部门</a>
+            </li>
+            <li role="presentation" ng-class="{'active': selectTypeActive == 'role'}">
+                <a href="javascript:void(0);" ng-click="tabs('role')">角色</a>
+            </li>
+        </ul>-->
+        <ul class="nav nav-tabs short" role="tablist" ng-hide="isAdministrator">
+            <li role="presentation" ng-class="{'active': selectTypeActive == 'tissue'}">
+                <a href="javascript:void(0);" ng-click="tabs('tissue')">从组织库中选择</a>
+            </li>
+            <li role="presentation" ng-class="{'active': selectTypeActive == 'variable'}">
+                <a href="javascript:void(0);" ng-click="tabs('variable')">从变量获取</a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane" ng-class="{'active': selectTypeActive == 'tissue'}">
+                <div ng-if="translationsPersonRetrieved" class="kis-listener-grid personModal" ng-grid="gridPersonOptions">
+
+                </div>
+                <div class="btn-group">
+                    <a class="btn" ng-click="addNewPersonDefinition();">添加</a>
+                    <a class="btn" ng-click="removePersonDefinition();">删除</a>
+                    <a class="btn" ng-click="movePersonUp();">向上</a>
+                    <a class="btn" ng-click="movePersonDown();">向下</a>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" ng-class="{'active': selectTypeActive == 'variable'}" style="position: relative;">
+                <div style="position: absolute;top:-46px;right:15px;">
+                    <label class="radio-inline" for="unionType1">
+                        <input type="radio" id="unionType1" name="union" ng-checked="unionType == 'a'" ng-click="changeUnionType('a')">并集
+                    </label>
+                    <label class="radio-inline" for="unionType2">
+                        <input type="radio" id="unionType2" name="union" ng-checked="unionType == 'b'" ng-click="changeUnionType('b')">交集
+                    </label>
+                </div>
+                <div  class="kis-listener-grid personModal" >
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="info">
+                                    <th style="width:46px;text-align: center;">&nbsp;</th>
+                                    <th>变量名称</th>
+                                    <th>变量类型</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in variableData" ng-class="{'active' : $index % 2 == 0}">
+                                    <td style="text-align: center;"><input type="checkbox" ng-click="selectedVariable($event)" id="{{item.id}}" name="{{item.type}}" ng-checked="selectedVariableData[item.id] !== undefined"></td>
+                                    <td>{{item.id}}</td>
+                                    <td>{{item.type}}</td>
+                                </tr>
+                                <tr ng-show="variableData.length == 0">
+                                    <td colspan="3"> 暂无流程变量数据!!! </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

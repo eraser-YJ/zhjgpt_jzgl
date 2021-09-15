@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.SysOtherDepts">
+
+	<select id="query" parameterType="com.jc.system.security.domain.SysOtherDepts" resultType="com.jc.system.security.domain.SysOtherDepts">
+		SELECT 
+			t.ID id,
+			t.USER_ID userId,
+			t.DEPT_ID deptId,
+			t.DUTY_ID dutyId,
+			t.QUEUE queue,
+			t.DELETE_FLAG deleteFlag,
+			t.CREATE_USER createUser,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.EXT_STR1 extStr1,
+			t.EXT_STR2 extStr2,
+			t.EXT_STR3 extStr3,
+			t.EXT_STR4 extStr4,
+			t.EXT_STR5 extStr5,
+			d.NAME deptName
+			
+		FROM tty_sys_other_depts t , tty_sys_department d WHERE t.DEPT_ID = d.ID AND t.DELETE_FLAG = 0
+		
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="userId != null">
+				and t.USER_ID = #{userId}
+			</if>
+			<if test="deptId != null">
+				and t.DEPT_ID = #{deptId}
+			</if>
+			<if test="dutyId != null">
+				and t.DUTY_ID = #{dutyId}
+			</if>
+			<if test="queue != null">
+				and t.QUEUE = #{queue}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		
+	</select>
+	
+	
+	<select id="queryCount" parameterType="com.jc.system.security.domain.SysOtherDepts" resultType="java.lang.Integer">
+		SELECT count(ID) 
+		FROM tty_sys_other_depts t , tty_sys_department d WHERE t.DEPT_ID = d.ID AND t.DELETE_FLAG = 0
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="userId != null">
+				and t.USER_ID = #{userId}
+			</if>
+			<if test="deptId != null">
+				and t.DEPT_ID = #{deptId}
+			</if>
+			<if test="dutyId != null">
+				and t.DUTY_ID = #{dutyId}
+			</if>
+			<if test="queue != null">
+				and t.QUEUE = #{queue}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteByIds"  parameterType="com.jc.system.security.domain.SysOtherDepts">
+    	delete from tty_sys_other_depts
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+ 	
+ 	<update id="updateDeleteFlagByIds"  parameterType="com.jc.system.security.domain.SysOtherDepts">
+    	UPDATE tty_sys_other_depts set DELETE_FLAG = 1
+      		where USER_ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+
+	<insert parameterType="com.jc.system.security.domain.SysOtherDepts" id="insert"  useGeneratedKeys="true" keyProperty="id">
+		INSERT INTOtty_sys_other_depts(ID,USER_ID,DEPT_ID,DUTY_ID,QUEUE,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,CREATE_USER_ORG)
+		VALUES(#{id,jdbcType=VARCHAR},#{userId,jdbcType=VARCHAR},#{deptId,jdbcType=VARCHAR},#{dutyId,jdbcType=VARCHAR},#{queue,jdbcType=NUMERIC},0,#{createUser,jdbcType=VARCHAR},#{createUserDept,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{modifyUser,jdbcType=VARCHAR},#{modifyDate,jdbcType=TIMESTAMP},#{extStr1,jdbcType=VARCHAR},#{extStr2,jdbcType=VARCHAR},#{extStr3,jdbcType=VARCHAR},#{extStr4,jdbcType=VARCHAR},#{extStr5,jdbcType=VARCHAR},#{createUserOrg,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="update" parameterType="com.jc.system.security.domain.SysOtherDepts">
+		UPDATE tty_sys_other_depts
+	   <set>
+	   	<if test="userId != null">
+	   		USER_ID = #{userId},
+	   	</if>
+	   	<if test="deptId != null">
+	   		DEPT_ID = #{deptId},
+	   	</if>
+	   	<if test="dutyId != null">
+	   		DUTY_ID = #{dutyId},
+	   	</if>
+	   	<if test="queue != null">
+	   		QUEUE = #{queue},
+	   	</if>
+	   	<if test="deleteFlag != null">
+	   		DELETE_FLAG = #{deleteFlag},
+	   	</if>
+	   	<if test="createUser != null">
+	   		CREATE_USER = #{createUser},
+	   	</if>
+	   	<if test="createUserDept != null">
+	   		CREATE_USER_DEPT = #{createUserDept},
+	   	</if>
+	   	<if test="createDate != null">
+	   		CREATE_DATE = #{createDate},
+	   	</if>
+	   	<if test="modifyUser != null">
+	   		MODIFY_USER = #{modifyUser},
+	   	</if>
+	   	<if test="modifyDate != null">
+	   		MODIFY_DATE = #{modifyDate},
+	   	</if>
+	   	<if test="extStr1 != null">
+	   		EXT_STR1 = #{extStr1},
+	   	</if>
+	   	<if test="extStr2 != null">
+	   		EXT_STR2 = #{extStr2},
+	   	</if>
+	   	<if test="extStr3 != null">
+	   		EXT_STR3 = #{extStr3},
+	   	</if>
+	   	<if test="extStr4 != null">
+	   		EXT_STR4 = #{extStr4},
+	   	</if>
+	   	<if test="extStr5 != null">
+	   		EXT_STR5 = #{extStr5},
+	   	</if>
+	   </set>
+	   where ID = #{id}
+	</update>
+	
+	<delete id="deleteOtherDept" parameterType="com.jc.system.security.domain.SysOtherDepts">
+		DELETE FROM tty_sys_other_depts WHERE USER_ID = #{id}
+	</delete>
+	
+	<update id="deleteBackByIds"  parameterType="com.jc.system.security.domain.SysOtherDepts">
+    	UPDATE tty_sys_other_depts set DELETE_FLAG = 0 where USER_ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+
+</mapper>

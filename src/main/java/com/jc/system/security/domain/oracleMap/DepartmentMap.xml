@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.Department">
+
+	<select id="query" parameterType="com.jc.system.security.domain.Department" resultType="com.jc.system.security.domain.Department">
+		SELECT
+		u.DISPLAY_NAME displayName,
+		t.ID id,
+		t.CODE code,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.DEPT_DESC deptDesc,
+		t.LEADER_ID leaderId,
+		t.CHARGE_LEADER_ID chargeLeaderId,
+		t.PARENT_ID parentId,
+		t.MANAGER_DEPT managerDept,
+		t.DEPT_TYPE deptType,
+		t.ORGANIZATION_ID organizationId,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_DEP createUserDept,
+		t.CREATE_USER_ORG createUserOrg,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.DELETE_FLAG deleteFlag,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5
+		FROM tty_sys_department t left join tty_sys_user u ON t.LEADER_ID = u.id AND u.DELETE_FLAG = 0
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="code != null">
+				and t.CODE = #{code}
+			</if>
+			<if test="name != null">
+				and t.NAME = #{name}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+			<if test="deptDesc != null">
+				and t.DEPT_DESC = #{deptDesc}
+			</if>
+			<if test="leaderId != null">
+				and t.LEADER_ID = #{leaderId}
+			</if>
+			<if test="chargeLeaderId != null">
+				and t.CHARGE_LEADER_ID = #{chargeLeaderId}
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="managerDept != null">
+				and t.MANAGER_DEPT = #{managerDept}
+			</if>
+			<if test="deptType != null">
+				and t.DEPT_TYPE = #{deptType}
+			</if>
+			<if test="organizationId != null">
+				and t.ORGANIZATION_ID = #{organizationId}
+			</if>
+			<if test="queue != null">
+				and t.QUEUE = #{queue}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEP = #{createUserDept}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+		order by t.QUEUE asc, t.DEPT_TYPE desc
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.system.security.domain.Department" resultType="java.lang.Integer">
+		SELECT count(ID)
+		FROM tty_sys_department t
+		<where>
+			<if test="dataAccessDynamicSQL != null">
+				${dataAccessDynamicSQL}
+			</if>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="code != null">
+				and t.CODE = #{code}
+			</if>
+			<if test="name != null">
+				and t.NAME = #{name}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+			<if test="deptDesc != null">
+				and t.DEPT_DESC = #{deptDesc}
+			</if>
+			<if test="leaderId != null">
+				and t.LEADER_ID = #{leaderId}
+			</if>
+			<if test="chargeLeaderId != null">
+				and t.CHARGE_LEADER_ID = #{chargeLeaderId}
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="managerDept != null">
+				and t.MANAGER_DEPT = #{managerDept}
+			</if>
+			<if test="deptType != null">
+				and t.DEPT_TYPE = #{deptType}
+			</if>
+			<if test="organizationId != null">
+				and t.ORGANIZATION_ID = #{organizationId}
+			</if>
+			<if test="queue != null">
+				and t.QUEUE = #{queue}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEP = #{createUserDept}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteByIds"  parameterType="com.jc.system.security.domain.Department">
+		delete from tty_sys_department
+		where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+	</delete>
+
+	<insert id="insert" parameterType="com.jc.system.security.domain.Department">
+		INSERT INTO tty_sys_department(ID,CODE,NAME,WEIGHT,DEPT_DESC,LEADER_ID,CHARGE_LEADER_ID,PARENT_ID,MANAGER_DEPT,DEPT_TYPE,ORGANIZATION_ID,QUEUE,CREATE_USER,CREATE_DATE,CREATE_USER_DEP,MODIFY_USER,MODIFY_DATE,DELETE_FLAG,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+		VALUES (#{id,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{weight,jdbcType=NUMERIC},#{deptDesc,jdbcType=VARCHAR},#{leaderId,jdbcType=VARCHAR},#{chargeLeaderId,jdbcType=VARCHAR},#{parentId,jdbcType=VARCHAR},#{managerDept,jdbcType=VARCHAR},#{deptType,jdbcType=NUMERIC},#{organizationId,jdbcType=VARCHAR},#{queue,jdbcType=NUMERIC},#{createUser,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{createUserDept,jdbcType=VARCHAR},#{modifyUser,jdbcType=VARCHAR},#{modifyDate,jdbcType=TIMESTAMP},#{deleteFlag,jdbcType=NUMERIC},#{extStr1,jdbcType=VARCHAR},#{extStr2,jdbcType=VARCHAR},#{extStr3,jdbcType=VARCHAR},#{extStr4,jdbcType=VARCHAR},#{extStr5,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="update" parameterType="com.jc.system.security.domain.Department">
+		UPDATE tty_sys_department
+		<set>
+			<if test="code != null">
+				CODE = #{code},
+			</if>
+			<if test="name != null">
+				NAME = #{name},
+			</if>
+			<if test="weight != null">
+				WEIGHT = #{weight},
+			</if>
+			<if test="deptDesc != null">
+				DEPT_DESC = #{deptDesc},
+			</if>
+			<if test="leaderId != null">
+				LEADER_ID = #{leaderId},
+			</if>
+			<if test="chargeLeaderId != null">
+				CHARGE_LEADER_ID = #{chargeLeaderId},
+			</if>
+			<if test="parentId != null">
+				PARENT_ID = #{parentId},
+			</if>
+			<if test="managerDept != null">
+				MANAGER_DEPT = #{managerDept},
+			</if>
+			<if test="deptType != null">
+				DEPT_TYPE = #{deptType},
+			</if>
+			<if test="organizationId != null">
+				ORGANIZATION_ID = #{organizationId},
+			</if>
+			<if test="queue != null">
+				QUEUE = #{queue},
+			</if>
+			<if test="createUser != null">
+				CREATE_USER = #{createUser},
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="createUserDept != null">
+				CREATE_USER_DEP = #{createUserDept},
+			</if>
+			<if test="modifyUser != null">
+				MODIFY_USER = #{modifyUser},
+			</if>
+			<if test="modifyDate != null">
+				MODIFY_DATE = #{modifyDate},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG = #{deleteFlag},
+			</if>
+			<if test="extStr1 != null">
+				EXT_STR1 = #{extStr1},
+			</if>
+			<if test="extStr2 != null">
+				EXT_STR2 = #{extStr2},
+			</if>
+			<if test="extStr3 != null">
+				EXT_STR3 = #{extStr3},
+			</if>
+			<if test="extStr4 != null">
+				EXT_STR4 = #{extStr4},
+			</if>
+			<if test="extStr5 != null">
+				EXT_STR5 = #{extStr5},
+			</if>
+		</set>
+		where ID = #{id}
+	</update>
+
+	<update id="updateByDeptIds" parameterType="com.jc.system.security.domain.Department">
+		UPDATE tty_sys_department
+		<set>
+			<if test="deleteFlag != null">
+				DELETE_FLAG = #{deleteFlag},
+			</if>
+		</set>
+		where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+	</update>
+
+	<select id="queryTree" parameterType="com.jc.system.security.domain.Department" resultType="com.jc.system.security.domain.Department">
+		SELECT
+		u.DISPLAY_NAME displayName,
+		t.ID id,
+		t.CODE code,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.DEPT_DESC deptDesc,
+		t.LEADER_ID leaderId,
+		t.CHARGE_LEADER_ID chargeLeaderId,
+		t.PARENT_ID parentId,
+		t.MANAGER_DEPT managerDept,
+		t.DEPT_TYPE deptType,
+		t.ORGANIZATION_ID organizationId,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_DEP createUserDept,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.DELETE_FLAG deleteFlag,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5
+		FROM tty_sys_department t left join tty_sys_user u ON t.LEADER_ID = u.id
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="code != null">
+				and t.CODE = #{code}
+			</if>
+			<if test="name != null">
+				and t.NAME = #{name}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+			<if test="deptDesc != null">
+				and t.DEPT_DESC = #{deptDesc}
+			</if>
+			<if test="leaderId != null">
+				and t.LEADER_ID = #{leaderId}
+			</if>
+			<if test="chargeLeaderId != null">
+				and t.CHARGE_LEADER_ID = #{chargeLeaderId}
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="managerDept != null">
+				and t.MANAGER_DEPT = #{managerDept}
+			</if>
+			<if test="deptType != null">
+				and t.DEPT_TYPE = #{deptType}
+			</if>
+			<if test="organizationId != null">
+				and t.ORGANIZATION_ID = #{organizationId}
+			</if>
+			<if test="queue != null">
+				and t.QUEUE = #{queue}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEP = #{createUserDept}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+		order by t.QUEUE, t.ID
+	</select>
+
+	<select id="searchQueryCount" parameterType="com.jc.system.security.domain.Department" resultType="java.lang.Integer">
+		SELECT count(t.ID)
+		FROM tty_sys_department t left join tty_sys_user u
+		on t.LEADER_ID=u.id
+		<where>
+			<if test="dataAccessDynamicSQL != null">
+				${dataAccessDynamicSQL}
+			</if>
+			<if test="id != null">
+				<!-- and (t.ID = #{id} or t.PARENT_ID = #{id}) -->
+				and t.PARENT_ID = #{id}
+			</if>
+			<if test="code != null">
+				and t.CODE = #{code}
+			</if>
+			<if test="name != null">
+				and t.NAME = #{name}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+			<if test="deptDesc != null">
+				and t.DEPT_DESC = #{deptDesc}
+			</if>
+			<if test="leaderId != null">
+				and t.LEADER_ID = #{leaderId}
+			</if>
+			<if test="chargeLeaderId != null">
+				and t.CHARGE_LEADER_ID = #{chargeLeaderId}
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="managerDept != null">
+				and t.MANAGER_DEPT = #{managerDept}
+			</if>
+			<if test="deptType != null">
+				and t.DEPT_TYPE = #{deptType}
+			</if>
+			<if test="organizationId != null">
+				and t.ORGANIZATION_ID = #{organizationId}
+			</if>
+			<if test="queue != null">
+				and t.QUEUE = #{queue}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEP = #{createUserDept}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="deptIds != null">
+				and t.id in
+				<foreach item="item" index="index" collection="deptIds.split(',')"  open="(" separator="," close=")">
+					'${item}'
+				</foreach>
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+	</select>
+
+	<select id="searchQuery" parameterType="com.jc.system.security.domain.Department" resultType="com.jc.system.security.domain.Department">
+		SELECT
+		u.DISPLAY_NAME displayName,
+		t.ID id,
+		t.CODE code,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.DEPT_DESC deptDesc,
+		t.LEADER_ID leaderId,
+		t.CHARGE_LEADER_ID chargeLeaderId,
+		t.PARENT_ID parentId,
+		t.MANAGER_DEPT managerDept,
+		t.DEPT_TYPE deptType,
+		t.ORGANIZATION_ID organizationId,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_DEP createUserDept,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.DELETE_FLAG deleteFlag,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5
+		FROM tty_sys_department t left join tty_sys_user u
+		on t.LEADER_ID=u.id AND u.DELETE_FLAG = 0
+		<where>
+			<if test="id != null">
+				<!-- and (t.ID = #{id} or t.PARENT_ID = #{id}) -->
+				and t.PARENT_ID = #{id}
+			</if>
+			<if test="code != null">
+				and t.CODE = #{code}
+			</if>
+			<if test="name != null">
+				and t.NAME = #{name}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+			<if test="deptDesc != null">
+				and t.DEPT_DESC = #{deptDesc}
+			</if>
+			<if test="leaderId != null">
+				and t.LEADER_ID = #{leaderId}
+			</if>
+			<if test="chargeLeaderId != null">
+				and t.CHARGE_LEADER_ID = #{chargeLeaderId}
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="managerDept != null">
+				and t.MANAGER_DEPT = #{managerDept}
+			</if>
+			<if test="deptType != null">
+				and t.DEPT_TYPE = #{deptType}
+			</if>
+			<if test="organizationId != null">
+				and t.ORGANIZATION_ID = #{organizationId}
+			</if>
+			<if test="queue != null">
+				and t.QUEUE = #{queue}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEP = #{createUserDept}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="deptIds != null">
+				and t.id in
+				<foreach item="item" index="index" collection="deptIds.split(',')"  open="(" separator="," close=")">
+					'${item}'
+				</foreach>
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="queryOne" parameterType="com.jc.system.security.domain.Department" resultType="com.jc.system.security.domain.Department">
+		SELECT
+		(SELECT
+		t2.name
+		FROM
+		tty_sys_department t2
+		WHERE t2.id = t.PARENT_ID) parentName,
+		(SELECT
+		display_name
+		FROM
+		tty_sys_user u
+		WHERE u.id = t.LEADER_ID) displayName,
+		(SELECT
+		u.DELETE_FLAG
+		FROM
+		tty_sys_user u
+		WHERE u.id = t.LEADER_ID) userDelFlag,
+		t.ID id,
+		t.CODE code,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.DEPT_DESC deptDesc,
+		t.LEADER_ID leaderId,
+		t.CHARGE_LEADER_ID chargeLeaderId,
+		t.PARENT_ID parentId,
+		t.MANAGER_DEPT managerDept,
+		t.DEPT_TYPE deptType,
+		t.ORGANIZATION_ID organizationId,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_DEP createUserDept,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.DELETE_FLAG deleteFlag,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5
+		FROM tty_sys_department t
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+		</where>
+	</select>
+
+	<select id="checkDeptUserNull" parameterType="com.jc.system.security.domain.Department" resultType="java.lang.Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		tty_sys_user u
+		WHERE u.DEPT_ID IN
+		(SELECT
+		d1.ID
+		FROM
+		tty_sys_department d1
+		LEFT JOIN tty_sys_department d2
+		ON d1.ID = d2.PARENT_ID
+		WHERE d1.PARENT_ID = #{id})
+	</select>
+
+	<select id="queryAllByDeptId" parameterType="com.jc.system.security.domain.Department" resultType="com.jc.system.security.domain.Department">
+		select d.id
+		from tty_sys_department d
+		where d.DELETE_FLAG = 0
+		connect by prior d.id = d.parent_id
+		start with d.id = #{id}
+	</select>
+
+	<select id="queryByDeptId" parameterType="string" resultType="com.jc.system.security.domain.Department">
+		SELECT
+		t.ID id,
+		t.CODE code,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.DEPT_DESC deptDesc,
+		t.LEADER_ID leaderId,
+		t.CHARGE_LEADER_ID chargeLeaderId,
+		t.PARENT_ID parentId,
+		t.MANAGER_DEPT managerDept,
+		t.DEPT_TYPE deptType,
+		t.ORGANIZATION_ID organizationId,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_DEP createUserDept,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.DELETE_FLAG deleteFlag,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5
+		FROM
+		tty_sys_department t
+		WHERE t.DELETE_FLAG = 0
+		connect by prior t.id = t.parent_id
+		start with t.id = #{id}
+		order by queue asc
+	</select>
+
+	<select id="queryTreebyId" parameterType="string" resultType="com.jc.system.security.domain.Department">
+		SELECT
+		t.ID id,
+		t.CODE code,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.DEPT_DESC deptDesc,
+		t.LEADER_ID leaderId,
+		t.CHARGE_LEADER_ID chargeLeaderId,
+		t.PARENT_ID parentId,
+		t.MANAGER_DEPT managerDept,
+		t.DEPT_TYPE deptType,
+		t.ORGANIZATION_ID organizationId,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_DEP createUserDept,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.DELETE_FLAG deleteFlag,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5
+		FROM
+		tty_sys_department t
+		WHERE t.DELETE_FLAG = 1
+		connect by prior t.id = t.parent_id and t.parent_id = #{id}
+		start with t.id = #{id}
+		order by queue asc
+	</select>
+
+	<select id="queryById" parameterType="string" resultType="com.jc.system.security.domain.Department">
+		SELECT
+		t.ID id,
+		t.CODE code,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.DEPT_DESC deptDesc,
+		t.LEADER_ID leaderId,
+		t.CHARGE_LEADER_ID chargeLeaderId,
+		t.PARENT_ID parentId,
+		t.MANAGER_DEPT managerDept,
+		t.DEPT_TYPE deptType,
+		t.ORGANIZATION_ID organizationId,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_DEP createUserDept,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.DELETE_FLAG deleteFlag,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5
+		FROM
+		tty_sys_department t
+		WHERE t.DELETE_FLAG = 0
+		and t.dept_type != 1
+		connect by prior t.id = t.parent_id and t.parent_id = #{id}
+		start with t.id = #{id}
+		order by queue asc
+	</select>
+
+	<select id="queryByOrgId" parameterType="string" resultType="com.jc.system.security.domain.Department">
+		SELECT
+		t.ID id,
+		t.CODE code,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.DEPT_DESC deptDesc,
+		t.LEADER_ID leaderId,
+		t.CHARGE_LEADER_ID chargeLeaderId,
+		t.PARENT_ID parentId,
+		t.MANAGER_DEPT managerDept,
+		t.DEPT_TYPE deptType,
+		t.ORGANIZATION_ID organizationId,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_DEP createUserDept,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.DELETE_FLAG deleteFlag,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5
+		FROM
+		tty_sys_department t
+		WHERE t.DELETE_FLAG = 0
+		connect by prior t.id = t.parent_id and t.dept_type != 1
+		start with t.id = #{id}
+		order by queue asc
+	</select>
+
+	<select id="queryDeptPidByOrgId" parameterType="string" resultType="com.jc.system.security.domain.Department">
+		SELECT
+		t.ID id,
+		t.CODE code,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.DEPT_DESC deptDesc,
+		t.LEADER_ID leaderId,
+		t.CHARGE_LEADER_ID chargeLeaderId,
+		t.PARENT_ID parentId,
+		t.MANAGER_DEPT managerDept,
+		t.DEPT_TYPE deptType,
+		t.ORGANIZATION_ID organizationId,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_DEP createUserDept,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.DELETE_FLAG deleteFlag,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5
+		FROM
+		tty_sys_department t
+		WHERE t.DELETE_FLAG = 0
+		and t.parent_id != 0
+		connect by prior t.parent_id = t.id
+		start with t.id = #{id}
+		order by queue asc
+	</select>
+
+	<select id="queryManagerDeptTree" parameterType="string" resultType="com.jc.system.security.domain.Department">
+		SELECT t.ID id, t.NAME name, t.WEIGHT weight, t.PARENT_ID parentId , t.DEPT_TYPE deptType FROM tty_sys_department t
+		WHERE t.id IN (SELECT dept_id FROM tty_sys_admin_side WHERE user_id = #{userId})
+		OR t.parent_id IN(SELECT dept_id FROM tty_sys_admin_side WHERE user_id = #{userId} AND parent_id !=0)
+		AND t.delete_flag = 0 order by t.QUEUE
+	</select>
+
+	<select id="queryAllOrgTree" resultType="com.jc.system.security.domain.Department">
+		SELECT
+		t.ID id,
+		t.CODE code,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.DEPT_DESC deptDesc,
+		t.LEADER_ID leaderId,
+		t.CHARGE_LEADER_ID chargeLeaderId,
+		t.PARENT_ID parentId,
+		t.MANAGER_DEPT managerDept,
+		t.DEPT_TYPE deptType,
+		t.ORGANIZATION_ID organizationId,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_DEP createUserDept,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.DELETE_FLAG deleteFlag,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5
+		FROM
+		tty_sys_department t
+		WHERE t.DELETE_FLAG = 0
+		AND t.DEPT_TYPE = 1
+		order by queue asc
+	</select>
+
+	<select id="querySameLevelDeptByParentId" parameterType="string" resultType="com.jc.system.security.domain.Department">
+		SELECT
+		t.ID id,
+		t.CODE code,
+		t.NAME name,
+		t.DEPT_DESC deptDesc,
+		t.LEADER_ID leaderId,
+		t.CHARGE_LEADER_ID chargeLeaderId,
+		t.PARENT_ID parentId,
+		t.MANAGER_DEPT managerDept,
+		t.DEPT_TYPE deptType,
+		t.ORGANIZATION_ID organizationId,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_DEP createUserDept,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.DELETE_FLAG deleteFlag,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5
+		FROM
+		tty_sys_department t
+		WHERE t.PARENT_ID = #{parentId}
+		AND t.DELETE_FLAG = 0
+		order by queue asc
+	</select>
+
+	<select id="queryUserCountForAll" resultType="com.jc.system.security.domain.Department">
+		SELECT
+			t.ID id,
+			t.NAME NAME,
+			t.PARENT_ID parentId,
+			(SELECT COUNT(u.id) FROM tty_sys_user u WHERE u.DEPT_ID = t.id ) userCount
+		FROM
+			tty_sys_department t
+	</select>
+
+</mapper>

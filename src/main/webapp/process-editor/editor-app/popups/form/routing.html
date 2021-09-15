@@ -1,0 +1,39 @@
+<div ng-repeat="property in selectedItem">
+    <div ng-controller="ActivitiRoutingConditionsCtrl">
+        <p class="text-danger">修改参考示例:<br />
+            (ap.equals("字符串"))&&(count > 12345) && (dd < df.parse("2016.06.13 16:00:00").getTime())
+        </p>
+        <div class="form-inline" style="margin-bottom: 20px;">
+            <div class="form-group" style="margin: 0;">
+                <label style="margin-bottom: 0;">条件关系</label>
+                <select class="form-control" style="width:100px;" id="condition">
+                    <option value="&&">并且</option>
+                    <option value="||">或者</option>
+                </select>
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label style="margin-bottom: 0;">参数</label>
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label style="margin-bottom: 0;">
+                    <input type="text" class="form-control" ng-model="parameter1"/>
+                </label>
+                <select class="form-control" id="arithmetic">
+                    <option value="=="> == </option>
+                    <option value=">">  > </option>
+                    <option value="<">  < </option>
+                    <option value=">="> >= </option>
+                    <option value="<="> <= </option>
+                </select>
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label style="margin-bottom: 0;">
+                    <input type="text" class="form-control" ng-model="parameter2"/>
+                </label>
+            </div>
+            <button type="button" class="btn pull-right" ng-click="removeRouting();">重置</button>
+            <button type="button" class="btn pull-right" ng-click="addRouting();">添加</button>
+        </div>
+        <div class="routing-content">{{routingProperties}}</div>
+    </div>
+</div>

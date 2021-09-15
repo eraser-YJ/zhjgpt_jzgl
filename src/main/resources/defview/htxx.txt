@@ -1,0 +1,31 @@
+SELECT
+  t.id id,
+  t.contract_num,
+  t.contract_rymc,
+  t.contract_qymc,
+  t.person_num,
+  t.contract_project_name,
+  t.contract_time_type,
+  tctype. value contract_time_type_value,
+  t.contract_star,
+  t.contract_end,
+  t.contract_jldw,
+  tjltype.value contract_jldw_value,
+  t.contract_jldj,
+  t.data_resource dataSrc
+FROM pt_contract_info t
+LEFT OUTER JOIN tty_sys_dics tctype ON tctype.code = t.contract_time_type  AND tctype.parent_id = 'contract_time_type'
+LEFT OUTER JOIN tty_sys_dics tjltype ON tjltype.code = t.contract_jldw  AND tjltype.parent_id = 'contract_jldw'
+WHERE 1=1
+<if test="contractNum != null">
+    and t.contract_num like concat('%',#{contractNum},'%')
+</if>
+<if test="projectName != null">
+    and t.contract_project_name like concat('%',#{projectName},'%')
+</if>
+<if test="contractTimeType != null">
+    and t.contract_time_type like concat('%',#{contractTimeType},'%')
+</if>
+<if test="dataSrc != null">
+    and t.data_resource = #{dataSrc}
+</if>

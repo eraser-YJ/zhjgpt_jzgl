@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.SysUserRole">
+
+	<select id="query" parameterType="com.jc.system.security.domain.SysUserRole" resultType="com.jc.system.security.domain.SysUserRole">
+		SELECT 
+			t.USER_ID userId,
+			t1.DISPLAY_NAME userName,
+			t.ROLE_ID roleId,
+			t.DEPT_ID deptId,
+			t.DELETE_FLAG deleteFlag,
+			t.CREATE_USER createUser,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.EXT_STR1 extStr1,
+			t.EXT_STR2 extStr2,
+			t.EXT_STR3 extStr3,
+			t.EXT_STR4 extStr4,
+			t.EXT_STR5 extStr5
+			
+		FROM tty_sys_user_role t,tty_sys_user t1
+		<where>
+			and t.USER_ID = t1.ID
+			<if test="userId != null">
+				and t.USER_ID = #{userId}
+			</if>
+			<if test="roleId != null">
+				and t.ROLE_ID = #{roleId}
+			</if>
+			<if test="deptId != null">
+				and t.DEPT_ID = #{deptId}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+	</select>
+
+	<select id="queryCount" parameterType="com.jc.system.security.domain.SysUserRole" resultType="java.lang.Integer">
+		SELECT count(USER_ID) 
+		FROM tty_sys_user_role t
+		<where>
+			<if test="userId != null">
+				and t.USER_ID = #{userId}
+			</if>
+			<if test="roleId != null">
+				and t.ROLE_ID = #{roleId}
+			</if>
+			<if test="deptId != null">
+				and t.DEPT_ID = #{deptId}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteByIds"  parameterType="com.jc.system.security.domain.SysUserRole">
+    	delete from tty_sys_user_role
+      		where USER_ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+ 	
+ 	<delete id="deleteSysUserRole"  parameterType="com.jc.system.security.domain.SysUserRole">
+    	delete from tty_sys_user_role where user_id = #{userId}
+ 	</delete>
+ 	
+ 	<delete id="deletePhysical"  parameterType="com.jc.system.security.domain.RoleBlocks">
+    	delete from tty_sys_user_role
+      	where 
+ 
+				ROLE_ID in
+				<foreach collection="roleIds" item="roleId" index="index"
+		            open="(" close=")" separator=",">
+		            #{roleId}
+		        </foreach>
+
+ 	</delete>
+ 	
+ 	<update id="deleteLogic"  parameterType="com.jc.system.security.domain.SysUserRole">
+    	UPDATE tty_sys_user_role t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+      		where USER_ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+
+	<insert id="insert" parameterType="com.jc.system.security.domain.SysUserRole" useGeneratedKeys="true" keyProperty="id">
+	INSERT INTO tty_sys_user_role(USER_ID,ROLE_ID,DEPT_ID,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,CREATE_USER_ORG)
+		VALUES (#{userId,jdbcType=VARCHAR},#{roleId,jdbcType=VARCHAR},#{deptId,jdbcType=VARCHAR},#{deleteFlag,jdbcType=NUMERIC},#{createUser,jdbcType=VARCHAR},#{createUserDept,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{modifyUser,jdbcType=VARCHAR},#{modifyDate,jdbcType=TIMESTAMP},#{extStr1,jdbcType=VARCHAR},#{extStr2,jdbcType=VARCHAR},#{extStr3,jdbcType=VARCHAR},#{extStr4,jdbcType=VARCHAR},#{extStr5,jdbcType=VARCHAR},#{createUserOrg,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertList" parameterType="com.jc.system.security.domain.SysUserRole">
+		INSERT INTO tty_sys_user_role(USER_ID,ROLE_ID,DEPT_ID,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,CREATE_USER_ORG)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator="," >
+			(#{item.userId,jdbcType=VARCHAR},#{item.roleId,jdbcType=VARCHAR},#{item.deptId,jdbcType=VARCHAR},0,#{item.createUser,jdbcType=VARCHAR},#{item.createUserDept,jdbcType=VARCHAR},#{item.createDate,jdbcType=TIMESTAMP},#{item.modifyUser,jdbcType=VARCHAR},#{item.modifyDate,jdbcType=TIMESTAMP},#{item.extStr1,jdbcType=VARCHAR},#{item.extStr2,jdbcType=VARCHAR},#{item.extStr3,jdbcType=VARCHAR},#{item.extStr4,jdbcType=VARCHAR},#{item.extStr5,jdbcType=VARCHAR},#{item.createUserOrg,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.system.security.domain.SysUserRole">
+	UPDATE tty_sys_user_role
+	   <set>
+	   	<if test="roleId != null">
+	   		ROLE_ID = #{roleId},
+	   	</if>
+	   	<if test="deptId != null">
+	   		DEPT_ID = #{deptId},
+	   	</if>
+	   	<if test="deleteFlag != null">
+	   		DELETE_FLAG = #{deleteFlag},
+	   	</if>
+	   	<if test="createUser != null">
+	   		CREATE_USER = #{createUser},
+	   	</if>
+	   	<if test="createUserDept != null">
+	   		CREATE_USER_DEPT = #{createUserDept},
+	   	</if>
+	   	
+	   	<if test="modifyUser != null">
+	   		MODIFY_USER = #{modifyUser},
+	   	</if>
+	   	<if test="modifyDate != null">
+	   		MODIFY_DATE = #{modifyDate},
+	   	</if>
+	   	<if test="extStr1 != null">
+	   		EXT_STR1 = #{extStr1},
+	   	</if>
+	   	<if test="extStr2 != null">
+	   		EXT_STR2 = #{extStr2},
+	   	</if>
+	   	<if test="extStr3 != null">
+	   		EXT_STR3 = #{extStr3},
+	   	</if>
+	   	<if test="extStr4 != null">
+	   		EXT_STR4 = #{extStr4},
+	   	</if>
+	   	<if test="extStr5 != null">
+	   		EXT_STR5 = #{extStr5},
+	   	</if>
+	   </set>
+	   where USER_ID = #{userId}
+	</update>
+	
+	<update id="deleteBackByIds"  parameterType="com.jc.system.security.domain.SysUserRole">
+    	UPDATE tty_sys_user_role t set t.delete_flag = 0,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate} where USER_ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+ 	
+ 	<select id="queryUserByRole" parameterType="com.jc.system.security.domain.SysUserRole" resultType="com.jc.system.security.domain.User">
+		
+		SELECT 
+			t.ID id,
+			t.CODE code,
+			t.DISPLAY_NAME displayName,
+			t.LOGIN_NAME loginName,
+			t.PASSWORD password,
+			t.SEX sex,
+			t.KIND kind,
+			t.DUTY_ID dutyId,
+			t.USER_LEVEL userLevel,
+			t.LEVEL_ "level",
+			t.DEPT_ID deptId,
+			t.STATUS status,
+			t.ENTRY_DATE entryDate,
+			t.LEADER_ID leaderId,
+			t.DEPT_LEADER deptLeader,
+			t.CHARGE_LEADER chargeLeader,
+			t.POLITICAL political,
+			t.CARD_NO cardNo,
+			t.WEIGHT weight,
+			t.ORDER_NO orderNo,
+			t.JOB_TITLE jobTitle,
+			t.PHOTO photo,
+			t.MOBILE mobile,
+			t.OFFICE_TEL officeTel,
+			t.EMAIL email,
+			t.ENTRY_POLITICAL_DATE entryPoliticalDate,
+			t.BIRTHDAY birthday,
+			t.ETHNIC ethnic,
+			t.HOMETOWN hometown,
+			t.DEGREE degree,
+			t.CERNAME cername,
+			t.MARITAL_STATUS maritalStatus,
+			t.IS_ADMIN isAdmin,
+			t.PAY_CARD_NO payCardNo,
+			t.CARD_BANK cardBank,
+			t.CARD_NAME cardName,
+			t.LAST_LONGIN_DATE lastLonginDate,
+			t.WRONG_COUNT wrongCount,
+			t.LOCK_START_DATE lockStartDate,
+			t.OFFICE_ADDRESS officeAddress,
+			t.IS_DRIVER isDriver,
+			t.IS_LEADER isLeader,
+			t.ANSWER answer,
+			t.QUESTION question,
+			t.CREATE_USER createUser,
+			t.CREATE_DATE createDate,
+			t.CREATE_USER_DEPT createUserDept,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.DELETE_FLAG deleteFlag,
+			t.OPEN_CALE openCale,
+			t.IS_CHECK isCheck,
+			t.GROUP_TEL groupTel,
+			d.NAME deptName
+			
+		FROM tty_sys_user t , tty_sys_department d WHERE t.DEPT_ID = d.ID
+			<if test="roleId != null">
+			    and	t.ID in (SELECT r.USER_ID userId FROM tty_sys_user_role r where ROLE_ID = #{roleId})
+		   	</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.AdminSide">
+
+	<select id="query" parameterType="com.jc.system.security.domain.AdminSide" resultType="com.jc.system.security.domain.AdminSide">
+		SELECT
+		t.ID id,
+		t.USER_ID userId,
+		t.DEPT_ID deptId,
+		t.PARENT_ID parentId,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.IS_CHECKED isChecked
+
+		FROM tty_sys_admin_side t
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="userId != null">
+				and t.USER_ID = #{userId}
+			</if>
+			<if test="deptId != null">
+				and t.DEPT_ID = #{deptId}
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="isChecked != null">
+				and t.IS_CHECKED = #{isChecked}
+			</if>
+		</where>
+		order by t.CREATE_DATE
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.system.security.domain.AdminSide" resultType="java.lang.Integer">
+		SELECT count(ID)
+		FROM tty_sys_admin_side t
+		<where>
+			<if test="dataAccessDynamicSQL != null">
+				${dataAccessDynamicSQL}
+			</if>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="userId != null">
+				and t.USER_ID = #{userId}
+			</if>
+			<if test="deptId != null">
+				and t.DEPT_ID = #{deptId}
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="isChecked != null">
+				and t.IS_CHECKED = #{isChecked}
+			</if>
+		</where>
+	</select>
+
+	<select id="queryManagerDeptRree" parameterType="com.jc.system.security.domain.AdminSide" resultType="com.jc.system.security.domain.AdminSide">
+		SELECT 
+		
+			t.USER_ID userId,
+			t.DEPT_ID id,
+			t.PARENT_ID parentId,
+			t.IS_CHECKED isChecked,
+			d.NAME name,
+			d.DEPT_TYPE deptType
+			
+		FROM tty_sys_admin_side t , tty_sys_department d WHERE t.DEPT_ID = d.ID  AND d.DELETE_FLAG = 0 AND t.USER_ID = #{userId} ORDER BY d.QUEUE asc
+		
+	</select>
+
+	<delete id="deleteByIds"  parameterType="com.jc.system.security.domain.AdminSide">
+		delete from tty_sys_admin_side
+		where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index"
+				 open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.system.security.domain.AdminSide">
+		UPDATE tty_sys_admin_side t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+		where USER_ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index"
+				 open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+	</update>
+
+	<delete id="deletePhysical"  parameterType="com.jc.system.security.domain.AdminSide">
+		delete from tty_sys_admin_side
+		where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index"
+				 open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+	</delete>
+
+	<delete id="deleteAdminSide"  parameterType="com.jc.system.security.domain.AdminSide">
+    	delete from tty_sys_admin_side where user_id = #{userId}
+ 	</delete>
+
+	<update id="delete"  parameterType="com.jc.system.security.domain.AdminSide">
+		UPDATE tty_sys_remind t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+		where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index"
+				 open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+	</update>
+
+	<insert id="insert" parameterType="com.jc.system.security.domain.AdminSide" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO tty_sys_admin_side(ID,USER_ID,DEPT_ID,PARENT_ID,CREATE_USER,CREATE_DATE,IS_CHECKED,CREATE_USER_DEPT,CREATE_USER_ORG,MODIFY_USER,MODIFY_DATE,DELETE_FLAG)
+			VALUES (#{id},#{userId},#{deptId},#{parentId},#{createUser},#{createDate},#{isChecked},#{createUserDept},#{createUserOrg},#{modifyUser},#{modifyDate},0)
+	</insert>
+
+	<insert id="insertList" parameterType="com.jc.system.security.domain.AdminSide">
+		INSERT INTO tty_sys_admin_side(ID,USER_ID,DEPT_ID,PARENT_ID,CREATE_USER,CREATE_DATE,IS_CHECKED,CREATE_USER_DEPT,CREATE_USER_ORG,MODIFY_USER,MODIFY_DATE)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{id},#{item.id},#{item.userId},#{item.deptId},#{item.parentId},#{item.createUser},#{item.createDate},#{item.isChecked},#{item.createUserDept},#{item.createUserOrg},#{item.modifyUser},#{item.modifyDate})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.system.security.domain.AdminSide">
+		UPDATE tty_sys_admin_side
+		<set>
+			<if test="userId != null">
+				USER_ID = #{userId},
+			</if>
+			<if test="deptId != null">
+				DEPT_ID = #{deptId},
+			</if>
+			<if test="parentId != null">
+				PARENT_ID = #{parentId},
+			</if>
+			<if test="createUser != null">
+				CREATE_USER = #{createUser},
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="isChecked != null">
+				IS_CHECKED = #{isChecked},
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+		</set>
+		where ID = #{id}
+	</update>
+
+	<select id="queryAdminSideIdByDeptId" parameterType="com.jc.system.security.domain.AdminSide" resultType="com.jc.system.security.domain.AdminSide">
+		SELECT 
+			a.ID id
+		FROM tty_sys_admin_side a , tty_sys_department d
+		WHERE a.DEPT_ID = d.ID
+		AND FIND_IN_SET(d.ID, F_DEPARTMENT_FINDCHILDLIST (#{deptId}))
+	</select>
+
+
+	<update id="deleteBackByIds"  parameterType="com.jc.system.security.domain.AdminSide">
+		UPDATE tty_sys_admin_side set DELETE_FLAG = 0,MODIFY_USER = #{modifyUser}, MODIFY_DATE = #{modifyDate} where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index"
+				 open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+	</update>
+
+</mapper>

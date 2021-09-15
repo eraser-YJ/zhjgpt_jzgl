@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+    <tlib-version>1.0.0</tlib-version>
+    <jsp-version>1.2</jsp-version>
+    <short-name>workflow</short-name>
+    <uri>/workflow</uri>
+    <tag>
+        <!-- 标签名称 -->
+        <name>suggest</name>
+        <!-- 标签对应的处理类 -->
+        <tag-class>com.jc.workflow.suggest.tag.SuggestTag</tag-class>
+        <!-- 标签体内容,没有标签体则设为empty -->
+        <!-- <body-content>empty</body-content> -->
+        <!-- 标签的属性声明 -->
+        <!-- 组件标识-->
+        <attribute>
+            <name>itemId</name>
+        </attribute>
+        <!-- 是否只显示最新意见  true/false -->
+        <attribute>
+            <name>showLast</name>
+        </attribute>
+        <!-- 排序标志 createTime(创建时间)/orderNo(排序字段) -->
+        <attribute>
+            <name>order</name>
+        </attribute>
+         <!-- class样式 -->
+        <attribute>
+            <name>classStr</name>
+        </attribute>
+        <!-- style样式 -->
+        <attribute>
+            <name>style</name>
+        </attribute>
+        <!--maxlength,0为不限制-->
+        <attribute>
+            <name>maxLength</name>
+        </attribute>
+        <attribute>
+            <name>showWritePannel</name>
+        </attribute>
+    </tag>
+
+    <tag>
+        <!-- 标签名称 -->
+        <name>suggestLook</name>
+        <!-- 标签对应的处理类 -->
+        <tag-class>com.jc.workflow.suggest.tag.SuggestTagLook</tag-class>
+        <!-- 标签体内容,没有标签体则设为empty -->
+        <!-- <body-content>empty</body-content> -->
+        <!-- 标签的属性声明 -->
+        <!-- 组件标识-->
+        <attribute>
+            <name>itemId</name>
+        </attribute>
+        <!-- 是否只显示最新意见  true/false -->
+        <attribute>
+            <name>showLast</name>
+        </attribute>
+        <!-- 排序标志 createTime(创建时间)/orderNo(排序字段) -->
+        <attribute>
+            <name>order</name>
+        </attribute>
+        <!-- class样式 -->
+        <attribute>
+            <name>classStr</name>
+        </attribute>
+        <!-- style样式 -->
+        <attribute>
+            <name>style</name>
+        </attribute>
+        <!--maxlength,0为不限制-->
+        <attribute>
+            <name>maxLength</name>
+        </attribute>
+        <attribute>
+            <name>showWritePannel</name>
+        </attribute>
+    </tag>
+</taglib>

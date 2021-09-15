@@ -1,0 +1,15 @@
+SELECT
+  t.attach_title             fileName,
+  t.attach_path              filePath,
+  t.dlh_data_modify_date_    uploadDate,
+  t.attach_objUrl            attachScope,
+  t.attach_key               attachKey
+FROM pt_attach_info t
+WHERE 1 = 1
+<if test="attachScope != null">
+    and t.attach_objUrl = #{attachScope}
+</if>
+<if test="attachKey != null">
+    and t.attach_key = #{attachKey}
+</if>
+ORDER BY t.dlh_data_modify_date_ DESC

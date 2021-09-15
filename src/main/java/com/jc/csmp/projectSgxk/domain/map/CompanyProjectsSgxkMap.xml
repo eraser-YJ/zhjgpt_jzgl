@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.csmp.projectSgxk.domain.CompanyProjectsSgxk">
+
+	<insert id="insert" parameterType="com.jc.csmp.projectSgxk.domain.CompanyProjectsSgxk" useGeneratedKeys="true" keyProperty="id">
+		insert into pt_company_projects_sgxk (id,pcp_htlb,pcp_bdmc,pcp_htbh,pcp_htje,pcp_qdrq,pcp_xq,pcp_project_num,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3,dlh_data_id_,dlh_data_modify_date_,dlh_data_src_,dlh_data_user_,pcp_bzry,pcp_dh)
+		values (#{id},#{pcpHtlb},#{pcpBdmc},#{pcpHtbh},#{pcpHtje},#{pcpQdrq},#{pcpXq},#{pcpProjectNum},#{extStr1},#{extStr2},#{extStr3},#{extStr4},#{extStr5},#{extDate1},#{extDate2},#{extNum1},#{extNum2},#{extNum3},#{dlhDataId},#{dlhDataModifyDate},#{dlhDataSrc},#{dlhDataUser},#{pcpBzry},#{pcpDh})		
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		insert into pt_company_projects_sgxk (id,pcp_htlb,pcp_bdmc,pcp_htbh,pcp_htje,pcp_qdrq,pcp_xq,pcp_project_num,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3,dlh_data_id_,dlh_data_modify_date_,dlh_data_src_,dlh_data_user_,pcp_bzry,pcp_dh)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id},#{item.pcpHtlb},#{item.pcpBdmc},#{item.pcpHtbh},#{item.pcpHtje},#{item.pcpQdrq},#{item.pcpXq},#{item.pcpProjectNum},#{item.extStr1},#{item.extStr2},#{item.extStr3},#{item.extStr4},#{item.extStr5},#{item.extDate1},#{item.extDate2},#{item.extNum1},#{item.extNum2},#{item.extNum3},#{item.dlhDataId},#{item.dlhDataModifyDate},#{item.dlhDataSrc},#{item.dlhDataUser},#{item.pcpBzry},#{item.pcpDh})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.csmp.projectSgxk.domain.CompanyProjectsSgxk">
+		update pt_company_projects_sgxk set
+		<if test="id != null">id=#{id},</if>
+		<if test="pcpHtlb != null">pcp_htlb=#{pcpHtlb},</if>
+		<if test="pcpBdmc != null">pcp_bdmc=#{pcpBdmc},</if>
+		<if test="pcpHtbh != null">pcp_htbh=#{pcpHtbh},</if>
+		<if test="pcpHtje != null">pcp_htje=#{pcpHtje},</if>
+		<if test="pcpQdrq != null">pcp_qdrq=#{pcpQdrq},</if>
+		<if test="pcpXq != null">pcp_xq=#{pcpXq},</if>
+		<if test="pcpProjectNum != null">pcp_project_num=#{pcpProjectNum},</if>
+		<if test="extStr1 != null">EXT_STR1=#{extStr1},</if>
+		<if test="extStr2 != null">EXT_STR2=#{extStr2},</if>
+		<if test="extStr3 != null">EXT_STR3=#{extStr3},</if>
+		<if test="extStr4 != null">EXT_STR4=#{extStr4},</if>
+		<if test="extStr5 != null">EXT_STR5=#{extStr5},</if>
+		<if test="extDate1 != null">EXT_DATE1=#{extDate1},</if>
+		<if test="extDate2 != null">EXT_DATE2=#{extDate2},</if>
+		<if test="extNum1 != null">EXT_NUM1=#{extNum1},</if>
+		<if test="extNum2 != null">EXT_NUM2=#{extNum2},</if>
+		<if test="extNum3 != null">EXT_NUM3=#{extNum3},</if>
+		<if test="dlhDataId != null">dlh_data_id_=#{dlhDataId},</if>
+		<if test="dlhDataModifyDate != null">dlh_data_modify_date_=#{dlhDataModifyDate},</if>
+		<if test="dlhDataSrc != null">dlh_data_src_=#{dlhDataSrc},</if>
+		<if test="dlhDataUser != null">dlh_data_user_=#{dlhDataUser},</if>
+		<if test="pcpBzry != null">pcp_bzry=#{pcpBzry},</if>
+		<if test="pcpDh != null">pcp_dh=#{pcpDh},</if>
+	   	MODIFY_DATE = #{modifyDateNew} where ID = #{id} and MODIFY_DATE = #{modifyDate}
+	</update>
+
+
+	<sql id="Base_Column_List" >
+		t.id id,
+		t.pcp_htlb pcpHtlb,
+		t.pcp_bdmc pcpBdmc,
+		t.pcp_htbh pcpHtbh,
+		t.pcp_htje pcpHtje,
+		t.pcp_qdrq pcpQdrq,
+		t.pcp_xq pcpXq,
+		t.pcp_project_num pcpProjectNum,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5,
+		t.EXT_DATE1 extDate1,
+		t.EXT_DATE2 extDate2,
+		t.EXT_NUM1 extNum1,
+		t.EXT_NUM2 extNum2,
+		t.EXT_NUM3 extNum3,
+		t.dlh_data_id_ dlhDataId,
+		t.dlh_data_modify_date_ dlhDataModifyDate,
+		t.dlh_data_src_ dlhDataSrc,
+		t.dlh_data_user_ dlhDataUser,
+		t.pcp_bzry pcpBzry,
+		t.pcp_dh pcpDh
+	</sql>
+	
+	<sql id="Base_Query_Where" >
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="projectname != null">
+				and i.projectName = #{projectname}
+			</if>
+			<if test="pcpHtlb != null">
+				and t.pcp_htlb = #{pcpHtlb}
+			</if>
+			<if test="pcpBdmc != null">
+				and t.pcp_bdmc = #{pcpBdmc}
+			</if>
+			<if test="pcpHtbh != null">
+				and t.pcp_htbh = #{pcpHtbh}
+			</if>
+			<if test="pcpHtje != null">
+				and t.pcp_htje = #{pcpHtje}
+			</if>
+			<if test="pcpQdrqBegin != null">
+				and t.pcp_qdrq &gt;= #{pcpQdrqBegin}
+			</if>
+			<if test="pcpQdrqEnd != null">
+				and t.pcp_qdrq &lt;= #{pcpQdrqEnd}
+			</if>
+			<if test="pcpQdrq != null">
+				and t.pcp_qdrq = #{pcpQdrq}
+			</if>
+			<if test="pcpXq != null">
+				and t.pcp_xq = #{pcpXq}
+			</if>
+			<if test="pcpProjectNum != null">
+				and t.pcp_project_num = #{pcpProjectNum}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.EXT_DATE1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.EXT_DATE1 &lt;= #{extDate1End}
+			</if>
+			<if test="extDate1 != null">
+				and t.EXT_DATE1 = #{extDate1}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.EXT_DATE2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.EXT_DATE2 &lt;= #{extDate2End}
+			</if>
+			<if test="extDate2 != null">
+				and t.EXT_DATE2 = #{extDate2}
+			</if>
+			<if test="extNum1 != null">
+				and t.EXT_NUM1 = #{extNum1}
+			</if>
+			<if test="extNum2 != null">
+				and t.EXT_NUM2 = #{extNum2}
+			</if>
+			<if test="extNum3 != null">
+				and t.EXT_NUM3 = #{extNum3}
+			</if>
+			<if test="dlhDataId != null">
+				and t.dlh_data_id_ = #{dlhDataId}
+			</if>
+			<if test="dlhDataModifyDateBegin != null">
+				and t.dlh_data_modify_date_ &gt;= #{dlhDataModifyDateBegin}
+			</if>
+			<if test="dlhDataModifyDateEnd != null">
+				and t.dlh_data_modify_date_ &lt;= #{dlhDataModifyDateEnd}
+			</if>
+			<if test="dlhDataModifyDate != null">
+				and t.dlh_data_modify_date_ = #{dlhDataModifyDate}
+			</if>
+			<if test="dlhDataSrc != null">
+				and t.dlh_data_src_ = #{dlhDataSrc}
+			</if>
+			<if test="dlhDataUser != null">
+				and t.dlh_data_user_ = #{dlhDataUser}
+			</if>
+			<if test="pcpBzry != null">
+				and t.pcp_bzry = #{pcpBzry}
+			</if>
+			<if test="pcpDh != null">
+				and t.pcp_dh = #{pcpDh}
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+	</sql>
+	<select id="query" parameterType="com.jc.csmp.projectSgxk.domain.CompanyProjectsSgxk" resultType="com.jc.csmp.projectSgxk.domain.CompanyProjectsSgxk">
+		SELECT
+		<include refid="Base_Column_List" />,
+		i.projectName projectname,
+		i.projectAddress projectaddress,
+		i.buildDept builddept,
+		i.projectMoney projectmoney,
+		i.construction_organization constructionOrganization,
+		i.projectManager projectmanager,
+		i.project_area projectArea
+		FROM pt_company_projects_sgxk t ,`pt_project_info` i WHERE i.`projectNumber`= t.pcp_project_num
+		<include refid="Base_Query_Where"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.csmp.projectSgxk.domain.CompanyProjectsSgxk" resultType="java.lang.Long">
+		SELECT count(t.ID) FROM pt_company_projects_sgxk t ,`pt_project_info` i WHERE i.`projectNumber`= t.pcp_project_num
+		<include refid="Base_Query_Where"/>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.csmp.projectSgxk.domain.CompanyProjectsSgxk">
+    	delete from pt_company_projects_sgxk
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.csmp.projectSgxk.domain.CompanyProjectsSgxk">
+    	UPDATE pt_company_projects_sgxk t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</update>
+</mapper>

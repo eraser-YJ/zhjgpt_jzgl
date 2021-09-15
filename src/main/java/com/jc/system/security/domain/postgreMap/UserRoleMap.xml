@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.UserRole">
+
+
+	<select id="query" parameterType="com.jc.system.security.domain.UserRole" resultType="com.jc.system.security.domain.UserRole">
+		SELECT 
+		
+		t.ROLE_ID AS roleId, 
+		t.USER_ID AS userId,
+		t1.LOGIN_NAME AS loginName,
+		t1.DISPLAY_NAME AS displayName
+		
+		FROM t_user_role t , t_user t1 WHERE t.USER_ID = t1.ID AND t.DELETE_FLAG = 0 
+		
+		<if test="roleId != null">
+			and t.ROLE_ID = #{roleId}
+		</if>
+		
+		
+	</select>
+
+	<insert id="insert" parameterType="com.jc.system.security.domain.Role">
+		INSERT INTO t_user_role(ROLE_ID, USER_ID, DELETE_FLAG, CREATE_USER, CREATE_TIME)
+			VALUES (#{roleId,jdbcType=VARCHAR},#{userId,jdbcType=VARCHAR},0,1,SYSDATE())
+	</insert>
+	
+	
+	<update id="delete" parameterType="com.jc.system.security.domain.Role">
+    	UPDATE t_user_role SET DELETE_FLAG = 1 where ROLE_ID = #{roleId} and USER_ID = #{userId}
+ 	</update>
+
+</mapper>

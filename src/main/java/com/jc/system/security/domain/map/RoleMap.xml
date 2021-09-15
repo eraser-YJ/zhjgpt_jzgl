@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.Role">
+
+
+	<select id="query" parameterType="com.jc.system.security.domain.Role" resultType="com.jc.system.security.domain.Role">
+		SELECT
+				t.ID as id ,
+				t.NAME as name ,
+				t.WEIGHT weight,
+				t.WEIGHT_BESTRIDE as bestrideWeight,
+				t.dept_id as deptId,
+				t1.name as deptName,
+				t1.weight as deptWeight,
+				t.DESCRIPTION as description ,
+				t.DELETE_FLAG as deleteFlag ,
+				t.CREATE_USER as createUser ,
+				t.CREATE_DATE as createDate,
+				t.CREATE_USER_DEPT createUserDept,
+				t.CREATE_USER_ORG createUserOrg,
+				t.MODIFY_USER modifyUser,
+				t.MODIFY_DATE modifyDate,
+				t.REMARK1 remark1,
+				COUNT(t2.ROLE_ID) personNum 
+		FROM 
+				tty_sys_role t left join tty_sys_department t1 on t.dept_id = t1.id  AND t1.DELETE_FLAG = 0
+				LEFT JOIN tty_sys_user_role t2 ON t.ID = t2.ROLE_ID AND t2.DELETE_FLAG = 0 
+				WHERE 1 = 1
+				
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="name != null">
+				and t.NAME = #{name}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+			<if test="deptIds != null">
+				and t.dept_id in
+				<foreach item="item" index="index" collection="deptIds.split(',')"  open="(" separator="," close=")">
+					'${item}'
+				</foreach>
+			</if>
+			<if test="description != null">
+				and t.DESCRIPTION = #{description}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="deptIdToCode != null"> and t1.CODE like (select concat(son.code, '%') from tty_sys_department son where son.id = #{deptIdToCode}) </if>
+			<!--<if test="remark1 == null">
+				and t.REMARK1 not in ('admin','security','audit')
+			</if>
+			<if test="remark1 != null">
+				<if test="remark1 == 'security'">
+					and t.REMARK1 in ('admin','security','audit')
+				</if>
+			</if>-->
+			GROUP BY id,deptId,description,createUser,createUserDept,modifyDate
+			<if test="orderBy != null">
+				order by ${orderBy}
+			</if>
+	</select>
+
+	<select id="queryCount" parameterType="com.jc.system.security.domain.Role" resultType="java.lang.Integer">
+		SELECT count(t.ID) FROM tty_sys_role t left join tty_sys_department t1 on t.dept_id = t1.id  AND t1.DELETE_FLAG = 0
+		LEFT JOIN tty_sys_user_role t2 ON t.ID = t2.ROLE_ID AND t2.DELETE_FLAG = 0
+		<where>
+			<if test="dataAccessDynamicSQL != null">
+				${dataAccessDynamicSQL}
+			</if>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="name != null">
+				and t.NAME = #{name}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+			<if test="deptIds != null">
+				and t.DEPT_ID in
+				<foreach item="item" index="index" collection="deptIds.split(',')"  open="(" separator="," close=")">
+					'${item}'
+				</foreach>
+			</if>
+			<if test="description != null">
+				and t.DESCRIPTION = #{description}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="deptIdToCode != null"> and t1.CODE like (select concat(son.code, '%') from tty_sys_department son where son.id = #{deptIdToCode}) </if>
+			<!--<if test="remark1 == null">
+				and t.REMARK1 not in ('admin','security','audit')
+			</if>
+			<if test="remark1 != null">
+				and t.REMARK1 in (${remark1})
+			</if>-->
+		</where>
+	</select>
+	
+	<select id="getForUpdate" parameterType="com.jc.system.security.domain.Role" resultType="java.lang.Integer">
+		SELECT t.ID AS id, t.NAME AS NAME,t.WEIGHT as weight,t.WEIGHT_BESTRIDE as bestrideWeight, t.DESCRIPTION description,t1.ROLE_ID AS roleId, t1.MENU_ID AS menuId
+		FROM t_role t , t_role_menus t1 WHERE t.ID = t1.ROLE_ID 
+		AND t.DELETE_FLAG = 0 AND t1.DELETE_FLAG = 0
+		AND t.ID = #{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.jc.system.security.domain.Role">
+		INSERT INTO tty_sys_role(ID,NAME,WEIGHT,WEIGHT_BESTRIDE,DESCRIPTION,DEPT_ID,CREATE_USER,CREATE_DATE,CREATE_USER_DEPT,MODIFY_USER,MODIFY_DATE,DELETE_FLAG)
+		VALUES (#{id},#{name},#{weight},#{bestrideWeight},#{description},#{deptId},#{createUser},#{createDate},#{createUserDept},#{modifyUser},#{modifyDate},0)
+	</insert>
+	
+	<update id="update" parameterType="com.jc.system.security.domain.Role">
+		UPDATE tty_sys_role
+		   <set>
+		    <if test="id != null">
+				 ID = #{id},
+		    </if>
+			<if test="name != null">
+				 NAME = #{name},
+			</if>
+		    <if test="weight != null">
+			     WEIGHT = #{weight},
+		    </if>
+			<if test="bestrideWeight != null">
+				WEIGHT_BESTRIDE = #{bestrideWeight},
+			</if>
+			<if test="description != null">
+				 DESCRIPTION = #{description},
+			</if>
+			<if test="deleteFlag != null">
+				 DELETE_FLAG = #{deleteFlag},
+			</if>
+			<if test="createUser != null">
+				 CREATE_USER = #{createUser},
+			</if>
+			<if test="createDate != null">
+				 CREATE_DATE = #{createDate},
+			</if>
+			<if test="remark1 != null">
+				REMARK1 = #{remark1},
+			</if>
+		   </set>
+		  ,MODIFY_DATE = #{modifyDateNew} where ID = #{id}  and MODIFY_DATE = #{modifyDate}
+	</update>
+	
+		<update id="deleteLogic"  parameterType="com.jc.system.security.domain.Role">
+		<![CDATA[
+    		UPDATE tty_sys_role set DELETE_FLAG = 1,  MODIFY_USER = #{modifyUser}, MODIFY_DATE = #{modifyDate}
+    	]]>
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+ 	
+ 	<select id="getRolesForUser" parameterType="com.jc.system.security.domain.Role" resultType="com.jc.system.security.domain.Role">
+		SELECT
+				t.ID as id ,
+				t.NAME as name ,
+				t.WEIGHT as weight,
+				t.WEIGHT_BESTRIDE as bestrideWeight,
+				t.dept_id as deptId
+				
+		FROM 
+				tty_sys_role t  WHERE t.DELETE_FLAG = 0
+				
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="name != null">
+				and t.NAME = #{name}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+			<if test="deptIds != null">
+				and t.dept_id in
+				<foreach item="item" index="index" collection="deptIds.split(',')"  open="(" separator="," close=")">
+					'${item}'
+				</foreach>
+			</if>
+
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			
+			<if test="orderBy != null">
+				order by ${orderBy}
+			</if>
+	</select>
+
+	<select id="getRoleById" parameterType="com.jc.system.security.domain.Role" resultType="com.jc.system.security.domain.Role">
+		SELECT
+		t.ID as id ,
+		t.NAME as name ,
+		t.WEIGHT as weight,
+		t.WEIGHT_BESTRIDE as bestrideWeight,
+		t.dept_id as deptId
+
+		FROM
+		tty_sys_role t
+		WHERE
+		1=1
+		<if test="deleteFlag != null">
+			and t.DELETE_FLAG = #{deleteFlag}
+		</if>
+		<if test="id != null">
+			and t.ID = #{id}
+		</if>
+		<if test="name != null">
+			and t.NAME = #{name}
+		</if>
+		<if test="weight != null">
+			and <![CDATA[t.WEIGHT <= #{weight}]]>
+		</if>
+		<if test="deptIds != null">
+			and t.dept_id in
+			<foreach item="item" index="index" collection="deptIds.split(',')"  open="(" separator="," close=")">
+				'${item}'
+			</foreach>
+		</if>
+
+		<if test="createUser != null">
+			and t.CREATE_USER = #{createUser}
+		</if>
+		<if test="createDate != null">
+			and t.CREATE_DATE = #{createDate}
+		</if>
+
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+	<select id="getRolesByUserId" resultType="com.jc.system.security.domain.Role" parameterType="com.jc.system.security.domain.Role">
+		SELECT DISTINCT t3.`ID` as id FROM tty_sys_user t1
+			LEFT JOIN tty_sys_user_role t2 ON t1.`ID` = t2.`USER_ID`
+			LEFT JOIN tty_sys_role t3 ON t2.`ROLE_ID` = t3.`ID` WHERE t1.`DELETE_FLAG` = 0 AND t2.`DELETE_FLAG` = 0 AND t3.`DELETE_FLAG` = 0
+			<if test="userId != null">
+				and t1.id = #{userId}
+			</if>
+	</select>
+	<select id="getRolesByRoleOrDept" parameterType="com.jc.system.security.domain.Role" resultType="com.jc.system.security.domain.Role">
+		SELECT
+		t.ID as id ,
+		t.NAME as name,
+		t.WEIGHT as weight,
+		t.WEIGHT_BESTRIDE as bestrideWeight,
+		t1.name as deptName
+		FROM tty_sys_role t,tty_sys_department t1
+		<where>
+			t.dept_Id = t1.id
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+			<if test="name != null">
+				and t.name like <![CDATA['%${name}%']]>
+			</if>
+			<if test="deptName != null">
+				and t1.name like <![CDATA['%${deptName}%']]>
+			</if>
+		</where>
+
+	</select>
+
+	<select id="getRolesByUserIdAndMenuId" parameterType="com.jc.system.security.domain.Role" resultType="com.jc.system.security.domain.Role">
+		SELECT
+		t.ID as id ,
+		t.NAME as name,
+		t.WEIGHT as weight,
+		t.WEIGHT_BESTRIDE as bestrideWeight,
+		e.PERMISSION_TYPE as weightType
+		FROM tty_sys_role t,tty_sys_user_role u, tty_sys_role_menu m, tty_sys_role_ext e
+		<where>
+			t.ID = u.ROLE_ID AND t.ID = m.ROLE_ID AND t.ID = e.ROLE_ID
+			<if test="userId != null">
+				and u.USER_ID = #{userId}
+			</if>
+			<if test="menuIds != null">
+				and m.MENU_ID = #{menuIds}
+			</if>
+		</where>
+
+	</select>
+
+</mapper>

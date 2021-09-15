@@ -1,0 +1,27 @@
+SELECT
+  t.id id,
+  t.company_name,
+  t.company_type,
+  tctype.value company_type_value,
+  t.project_name,
+  t.contract_time_type,
+  t.person_num,
+  t.person_tel,
+  t.supervise_star,
+  t.supervise_end,
+  t.data_resource dataSrc
+FROM pt_company_supervise t
+LEFT OUTER JOIN tty_sys_dics tctype ON tctype.code = t.company_type  AND tctype.parent_id = 'company_type'
+WHERE 1=1
+<if test="companyName != null">
+    and t.company_name like concat('%',#{companyName},'%')
+</if>
+<if test="projectName != null">
+    and t.project_name like concat('%',#{projectName},'%')
+</if>
+<if test="contractTimeType != null">
+    and t.contract_time_type like concat('%',#{contractTimeType},'%')
+</if>
+<if test="dataSrc != null">
+    and t.data_resource = #{dataSrc}
+</if>

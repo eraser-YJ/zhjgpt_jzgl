@@ -1,0 +1,494 @@
+﻿/*!
+ * table列表 及 panel定义
+ *
+ * Copyright 2012 Stefan Petre
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
+.panel{
+	margin-bottom:20px;
+	background-color:#ffffff;
+	border:1px solid transparent;
+	@include border-radius(2px);
+	@include box-shadow(0 1px 1px rgba(0,0,0,0.12));
+	position:relative;
+}
+.panel.plan-box{
+	border:0;
+	border-bottom:1px solid transparent;
+	margin-bottom:0;
+}
+.panel.in{
+	border:0 none;
+	@include border-radius(0);
+	@include box-shadow(none);
+	position:relative;
+	display: table-cell;
+}
+.panel.panel-all-h{
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+}
+.panel-body{
+	@include clearfix();
+}
+
+.panel>.list-group{
+	margin-bottom:0;
+}
+.panel>.list-group .list-group-item{
+	border-width:1px 0;
+}
+.panel .list-group-item{
+	border-color:#f0f0f0;
+}
+.panel>.list-group .list-group-item:first-child{
+	border-top-right-radius:0;
+	border-top-left-radius:0;
+}
+.panel>.list-group .list-group-item:last-child{
+	border-bottom:0;
+}
+.panel-heading+.list-group .list-group-item:first-child{
+	border-top-width:0;
+}
+.panel>.table,.panel>.table-wrap{
+	margin-bottom:0;
+}
+.panel>.panel-body+.table,.panel>.panel-body+.table-wrap{
+	border-top:1px solid $global-panel-table-border-color;
+}
+.panel-heading{
+	padding:10px 15px;
+	border-bottom:1px solid transparent;
+	border-top-right-radius:3px;
+	border-top-left-radius:3px;
+}
+.panel-heading>.dropdown .dropdown-toggle{
+	color:inherit;
+}
+.panel-title{
+	margin-top:0;
+	margin-bottom:0;
+	font-size:16px;
+}
+.panel-title>a{
+	color:inherit;
+}
+.panel-footer{
+	padding:10px 15px;
+	background-color:$global-panel-footer-bg-color;
+	border-top:1px solid $global-panel-table-border-color;
+	border-bottom-right-radius:3px;
+	border-bottom-left-radius:3px;
+}
+.panel-group .panel{
+	margin-bottom:0;
+	overflow:hidden;
+	border-radius:4px;
+}
+.panel-group .panel+.panel{
+	margin-top:5px;
+}
+.panel-group .panel-heading{
+	border-bottom:0;
+}
+.panel-group .panel-heading+.panel-collapse .panel-body{
+	border-top:1px solid $global-panel-table-border-color;
+}
+.panel-group .panel-footer{
+	border-top:0;
+}
+.panel-group .panel-footer+.panel-collapse .panel-body{
+	border-bottom:1px solid $global-panel-table-border-color;
+}
+.panel.no-borders{
+	border-width:0;
+}
+.panel.no-borders .panel-heading,.panel.no-borders .panel-footer{
+	border-width:0;
+}
+.panel .table-wrap,.panel .panel-con-wrap{
+	margin:20px 15px;
+}
+.panel .table-wrap.plan{
+	margin:0;
+}
+.panel .table-wrap .table{
+	border-collapse: collapse;
+}
+.panel .table-wrap .table ,.panel .table-wrap .table td,.panel .table-wrap .table th{
+	border-radius:0 !important;
+}
+.panel .table-wrap .table.b-light td,.panel .table-wrap .table.b-light th{
+	border-color:#ededed;
+}
+.panel .table td,.panel .table th{
+	padding:$global-panel-table-td-padding;
+	border-top:1px solid #ededed;
+}
+.panel .table thead>tr>th,.panel .table>tbody>tr>td{
+	height:$global-form-td-height;
+	color:$global-form-text-color;
+	vertical-align:middle;
+	font-weight: bold;
+}
+.panel.plan-table .table>tbody>tr>td{
+	vertical-align:top;
+}
+.panel .table-striped>tbody>tr.even>td,.panel .table-striped>tbody>tr.even>th{
+	background-color:$global-table-tr-striped-color;
+}
+.panel .table-striped>thead th{
+	background-color:$global-form-bg-color;
+	white-space:nowrapborder;
+}
+.panel.plan-box .table-striped>thead th{
+	border:none;
+	white-space:nowrap;
+	color:#fff;
+}
+.panel.plan-box .table-striped>thead th:first-child{background-color:#fb6b5b;}
+.panel.plan-box .table-striped>thead th:first-child+th{background-color:#f3a641;}
+.panel.plan-box .table-striped>thead th:first-child+th+th{background-color:#f3a641;}
+.panel.plan-box .table-striped>thead th:first-child+th+th+th{background-color:#8ec165;}
+.panel.plan-box .table-striped>thead th:first-child+th+th+th+th{background-color:#60aae9;}
+
+.panel .table-striped>thead th:last-child{
+	border-right:0 none;
+}
+.panel .table-td-striped>tbody>tr>td:nth-child(odd){
+	background-color:$global-form-bg-color;
+	text-align:right;
+	font-weight: bold;
+	white-space:nowrap;
+}
+.panel .table>tbody>tr>td{
+	height:40px;
+	color:#555;
+	font-weight:normal;
+	word-break: break-all;
+}
+.panel .form-table>table>tbody>tr>td,.panel .form-table-h>table>tbody>tr>td{
+	height:$global-form-td-height;
+	color:$global-form-text-color;
+}
+.panel .first-td-tc>thead>tr>th:first-child,.panel .first-td-tc>tbody>tr>td:first-child{
+	text-align: center;
+}
+
+.panel .form-table input[type="text"],.panel .form-table input[type="password"],.panel .form-table select,.panel .form-table-h input[type="text"],.panel .form-table-h select,.panel .input-default input[type="text"],.panel .input-default select{
+	width:100%;
+	height:34px;
+	border:1px solid #ccc;
+	color:#999;
+	margin:0;
+	border-radius:0;
+}
+.panel .form-table input.input-mini,.panel .form-table-h input.input-mini,.panel .input-default input.input-mini{
+	width:60px; 
+	margin:0 10px;
+}
+.panel .form-table input.m-l-none,.panel .form-table-h input.m-l-none,.panel .input-default input.m-l-none{
+	margin-left:0;
+}
+.panel .form-table input[type="text"]:focus,.panel .form-table-h input[type="text"]:focus,.panel .input-default input[type="text"]:focus{
+	border-color:#b5d2e6;
+}
+.panel .form-table select.w200{width: 200px;}
+.panel .form-table select.w100{width: 100px;}
+.panel .form-table select.w80{width: 80px;}
+.panel-heading .a-icon{
+	margin-top: -2px; 
+	margin-left: 10px;
+	padding-left: 0;
+}
+.panel .table-wrap .input-style,.cbox .input-style,h2 .input-style{
+	background-color:transparent;
+	display:inline-block;
+	height:31px;
+	position:relative;
+	width:100%;
+}
+.panel .table-wrap .input-style input,.panel .table-wrap .input-style ladel,.cbox .input-style input,h2 .input-style input{
+	background-color: transparent;
+	border:0 none; 
+	border-bottom:1px solid #ccc;
+	box-shadow: none; 
+	height:31px;
+}
+.panel .table-wrap .input-style input{
+	border-radius:0;
+	width:100%;
+}
+.panel .table-wrap .input-style:before,.cbox .input-style:before,h2 .input-style:before{
+	content:"";
+	color:#ccc;
+	font-size:12px;
+	position:absolute;
+	left:0px;
+	bottom:0px;
+	height:10px;
+	border-left:1px solid #ccc;
+}
+.panel .table-wrap .input-style:after,.cbox .input-style:after,h2 .input-style:after{
+	content:"";
+	color:#ccc;
+	font-size:12px;
+	position:absolute;
+	right:0px;
+	bottom:0px;
+	height:10px;
+	border-right:1px solid #ccc;
+}
+
+/*列表table上border样式*/
+@for $i from 1 through 56 {
+	$index : $i%length($global-table-top-colors);
+	@if($index == 0){
+		$index :length($global-table-top-colors);
+	}
+	$color : nth($global-table-top-colors,$index);
+	$selector : +td;
+
+	$outTdIndex : $i - 1;
+	@if($outTdIndex > 0){
+		@for $k from 1 through $outTdIndex {
+			@if($k != 1){
+				$selector : $selector + (+td);
+			}
+		}
+		.panel .table>tbody>tr:first-child>td:first-child#{$selector}{
+	    	border-top: 2px solid $color;
+	    }
+	}@else{
+		.panel .table>tbody>tr:first-child>td:first-child{
+	    	border-top: 2px solid $color;
+	    }
+	}
+}
+/*form-table 上border样式*/
+.panel .form-table>table>tbody>tr:first-child>td{
+	border-top:2px solid $global-table-border-gray-color !important;
+}
+@for $i from 1 through 29 {
+	@if($i % 2 == 1){
+		$index : $global-table-color-index % length($global-table-top-colors);
+		@if($index == 0){
+			$index :length($global-table-top-colors);
+		}
+		$color : nth($global-table-top-colors,$index);
+		$selector : +td;
+		@if($i == 1){
+			.panel .form-table>table>tbody>tr:first-child>td:first-child{
+				border-top: 2px solid $color !important;
+			}
+		}@else{
+			@for $k from 1 through $i {
+				@if($k != 1){
+					$selector : $selector + (+td);
+				}
+			}
+			.panel .form-table>table>tbody>tr:first-child>td:first-child#{$selector}{
+				border-top: 2px solid $color !important;
+			}
+		}
+		$global-table-color-index:$global-table-color-index+1;
+	}
+}
+.panel .brn.table>tbody>tr:first-child>td{
+	border-top:1px solid $global-table-border-gray-color !important;
+}
+.panel .form-table .brn.table>tbody>tr:first-child>td{
+	border-top:1px solid $global-table-border-gray-color !important;
+}
+.panel .table>tbody>tr>td>div>table>tbody>tr:first-child>td{
+	border-top:1px solid $global-table-border-gray-color !important;
+}
+.panel .table>tbody>tr>td.pd{
+	padding:0 0 0 20px !important;
+}
+.panel .table>tbody>tr>td.pd>div.detail-html{
+	word-break:break-all;
+	word-wrap:break-word;
+	padding-right:20px;
+}
+.panel .table>tbody>tr>td.pd .table{
+	margin-bottom:0 !important;
+	border-right:none !important;
+}
+/*table 表单样式*/
+.panel .table-wrap.m-20-auto{
+	margin:20px auto;
+}
+.panel .form-style thead>tr>th,.panel .form-style>tbody>tr>td{
+	height:$global-form-td-height;
+	color:$global-form-text-color;
+}
+.panel .form-style>tbody>tr>td>ul>li>a{
+	font-weight:normal;
+}
+.form-style{
+	width:100%;
+	border:1px solid $global-form-border-red;
+	table-layout:fixed;
+	border-left: 0;
+	background-color: transparent;
+	border-collapse: collapse;
+	border-spacing: 0;
+	th,td{
+		padding:$global-form-table-td-padding;
+		line-height:20px;
+		text-align:left;
+		border-top:1px solid $global-form-border-red;
+		border-left:1px solid $global-form-border-red;
+		word-break:break-all;
+	}
+	th{
+		font-weight:bold;
+	}
+	thead th{
+		vertical-align:bottom;
+	}
+	caption+thead tr:first-child th,
+	caption+thead tr:first-child td,
+	colgroup+thead tr:first-child th,
+	colgroup+thead tr:first-child td,
+	thead:first-child tr:first-child th,
+	thead:first-child tr:first-child td{
+		border-top:0;
+	}
+	tbody+tbody{
+		border-top:1px solid $global-form-border-red;
+	}
+	.table{
+		background-color:$global-form-table-bg-color;
+	}
+	caption+tbody tr:first-child th,
+	caption+tbody tr:first-child td,
+	colgroup+tbody tr:first-child th,
+	colgroup+tbody tr:first-child td,
+	tbody:first-child tr:first-child th,
+	tbody:first-child tr:first-child td{
+		border-top:0;
+	}
+}
+/*没有左右边框样式*/
+.form-style{
+	&.horizontal-border{
+		width:100%;
+		border-left:0 none !important;
+		border-right: 0 none !important;
+
+		td input[type="text"]{
+			padding:0 !important;
+		}
+		th,td{
+			border-left:0px solid $global-form-border-red !important;
+		}
+	}
+}
+/* 黑色边框线 */
+.form-style{
+	&.black-border{
+		border:1px solid $global-form-border-black;
+		th,td{
+			border-top:1px solid $global-form-border-black;
+			border-left:1px solid $global-form-border-black;
+		}
+	}
+}
+/*单元格 背景颜色工具样式*/
+.form-style{
+	td.bg-right,tr.bg-right td{
+		background-color: $global-form-bg-color !important;
+		text-align: right !important;
+		font-weight: bold !important;
+	}
+	td.bg-red-right,tr.bg-red-right td{
+		color: $global-form-border-red !important;
+		background-color: $global-form-bg-color !important;
+		text-align: right !important;
+		font-weight: bold !important;
+	}
+	td.text-center,tr.text-center td{
+		text-align: center !important;
+	}
+	td.text-bold,tr.text-bold td{
+		font-weight: bold !important;
+	}
+	td.text-red-right,tr.text-red-right td{
+		color: $global-form-border-red !important;
+		text-align: right !important;
+		font-weight: bold !important;
+	}
+}
+.red-line-top{
+	height: 3px;
+	background: $global-form-border-red;
+	display: block;
+	margin-bottom: 2px;
+}
+.red-line-bottom{
+	height: 3px;
+	background: $global-form-border-red;
+	display: block;
+	margin-top: 2px;
+}
+.black-line-top{
+	height: 3px;
+	background: $global-form-border-black;
+	display: block;
+	margin-bottom: 2px;
+}
+.black-line-bottom{
+	height: 3px;
+	background: $global-form-border-black;
+	display: block;
+	margin-top: 2px;
+}
+.only-bottom-border{
+	float: right;
+	dl{
+		margin:0;
+		dt,dd{
+			width:60%;
+			display: inline-block;
+			padding-bottom:5px;
+			margin:0;
+			input[type="text"]{
+				width:100%;
+				margin:0 0 5px;
+				background-color: transparent;
+				border: 0 none;
+				border-bottom: 1px solid #ccc;
+				box-shadow: none;
+				height: 31px;
+			}
+		}
+		dt{
+			width:37%;
+			padding:0 5px 0 0;
+			text-align: right;
+		}
+	}
+}
+
+.none-border-title{
+	display: table;width: 100%;
+	dl{
+		display: table-cell;
+		dt,dd{
+			display: inline;
+			// 解决dt，dd包含块级元素不对齐问题
+			&>div{
+				display: inline-table;  
+				vertical-align: middle;
+			}
+		}
+	}
+	.right{
+		text-align: right;
+	}
+}

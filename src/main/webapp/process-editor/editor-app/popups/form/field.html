@@ -1,0 +1,75 @@
+<div ng-repeat="property in selectedItem">
+    <div class="table-responsive" ng-controller="ActivitiFieldAttributeCtrl">
+
+        <ul class="nav nav-tabs short" role="tablist">
+            <li role="presentation" ng-show="sheetType.todo" ng-class="{'active': fieldTypeActive == 'todo'}">
+                <a href="javascript:void(0);" ng-click="fieldTypeActive = 'todo'">待办</a>
+            </li>
+            <li role="presentation" ng-show="sheetType.have" ng-class="{'active': fieldTypeActive == 'have'}">
+                <a href="javascript:void(0);" ng-click="fieldTypeActive = 'have'">已办</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane" ng-class="{'active': fieldTypeActive == 'todo'}">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="width: 50px;">编辑</th>
+                        <th style="width: 50px;">只读</th>
+                        <th style="width: 50px;">隐藏</th>
+                        <th style="width: 220px;text-align: center;">自定义属性和值</th>
+                        <th>字段名称</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="field in fieldTodoList">
+                        <!--{{field.privilege ? field.privilege = "edit" ? field.privilege}}-->
+                        <td class="td-tc"><input type="radio" name="todo_{{field.id}}" ng-click="fieldTodoClick($index , 'edit')" ng-checked="field.privilege === 'edit'"/></td>
+                        <td class="td-tc"><input type="radio" name="todo_{{field.id}}" ng-click="fieldTodoClick($index , 'readonly')" ng-checked="field.privilege === 'readonly'"/></td>
+                        <td class="td-tc"><input type="radio" name="todo_{{field.id}}" ng-click="fieldTodoClick($index , 'hidden')" ng-checked="field.privilege === 'hidden'"/></td>
+                        <td class="td-tc" style="text-align: left;">
+	                        <table>
+		                        <tr ng-repeat="custom in todoCustomPropertyArray" ng-if="custom.type.indexOf(field.type) != -1">
+									<td>
+										<label class="checkbox-inline" style="padding: 0px;margin: {{$index=='0'?'0px':'5px'}} 0px 0px 0px;">
+											<input type="checkbox" id="todo_{{custom.id}}_{{$parent.$parent.$index}}" name="todo_{{custom.id}}_{{$parent.$parent.$index}}" 
+												ng-click="changeTodoCustomProperty($parent.$parent.$index, custom.id, $event)" 
+												ng-checked="checkTodoCustomProperty($parent.$parent.$index, custom.id)" style="margin: 4px 5px 0px 5px;">
+											{{custom.name}}&nbsp;&nbsp;
+										</label>
+									</td>
+			                        <td>
+				                        <input type="text" id="todo_{{custom.id}}_value_{{$parent.$parent.$index}}" name="todo_{{custom.id}}_value_{{$parent.$parent.$index}}" 
+					                        value="{{field.customProperty[custom.id].value}}" ng-keyup="changeTodoCustomPropertyValue($parent.$parent.$index, custom.id)" 
+					                        style="width: 100px;margin: {{$index=='0'?'0px':'5px'}} 0px 0px 0px;">
+			                        </td>
+			                    </tr>
+							</table>
+                        </td>
+                        <td>{{field.itemName}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane" ng-class="{'active': fieldTypeActive == 'have'}">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="width: 50px;">只读</th>
+                        <th style="width: 50px;">隐藏</th>
+                        <th>字段名称</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="field in fieldHaveList">
+                        <!--{{field.privilege ? field.privilege = "edit" ? field.privilege}}-->
+                        <td class="td-tc"><input type="radio" name="have_{{field.id}}" ng-click="fieldHaveClick($index , 'readonly')" ng-checked="field.privilege === 'readonly'"/></td>
+                        <td class="td-tc"><input type="radio" name="have_{{field.id}}" ng-click="fieldHaveClick($index , 'hidden')" ng-checked="field.privilege === 'hidden'"/></td>
+                        <td>{{field.itemName}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <remind>
+        <!--<control id="daiban" iclass="fa fa-gtasks-query" dataoriginaltitle="待办中心" onclickurl="/workFlow/processInstance/getTodoList.action" tegartClass="org.ext.control.workflow.service.impl.WorkflowRemindImpl"/>
+        <control id="myWorklog"  iclass="fa fa-clipboard" dataoriginaltitle="我的日志" onclickurl="/po/worklog/myWorklogCalendarSkip.action" tegartClass="com.jc.system.remind.service.impl.NoRemindImpl"/>
+        <control id="Mydoc"  iclass="fa fa-my-documents" dataoriginaltitle="我的文档" onclickurl="/archive/folder/manageMydoc.action" tegartClass="com.jc.system.remind.service.impl.NoRemindImpl"/>	   						
+        <control id="email"  iclass="fa fa-paste" dataoriginaltitle="写邮件" onclickurl="/ic/mail/manageSend.action" tegartClass="com.jc.system.remind.service.impl.NoRemindImpl"/>	-->
+	</remind>
+</config>

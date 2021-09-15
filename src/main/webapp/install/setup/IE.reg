@@ -1,0 +1,25 @@
+Windows Registry Editor Version 5.00
+[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\New Windows]
+"PopupMgr"="no"
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0]
+"1609"=dword:00000000
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1]
+p9"=dword:00000000
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2]
+"1609"=dword:00000000
+"1001"=dword:00000000
+"1004"=dword:00000000
+"1200"=dword:00000000
+"1405"=dword:00000000
+"1201"=dword:00000000
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3]
+"1609"=dword:00000000
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4]
+"1609"=dword:00000000
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Ranges\Range1]
+"http"=dword:00000002
+":Range"="192.168.100.1"
+[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\New Windows\Allow]
+"192.168.100.1"=hex:
+[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Styles]
+"MaxScriptStatements"=dword:FFFFFFFF

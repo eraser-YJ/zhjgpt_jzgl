@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.Setting">
+
+	<select id="query" parameterType="com.jc.system.security.domain.Setting" resultType="com.jc.system.security.domain.Setting">
+		SELECT 
+			t.ID id,
+			t.setting_key settingKey,
+			t.setting_value settingValue,
+			t.setting_comment settingComment,
+			t.setting_input_type settingInputType,
+			t.setting_input_size settingInputSize,
+			t.setting_input_default settingInputDefault,
+			t.setting_input_remark settingInputRemark,
+			t.setting_input_validate settingInputValidate,
+			t.DELETE_FLAG deleteFlag,
+			t.CREATE_USER_ORG createUserOrg,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_USER createUser,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate
+			
+		FROM tty_sys_setting t
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="settingKey != null">
+				and t.setting_key = #{settingKey}
+			</if>
+			<if test="settingValue != null">
+				and t.setting_value = #{settingValue}
+			</if>
+		</where>
+		order by setting_input_queue
+	</select>
+	
+	
+	<select id="queryCount" parameterType="com.jc.system.security.domain.Setting" resultType="java.lang.Integer">
+		SELECT count(ID) 
+		FROM tty_sys_setting t
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="settingKey != null">
+				and t.setting_key = #{settingKey}
+			</if>
+			<if test="settingValue != null">
+				and t.setting_value = #{settingValue}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.system.security.domain.Setting">
+    	delete from tty_sys_setting
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.system.security.domain.Setting">
+    	UPDATE tty_sys_setting t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+
+	<insert id="insert" parameterType="com.jc.system.security.domain.Setting" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO tty_sys_setting(setting_key,setting_value,setting_comment,DELETE_FLAG,CREATE_USER_ORG,CREATE_USER_DEPT,CREATE_USER,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+			VALUES (#{settingKey,jdbcType=VARCHAR},#{settingValue,jdbcType=VARCHAR},#{settingComment,jdbcType=NUMERIC},#{deleteFlag,jdbcType=NUMERIC},#{createUserOrg,jdbcType=NUMERIC},#{createUserDept,jdbcType=NUMERIC},#{createUser,jdbcType=NUMERIC},#{createDate,jdbcType=TIMESTAMP},#{modifyUser,jdbcType=NUMERIC},#{modifyDate,jdbcType=TIMESTAMP},#{extDate1,jdbcType=TIMESTAMP},#{extDate2,jdbcType=TIMESTAMP},#{extNum1,jdbcType=NUMERIC},#{extNum2,jdbcType=NUMERIC},#{extNum3,jdbcType=NUMERIC},#{extStr1,jdbcType=VARCHAR},#{extStr2,jdbcType=VARCHAR},#{extStr3,jdbcType=VARCHAR},#{extStr4,jdbcType=VARCHAR},#{extStr5,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		INSERT INTO tty_sys_setting(setting_key,setting_value,setting_comment,DELETE_FLAG,CREATE_USER_ORG,CREATE_USER_DEPT,CREATE_USER,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.settingKey,jdbcType=VARCHAR},#{item.settingValue,jdbcType=VARCHAR},#{item.settingComment,jdbcType=NUMERIC},#{item.deleteFlag,jdbcType=NUMERIC},#{item.createUserOrg,jdbcType=NUMERIC},#{item.createUserDept,jdbcType=NUMERIC},#{item.createUser,jdbcType=NUMERIC},#{item.createDate,jdbcType=TIMESTAMP},#{item.modifyUser,jdbcType=NUMERIC},#{item.modifyDate,jdbcType=TIMESTAMP},#{item.extDate1,jdbcType=TIMESTAMP},#{item.extDate2,jdbcType=TIMESTAMP},#{item.extNum1,jdbcType=NUMERIC},#{item.extNum2,jdbcType=NUMERIC},#{item.extNum3,jdbcType=NUMERIC},#{item.extStr1,jdbcType=VARCHAR},#{item.extStr2,jdbcType=VARCHAR},#{item.extStr3,jdbcType=VARCHAR},#{item.extStr4,jdbcType=VARCHAR},#{item.extStr5,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.system.security.domain.Setting">
+	UPDATE tty_sys_setting
+	   <set>
+	   	<if test="settingKey != null">
+	   		setting_key = #{settingKey},
+	   	</if>
+	   	<if test="settingValue != null">
+	   		setting_value = #{settingValue},
+	   	</if>
+	   	<if test="settingComment != null">
+	   		setting_comment = #{settingComment},
+	   	</if>
+	   	<if test="deleteFlag != null">
+	   		DELETE_FLAG = #{deleteFlag},
+	   	</if>
+	   	<if test="createUserOrg != null">
+	   		CREATE_USER_ORG = #{createUserOrg},
+	   	</if>
+	   	<if test="createUserDept != null">
+	   		CREATE_USER_DEPT = #{createUserDept},
+	   	</if>
+	   	<if test="createUser != null">
+	   		CREATE_USER = #{createUser},
+	   	</if>
+	   	<if test="createDate != null">
+	   		CREATE_DATE = #{createDate},
+	   	</if>
+	   	<if test="modifyUser != null">
+	   		MODIFY_USER = #{modifyUser},
+	   	</if>
+	   	<if test="modifyDate != null">
+	   		MODIFY_DATE = #{modifyDate},
+	   	</if>
+	   </set>
+	   <where>
+			<if test="id != null">
+				and ID = #{id}
+			</if>
+			<if test="settingKey != null">
+				and setting_key = #{settingKey}
+			</if>
+		</where>
+	</update>
+
+</mapper>

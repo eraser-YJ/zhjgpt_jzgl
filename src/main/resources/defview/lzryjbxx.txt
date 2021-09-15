@@ -1,0 +1,34 @@
+SELECT * FROM (
+SELECT
+  t.lzry_xm,
+  t.lzry_sex,
+  tsex.value lzry_sex_value,
+  t.lzry_sfz_num,
+  t.lzry_tel,
+  SUM(IF(rel.project_name != NULL,0,1)) projectCount,
+  t.data_resource dataSrc
+FROM pt_lzry_info t
+  LEFT OUTER JOIN pt_lzry_project_map rel
+    ON rel.lzry_sfz_num = t.lzry_sfz_num
+
+  LEFT OUTER JOIN tty_sys_dics tsex
+    ON tsex.code = t.lzry_sex
+      AND tsex.parent_id = 'sex'
+    WHERE 1=1
+    <if test="personName != null">
+        and t.lzry_xm like concat('%',#{personName},'%')
+    </if>
+    <if test="personCertNum != null">
+        and t.lzry_sfz_num like concat('%',#{personCertNum},'%')
+    </if>
+    <if test="personTel != null">
+        and t.lzry_tel like concat('%',#{personTel},'%')
+    </if>
+    <if test="dataSrc != null">
+        and t.data_resource = #{dataSrc}
+    </if>
+GROUP BY t.lzry_xm, t.lzry_sex,tsex.value, t.lzry_sfz_num, t.lzry_tel
+)  t1
+
+
+ORDER BY t1.lzry_xm,t1.lzry_sfz_num

@@ -1,0 +1,11 @@
+/* 字体图标*/
+@font-face{
+	font-family:'YixunFont';
+	src:url('../fonts/jcgoafont.eot');
+	src:url('../fonts/jcgoafont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/jcgoafont.woff') format('woff'),
+	url('../fonts/jcgoafont.ttf') format('truetype'),
+	url('../fonts/jcgoafont.svg#svgFontName') format('svg');
+	font-weight:normal;
+	font-style:normal
+}

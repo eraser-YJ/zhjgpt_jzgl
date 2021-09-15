@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.RoleMenus">
+
+	<select id="query" parameterType="com.jc.system.security.domain.RoleMenus" resultType="com.jc.system.security.domain.RoleMenus">
+		SELECT 	
+		ROLE_ID as roleId, 
+		MENU_ID as menuId, 
+		DELETE_FLAG as deleteFlag
+		FROM tty_sys_role_menu 
+		<where>
+			<if test="roleId != null">
+				ROLE_ID = #{roleId}
+			</if>
+			<if test="menuId != null">
+				MENU_ID = #{menuId}
+			</if>
+		</where>
+	</select>
+
+
+	<insert parameterType="com.jc.system.security.domain.RoleMenus" id="insert">
+		INSERT INTO tty_sys_role_menu(ID,ROLE_ID, MENU_ID,CREATE_USER,CREATE_DATE,CREATE_USER_DEPT,MODIFY_USER,MODIFY_DATE,DELETE_FLAG)
+		VALUES (#{id,jdbcType=VARCHAR},#{roleId,jdbcType=VARCHAR},#{menuId,jdbcType=VARCHAR},#{createUser,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{createUserDept,jdbcType=VARCHAR},#{modifyUser,jdbcType=VARCHAR},#{modifyDate,jdbcType=TIMESTAMP},0)
+	</insert>
+
+
+	<insert parameterType="com.jc.system.security.domain.RoleMenus" id="insertList">
+		INSERT INTO tty_sys_role_menu (ID,ROLE_ID, MENU_ID,CREATE_USER,CREATE_DATE,CREATE_USER_DEPT,MODIFY_USER,MODIFY_DATE,DELETE_FLAG) VALUES
+	<foreach separator="," index="index" item="item" collection="list">
+		(#{item.id,jdbcType=VARCHAR},#{item.roleId,jdbcType=VARCHAR},#{item.menuId,jdbcType=VARCHAR},#{item.createUser,jdbcType=VARCHAR},#{item.createDate,jdbcType=TIMESTAMP},#{item.createUserDept,jdbcType=VARCHAR},#{item.modifyUser,jdbcType=VARCHAR},#{item.modifyDate,jdbcType=TIMESTAMP},0) </foreach>
+	</insert>
+
+	<update id="deleteByIds" parameterType="com.jc.system.security.domain.RoleMenus">
+    	UPDATE t_role_menus SET DELETE_FLAG = 1 where ROLE_ID = #{roleId}
+ 	</update>
+ 	
+ 	<update id="deleteLogic"  parameterType="com.jc.system.security.domain.RoleMenus">
+		<![CDATA[
+    		UPDATE tty_sys_role_menu set DELETE_FLAG = 1, MODIFY_USER = #{modifyUser}, MODIFY_DATE = #{modifyDate}
+    	]]>
+      	<where>			
+			<if test="roleId != null">
+				 ROLE_ID = #{roleId}
+			</if>
+		</where>
+ 	</update>
+	<delete id="deletePhysical"  parameterType="com.jc.system.security.domain.RoleMenus">
+    	delete from tty_sys_role_menu
+      		where ROLE_ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+
+	<select id="queryMenuForRoles" parameterType="java.lang.String" resultType="com.jc.system.security.domain.Menu">
+ 		SELECT
+		t.ID id,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.PARENT_ID parentId,
+		t.ICON icon,
+		t.MENU_TYPE menuType,
+		t.ACTION_NAME actionName,
+		t.DELETE_FLAG deleteFlag,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_USER_DEPT createUserDept,
+		t.CREATE_USER_ORG createUserOrg,
+		t.CREATE_DATE createDate,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.IS_SHOW isShow,
+		t.permission permission,
+		t.ext_str1 extStr1,
+		t.ext_str2 extStr2
+		FROM tty_sys_menu t,tty_sys_role_menu t1
+		WHERE t1.role_id IN(${_parameter}) AND t.ID=t1.MENU_ID AND t.ACTION_NAME !=''
+ 	</select>
+</mapper>

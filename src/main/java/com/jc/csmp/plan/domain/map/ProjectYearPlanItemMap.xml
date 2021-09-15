@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.csmp.plan.domain.ProjectYearPlanItem">
+
+	<insert id="insert" parameterType="com.jc.csmp.plan.domain.ProjectYearPlanItem" useGeneratedKeys="true" keyProperty="id">
+		insert into cm_project_year_plan_item (id,project_total_day,project_after_invest,head_id,project_type,project_type_name,project_id,project_name,duty_company,duty_person,gov_duty_person,project_desc,contract_company,contract_person,project_start_date,project_end_date,project_total_invest,project_used_invest,project_now_invest,project_now_invest_src1,project_now_invest_src2,project_now_invest_src3,project_now_invest_src4,project_now_invest_src5,project_now_invest_src6,project_now_invest_src7,project_now_invest_src8,project_now_invest_src9,project_now_invest_src10,project_now_invest_src11,project_now_invest_src12,project_now_desc,remark,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,CREATE_USER_ORG,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3)
+		values (#{id},#{projectTotalDay},#{projectAfterInvest},#{headId},#{projectType},#{projectTypeName},#{projectId},#{projectName},#{dutyCompany},#{dutyPerson},#{govDutyPerson},#{projectDesc},#{contractCompany},#{contractPerson},#{projectStartDate},#{projectEndDate},#{projectTotalInvest},#{projectUsedInvest},#{projectNowInvest},#{projectNowInvestSrc1},#{projectNowInvestSrc2},#{projectNowInvestSrc3},#{projectNowInvestSrc4},#{projectNowInvestSrc5},#{projectNowInvestSrc6},#{projectNowInvestSrc7},#{projectNowInvestSrc8},#{projectNowInvestSrc9},#{projectNowInvestSrc10},#{projectNowInvestSrc11},#{projectNowInvestSrc12},#{projectNowDesc},#{remark},#{deleteFlag},#{createUser},#{createUserDept},#{createDate},#{createUserOrg},#{modifyUser},#{modifyDate},#{extStr1},#{extStr2},#{extStr3},#{extStr4},#{extStr5},#{extDate1},#{extDate2},#{extNum1},#{extNum2},#{extNum3})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		insert into cm_project_year_plan_item (id,project_total_day,project_after_invest,head_id,project_type,project_type_name,,project_id,project_name,duty_company,duty_person,gov_duty_person,project_desc,contract_company,contract_person,project_start_date,project_end_date,project_total_invest,project_used_invest,project_now_invest,project_now_invest_src1,project_now_invest_src2,project_now_invest_src3,project_now_invest_src4,project_now_invest_src5,project_now_invest_src6,project_now_invest_src7,project_now_invest_src8,project_now_invest_src9,project_now_invest_src10,project_now_invest_src11,project_now_invest_src12,project_now_desc,remark,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,CREATE_USER_ORG,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id},#{item.projectTotalDay},#{item.projectAfterInvest},#{item.headId},#{item.projectType},#{item.projectTypeName},#{item.projectId},#{item.projectName},#{item.dutyCompany},#{item.dutyPerson},#{item.govDutyPerson},#{item.projectDesc},#{item.contractCompany},#{item.contractPerson},#{item.projectStartDate},#{item.projectEndDate},#{item.projectTotalInvest},#{item.projectUsedInvest},#{item.projectNowInvest},#{item.projectNowInvestSrc1},#{item.projectNowInvestSrc2},#{item.projectNowInvestSrc3},#{item.projectNowInvestSrc4},#{item.projectNowInvestSrc5},#{item.projectNowInvestSrc6},#{item.projectNowInvestSrc7},#{item.projectNowInvestSrc8},#{item.projectNowInvestSrc9},#{item.projectNowInvestSrc10},#{item.projectNowInvestSrc11},#{item.projectNowInvestSrc12},#{item.projectNowDesc},#{item.remark},#{item.deleteFlag},#{item.createUser},#{item.createUserDept},#{item.createDate},#{item.createUserOrg},#{item.modifyUser},#{item.modifyDate},#{item.extStr1},#{item.extStr2},#{item.extStr3},#{item.extStr4},#{item.extStr5},#{item.extDate1},#{item.extDate2},#{item.extNum1},#{item.extNum2},#{item.extNum3})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.csmp.plan.domain.ProjectYearPlanItem">
+		update cm_project_year_plan_item set
+		<if test="id != null">id=#{id},</if>
+		<if test="projectTotalDay != null">project_total_day=#{projectTotalDay},</if>
+		<if test="headId != null">head_id=#{headId},</if>
+		<if test="projectType != null">project_type=#{projectType},</if>
+		<if test="projectTypeName != null">project_type_name=#{projectTypeName},</if>
+		<if test="projectId != null">project_id=#{projectId},</if>
+		<if test="projectName != null">project_name=#{projectName},</if>
+		<if test="dutyCompany != null">duty_company=#{dutyCompany},</if>
+		<if test="dutyPerson != null">duty_person=#{dutyPerson},</if>
+		<if test="govDutyPerson != null">gov_duty_person=#{govDutyPerson},</if>
+		<if test="projectDesc != null">project_desc=#{projectDesc},</if>
+		<if test="contractCompany != null">contract_company=#{contractCompany},</if>
+		<if test="contractPerson != null">contract_person=#{contractPerson},</if>
+		<if test="projectStartDate != null">project_start_date=#{projectStartDate},</if>
+		<if test="projectEndDate != null">project_end_date=#{projectEndDate},</if>
+		<if test="projectTotalInvest != null">project_total_invest=#{projectTotalInvest},</if>
+		<if test="projectUsedInvest != null">project_used_invest=#{projectUsedInvest},</if>
+		<if test="projectNowInvest != null">project_now_invest=#{projectNowInvest},</if>
+		<if test="projectAfterInvest != null">project_after_invest=#{projectAfterInvest},</if>
+		<if test="projectNowInvestSrc1 != null">project_now_invest_src1=#{projectNowInvestSrc1},</if>
+		<if test="projectNowInvestSrc2 != null">project_now_invest_src2=#{projectNowInvestSrc2},</if>
+		<if test="projectNowInvestSrc3 != null">project_now_invest_src3=#{projectNowInvestSrc3},</if>
+		<if test="projectNowInvestSrc4 != null">project_now_invest_src4=#{projectNowInvestSrc4},</if>
+		<if test="projectNowInvestSrc5 != null">project_now_invest_src5=#{projectNowInvestSrc5},</if>
+		<if test="projectNowInvestSrc6 != null">project_now_invest_src6=#{projectNowInvestSrc6},</if>
+		<if test="projectNowInvestSrc7 != null">project_now_invest_src7=#{projectNowInvestSrc7},</if>
+		<if test="projectNowInvestSrc8 != null">project_now_invest_src8=#{projectNowInvestSrc8},</if>
+		<if test="projectNowInvestSrc9 != null">project_now_invest_src9=#{projectNowInvestSrc9},</if>
+		<if test="projectNowInvestSrc10 != null">project_now_invest_src10=#{projectNowInvestSrc10},</if>
+		<if test="projectNowInvestSrc11 != null">project_now_invest_src11=#{projectNowInvestSrc11},</if>
+		<if test="projectNowInvestSrc12 != null">project_now_invest_src12=#{projectNowInvestSrc12},</if>
+		<if test="projectNowDesc != null">project_now_desc=#{projectNowDesc},</if>
+		<if test="remark != null">remark=#{remark},</if>
+		<if test="deleteFlag != null">DELETE_FLAG=#{deleteFlag},</if>
+		<if test="createUser != null">CREATE_USER=#{createUser},</if>
+		<if test="createUserDept != null">CREATE_USER_DEPT=#{createUserDept},</if>
+		<if test="createDate != null">CREATE_DATE=#{createDate},</if>
+		<if test="createUserOrg != null">CREATE_USER_ORG=#{createUserOrg},</if>
+		<if test="modifyUser != null">MODIFY_USER=#{modifyUser},</if>
+		<if test="modifyDate != null">MODIFY_DATE=#{modifyDate},</if>
+		<if test="extStr1 != null">EXT_STR1=#{extStr1},</if>
+		<if test="extStr2 != null">EXT_STR2=#{extStr2},</if>
+		<if test="extStr3 != null">EXT_STR3=#{extStr3},</if>
+		<if test="extStr4 != null">EXT_STR4=#{extStr4},</if>
+		<if test="extStr5 != null">EXT_STR5=#{extStr5},</if>
+		<if test="extDate1 != null">EXT_DATE1=#{extDate1},</if>
+		<if test="extDate2 != null">EXT_DATE2=#{extDate2},</if>
+		<if test="extNum1 != null">EXT_NUM1=#{extNum1},</if>
+		<if test="extNum2 != null">EXT_NUM2=#{extNum2},</if>
+		<if test="extNum3 != null">EXT_NUM3=#{extNum3},</if>
+	   	MODIFY_DATE = #{modifyDateNew} where ID = #{id}
+	</update>
+
+
+	<sql id="Base_Column_List" >
+		t.id id,
+		t.project_total_day projectTotalDay,
+		t.head_id headId,
+		t.project_type projectType,
+		t.project_type_name projectTypeName,
+		t.project_id projectId,
+		t.project_name projectName,
+		t.duty_company dutyCompany,
+		t.duty_person dutyPerson,
+		t.gov_duty_person govDutyPerson,
+		t.project_desc projectDesc,
+		t.contract_company contractCompany,
+		t.contract_person contractPerson,
+		t.project_start_date projectStartDate,
+		t.project_end_date projectEndDate,
+		t.project_total_invest projectTotalInvest,
+		t.project_used_invest projectUsedInvest,
+		t.project_now_invest projectNowInvest,
+		t.project_after_invest projectAfterInvest,
+		t.project_now_invest_src1 projectNowInvestSrc1,
+		t.project_now_invest_src2 projectNowInvestSrc2,
+		t.project_now_invest_src3 projectNowInvestSrc3,
+		t.project_now_invest_src4 projectNowInvestSrc4,
+		t.project_now_invest_src5 projectNowInvestSrc5,
+		t.project_now_invest_src6 projectNowInvestSrc6,
+		t.project_now_invest_src7 projectNowInvestSrc7,
+		t.project_now_invest_src8 projectNowInvestSrc8,
+		t.project_now_invest_src9 projectNowInvestSrc9,
+		t.project_now_invest_src10 projectNowInvestSrc10,
+		t.project_now_invest_src11 projectNowInvestSrc11,
+		t.project_now_invest_src12 projectNowInvestSrc12,
+		t.project_now_desc projectNowDesc,
+		t.remark remark,
+		t.DELETE_FLAG deleteFlag,
+		t.CREATE_USER createUser,
+		t.CREATE_USER_DEPT createUserDept,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_ORG createUserOrg,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5,
+		t.EXT_DATE1 extDate1,
+		t.EXT_DATE2 extDate2,
+		t.EXT_NUM1 extNum1,
+		t.EXT_NUM2 extNum2,
+		t.EXT_NUM3 extNum3
+	</sql>
+	
+	<sql id="Base_Query_Where" >
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+
+			<if test="projectTotalDay != null">
+				and t.project_total_day = #{projectTotalDay}
+			</if>
+
+			<if test="headId != null">
+				and t.head_id = #{headId}
+			</if>
+
+			<if test="projectType != null">
+				and t.project_type = #{projectType}
+			</if>
+
+			<if test="projectTypeName != null">
+				and t.project_type_name = #{projectTypeName}
+			</if>
+
+			<if test="projectId != null">
+				and t.project_id = #{projectId}
+			</if>
+
+			<if test="projectName != null">
+				and t.project_name = #{projectName}
+			</if>
+
+			<if test="dutyCompany != null">
+				and t.duty_company = #{dutyCompany}
+			</if>
+
+			<if test="dutyPerson != null">
+				and t.duty_person = #{dutyPerson}
+			</if>
+
+			<if test="govDutyPerson != null">
+				and t.gov_duty_person = #{govDutyPerson}
+			</if>
+
+			<if test="projectDesc != null">
+				and t.project_desc = #{projectDesc}
+			</if>
+
+			<if test="contractCompany != null">
+				and t.contract_company = #{contractCompany}
+			</if>
+
+			<if test="contractPerson != null">
+				and t.contract_person = #{contractPerson}
+			</if>
+
+			<if test="projectStartDateBegin != null">
+				and t.project_start_date &gt;= #{projectStartDateBegin}
+			</if>
+			<if test="projectStartDateEnd != null">
+				and t.project_start_date &lt;= #{projectStartDateEnd}
+			</if>
+			<if test="projectStartDate != null">
+				and t.project_start_date = #{projectStartDate}
+			</if>
+			<if test="projectEndDateBegin != null">
+				and t.project_end_date &gt;= #{projectEndDateBegin}
+			</if>
+			<if test="projectEndDateEnd != null">
+				and t.project_end_date &lt;= #{projectEndDateEnd}
+			</if>
+			<if test="projectEndDate != null">
+				and t.project_end_date = #{projectEndDate}
+			</if>
+			<if test="projectTotalInvest != null">
+				and t.project_total_invest = #{projectTotalInvest}
+			</if>
+
+			<if test="projectUsedInvest != null">
+				and t.project_used_invest = #{projectUsedInvest}
+			</if>
+
+			<if test="projectNowInvest != null">
+				and t.project_now_invest = #{projectNowInvest}
+			</if>
+
+			<if test="projectAfterInvest != null">
+				and t.project_after_invest = #{projectAfterInvest}
+			</if>
+
+			<if test="projectNowInvestSrc1 != null">
+				and t.project_now_invest_src1 = #{projectNowInvestSrc1}
+			</if>
+
+			<if test="projectNowInvestSrc2 != null">
+				and t.project_now_invest_src2 = #{projectNowInvestSrc2}
+			</if>
+
+			<if test="projectNowInvestSrc3 != null">
+				and t.project_now_invest_src3 = #{projectNowInvestSrc3}
+			</if>
+
+			<if test="projectNowInvestSrc4 != null">
+				and t.project_now_invest_src4 = #{projectNowInvestSrc4}
+			</if>
+
+			<if test="projectNowInvestSrc5 != null">
+				and t.project_now_invest_src5 = #{projectNowInvestSrc5}
+			</if>
+
+			<if test="projectNowInvestSrc6 != null">
+				and t.project_now_invest_src6 = #{projectNowInvestSrc6}
+			</if>
+
+			<if test="projectNowInvestSrc7 != null">
+				and t.project_now_invest_src7 = #{projectNowInvestSrc7}
+			</if>
+
+			<if test="projectNowInvestSrc8 != null">
+				and t.project_now_invest_src8 = #{projectNowInvestSrc8}
+			</if>
+
+			<if test="projectNowInvestSrc9 != null">
+				and t.project_now_invest_src9 = #{projectNowInvestSrc9}
+			</if>
+
+			<if test="projectNowInvestSrc10 != null">
+				and t.project_now_invest_src10 = #{projectNowInvestSrc10}
+			</if>
+
+			<if test="projectNowInvestSrc11 != null">
+				and t.project_now_invest_src11 = #{projectNowInvestSrc11}
+			</if>
+
+			<if test="projectNowInvestSrc12 != null">
+				and t.project_now_invest_src12 = #{projectNowInvestSrc12}
+			</if>
+
+			<if test="projectNowDesc != null">
+				and t.project_now_desc = #{projectNowDesc}
+			</if>
+
+			<if test="remark != null">
+				and t.remark = #{remark}
+			</if>
+
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+
+			<if test="extDate1Begin != null">
+				and t.EXT_DATE1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.EXT_DATE1 &lt;= #{extDate1End}
+			</if>
+			<if test="extDate1 != null">
+				and t.EXT_DATE1 = #{extDate1}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.EXT_DATE2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.EXT_DATE2 &lt;= #{extDate2End}
+			</if>
+			<if test="extDate2 != null">
+				and t.EXT_DATE2 = #{extDate2}
+			</if>
+			<if test="extNum1 != null">
+				and t.EXT_NUM1 = #{extNum1}
+			</if>
+
+			<if test="extNum2 != null">
+				and t.EXT_NUM2 = #{extNum2}
+			</if>
+
+			<if test="extNum3 != null">
+				and t.EXT_NUM3 = #{extNum3}
+			</if>
+
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+			<if test="queryYear != null">
+				and h.plan_year  = #{queryYear}
+			</if>
+			<if test="queryAreaCode != null">
+				and h.plan_area_code = #{queryAreaCode}
+			</if>
+			<if test="emptyProjectId != null">
+				and t.project_id is null
+			</if>
+		</where>
+	</sql>
+	<select id="query" parameterType="com.jc.csmp.plan.domain.ProjectYearPlanItem" resultType="com.jc.csmp.plan.domain.ProjectYearPlanItem">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM cm_project_year_plan_item t inner join cm_project_year_plan h on h.id = t.head_id
+		<include refid="Base_Query_Where"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.csmp.plan.domain.ProjectYearPlanItem" resultType="java.lang.Long">
+		SELECT count(t.ID) FROM cm_project_year_plan_item t
+		<include refid="Base_Query_Where"/>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.csmp.plan.domain.ProjectYearPlanItem">
+    	delete from cm_project_year_plan_item
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="headId != null">
+				and head_id = #{headId}
+			</if>
+			<if test="primaryKeys != null">
+				and id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.csmp.plan.domain.ProjectYearPlanItem">
+    	UPDATE cm_project_year_plan_item t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="headId != null">
+				and t.head_id = #{headId}
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</update>
+</mapper>

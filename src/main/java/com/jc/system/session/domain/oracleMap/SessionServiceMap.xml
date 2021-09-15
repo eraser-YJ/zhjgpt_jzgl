@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.session.domain.SessionService">
+
+	<insert id="insert" parameterType="com.jc.system.session.domain.SessionService">
+		INSERT INTO TTY_SYS_SESSION_SERVICE(ID,CREATE_USER_DEPT,USER_ID,CREATE_DATE,EXT_STR4,DEPT_NAME,EXT_DATE1,WEIGHT,EXT_DATE2,DELETE_FLAG,EXT_NUM3,EXT_STR1,CREATE_USER,EXT_STR3,MODIFY_USER,CREATE_USER_ORG,EXT_STR2,EXT_NUM1,SESSION_ID,SUBSYSTEM,EXT_STR5,MODIFY_DATE,SECRET,EXT_NUM2,USER_NAME)
+			VALUES (#{id,jdbcType=VARCHAR},#{createUserDept,jdbcType=VARCHAR},#{userId,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{extStr4,jdbcType=VARCHAR},#{deptName,jdbcType=VARCHAR},#{extDate1,jdbcType=TIMESTAMP},#{weight,jdbcType=NUMERIC},#{extDate2,jdbcType=TIMESTAMP},#{deleteFlag,jdbcType=NUMERIC},#{extNum3,jdbcType=NUMERIC},#{extStr1,jdbcType=VARCHAR},#{createUser,jdbcType=VARCHAR},#{extStr3,jdbcType=VARCHAR},#{modifyUser,jdbcType=VARCHAR},#{createUserOrg,jdbcType=VARCHAR},#{extStr2,jdbcType=VARCHAR},#{extNum1,jdbcType=NUMERIC},#{sessionId,jdbcType=VARCHAR},#{subsystem,jdbcType=VARCHAR},#{extStr5,jdbcType=VARCHAR},#{modifyDate,jdbcType=TIMESTAMP},#{secret,jdbcType=VARCHAR},#{extNum2,jdbcType=NUMERIC},#{userName,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		INSERT INTO TTY_SYS_SESSION_SERVICE(ID,CREATE_USER_DEPT,USER_ID,CREATE_DATE,EXT_STR4,DEPT_NAME,EXT_DATE1,WEIGHT,EXT_DATE2,DELETE_FLAG,EXT_NUM3,EXT_STR1,ID,CREATE_USER,EXT_STR3,MODIFY_USER,CREATE_USER_ORG,EXT_STR2,EXT_NUM1,SESSION_ID,SUBSYSTEM,EXT_STR5,MODIFY_DATE,SECRET,EXT_NUM2,USER_NAME)
+			VALUES
+			<foreach collection="list" item="item" index="index" separator=","> 
+				(#{item.id},#{item.createUserDept},#{item.userId},#{item.createDate},#{item.extStr4},#{item.deptName},#{item.extDate1},#{item.weight},#{item.extDate2},#{item.deleteFlag},#{item.extNum3},#{item.extStr1},#{item.id},#{item.createUser},#{item.extStr3},#{item.modifyUser},#{item.createUserOrg},#{item.extStr2},#{item.extNum1},#{item.sessionId},#{item.subsystem},#{item.extStr5},#{item.modifyDate},#{item.secret},#{item.extNum2},#{item.userName})
+			</foreach> 
+	</insert>
+
+	<update id="update" parameterType="com.jc.system.session.domain.SessionService">
+	UPDATE TTY_SYS_SESSION_SERVICE set
+	   	<if test="createUserDept != null">
+	   		CREATE_USER_DEPT = #{createUserDept},
+	   	</if>
+	   	<if test="userId != null">
+	   		USER_ID = #{userId},
+	   	</if>
+	   	<if test="createDate != null">
+	   		CREATE_DATE = #{createDate},
+	   	</if>
+	   	<if test="extStr4 != null">
+	   		EXT_STR4 = #{extStr4},
+	   	</if>
+	   	<if test="deptName != null">
+	   		DEPT_NAME = #{deptName},
+	   	</if>
+	   	<if test="extDate1 != null">
+	   		EXT_DATE1 = #{extDate1},
+	   	</if>
+	   	<if test="weight != null">
+	   		WEIGHT = #{weight},
+	   	</if>
+	   	<if test="extDate2 != null">
+	   		EXT_DATE2 = #{extDate2},
+	   	</if>
+	   	<if test="deleteFlag != null">
+	   		DELETE_FLAG = #{deleteFlag},
+	   	</if>
+	   	<if test="extNum3 != null">
+	   		EXT_NUM3 = #{extNum3},
+	   	</if>
+	   	<if test="extStr1 != null">
+	   		EXT_STR1 = #{extStr1},
+	   	</if>
+	   	<if test="id != null">
+	   		ID = #{id},
+	   	</if>
+	   	<if test="createUser != null">
+	   		CREATE_USER = #{createUser},
+	   	</if>
+	   	<if test="extStr3 != null">
+	   		EXT_STR3 = #{extStr3},
+	   	</if>
+	   	<if test="modifyUser != null">
+	   		MODIFY_USER = #{modifyUser},
+	   	</if>
+	   	<if test="createUserOrg != null">
+	   		CREATE_USER_ORG = #{createUserOrg},
+	   	</if>
+	   	<if test="extStr2 != null">
+	   		EXT_STR2 = #{extStr2},
+	   	</if>
+	   	<if test="extNum1 != null">
+	   		EXT_NUM1 = #{extNum1},
+	   	</if>
+	   	<if test="sessionId != null">
+	   		SESSION_ID = #{sessionId},
+	   	</if>
+	   	<if test="subsystem != null">
+	   		SUBSYSTEM = #{subsystem},
+	   	</if>
+	   	<if test="extStr5 != null">
+	   		EXT_STR5 = #{extStr5},
+	   	</if>
+	   	<if test="secret != null">
+	   		SECRET = #{secret},
+	   	</if>
+	   	<if test="extNum2 != null">
+	   		EXT_NUM2 = #{extNum2},
+	   	</if>
+	   	<if test="userName != null">
+	   		USER_NAME = #{userName},
+	   	</if>
+	   	MODIFY_DATE = #{modifyDateNew} where ID = #{id} and MODIFY_DATE = #{modifyDate}
+	</update>
+
+	<select id="query" parameterType="com.jc.system.session.domain.SessionService" resultType="com.jc.system.session.domain.SessionService">
+		SELECT 
+			t.CREATE_USER_DEPT createUserDept,
+			t.USER_ID userId,
+			t.CREATE_DATE createDate,
+			t.EXT_STR4 extStr4,
+			t.DEPT_NAME deptName,
+			t.EXT_DATE1 extDate1,
+			t.WEIGHT weight,
+			t.EXT_DATE2 extDate2,
+			t.DELETE_FLAG deleteFlag,
+			t.EXT_NUM3 extNum3,
+			t.EXT_STR1 extStr1,
+			t.ID id,
+			t.CREATE_USER createUser,
+			t.EXT_STR3 extStr3,
+			t.MODIFY_USER modifyUser,
+			t.CREATE_USER_ORG createUserOrg,
+			t.EXT_STR2 extStr2,
+			t.EXT_NUM1 extNum1,
+			t.SESSION_ID sessionId,
+			t.SUBSYSTEM subsystem,
+			t.EXT_STR5 extStr5,
+			t.MODIFY_DATE modifyDate,
+			t.SECRET secret,
+			t.EXT_NUM2 extNum2,
+			t.USER_NAME userName
+			
+		FROM TTY_SYS_SESSION_SERVICE t
+		<where>
+		
+		
+
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="userId != null">
+				and t.USER_ID = #{userId}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="deptName != null">
+				and t.DEPT_NAME = #{deptName}
+			</if>
+			<if test="extDate1 != null">
+				and t.EXT_DATE1 = #{extDate1}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.EXT_DATE1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.EXT_DATE1 &lt;= #{extDate1End}
+			</if>
+			<if test="weight != null">
+				and t.WEIGHT = #{weight}
+			</if>
+			<if test="extDate2 != null">
+				and t.EXT_DATE2 = #{extDate2}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.EXT_DATE2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.EXT_DATE2 &lt;= #{extDate2End}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="extNum3 != null">
+				and t.EXT_NUM3 = #{extNum3}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extNum1 != null">
+				and t.EXT_NUM1 = #{extNum1}
+			</if>
+			<if test="sessionId != null">
+				and t.SESSION_ID = #{sessionId}
+			</if>
+			<if test="subsystem != null">
+				and t.SUBSYSTEM = #{subsystem}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+			<if test="secret != null">
+				and t.SECRET = #{secret}
+			</if>
+			<if test="extNum2 != null">
+				and t.EXT_NUM2 = #{extNum2}
+			</if>
+			<if test="userName != null">
+				and t.USER_NAME = #{userName}
+			</if>
+		</where>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+	
+	
+	<select id="queryCount" parameterType="com.jc.system.session.domain.SessionService" resultType="java.lang.Long">
+		SELECT count(t.ID) 
+		FROM TTY_SYS_SESSION_SERVICE t
+		<where>
+		
+		
+
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="userId != null">
+				and t.USER_ID = #{userId}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="deptName != null">
+				and t.DEPT_NAME = #{deptName}
+			</if>
+			<if test="extDate1 != null">
+				and t.EXT_DATE1 = #{extDate1}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.EXT_DATE1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.EXT_DATE1 &lt;= #{extDate1End}
+			</if>
+			<if test="weight != null">
+				and t.WEIGHT = #{weight}
+			</if>
+			<if test="extDate2 != null">
+				and t.EXT_DATE2 = #{extDate2}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.EXT_DATE2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.EXT_DATE2 &lt;= #{extDate2End}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="extNum3 != null">
+				and t.EXT_NUM3 = #{extNum3}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extNum1 != null">
+				and t.EXT_NUM1 = #{extNum1}
+			</if>
+			<if test="sessionId != null">
+				and t.SESSION_ID = #{sessionId}
+			</if>
+			<if test="subsystem != null">
+				and t.SUBSYSTEM = #{subsystem}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+			<if test="secret != null">
+				and t.SECRET = #{secret}
+			</if>
+			<if test="extNum2 != null">
+				and t.EXT_NUM2 = #{extNum2}
+			</if>
+			<if test="userName != null">
+				and t.USER_NAME = #{userName}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.system.session.domain.SessionService">
+    	delete from TTY_SYS_SESSION_SERVICE
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.system.session.domain.SessionService">
+    	UPDATE TTY_SYS_SESSION_SERVICE t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+
+</mapper>

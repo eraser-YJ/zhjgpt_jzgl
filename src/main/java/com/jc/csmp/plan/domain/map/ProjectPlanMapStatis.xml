@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProjectYearPlanStatisDao">
+
+	<select id="statisQuery" parameterType="com.jc.csmp.plan.domain.StatisVO" resultType="com.jc.csmp.plan.domain.StatisItemVO">
+		SELECT
+		  SUM(item.project_total_invest)    projectTotalInvest,
+		  SUM(item.project_used_invest)    projectUsedInvest,
+		  SUM(item.project_now_invest)    projectNowInvest,
+		  SUM(item.project_after_invest)    projectAfterInvest,
+		  SUM(item.project_now_invest_src1)    projectNowInvestSrc1,
+		  SUM(item.project_now_invest_src2)    projectNowInvestSrc2,
+		  SUM(item.project_now_invest_src3)    projectNowInvestSrc3,
+		  SUM(item.project_now_invest_src4)    projectNowInvestSrc4,
+		  SUM(item.project_now_invest_src5)    projectNowInvestSrc5,
+		  SUM(item.project_now_invest_src6)    projectNowInvestSrc6,
+		  SUM(item.project_now_invest_src7)    projectNowInvestSrc7,
+		  SUM(item.project_now_invest_src8)    projectNowInvestSrc8,
+		  SUM(item.project_now_invest_src9)    projectNowInvestSrc9,
+		  SUM(item.project_now_invest_src10)    projectNowInvestSrc10,
+		  SUM(item.project_now_invest_src11)    projectNowInvestSrc11,
+		  SUM(item.project_now_invest_src12)    projectNowInvestSrc12
+		FROM cm_project_year_plan h,cm_project_year_plan_item item
+		WHERE h.id = item.head_id
+		and h.plan_seqno in (
+			SELECT MAX(maxh.plan_seqno) maxno
+			FROM cm_project_year_plan maxh WHERE  maxh.plan_status = '20' AND maxh.plan_year = #{planYear}
+			<if test="planAreaCode != null">
+				and maxh.plan_area_code like concat('%',#{planAreaCode},'%')
+			</if>
+		)
+		<if test="planYear != null">
+			and h.plan_year = #{planYear}
+		</if>
+		<if test="projectType != null">
+			and item.project_type like concat('%',#{projectType},'%')
+		</if>
+		<if test="projectTypeEx != null">
+			and item.project_type like concat('%',#{projectTypeEx},'%')
+		</if>
+		<if test="planAreaCode != null">
+			and h.plan_area_code like concat('%',#{planAreaCode},'%')
+		</if>
+	</select>
+
+</mapper>

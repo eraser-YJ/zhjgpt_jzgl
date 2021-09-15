@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.csmp.doc.project.domain.ScsProjectInfo">
+
+
+
+	<sql id="Base_Column_List" >
+		t.projectNumber  AS id,
+		t.projectNumber  AS projectNumber,
+		t.projectName    AS projectName,
+		t.projectAddress AS projectAddress,
+		t.realStartDate  AS realStartDate,
+		t.realFinishDate AS realFinishDate,
+		t.buildArea      AS buildArea,
+		t.projectMoney   AS projectMoney,
+		t.projectType    AS projectType,
+		t.buildDept      AS buildDept,
+		t.buildDeptId    AS buildDeptId,
+		t.build_type     AS buildType,
+		t.projectCate    AS projectCate,
+		t.longitude      AS longitude,
+		t.latitude       AS latitude
+	</sql>
+
+	<sql id="Base_Query_Where" >
+		<where>
+			<if test="id != null">
+				and t.projectNumber = #{id}
+			</if>
+			<if test="projectNumber != null">
+				and t.projectNumber like concat('%',#{projectNumber},'%')
+			</if>
+			<if test="projectName != null">
+				and t.projectName like concat('%',#{projectName},'%')
+			</if>
+			<if test="projectAddress != null">
+				and t.projectAddress = #{projectAddress}
+			</if>
+			<if test="buildDept != null">
+				and t.buildDept = #{buildDept}
+			</if>
+			<if test="buildDeptId != null">
+				and t.buildDeptId = #{buildDeptId}
+			</if>
+			<if test="buildType != null">
+				and t.build_type = #{buildType}
+			</if>
+			<if test="projectCate != null">
+				and t.projectCate = '政府'
+			</if>
+			<if test="canPosition != null">
+				and t.longitude is not null
+				and t.latitude is not null
+			</if>
+			<if test="hasMonitor != null">
+				and exists (
+					SELECT * FROM scs_equipment_info ei WHERE ei.project_code = t.projectNumber AND ei.equipment_type = 'monitors'
+				)
+			</if>
+
+		</where>
+	</sql>
+
+
+
+	<select id="query" parameterType="com.jc.csmp.doc.project.domain.ScsProjectInfo" resultType="com.jc.csmp.doc.project.domain.ScsProjectInfo">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM pt_project_info t
+		<include refid="Base_Query_Where"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.csmp.doc.project.domain.ScsProjectInfo" resultType="java.lang.Long">
+		SELECT count(1) FROM pt_project_info t
+		<include refid="Base_Query_Where"/>
+	</select>
+
+
+</mapper>

@@ -1,0 +1,1735 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.User">
+
+	<select id="query" parameterType="com.jc.system.security.domain.User" resultType="com.jc.system.security.domain.User">
+		SELECT
+		t.ID id, t.CODE code, t.DISPLAY_NAME displayName, t.LOGIN_NAME loginName, t.PASSWORD password, t.SEX sex, t.KIND kind, t.DUTY_ID dutyId,
+		t.LEVEL level, t.DEPT_ID deptId, t.STATUS status, t.ENTRY_DATE entryDate, t.LEADER_ID leaderId, t.DEPT_LEADER deptLeader,
+		t.CHARGE_LEADER chargeLeader, t.resource_id resourceId,
+		(select lid.DISPLAY_NAME from tty_sys_user lid where lid.ID = t.LEADER_ID) leaderIdValue,
+		(select lid.DISPLAY_NAME from tty_sys_user lid where lid.ID = t.DEPT_LEADER) deptLeaderValue,
+		(select lid.DISPLAY_NAME from tty_sys_user lid where lid.ID = t.CHARGE_LEADER) chargeLeaderValue,
+		t.POLITICAL political, t.CARD_NO cardNo, t.WEIGHT weight, t.ORDER_NO orderNo, t.JOB_TITLE jobTitle, t.PHOTO photo, t.MOBILE mobile,
+		t.OFFICE_TEL officeTel, t.EMAIL email, t.ENTRY_POLITICAL_DATE entryPoliticalDate, t.BIRTHDAY birthday, t.ETHNIC ethnic, t.HOMETOWN hometown,
+		t.DEGREE degree, t.CERNAME cername, t.MARITAL_STATUS maritalStatus, t.IS_ADMIN isAdmin, t.PAY_CARD_NO payCardNo, t.CARD_BANK cardBank,
+		t.CARD_NAME cardName, t.LAST_LONGIN_DATE lastLonginDate, t.WRONG_COUNT wrongCount, t.LOCK_START_DATE lockStartDate,
+		t.OFFICE_ADDRESS officeAddress, t.IS_DRIVER isDriver, t.IS_LEADER isLeader, t.ANSWER answer, t.QUESTION question, t.CREATE_USER createUser,
+		t.CREATE_DATE createDate, t.CREATE_USER_DEPT createUserDept, t.CREATE_USER_ORG createUserOrg, t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate, t.DELETE_FLAG deleteFlag, t.OPEN_CALE openCale, t.IS_CHECK isCheck, t.GROUP_TEL groupTel, d.NAME deptName,
+		t.EXT_DATE1 extDate1, t.EXT_STR1 extStr1, t.KEY_CODE keyCode, d.weight deptWeight
+		FROM tty_sys_user t , tty_sys_department d WHERE t.DEPT_ID = d.ID
+		<if test="id != null"> and t.ID = #{id} </if>
+		<if test="deleteFlag != null"> and t.DELETE_FLAG = #{deleteFlag} </if>
+		<if test="code != null"> and t.CODE = #{code} </if>
+		<if test="displayName != null"> and t.DISPLAY_NAME like <![CDATA['%${displayName}%']]> </if>
+		<if test="loginName != null"> and t.LOGIN_NAME = #{loginName} </if>
+		<if test="password != null"> and t.PASSWORD = #{password} </if>
+		<if test="sex != null"> and t.SEX = #{sex} </if>
+		<if test="kind != null"> and t.KIND = #{kind} </if>
+		<if test="dutyId != null"> and t.DUTY_ID = #{dutyId} </if>
+		<if test="level != null"> and t.LEVEL = #{level} </if>
+		<if test="deptId != null"> and t.DEPT_ID = #{deptId} </if>
+		<if test="status != null"> and t.STATUS = #{status} </if>
+		<if test="entryDate != null"> and t.ENTRY_DATE = #{entryDate} </if>
+		<if test="leaderId != null"> and t.LEADER_ID = #{leaderId} </if>
+		<if test="deptLeader != null"> and t.DEPT_LEADER = #{deptLeader} </if>
+		<if test="openCale != null"> and t.OPEN_CALE = #{openCale} </if>
+		<if test="chargeLeader != null"> and t.CHARGE_LEADER = #{chargeLeader} </if>
+		<if test="political != null"> and t.POLITICAL = #{political} </if>
+		<if test="cardNo != null"> and t.CARD_NO = #{cardNo} </if>
+		<if test="weight != null"> and <![CDATA[t.WEIGHT <= #{weight}]]> </if>
+		<if test="orderNo != null"> and t.ORDER_NO = #{orderNo} </if>
+		<if test="jobTitle != null"> and t.JOB_TITLE = #{jobTitle} </if>
+		<if test="photo != null"> and t.PHOTO = #{photo} </if>
+		<if test="mobile != null"> and t.MOBILE = #{mobile} </if>
+		<if test="officeTel != null"> and t.OFFICE_TEL = #{officeTel} </if>
+		<if test="email != null"> and t.EMAIL = #{email} </if>
+		<if test="entryPoliticalDate != null"> and t.ENTRY_POLITICAL_DATE = #{entryPoliticalDate} </if>
+		<if test="birthday != null"> and t.BIRTHDAY = #{birthday} </if>
+		<if test="ethnic != null"> and t.ETHNIC = #{ethnic} </if>
+		<if test="hometown != null"> and t.HOMETOWN = #{hometown} </if>
+		<if test="degree != null"> and t.DEGREE = #{degree} </if>
+		<if test="cername != null"> and t.CERNAME = #{cername} </if>
+		<if test="maritalStatus != null"> and t.MARITAL_STATUS = #{maritalStatus} </if>
+		<if test="isAdmin != null"> and t.IS_ADMIN = #{isAdmin} </if>
+		<if test="payCardNo != null"> and t.PAY_CARD_NO = #{payCardNo} </if>
+		<if test="cardBank != null"> and t.CARD_BANK = #{cardBank} </if>
+		<if test="cardName != null"> and t.CARD_NAME = #{cardName} </if>
+		<if test="lastLonginDate != null"> and t.LAST_LONGIN_DATE = #{lastLonginDate} </if>
+		<if test="wrongCount != null"> and t.WRONG_COUNT = #{wrongCount} </if>
+		<if test="lockStartDate != null"> and t.LOCK_START_DATE = #{lockStartDate} </if>
+		<if test="officeAddress != null"> and t.OFFICE_ADDRESS = #{officeAddress} </if>
+		<if test="isDriver != null"> and t.IS_DRIVER = #{isDriver} </if>
+		<if test="isLeader != null"> and t.IS_LEADER = #{isLeader} </if>
+		<if test="answer != null"> and t.ANSWER = #{answer} </if>
+		<if test="question != null"> and t.QUESTION = #{question} </if>
+		<if test="createUser != null"> and t.CREATE_USER = #{createUser} </if>
+		<if test="createDate != null"> and t.CREATE_DATE = #{createDate} </if>
+		<if test="createUserDept != null"> and t.CREATE_USER_DEPT = #{createUserDept} </if>
+		<if test="modifyUser != null"> and t.MODIFY_USER = #{modifyUser} </if>
+		<if test="modifyDate != null"> and t.MODIFY_DATE = #{modifyDate} </if>
+		<if test="deptIds != null">
+			and t.DEPT_ID in (
+			<foreach item="item" index="index" collection="deptIds.split(',')" separator=",">
+				#{item}
+			</foreach>
+			)
+		</if>
+		<if test="deptIdToCode != null"> and d.CODE like (select concat(son.code, '%') from tty_sys_department son where son.id = #{deptIdToCode}) </if>
+		<if test="orderBy != null"> order by ${orderBy} </if>
+	</select>
+	
+	<select id="queryCount" parameterType="com.jc.system.security.domain.User" resultType="java.lang.Integer">
+		SELECT count(t.ID) FROM tty_sys_user t , tty_sys_department d WHERE t.DEPT_ID = d.ID
+		<if test="dataAccessDynamicSQL != null"> ${dataAccessDynamicSQL} </if>
+		<if test="deleteFlag != null"> and t.DELETE_FLAG = #{deleteFlag} </if>
+		<if test="id != null"> and t.ID = #{id} </if>
+		<if test="code != null"> and t.CODE = #{code} </if>
+		<if test="displayName != null"> and t.DISPLAY_NAME like <![CDATA['%${displayName}%']]> </if>
+		<if test="loginName != null"> and t.LOGIN_NAME = #{loginName} </if>
+		<if test="password != null"> and t.PASSWORD = #{password} </if>
+		<if test="sex != null"> and t.SEX = #{sex} </if>
+		<if test="kind != null"> and t.KIND = #{kind} </if>
+		<if test="dutyId != null"> and t.DUTY_ID = #{dutyId} </if>
+		<if test="level != null"> and t.LEVEL = #{level} </if>
+		<if test="deptId != null"> and t.DEPT_ID = #{deptId} </if>
+		<if test="status != null"> and t.STATUS = #{status} </if>
+		<if test="entryDate != null"> and t.ENTRY_DATE = #{entryDate} </if>
+		<if test="leaderId != null"> and t.LEADER_ID = #{leaderId} </if>
+		<if test="deptLeader != null"> and t.DEPT_LEADER = #{deptLeader} </if>
+		<if test="chargeLeader != null"> and t.CHARGE_LEADER = #{chargeLeader} </if>
+		<if test="political != null"> and t.POLITICAL = #{political} </if>
+		<if test="cardNo != null"> and t.CARD_NO = #{cardNo} </if>
+		<if test="weight != null"> and <![CDATA[t.WEIGHT <= #{weight}]]> </if>
+		<if test="orderNo != null"> and t.ORDER_NO = #{orderNo} </if>
+		<if test="jobTitle != null"> and t.JOB_TITLE = #{jobTitle} </if>
+		<if test="photo != null"> and t.PHOTO = #{photo} </if>
+		<if test="mobile != null"> and t.MOBILE = #{mobile} </if>
+		<if test="officeTel != null"> and t.OFFICE_TEL = #{officeTel} </if>
+		<if test="email != null"> and t.EMAIL = #{email} </if>
+		<if test="entryPoliticalDate != null"> and t.ENTRY_POLITICAL_DATE = #{entryPoliticalDate} </if>
+		<if test="birthday != null"> and t.BIRTHDAY = #{birthday} </if>
+		<if test="ethnic != null"> and t.ETHNIC = #{ethnic} </if>
+		<if test="hometown != null"> and t.HOMETOWN = #{hometown} </if>
+		<if test="degree != null"> and t.DEGREE = #{degree} </if>
+		<if test="cername != null"> and t.CERNAME = #{cername} </if>
+		<if test="maritalStatus != null"> and t.MARITAL_STATUS = #{maritalStatus} </if>
+		<if test="isAdmin != null"> and t.IS_ADMIN = #{isAdmin} </if>
+		<if test="payCardNo != null"> and t.PAY_CARD_NO = #{payCardNo} </if>
+		<if test="cardBank != null"> and t.CARD_BANK = #{cardBank} </if>
+		<if test="cardName != null"> and t.CARD_NAME = #{cardName} </if>
+		<if test="lastLonginDate != null"> and t.LAST_LONGIN_DATE = #{lastLonginDate} </if>
+		<if test="wrongCount != null"> and t.WRONG_COUNT = #{wrongCount} </if>
+		<if test="lockStartDate != null"> and t.LOCK_START_DATE = #{lockStartDate} </if>
+		<if test="officeAddress != null"> and t.OFFICE_ADDRESS = #{officeAddress} </if>
+		<if test="isDriver != null"> and t.IS_DRIVER = #{isDriver} </if>
+		<if test="isLeader != null"> and t.IS_LEADER = #{isLeader} </if>
+		<if test="question != null"> and t.QUESTION = #{question} </if>
+		<if test="answer != null"> and t.ANSWER = #{answer} </if>
+		<if test="createUser != null"> and t.CREATE_USER = #{createUser} </if>
+		<if test="createDate != null"> and t.CREATE_DATE = #{createDate} </if>
+		<if test="openCale != null"> and t.OPEN_CALE = #{openCale} </if>
+		<if test="createUserDept != null"> and t.CREATE_USER_DEPT = #{createUserDept} </if>
+		<if test="modifyUser != null"> and t.MODIFY_USER = #{modifyUser} </if>
+		<if test="modifyDate != null"> and t.MODIFY_DATE = #{modifyDate} </if>
+		<if test="deptIds != null">
+			and t.DEPT_ID in (
+			<foreach item="item" index="index" collection="deptIds.split(',')" separator=",">
+				#{item}
+			</foreach>
+			)
+		</if>
+		<if test="deptIdToCode != null"> and d.CODE like (select concat(son.code, '%') from tty_sys_department son where son.id = #{deptIdToCode}) </if>
+	</select>
+	
+	<select id="queryAllUsers" parameterType="com.jc.system.security.domain.User" resultType="com.jc.system.security.domain.User">
+		SELECT 
+			t.ID id,
+			t.CODE code,
+			t.resource_id resourceId,
+			t.DISPLAY_NAME displayName,
+			t.LOGIN_NAME loginName,
+			t.PASSWORD password,
+			t.SEX sex,
+			t.KIND kind,
+			t.DUTY_ID dutyId,
+			t.LEVEL level,
+			t.DEPT_ID deptId,
+			t.STATUS status,
+			t.ENTRY_DATE entryDate,
+			t.LEADER_ID leaderId,
+			t.DEPT_LEADER deptLeader,
+			t.CHARGE_LEADER chargeLeader,
+			t.POLITICAL political,
+			t.CARD_NO cardNo,
+			t.WEIGHT weight,
+			t.ORDER_NO orderNo,
+			t.JOB_TITLE jobTitle,
+			t.PHOTO photo,
+			t.MOBILE mobile,
+			t.OFFICE_TEL officeTel,
+			t.EMAIL email,
+			t.ENTRY_POLITICAL_DATE entryPoliticalDate,
+			t.BIRTHDAY birthday,
+			t.ETHNIC ethnic,
+			t.HOMETOWN hometown,
+			t.DEGREE degree,
+			t.CERNAME cername,
+			t.MARITAL_STATUS maritalStatus,
+			t.IS_ADMIN isAdmin,
+			t.PAY_CARD_NO payCardNo,
+			t.CARD_BANK cardBank,
+			t.CARD_NAME cardName,
+			t.LAST_LONGIN_DATE lastLonginDate,
+			t.WRONG_COUNT wrongCount,
+			t.LOCK_START_DATE lockStartDate,
+			t.OFFICE_ADDRESS officeAddress,
+			t.IS_DRIVER isDriver,
+			t.IS_LEADER isLeader,
+			t.ANSWER answer,
+			t.QUESTION question,
+			t.CREATE_USER createUser,
+			t.CREATE_DATE createDate,
+			t.CREATE_USER_DEPT createUserDept,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.DELETE_FLAG deleteFlag,
+			t.OPEN_CALE openCale,
+			t.IS_CHECK isCheck,
+			t.GROUP_TEL groupTel,
+			d.NAME deptName
+			
+		FROM tty_sys_user t, tty_sys_department d WHERE t.DEPT_ID = d.ID and t.DELETE_FLAG = 0
+		<if test="deptIdToCode != null"> and d.CODE like (select concat(son.code, '%') from tty_sys_department son where son.id = #{deptIdToCode}) </if>
+		<if test="displayName != null">
+			and t.DISPLAY_NAME like <![CDATA['%${displayName}%']]>
+		</if>
+		<if test="officeTel != null">
+			and t.OFFICE_TEL like <![CDATA['%${officeTel}%']]>
+		</if>
+		
+		<if test="groupTel != null">
+			and t.GROUP_TEL like <![CDATA['%${groupTel}%']]>
+		</if>
+		<if test="sex != null">
+			and t.SEX = #{sex}
+		</if>
+		
+		<if test="mobile != null">
+			and t.MOBILE like <![CDATA['%${mobile}%']]>
+		</if>
+		<if test="weight != null">
+			and <![CDATA[t.WEIGHT <= #{weight}]]>
+		</if>
+		<if test="email != null">
+			and t.EMAIL like <![CDATA['%${email}%']]>
+		</if>
+			
+		<if test="primaryKeys != null">
+			and t.ID in
+     		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+            	#{primaryKey}
+        	</foreach>
+		</if>
+		
+		<if test="deptIds != null">
+			and t.DEPT_ID in (${deptIds})
+		</if>
+		
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+
+	</select>
+	
+	<select id="queryAllUsersCount" parameterType="com.jc.system.security.domain.User" resultType="java.lang.Integer">
+		SELECT count(t.ID) FROM tty_sys_user t,tty_sys_department d WHERE t.DEPT_ID = d.ID and t.DELETE_FLAG = 0
+		<if test="deptIdToCode != null"> and d.CODE like (select concat(son.code, '%') from tty_sys_department son where son.id = #{deptIdToCode}) </if>
+		<if test="displayName != null">
+			and t.DISPLAY_NAME like <![CDATA['%${displayName}%']]>
+		</if>
+		<if test="officeTel != null">
+			and t.OFFICE_TEL like <![CDATA['%${officeTel}%']]>
+		</if>
+		
+		<if test="groupTel != null">
+			and t.GROUP_TEL like <![CDATA['%${groupTel}%']]>
+		</if>
+		<if test="sex != null">
+			and t.SEX = #{sex}
+		</if>
+		<if test="weight != null">
+			and <![CDATA[t.WEIGHT <= #{weight}]]>
+		</if>
+		<if test="mobile != null">
+			and t.MOBILE like <![CDATA['%${mobile}%']]>
+		</if>
+		
+		<if test="email != null">
+			and t.EMAIL like <![CDATA['%${email}%']]>
+		</if>
+			
+		<if test="primaryKeys != null">
+			and ID in
+     		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+            	#{primaryKey}
+        	</foreach>
+		</if>
+		
+		<if test="deptIds != null">
+			and t.DEPT_ID in (${deptIds})
+		</if>
+	</select>
+	
+	
+	
+	<select id="queryUserByLeader" parameterType="com.jc.system.security.domain.User" resultType="com.jc.system.security.domain.User">
+	
+		SELECT 
+		  	t.ID id,
+			t.CODE code,
+			t.resource_id resourceId,
+			t.DISPLAY_NAME displayName,
+			t.LOGIN_NAME loginName,
+			t.PASSWORD password,
+			t.SEX sex,
+			t.KIND kind,
+			t.DUTY_ID dutyId,
+			t.LEVEL level,
+			t.DEPT_ID deptId,
+			t.STATUS status,
+			t.ENTRY_DATE entryDate,
+			t.LEADER_ID leaderId,
+			t.DEPT_LEADER deptLeader,
+			t.CHARGE_LEADER chargeLeader,
+			t.POLITICAL political,
+			t.CARD_NO cardNo,
+			t.WEIGHT weight,
+			t.ORDER_NO orderNo,
+			t.JOB_TITLE jobTitle,
+			t.PHOTO photo,
+			t.MOBILE mobile,
+			t.OFFICE_TEL officeTel,
+			t.EMAIL email,
+			t.ENTRY_POLITICAL_DATE entryPoliticalDate,
+			t.BIRTHDAY birthday,
+			t.ETHNIC ethnic,
+			t.HOMETOWN hometown,
+			t.DEGREE degree,
+			t.CERNAME cername,
+			t.MARITAL_STATUS maritalStatus,
+			t.IS_ADMIN isAdmin,
+			t.PAY_CARD_NO payCardNo,
+			t.CARD_BANK cardBank,
+			t.CARD_NAME cardName,
+			t.LAST_LONGIN_DATE lastLonginDate,
+			t.WRONG_COUNT wrongCount,
+			t.LOCK_START_DATE lockStartDate,
+			t.OFFICE_ADDRESS officeAddress,
+			t.IS_DRIVER isDriver,
+			t.IS_LEADER isLeader,
+			t.ANSWER answer,
+			t.QUESTION question,
+			t.CREATE_USER createUser,
+			t.CREATE_DATE createDate,
+			t.CREATE_USER_DEPT createUserDept,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.DELETE_FLAG deleteFlag,
+			t.OPEN_CALE openCale,
+			t.IS_CHECK isCheck,
+			t.GROUP_TEL groupTel
+			
+		FROM
+		
+		  	tty_sys_user t WHERE t.DELETE_FLAG = 0 AND FIND_IN_SET(t.id,F_SYSUSER_FINDCHILDLIST(#{id})) ORDER BY create_date desc
+
+	</select>
+
+	<delete id="deleteByIds"  parameterType="com.jc.system.security.domain.User">
+    	delete from tty_sys_user
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+ 	
+ 	<update id="deleteBackByIds"  parameterType="com.jc.system.security.domain.User">
+    	update tty_sys_user t set t.DELETE_FLAG = 0, STATUS = #{status}
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.jc.system.security.domain.User">
+	INSERT INTO tty_sys_user(ID,CODE,DISPLAY_NAME,LOGIN_NAME,PASSWORD,SEX,KIND,DUTY_ID,LEVEL,DEPT_ID,STATUS,ENTRY_DATE,LEADER_ID,DEPT_LEADER,CHARGE_LEADER,POLITICAL,CARD_NO,WEIGHT,ORDER_NO,JOB_TITLE,PHOTO,MOBILE,OFFICE_TEL,EMAIL,ENTRY_POLITICAL_DATE,BIRTHDAY,ETHNIC,HOMETOWN,DEGREE,CERNAME,MARITAL_STATUS,IS_ADMIN,PAY_CARD_NO,CARD_BANK,CARD_NAME,LAST_LONGIN_DATE,WRONG_COUNT,LOCK_START_DATE,OFFICE_ADDRESS,IS_DRIVER,IS_LEADER,ANSWER,QUESTION,CREATE_USER,CREATE_DATE,CREATE_USER_DEPT,MODIFY_USER,MODIFY_DATE,DELETE_FLAG,OPEN_CALE,IS_CHECK,CREATE_USER_ORG,GROUP_TEL,EXT_STR1,KEY_CODE,resource_id)
+		VALUES (#{id},#{code},#{displayName},#{loginName},#{password},#{sex},#{kind},#{dutyId},#{level},#{deptId},#{status},#{entryDate},#{leaderId},#{deptLeader},#{chargeLeader},#{political},#{cardNo},#{weight},#{orderNo},#{jobTitle},#{photo},#{mobile},#{officeTel},#{email},#{entryPoliticalDate},#{birthday},#{ethnic},#{hometown},#{degree},#{cername},#{maritalStatus},#{isAdmin},#{payCardNo},#{cardBank},#{cardName},#{lastLonginDate},#{wrongCount},#{lockStartDate},#{officeAddress},#{isDriver},#{isLeader},#{answer},#{question},#{createUser},#{createDate},#{createUserDept},#{modifyUser},#{modifyDate},0,#{openCale},#{isCheck},#{createUserOrg},#{groupTel},#{extStr1},#{keyCode},#{resourceId})
+	</insert>
+
+	<update id="initPassword" parameterType="com.jc.system.security.domain.User">
+		UPDATE tty_sys_user set PASSWORD = #{password},MODIFY_PWD_FLAG = #{modifyPwdFlag},KEY_CODE=#{keyCode} WHERE ID = #{id}
+	</update>
+	
+	<update id="deleteLogic"  parameterType="com.jc.system.security.domain.User">
+		<![CDATA[
+    		UPDATE tty_sys_user set DELETE_FLAG = 1, STATUS = #{status}, MODIFY_USER = #{modifyUser}, MODIFY_DATE = #{modifyDate}
+    	]]>
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+	
+	<update id="update" parameterType="com.jc.system.security.domain.User">
+		UPDATE tty_sys_user
+	   <set>
+	   	<if test="code != null">
+	   		CODE = #{code},
+	   	</if>
+	   	<if test="displayName != null">
+	   		DISPLAY_NAME = #{displayName},
+	   	</if>
+	   	<if test="loginName != null">
+	   		LOGIN_NAME = #{loginName},
+	   	</if>
+	   	<if test="password != null">
+	   		PASSWORD = #{password},
+	   	</if>
+	   	<if test="sex != null">
+	   		SEX = #{sex},
+	   	</if>
+	   	<if test="kind != null">
+	   		KIND = #{kind},
+	   	</if>
+	   	<if test="dutyId != null">
+	   		DUTY_ID = #{dutyId},
+	   	</if>
+	   	<if test="level != null">
+	   		LEVEL = #{level},
+	   	</if>
+	   	<if test="deptId != null">
+	   		DEPT_ID = #{deptId},
+	   	</if>
+	   	<if test="status != null">
+	   		STATUS = #{status},
+	   	</if>
+	   	<if test="political != null">
+	   		POLITICAL = #{political},
+	   	</if>
+	   	<if test="cardNo != null">
+	   		CARD_NO = #{cardNo},
+	   	</if>
+	   	<if test="weight != null">
+	   		WEIGHT = #{weight},
+	   	</if>
+	   	<if test="orderNo != null">
+	   		ORDER_NO = #{orderNo},
+	   	</if>
+	   	<if test="jobTitle != null">
+	   		JOB_TITLE = #{jobTitle},
+	   	</if>
+	   	<if test="photo != null">
+	   		PHOTO = #{photo},
+	   	</if>
+	   	<if test="mobile != null">
+	   		MOBILE = #{mobile},
+	   	</if>
+	   	<if test="officeTel != null">
+	   		OFFICE_TEL = #{officeTel},
+	   	</if>
+	   	<if test="email != null">
+	   		EMAIL = #{email},
+	   	</if>
+	   	<if test="hometown != null">
+	   		HOMETOWN = #{hometown},
+	   	</if>
+	   	<if test="degree != null">
+	   		DEGREE = #{degree},
+	   	</if>
+	   	<if test="cername != null">
+	   		CERNAME = #{cername},
+	   	</if>
+	   	<if test="maritalStatus != null">
+	   		MARITAL_STATUS = #{maritalStatus},
+	   	</if>
+	   	<if test="isAdmin != null">
+	   		IS_ADMIN = #{isAdmin},
+	   	</if>
+	   	<if test="payCardNo != null">
+	   		PAY_CARD_NO = #{payCardNo},
+	   	</if>
+	   	<if test="cardBank != null">
+	   		CARD_BANK = #{cardBank},
+	   	</if>
+	   	<if test="cardName != null">
+	   		CARD_NAME = #{cardName},
+	   	</if>
+	   	<if test="lastLonginDate != null">
+	   		LAST_LONGIN_DATE = #{lastLonginDate},
+	   	</if>
+	   	<if test="wrongCount != null">
+	   		WRONG_COUNT = #{wrongCount},
+	   	</if>
+	   	<if test="lockStartDate != null">
+	   		LOCK_START_DATE = #{lockStartDate},
+	   	</if>
+	   	<if test="officeAddress != null">
+	   		OFFICE_ADDRESS = #{officeAddress},
+	   	</if>
+	   	<if test="isDriver != null">
+	   		IS_DRIVER = #{isDriver},
+	   	</if>
+	   	<if test="isLeader != null">
+	   		IS_LEADER = #{isLeader},
+	   	</if>
+	   	<if test="answer != null">
+	   		ANSWER = #{answer},
+	   	</if>
+	   	<if test="question != null">
+	   		QUESTION = #{question},
+	   	</if>
+	   	<if test="createUser != null">
+	   		CREATE_USER = #{createUser},
+	   	</if>
+	   	<if test="createDate != null">
+	   		CREATE_DATE = #{createDate},
+	   	</if>
+	   <if test="isCheck != null">
+	   		IS_CHECK = #{isCheck},
+	   	</if>
+	   	<if test="createUserDept != null">
+	   		CREATE_USER_DEPT = #{createUserDept},
+	   	</if>
+	   	<if test="modifyUser != null">
+	   		MODIFY_USER = #{modifyUser},
+	   	</if>
+	   	<if test="openCale != null">
+	   		OPEN_CALE = #{openCale},
+	   	</if>
+	   	<if test="lockType != null">
+	   		LOCK_TYPE = #{lockType},
+	   	</if>
+	   	<if test="groupTel != null">
+	   		GROUP_TEL = #{groupTel},
+	   	</if>
+	   	<if test="extStr1">
+			EXT_STR1 = #{extStr1},
+	   	</if>
+
+	   	ETHNIC = #{ethnic},
+	   	LEADER_ID = #{leaderId},
+	   	DEPT_LEADER = #{deptLeader},
+	   	CHARGE_LEADER = #{chargeLeader},
+	   	
+	   	ENTRY_DATE = #{entryDate},
+	   	ENTRY_POLITICAL_DATE = #{entryPoliticalDate},
+	   	BIRTHDAY = #{birthday},
+	   	
+	   </set>
+	  		, MODIFY_DATE = #{modifyDateNew} where ID = #{id} and MODIFY_DATE = #{modifyDate}
+	</update>
+	
+		<update id="update2" parameterType="com.jc.system.security.domain.User">
+			UPDATE tty_sys_user
+		   <set>
+		   	<if test="code != null">
+		   		CODE = #{code},
+		   	</if>
+		   	<if test="displayName != null">
+		   		DISPLAY_NAME = #{displayName},
+		   	</if>
+		   	<if test="loginName != null">
+		   		LOGIN_NAME = #{loginName},
+		   	</if>
+		   	<if test="password != null">
+		   		PASSWORD = #{password},
+		   	</if>
+		   	<if test="sex != null">
+		   		SEX = #{sex},
+		   	</if>
+		   	<if test="kind != null">
+		   		KIND = #{kind},
+		   	</if>
+		   	<if test="dutyId != null">
+		   		DUTY_ID = #{dutyId},
+		   	</if>
+		   	<if test="level != null">
+		   		LEVEL = #{level},
+		   	</if>
+		   	<if test="deptId != null">
+		   		DEPT_ID = #{deptId},
+		   	</if>
+		   	<if test="status != null">
+		   		STATUS = #{status},
+		   	</if>
+		   	<if test="entryDate != null">
+		   		ENTRY_DATE = #{entryDate},
+		   	</if>
+		   	<if test="leaderId != null">
+		   		LEADER_ID = #{leaderId},
+		   	</if>
+		   	<if test="deptLeader != null">
+		   		DEPT_LEADER = #{deptLeader},
+		   	</if>
+		   	<if test="chargeLeader != null">
+		   		CHARGE_LEADER = #{chargeLeader},
+		   	</if>
+		   	<if test="political != null">
+		   		POLITICAL = #{political},
+		   	</if>
+		   	<if test="cardNo != null">
+		   		CARD_NO = #{cardNo},
+		   	</if>
+		   	<if test="weight != null">
+		   		WEIGHT = #{weight},
+		   	</if>
+			<if test="keyCode != null">
+				KEY_CODE = #{keyCode},
+			</if>
+		   	<if test="orderNo != null">
+		   		ORDER_NO = #{orderNo},
+		   	</if>
+		   	<if test="jobTitle != null">
+		   		JOB_TITLE = #{jobTitle},
+		   	</if>
+		   	<if test="photo != null">
+		   		PHOTO = #{photo},
+		   	</if>
+		   	<if test="mobile != null">
+		   		MOBILE = #{mobile},
+		   	</if>
+		   	<if test="officeTel != null">
+		   		OFFICE_TEL = #{officeTel},
+		   	</if>
+		   	<if test="email != null">
+		   		EMAIL = #{email},
+		   	</if>
+		   	<if test="entryPoliticalDate != null">
+		   		ENTRY_POLITICAL_DATE = #{entryPoliticalDate},
+		   	</if>
+		   	<if test="birthday != null">
+		   		BIRTHDAY = #{birthday},
+		   	</if>
+		   	<if test="ethnic != null">
+		   		ETHNIC = #{ethnic},
+		   	</if>
+		   	<if test="hometown != null">
+		   		HOMETOWN = #{hometown},
+		   	</if>
+		   	<if test="degree != null">
+		   		DEGREE = #{degree},
+		   	</if>
+		   	<if test="cername != null">
+		   		CERNAME = #{cername},
+		   	</if>
+		   	<if test="maritalStatus != null">
+		   		MARITAL_STATUS = #{maritalStatus},
+		   	</if>
+		   	<if test="isAdmin != null">
+		   		IS_ADMIN = #{isAdmin},
+		   	</if>
+		   	<if test="payCardNo != null">
+		   		PAY_CARD_NO = #{payCardNo},
+		   	</if>
+		   	<if test="cardBank != null">
+		   		CARD_BANK = #{cardBank},
+		   	</if>
+		   	<if test="cardName != null">
+		   		CARD_NAME = #{cardName},
+		   	</if>
+		   	<if test="lastLonginDate != null">
+		   		LAST_LONGIN_DATE = #{lastLonginDate},
+		   	</if>
+		   	<if test="wrongCount != null">
+		   		WRONG_COUNT = #{wrongCount},
+		   	</if>
+		   	<if test="lockStartDate != null">
+		   		LOCK_START_DATE = #{lockStartDate},
+		   	</if>
+		   	<if test="officeAddress != null">
+		   		OFFICE_ADDRESS = #{officeAddress},
+		   	</if>
+		   	<if test="isDriver != null">
+		   		IS_DRIVER = #{isDriver},
+		   	</if>
+		   	<if test="isLeader != null">
+		   		IS_LEADER = #{isLeader},
+		   	</if>
+		   	<if test="answer != null">
+		   		ANSWER = #{answer},
+		   	</if>
+		   	<if test="question != null">
+		   		QUESTION = #{question},
+		   	</if>
+		   	<if test="createUser != null">
+		   		CREATE_USER = #{createUser},
+		   	</if>
+		   	<if test="createDate != null">
+		   		CREATE_DATE = #{createDate},
+		   	</if>
+			<if test="extDate1 != null">
+				EXT_DATE1 = #{extDate1},
+			</if>
+		   <if test="isCheck != null">
+		   		IS_CHECK = #{isCheck},
+		   	</if>
+		   	<if test="createUserDept != null">
+		   		CREATE_USER_DEPT = #{createUserDept},
+		   	</if>
+		   	<if test="modifyUser != null">
+		   		MODIFY_USER = #{modifyUser},
+		   	</if>
+		   	<if test="openCale != null">
+		   		OPEN_CALE = #{openCale},
+		   	</if>
+		   	<if test="lockType != null">
+	   			LOCK_TYPE = #{lockType},
+	   		</if>
+		   	<if test="groupTel != null">
+		   		GROUP_TEL = #{groupTel},
+		   	</if>
+	   		<if test="modifyPwdFlag != 0">
+	   			MODIFY_PWD_FLAG = #{modifyPwdFlag},
+		   	</if>
+		   	<if test="theme != null">
+	   			THEME = #{theme},
+		   	</if>
+			   <if test="extStr1">
+				   EXT_STR1 = #{extStr1},
+			   </if>
+		   </set>
+	  		 where ID = #{id}
+	</update>
+	
+	<update id="updateUserInfo" parameterType="com.jc.system.security.domain.User">
+		UPDATE tty_sys_user
+	   <set>
+	   	<if test="officeTel != null">
+	   		OFFICE_TEL = #{officeTel},
+	   	</if>
+	   	<if test="maritalStatus != null">
+	   		MARITAL_STATUS = #{maritalStatus},
+	   	</if>
+	   	<if test="officeAddress != null">
+	   		OFFICE_ADDRESS = #{officeAddress},
+	   	</if>
+	   	<if test="email != null">
+	   		EMAIL = #{email},
+	   	</if>
+   		<if test="mobile != null">
+   			MOBILE = #{mobile},
+	   	</if>
+	   	<if test="hometown != null">
+	   		HOMETOWN = #{hometown},
+	   	</if>
+	   	<if test="degree != null">
+	   		DEGREE = #{degree},
+	   	</if>
+	   	<if test="answer != null">
+	   		ANSWER = #{answer},
+	   	</if>
+	   	<if test="question != null">
+	   		QUESTION = #{question},
+	   	</if>
+	   	<if test="cardNo != null">
+	   		CARD_NO = #{cardNo},
+	   	</if>
+	   	<if test="cardBank != null">
+	   		CARD_BANK = #{cardBank},
+	   	</if>
+	   	<if test="cardName != null">
+	   		CARD_NAME = #{cardName},
+	   	</if>
+	   	<if test="payCardNo != null">
+			PAY_CARD_NO = #{payCardNo},
+		</if>
+	   	<if test="photo != null">
+	   		PHOTO = #{photo},
+	   	</if>
+	   	<if test="groupTel != null">
+	   		GROUP_TEL = #{groupTel},
+	   	</if>
+		   <if test="extStr1">
+			   EXT_STR1 = #{extStr1},
+		   </if>
+	   	ETHNIC = #{ethnic},
+	   	BIRTHDAY = #{birthday},
+	   	ENTRY_POLITICAL_DATE = #{entryPoliticalDate},
+	   	
+	   </set>
+	  		, MODIFY_DATE = #{modifyDateNew} where ID = #{id} and MODIFY_DATE = #{modifyDate}
+	</update>
+	
+	<select id="queryUserByDeptId" parameterType="com.jc.system.security.domain.User" resultType="com.jc.system.security.domain.User">
+		SELECT 
+			t.ID id,
+			t.CODE code,
+			t.resource_id resourceId,
+			t.DISPLAY_NAME displayName,
+			t.LOGIN_NAME loginName,
+			t.PASSWORD password,
+			t.SEX sex,
+			t.KIND kind,
+			t.DUTY_ID dutyId,
+			t.LEVEL level,
+			t.DEPT_ID deptId,
+			t.STATUS status,
+			t.ENTRY_DATE entryDate,
+			t.LEADER_ID leaderId,
+			t.DEPT_LEADER deptLeader,
+			t.CHARGE_LEADER chargeLeader,
+			t.POLITICAL political,
+			t.CARD_NO cardNo,
+			t.WEIGHT weight,
+			t.ORDER_NO orderNo,
+			t.JOB_TITLE jobTitle,
+			t.PHOTO photo,
+			t.MOBILE mobile,
+			t.OFFICE_TEL officeTel,
+			t.EMAIL email,
+			t.ENTRY_POLITICAL_DATE entryPoliticalDate,
+			t.BIRTHDAY birthday,
+			t.ETHNIC ethnic,
+			t.HOMETOWN hometown,
+			t.DEGREE degree,
+			t.CERNAME cername,
+			t.MARITAL_STATUS maritalStatus,
+			t.IS_ADMIN isAdmin,
+			t.PAY_CARD_NO payCardNo,
+			t.CARD_BANK cardBank,
+			t.CARD_NAME cardName,
+			t.LAST_LONGIN_DATE lastLonginDate,
+			t.WRONG_COUNT wrongCount,
+			t.LOCK_START_DATE lockStartDate,
+			t.OFFICE_ADDRESS officeAddress,
+			t.IS_DRIVER isDriver,
+			t.IS_LEADER isLeader,
+			t.ANSWER answer,
+			t.QUESTION question,
+			t.CREATE_USER createUser,
+			t.CREATE_DATE createDate,
+			t.CREATE_USER_DEPT createUserDept,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.DELETE_FLAG deleteFlag,
+			t.OPEN_CALE openCale,
+			t.GROUP_TEL groupTel,
+			t.IS_CHECK isCheck
+		FROM tty_sys_user t , tty_sys_department d WHERE t.DEPT_ID = d.ID AND t.DELETE_FLAG = 0 AND	d.DELETE_FLAG = 0 
+		<if test="deptId != null"> AND FIND_IN_SET(t.DEPT_ID, F_DEPARTMENT_FINDCHILDLIST (#{deptId})) </if>
+		<if test="deptIdToCode != null"> and d.CODE like (select concat(son.code, '%') from tty_sys_department son where son.id = #{deptIdToCode}) </if>
+	</select>
+
+	<select id="queryDeptUserByOrgId" parameterType="com.jc.system.security.domain.User" resultType="com.jc.system.security.domain.User">
+		SELECT
+		t.ID id,
+		t.CODE code,
+		t.DISPLAY_NAME displayName,
+		t.resource_id resourceId,
+		t.LOGIN_NAME loginName,
+		t.PASSWORD password,
+		t.SEX sex,
+		t.KIND kind,
+		t.DUTY_ID dutyId,
+		t.LEVEL level,
+		t.DEPT_ID deptId,
+		t.STATUS status,
+		t.ENTRY_DATE entryDate,
+		t.LEADER_ID leaderId,
+		t.DEPT_LEADER deptLeader,
+		t.CHARGE_LEADER chargeLeader,
+		t.POLITICAL political,
+		t.CARD_NO cardNo,
+		t.WEIGHT weight,
+		t.ORDER_NO orderNo,
+		t.JOB_TITLE jobTitle,
+		t.PHOTO photo,
+		t.MOBILE mobile,
+		t.OFFICE_TEL officeTel,
+		t.EMAIL email,
+		t.ENTRY_POLITICAL_DATE entryPoliticalDate,
+		t.BIRTHDAY birthday,
+		t.ETHNIC ethnic,
+		t.HOMETOWN hometown,
+		t.DEGREE degree,
+		t.CERNAME cername,
+		t.MARITAL_STATUS maritalStatus,
+		t.IS_ADMIN isAdmin,
+		t.PAY_CARD_NO payCardNo,
+		t.CARD_BANK cardBank,
+		t.CARD_NAME cardName,
+		t.LAST_LONGIN_DATE lastLonginDate,
+		t.WRONG_COUNT wrongCount,
+		t.LOCK_START_DATE lockStartDate,
+		t.OFFICE_ADDRESS officeAddress,
+		t.IS_DRIVER isDriver,
+		t.IS_LEADER isLeader,
+		t.ANSWER answer,
+		t.QUESTION question,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_DEPT createUserDept,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.DELETE_FLAG deleteFlag,
+		t.OPEN_CALE openCale,
+		t.GROUP_TEL groupTel,
+		t.IS_CHECK isCheck
+		FROM tty_sys_user t , tty_sys_department d WHERE t.DEPT_ID = d.ID AND t.DELETE_FLAG = 0 AND	d.DELETE_FLAG = 0
+		<if test="deptId != null"> AND FIND_IN_SET(t.DEPT_ID, F_DEPARTMENT_FINDCHILDLIST (#{deptId})) </if>
+		<if test="deptIdToCode != null"> and d.CODE like (select concat(son.code, '%') from tty_sys_department son where son.id = #{deptIdToCode}) </if>
+	</select>
+	
+	<select id="checkMobile" parameterType="com.jc.system.security.domain.User" resultType="com.jc.system.security.domain.User">
+		SELECT t.ID id FROM tty_sys_user t WHERE t.MOBILE = #{mobile}
+		<if test="id != null">
+	   		AND t.ID != #{id}
+	   	</if>
+	</select>
+	
+	<select id="queryAllUsersForOrder" parameterType="com.jc.system.security.domain.User" resultType="com.jc.system.security.domain.User">
+		SELECT 
+			t.ID id,
+			t.CODE code,
+			t.DISPLAY_NAME displayName,
+			t.resource_id resourceId,
+			t.LOGIN_NAME loginName,
+			t.PASSWORD password,
+			t.SEX sex,
+			t.KIND kind,
+			t.DUTY_ID dutyId,
+			t.LEVEL level,
+			t.DEPT_ID deptId,
+			t.STATUS status,
+			t.ENTRY_DATE entryDate,
+			t.LEADER_ID leaderId,
+			t.DEPT_LEADER deptLeader,
+			t.CHARGE_LEADER chargeLeader,
+			t.POLITICAL political,
+			t.CARD_NO cardNo,
+			t.WEIGHT weight,
+			t.ORDER_NO orderNo,
+			t.JOB_TITLE jobTitle,
+			t.PHOTO photo,
+			t.MOBILE mobile,
+			t.OFFICE_TEL officeTel,
+			t.EMAIL email,
+			t.ENTRY_POLITICAL_DATE entryPoliticalDate,
+			t.BIRTHDAY birthday,
+			t.ETHNIC ethnic,
+			t.HOMETOWN hometown,
+			t.DEGREE degree,
+			t.CERNAME cername,
+			t.MARITAL_STATUS maritalStatus,
+			t.IS_ADMIN isAdmin,
+			t.PAY_CARD_NO payCardNo,
+			t.CARD_BANK cardBank,
+			t.CARD_NAME cardName,
+			t.LAST_LONGIN_DATE lastLonginDate,
+			t.WRONG_COUNT wrongCount,
+			t.LOCK_START_DATE lockStartDate,
+			t.OFFICE_ADDRESS officeAddress,
+			t.IS_DRIVER isDriver,
+			t.IS_LEADER isLeader,
+			t.ANSWER answer,
+			t.QUESTION question,
+			t.CREATE_USER createUser,
+			t.CREATE_DATE createDate,
+			t.CREATE_USER_DEPT createUserDept,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.DELETE_FLAG deleteFlag,
+			t.OPEN_CALE openCale,
+			t.IS_CHECK isCheck,
+			t.GROUP_TEL groupTel,
+			d.NAME deptName,
+			(@rowNum:=@rowNum+1) AS rowNo
+			
+		FROM tty_sys_user t , tty_sys_department d, (SELECT (@rowNum :=0) ) b  WHERE t.DEPT_ID = d.ID
+		<if test="deptIdToCode != null"> and d.CODE like (select concat(son.code, '%') from tty_sys_department son where son.id = #{deptIdToCode}) </if>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="code != null">
+				and t.CODE = #{code}
+			</if>
+			<if test="displayName != null">
+				and t.DISPLAY_NAME like <![CDATA['%${displayName}%']]>
+			</if>
+			<if test="loginName != null">
+				and t.LOGIN_NAME = #{loginName}
+			</if>
+			<if test="password != null">
+				and t.PASSWORD = #{password}
+			</if>
+			<if test="sex != null">
+				and t.SEX = #{sex}
+			</if>
+			<if test="kind != null">
+				and t.KIND = #{kind}
+			</if>
+			<if test="dutyId != null">
+				and t.DUTY_ID = #{dutyId}
+			</if>
+			<if test="level != null">
+				and t.LEVEL = #{level}
+			</if>
+			<if test="deptId != null">
+				and t.DEPT_ID = #{deptId}
+			</if>
+			<if test="status != null">
+				and t.STATUS = #{status}
+			</if>
+			<if test="entryDate != null">
+				and t.ENTRY_DATE = #{entryDate}
+			</if>
+			<if test="leaderId != null">
+				and t.LEADER_ID = #{leaderId}
+			</if>
+			<if test="deptLeader != null">
+				and t.DEPT_LEADER = #{deptLeader}
+			</if>
+			<if test="openCale != null">
+				and t.OPEN_CALE = #{openCale}
+			</if>
+			<if test="chargeLeader != null">
+				and t.CHARGE_LEADER = #{chargeLeader}
+			</if>
+			<if test="political != null">
+				and t.POLITICAL = #{political}
+			</if>
+			<if test="cardNo != null">
+				and t.CARD_NO = #{cardNo}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+			<if test="orderNo != null">
+				and t.ORDER_NO = #{orderNo}
+			</if>
+			<if test="jobTitle != null">
+				and t.JOB_TITLE = #{jobTitle}
+			</if>
+			<if test="photo != null">
+				and t.PHOTO = #{photo}
+			</if>
+			<if test="mobile != null">
+				and t.MOBILE = #{mobile}
+			</if>
+			<if test="officeTel != null">
+				and t.OFFICE_TEL = #{officeTel}
+			</if>
+			<if test="email != null">
+				and t.EMAIL = #{email}
+			</if>
+			<if test="entryPoliticalDate != null">
+				and t.ENTRY_POLITICAL_DATE = #{entryPoliticalDate}
+			</if>
+			<if test="birthday != null">
+				and t.BIRTHDAY = #{birthday}
+			</if>
+			<if test="ethnic != null">
+				and t.ETHNIC = #{ethnic}
+			</if>
+			<if test="hometown != null">
+				and t.HOMETOWN = #{hometown}
+			</if>
+			<if test="degree != null">
+				and t.DEGREE = #{degree}
+			</if>
+			<if test="cername != null">
+				and t.CERNAME = #{cername}
+			</if>
+			<if test="maritalStatus != null">
+				and t.MARITAL_STATUS = #{maritalStatus}
+			</if>
+			<if test="isAdmin != null">
+				and t.IS_ADMIN = #{isAdmin}
+			</if>
+			<if test="payCardNo != null">
+				and t.PAY_CARD_NO = #{payCardNo}
+			</if>
+			<if test="cardBank != null">
+				and t.CARD_BANK = #{cardBank}
+			</if>
+			<if test="cardName != null">
+				and t.CARD_NAME = #{cardName}
+			</if>
+			<if test="lastLonginDate != null">
+				and t.LAST_LONGIN_DATE = #{lastLonginDate}
+			</if>
+			<if test="wrongCount != null">
+				and t.WRONG_COUNT = #{wrongCount}
+			</if>
+			<if test="lockStartDate != null">
+				and t.LOCK_START_DATE = #{lockStartDate}
+			</if>
+			<if test="officeAddress != null">
+				and t.OFFICE_ADDRESS = #{officeAddress}
+			</if>
+			<if test="isDriver != null">
+				and t.IS_DRIVER = #{isDriver}
+			</if>
+			<if test="isLeader != null">
+				and t.IS_LEADER = #{isLeader}
+			</if>
+			<if test="answer != null">
+				and t.ANSWER = #{answer}
+			</if>
+			<if test="question != null">
+				and t.QUESTION = #{question}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			
+			<if test="deptIds != null">
+				and t.DEPT_ID in (${deptIds})
+			</if>
+			
+			<if test="orderBy != null">
+				order by ${orderBy}
+			</if>
+	</select>
+	
+	<select id="queryAllUsersCountForOrder" parameterType="com.jc.system.security.domain.User" resultType="java.lang.Integer">
+		SELECT count(t.ID) 
+		FROM tty_sys_user t , tty_sys_department d WHERE t.DEPT_ID = d.ID
+		<if test="deptIdToCode != null"> and d.CODE like (select concat(son.code, '%') from tty_sys_department son where son.id = #{deptIdToCode}) </if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="code != null">
+				and t.CODE = #{code}
+			</if>
+			<if test="displayName != null">
+				and t.DISPLAY_NAME like <![CDATA['%${displayName}%']]>
+			</if>
+			<if test="loginName != null">
+				and t.LOGIN_NAME = #{loginName}
+			</if>
+			<if test="password != null">
+				and t.PASSWORD = #{password}
+			</if>
+			<if test="sex != null">
+				and t.SEX = #{sex}
+			</if>
+			<if test="kind != null">
+				and t.KIND = #{kind}
+			</if>
+			<if test="dutyId != null">
+				and t.DUTY_ID = #{dutyId}
+			</if>
+			<if test="level != null">
+				and t.LEVEL = #{level}
+			</if>
+			<if test="deptId != null">
+				and t.DEPT_ID = #{deptId}
+			</if>
+			<if test="status != null">
+				and t.STATUS = #{status}
+			</if>
+			<if test="entryDate != null">
+				and t.ENTRY_DATE = #{entryDate}
+			</if>
+			<if test="leaderId != null">
+				and t.LEADER_ID = #{leaderId}
+			</if>
+			<if test="deptLeader != null">
+				and t.DEPT_LEADER = #{deptLeader}
+			</if>
+			<if test="chargeLeader != null">
+				and t.CHARGE_LEADER = #{chargeLeader}
+			</if>
+			<if test="political != null">
+				and t.POLITICAL = #{political}
+			</if>
+			<if test="cardNo != null">
+				and t.CARD_NO = #{cardNo}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+			<if test="orderNo != null">
+				and t.ORDER_NO = #{orderNo}
+			</if>
+			<if test="jobTitle != null">
+				and t.JOB_TITLE = #{jobTitle}
+			</if>
+			<if test="photo != null">
+				and t.PHOTO = #{photo}
+			</if>
+			<if test="mobile != null">
+				and t.MOBILE = #{mobile}
+			</if>
+			<if test="officeTel != null">
+				and t.OFFICE_TEL = #{officeTel}
+			</if>
+			<if test="email != null">
+				and t.EMAIL = #{email}
+			</if>
+			<if test="entryPoliticalDate != null">
+				and t.ENTRY_POLITICAL_DATE = #{entryPoliticalDate}
+			</if>
+			<if test="birthday != null">
+				and t.BIRTHDAY = #{birthday}
+			</if>
+			<if test="ethnic != null">
+				and t.ETHNIC = #{ethnic}
+			</if>
+			<if test="hometown != null">
+				and t.HOMETOWN = #{hometown}
+			</if>
+			<if test="degree != null">
+				and t.DEGREE = #{degree}
+			</if>
+			<if test="cername != null">
+				and t.CERNAME = #{cername}
+			</if>
+			<if test="maritalStatus != null">
+				and t.MARITAL_STATUS = #{maritalStatus}
+			</if>
+			<if test="isAdmin != null">
+				and t.IS_ADMIN = #{isAdmin}
+			</if>
+			<if test="payCardNo != null">
+				and t.PAY_CARD_NO = #{payCardNo}
+			</if>
+			<if test="cardBank != null">
+				and t.CARD_BANK = #{cardBank}
+			</if>
+			<if test="cardName != null">
+				and t.CARD_NAME = #{cardName}
+			</if>
+			<if test="lastLonginDate != null">
+				and t.LAST_LONGIN_DATE = #{lastLonginDate}
+			</if>
+			<if test="wrongCount != null">
+				and t.WRONG_COUNT = #{wrongCount}
+			</if>
+			<if test="lockStartDate != null">
+				and t.LOCK_START_DATE = #{lockStartDate}
+			</if>
+			<if test="officeAddress != null">
+				and t.OFFICE_ADDRESS = #{officeAddress}
+			</if>
+			<if test="isDriver != null">
+				and t.IS_DRIVER = #{isDriver}
+			</if>
+			<if test="isLeader != null">
+				and t.IS_LEADER = #{isLeader}
+			</if>
+			<if test="question != null">
+				and t.QUESTION = #{question}
+			</if>
+			<if test="answer != null">
+				and t.ANSWER = #{answer}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="openCale != null">
+				and t.OPEN_CALE = #{openCale}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			
+			<if test="deptIds != null">
+				and t.DEPT_ID in (${deptIds})
+			</if>
+			
+		
+	</select>
+
+	<select id="getWithLogic" parameterType="com.jc.system.security.domain.User" resultType="com.jc.system.security.domain.User">
+		SELECT
+		t.ID id,
+		t.CODE code,
+		t.DISPLAY_NAME displayName,
+		t.resource_id resourceId,
+		t.LOGIN_NAME loginName,
+		t.PASSWORD password,
+		t.SEX sex,
+		t.KIND kind,
+		t.DUTY_ID dutyId,
+		t.LEVEL level,
+		t.DEPT_ID deptId,
+		t.STATUS status,
+		t.ENTRY_DATE entryDate,
+		t.LEADER_ID leaderId,
+		t.DEPT_LEADER deptLeader,
+		t.CHARGE_LEADER chargeLeader,
+		t.POLITICAL political,
+		t.CARD_NO cardNo,
+		t.WEIGHT weight,
+		t.ORDER_NO orderNo,
+		t.JOB_TITLE jobTitle,
+		t.PHOTO photo,
+		t.MOBILE mobile,
+		t.OFFICE_TEL officeTel,
+		t.EMAIL email,
+		t.ENTRY_POLITICAL_DATE entryPoliticalDate,
+		t.BIRTHDAY birthday,
+		t.ETHNIC ethnic,
+		t.HOMETOWN hometown,
+		t.DEGREE degree,
+		t.CERNAME cername,
+		t.MARITAL_STATUS maritalStatus,
+		t.IS_ADMIN isAdmin,
+		t.PAY_CARD_NO payCardNo,
+		t.CARD_BANK cardBank,
+		t.CARD_NAME cardName,
+		t.LAST_LONGIN_DATE lastLonginDate,
+		t.WRONG_COUNT wrongCount,
+		t.LOCK_START_DATE lockStartDate,
+		t.OFFICE_ADDRESS officeAddress,
+		t.IS_DRIVER isDriver,
+		t.IS_LEADER isLeader,
+		t.ANSWER answer,
+		t.QUESTION question,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_DEPT createUserDept,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.DELETE_FLAG deleteFlag,
+		t.OPEN_CALE openCale,
+		t.IS_CHECK isCheck,
+		t.GROUP_TEL groupTel,
+		d.NAME deptName
+
+		FROM tty_sys_user t , tty_sys_department d WHERE t.DEPT_ID = d.ID
+		<if test="deptIdToCode != null"> and d.CODE like (select concat(son.code, '%') from tty_sys_department son where son.id = #{deptIdToCode}) </if>
+		<if test="id != null">
+			and t.ID = #{id}
+		</if>
+		<if test="deleteFlag != null">
+			and t.DELETE_FLAG = #{deleteFlag}
+		</if>
+		<if test="code != null">
+			and t.CODE = #{code}
+		</if>
+		<if test="displayName != null">
+			and t.DISPLAY_NAME like <![CDATA['%${displayName}%']]>
+		</if>
+		<if test="loginName != null">
+			and t.LOGIN_NAME = #{loginName}
+		</if>
+		<if test="password != null">
+			and t.PASSWORD = #{password}
+		</if>
+		<if test="sex != null">
+			and t.SEX = #{sex}
+		</if>
+		<if test="kind != null">
+			and t.KIND = #{kind}
+		</if>
+		<if test="dutyId != null">
+			and t.DUTY_ID = #{dutyId}
+		</if>
+		<if test="level != null">
+			and t.LEVEL = #{level}
+		</if>
+		<if test="deptId != null">
+			and t.DEPT_ID = #{deptId}
+		</if>
+		<if test="status != null">
+			and t.STATUS = #{status}
+		</if>
+		<if test="entryDate != null">
+			and t.ENTRY_DATE = #{entryDate}
+		</if>
+		<if test="leaderId != null">
+			and t.LEADER_ID = #{leaderId}
+		</if>
+		<if test="deptLeader != null">
+			and t.DEPT_LEADER = #{deptLeader}
+		</if>
+		<if test="openCale != null">
+			and t.OPEN_CALE = #{openCale}
+		</if>
+		<if test="chargeLeader != null">
+			and t.CHARGE_LEADER = #{chargeLeader}
+		</if>
+		<if test="political != null">
+			and t.POLITICAL = #{political}
+		</if>
+		<if test="cardNo != null">
+			and t.CARD_NO = #{cardNo}
+		</if>
+		<if test="weight != null">
+			and <![CDATA[t.WEIGHT <= #{weight}]]>
+		</if>
+		<if test="orderNo != null">
+			and t.ORDER_NO = #{orderNo}
+		</if>
+		<if test="jobTitle != null">
+			and t.JOB_TITLE = #{jobTitle}
+		</if>
+		<if test="photo != null">
+			and t.PHOTO = #{photo}
+		</if>
+		<if test="mobile != null">
+			and t.MOBILE = #{mobile}
+		</if>
+		<if test="officeTel != null">
+			and t.OFFICE_TEL = #{officeTel}
+		</if>
+		<if test="email != null">
+			and t.EMAIL = #{email}
+		</if>
+		<if test="entryPoliticalDate != null">
+			and t.ENTRY_POLITICAL_DATE = #{entryPoliticalDate}
+		</if>
+		<if test="birthday != null">
+			and t.BIRTHDAY = #{birthday}
+		</if>
+		<if test="ethnic != null">
+			and t.ETHNIC = #{ethnic}
+		</if>
+		<if test="hometown != null">
+			and t.HOMETOWN = #{hometown}
+		</if>
+		<if test="degree != null">
+			and t.DEGREE = #{degree}
+		</if>
+		<if test="cername != null">
+			and t.CERNAME = #{cername}
+		</if>
+		<if test="maritalStatus != null">
+			and t.MARITAL_STATUS = #{maritalStatus}
+		</if>
+		<if test="isAdmin != null">
+			and t.IS_ADMIN = #{isAdmin}
+		</if>
+		<if test="payCardNo != null">
+			and t.PAY_CARD_NO = #{payCardNo}
+		</if>
+		<if test="cardBank != null">
+			and t.CARD_BANK = #{cardBank}
+		</if>
+		<if test="cardName != null">
+			and t.CARD_NAME = #{cardName}
+		</if>
+		<if test="lastLonginDate != null">
+			and t.LAST_LONGIN_DATE = #{lastLonginDate}
+		</if>
+		<if test="wrongCount != null">
+			and t.WRONG_COUNT = #{wrongCount}
+		</if>
+		<if test="lockStartDate != null">
+			and t.LOCK_START_DATE = #{lockStartDate}
+		</if>
+		<if test="officeAddress != null">
+			and t.OFFICE_ADDRESS = #{officeAddress}
+		</if>
+		<if test="isDriver != null">
+			and t.IS_DRIVER = #{isDriver}
+		</if>
+		<if test="isLeader != null">
+			and t.IS_LEADER = #{isLeader}
+		</if>
+		<if test="answer != null">
+			and t.ANSWER = #{answer}
+		</if>
+		<if test="question != null">
+			and t.QUESTION = #{question}
+		</if>
+		<if test="createUser != null">
+			and t.CREATE_USER = #{createUser}
+		</if>
+		<if test="createDate != null">
+			and t.CREATE_DATE = #{createDate}
+		</if>
+
+		<if test="createUserDept != null">
+			and t.CREATE_USER_DEPT = #{createUserDept}
+		</if>
+		<if test="modifyUser != null">
+			and t.MODIFY_USER = #{modifyUser}
+		</if>
+		<if test="modifyDate != null">
+			and t.MODIFY_DATE = #{modifyDate}
+		</if>
+
+		<if test="deptIds != null">
+			and t.DEPT_ID in (${deptIds})
+		</if>
+
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="getUsersByRoleids" parameterType="com.jc.system.security.domain.User" resultType="com.jc.system.security.domain.User">
+		SELECT
+		t.ID id,
+		t.CODE code,
+		t.DISPLAY_NAME displayName,
+		t.resource_id resourceId,
+		t.LOGIN_NAME loginName,
+		t.PASSWORD password,
+		t.SEX sex,
+		t.KIND kind,
+		t.DUTY_ID dutyId,
+		t.LEVEL level,
+		t.DEPT_ID deptId,
+		t.STATUS status,
+		t.ENTRY_DATE entryDate,
+		t.LEADER_ID leaderId,
+		t.DEPT_LEADER deptLeader,
+		t.CHARGE_LEADER chargeLeader,
+		t.POLITICAL political,
+		t.CARD_NO cardNo,
+		t.WEIGHT weight,
+		t.ORDER_NO orderNo,
+		t.JOB_TITLE jobTitle,
+		t.PHOTO photo,
+		t.MOBILE mobile,
+		t.OFFICE_TEL officeTel,
+		t.EMAIL email,
+		t.ENTRY_POLITICAL_DATE entryPoliticalDate,
+		t.BIRTHDAY birthday,
+		t.ETHNIC ethnic,
+		t.HOMETOWN hometown,
+		t.DEGREE degree,
+		t.CERNAME cername,
+		t.MARITAL_STATUS maritalStatus,
+		t.IS_ADMIN isAdmin,
+		t.PAY_CARD_NO payCardNo,
+		t.CARD_BANK cardBank,
+		t.CARD_NAME cardName,
+		t.LAST_LONGIN_DATE lastLonginDate,
+		t.WRONG_COUNT wrongCount,
+		t.LOCK_START_DATE lockStartDate,
+		t.OFFICE_ADDRESS officeAddress,
+		t.IS_DRIVER isDriver,
+		t.IS_LEADER isLeader,
+		t.ANSWER answer,
+		t.QUESTION question,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_DEPT createUserDept,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.DELETE_FLAG deleteFlag,
+		t.OPEN_CALE openCale,
+		t.IS_CHECK isCheck,
+		d.NAME deptName
+		FROM tty_sys_user t , tty_sys_department d WHERE t.DEPT_ID = d.ID  and t.id IN
+		(
+			SELECT DISTINCT user_id FROM tty_sys_user_role WHERE role_id IN
+			(${roleids})
+		)
+
+	</select>
+
+
+	<select id="queryUserIdAndName" parameterType="com.jc.system.security.domain.User" resultType="com.jc.system.security.domain.User">
+		SELECT
+		t.ID id,
+		t.DISPLAY_NAME displayName
+		FROM tty_sys_user t , tty_sys_department d WHERE t.DEPT_ID = d.ID
+		<if test="deptIdToCode != null"> and d.CODE like (select concat(son.code, '%') from tty_sys_department son where son.id = #{deptIdToCode}) </if>
+		<if test="id != null">
+			and t.ID = #{id}
+		</if>
+		<if test="deleteFlag != null">
+			and t.DELETE_FLAG = #{deleteFlag}
+		</if>
+		<if test="deptId != null">
+			and t.DEPT_ID = #{deptId}
+		</if>
+		<if test="status != null">
+			and t.STATUS = #{status}
+		</if>
+		<if test="entryDate != null">
+			and t.ENTRY_DATE = #{entryDate}
+		</if>
+		<if test="openCale != null">
+			and t.OPEN_CALE = #{openCale}
+		</if>
+		<if test="political != null">
+			and t.POLITICAL = #{political}
+		</if>
+		<if test="cardNo != null">
+			and t.CARD_NO = #{cardNo}
+		</if>
+		<if test="weight != null">
+			and <![CDATA[t.WEIGHT <= #{weight}]]>
+		</if>
+		<if test="orderNo != null">
+			and t.ORDER_NO = #{orderNo}
+		</if>
+		<if test="entryPoliticalDate != null">
+			and t.ENTRY_POLITICAL_DATE = #{entryPoliticalDate}
+		</if>
+		<if test="birthday != null">
+			and t.BIRTHDAY = #{birthday}
+		</if>
+		<if test="ethnic != null">
+			and t.ETHNIC = #{ethnic}
+		</if>
+		<if test="hometown != null">
+			and t.HOMETOWN = #{hometown}
+		</if>
+		<if test="degree != null">
+			and t.DEGREE = #{degree}
+		</if>
+		<if test="cername != null">
+			and t.CERNAME = #{cername}
+		</if>
+		<if test="maritalStatus != null">
+			and t.MARITAL_STATUS = #{maritalStatus}
+		</if>
+		<if test="isAdmin != null">
+			and t.IS_ADMIN = #{isAdmin}
+		</if>
+		<if test="payCardNo != null">
+			and t.PAY_CARD_NO = #{payCardNo}
+		</if>
+		<if test="cardBank != null">
+			and t.CARD_BANK = #{cardBank}
+		</if>
+		<if test="cardName != null">
+			and t.CARD_NAME = #{cardName}
+		</if>
+		<if test="lastLonginDate != null">
+			and t.LAST_LONGIN_DATE = #{lastLonginDate}
+		</if>
+		<if test="wrongCount != null">
+			and t.WRONG_COUNT = #{wrongCount}
+		</if>
+		<if test="lockStartDate != null">
+			and t.LOCK_START_DATE = #{lockStartDate}
+		</if>
+		<if test="isDriver != null">
+			and t.IS_DRIVER = #{isDriver}
+		</if>
+		<if test="isLeader != null">
+			and t.IS_LEADER = #{isLeader}
+		</if>
+		<if test="createUser != null">
+			and t.CREATE_USER = #{createUser}
+		</if>
+		<if test="createDate != null">
+			and t.CREATE_DATE = #{createDate}
+		</if>
+
+		<if test="createUserDept != null">
+			and t.CREATE_USER_DEPT = #{createUserDept}
+		</if>
+		<if test="modifyUser != null">
+			and t.MODIFY_USER = #{modifyUser}
+		</if>
+		<if test="modifyDate != null">
+			and t.MODIFY_DATE = #{modifyDate}
+		</if>
+
+		<if test="deptIds != null">
+			and t.DEPT_ID in (${deptIds})
+		</if>
+
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getUsersByDeptId" parameterType="string" resultType="com.jc.system.security.domain.User">
+		SELECT 
+		  	t.ID id,
+			t.CODE code,
+			t.DISPLAY_NAME displayName,
+			t.resource_id resourceId,
+			t.LOGIN_NAME loginName,
+			t.PASSWORD password,
+			t.SEX sex,
+			t.KIND kind,
+			t.DUTY_ID dutyId,
+			t.LEVEL level,
+			t.DEPT_ID deptId,
+			t.STATUS status,
+			t.ENTRY_DATE entryDate,
+			t.LEADER_ID leaderId,
+			t.DEPT_LEADER deptLeader,
+			t.CHARGE_LEADER chargeLeader,
+			t.POLITICAL political,
+			t.CARD_NO cardNo,
+			t.WEIGHT weight,
+			t.ORDER_NO orderNo,
+			t.JOB_TITLE jobTitle,
+			t.PHOTO photo,
+			t.MOBILE mobile,
+			t.OFFICE_TEL officeTel,
+			t.EMAIL email,
+			t.ENTRY_POLITICAL_DATE entryPoliticalDate,
+			t.BIRTHDAY birthday,
+			t.ETHNIC ethnic,
+			t.HOMETOWN hometown,
+			t.DEGREE degree,
+			t.CERNAME cername,
+			t.MARITAL_STATUS maritalStatus,
+			t.IS_ADMIN isAdmin,
+			t.PAY_CARD_NO payCardNo,
+			t.CARD_BANK cardBank,
+			t.CARD_NAME cardName,
+			t.LAST_LONGIN_DATE lastLonginDate,
+			t.WRONG_COUNT wrongCount,
+			t.LOCK_START_DATE lockStartDate,
+			t.OFFICE_ADDRESS officeAddress,
+			t.IS_DRIVER isDriver,
+			t.IS_LEADER isLeader,
+			t.ANSWER answer,
+			t.QUESTION question,
+			t.CREATE_USER createUser,
+			t.CREATE_DATE createDate,
+			t.CREATE_USER_DEPT createUserDept,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.DELETE_FLAG deleteFlag,
+			t.OPEN_CALE openCale,
+			t.IS_CHECK isCheck,
+			t.GROUP_TEL groupTel
+			
+		FROM tty_sys_user t
+		WHERE t.DEPT_ID = #{deptId} AND t.DELETE_FLAG = 0 
+	</select>
+
+</mapper>

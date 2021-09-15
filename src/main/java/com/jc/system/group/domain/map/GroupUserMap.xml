@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.group.domain.GroupUser">
+
+	<select id="query" parameterType="com.jc.system.group.domain.GroupUser" resultType="com.jc.system.group.domain.GroupUser">
+		SELECT 
+			t.id id,
+			t.group_id groupId,
+			t.user_id userId
+			
+		FROM tty_sys_group_user t
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+
+			<if test="groupId != null">
+				and t.group_id = #{groupId}
+			</if>
+
+			<if test="userId != null">
+				and t.user_id = #{userId}
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="queryCount" parameterType="com.jc.system.group.domain.GroupUser" resultType="java.lang.Long">
+		SELECT count(id) 
+		FROM tty_sys_group_user t
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+
+			<if test="groupId != null">
+				and t.group_id = #{groupId}
+			</if>
+
+			<if test="userId != null">
+				and t.user_id = #{userId}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertList" parameterType="list">
+		INSERT INTO
+		tty_sys_group_user(ID,group_id,user_id)
+		VALUES
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{id},#{item.id},#{item.groupId},#{item.userId})
+		</foreach>
+	</insert>
+
+	<delete id="deletePhysical"  parameterType="com.jc.system.group.domain.GroupUser">
+    	delete from tty_sys_group_user
+      		where group_id in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+
+</mapper>

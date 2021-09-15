@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.Menu">
+
+	<select id="query" parameterType="com.jc.system.security.domain.Menu" resultType="com.jc.system.security.domain.Menu">
+		SELECT
+		t.ID id,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.PARENT_ID parentId,
+		t.ICON icon,
+		t.MENU_TYPE menuType,
+		t.ACTION_NAME actionName,
+		t.DELETE_FLAG deleteFlag,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_USER_DEPT createUserDept,
+		t.CREATE_USER_ORG createUserOrg,
+		t.CREATE_DATE createDate,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.IS_SHOW isShow,
+		t.permission permission,
+		t.ext_str1 extStr1,
+		t.ext_str2 extStr2
+
+		FROM tty_sys_menu t
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="name != null">
+				and t.NAME = #{name}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="icon != null">
+				and t.ICON = #{icon}
+			</if>
+			<if test="menuType != null">
+				and t.MENU_TYPE = #{menuType}
+			</if>
+			<if test="actionName != null">
+				and t.ACTION_NAME = #{actionName}
+			</if>
+			<if test="deleteFlag == null">
+				and t.DELETE_FLAG = 0
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+
+			<if test="queue != null">
+				and t.QUEUE = #{queue}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="isShow != null">
+				and t.IS_SHOW = #{isShow}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+		order by t.QUEUE,t.id
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.system.security.domain.Menu" resultType="java.lang.Long">
+		SELECT count(ID)
+		FROM tty_sys_menu t
+		<where>
+			<if test="dataAccessDynamicSQL != null">
+				${dataAccessDynamicSQL}
+			</if>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="name != null">
+				and t.NAME = #{name}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="icon != null">
+				and t.ICON = #{icon}
+			</if>
+			<if test="menuType != null">
+				and t.MENU_TYPE = #{menuType}
+			</if>
+			<if test="actionName != null">
+				and t.ACTION_NAME = #{actionName}
+			</if>
+			and t.DELETE_FLAG = 0
+			<if test="queue != null">
+				and t.QUEUE = #{queue}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="isShow != null">
+				and t.IS_SHOW = #{isShow}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+	</select>
+
+	<select id="queryMenus" parameterType="com.jc.system.security.domain.Menu" resultType="com.jc.system.security.domain.Menu">
+		SELECT
+		t.ID id,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.PARENT_ID parentId,
+		t.ICON icon,
+		t.MENU_TYPE menuType,
+		t.ACTION_NAME actionName,
+		t.DELETE_FLAG deleteFlag,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_USER_DEPT createUserDept,
+		t.CREATE_DATE createDate,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.IS_SHOW isShow,
+		t.permission permission,
+		t.ext_str1 extStr1,
+		t.ext_str2 extStr2
+
+		FROM tty_sys_menu t
+		<where>
+			1=1
+			<if test="userId != '-99'">
+				and ID IN
+				(
+				SELECT MENU_ID FROM tty_sys_role_menu a INNER JOIN tty_sys_user_role b ON a.ROLE_ID = b.ROLE_ID
+				WHERE b.USER_ID = #{userId}
+				<!-- SELECT MENU_ID FROM tty_sys_role_menu WHERE ROLE_ID IN
+                (
+                    SELECT ROLE_ID FROM tty_sys_user_role WHERE USER_ID = #{userId}
+                ) -->
+				)
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+		</where>
+		AND t.IS_SHOW = 0 AND t.DELETE_FLAG = 0 ORDER BY t.QUEUE,t.id
+	</select>
+
+	<select id="queryMenuBySubsystem" parameterType="com.jc.system.security.domain.Menu" resultType="com.jc.system.security.domain.Menu">
+		SELECT
+		t.ID id,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.PARENT_ID parentId,
+		t.ICON icon,
+		t.MENU_TYPE menuType,
+		t.ACTION_NAME actionName,
+		t.DELETE_FLAG deleteFlag,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_USER_DEPT createUserDept,
+		t.CREATE_DATE createDate,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.IS_SHOW isShow,
+		t.permission permission,
+		t.ext_str1 extStr1,
+		t.ext_str2 extStr2
+
+		FROM tty_sys_menu t
+		<where>
+			1=1
+			<if test="userId != '-99'">
+				and ID IN
+				(
+				SELECT MENU_ID FROM tty_sys_role_menu a INNER JOIN tty_sys_user_role b ON a.ROLE_ID = b.ROLE_ID
+				WHERE b.USER_ID = #{userId}
+				<!-- SELECT MENU_ID FROM tty_sys_role_menu WHERE ROLE_ID IN
+                (
+                    SELECT ROLE_ID FROM tty_sys_user_role WHERE USER_ID = #{userId}
+                ) -->
+				)
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+			<if test="permission != null">
+				and (t.parent_id!='-1' or t.ID in (select s.menuid from tty_sys_subsystem s where s.permission = #{permission} or s.permission ='public' ))
+			</if>
+		</where>
+		AND t.IS_SHOW = 0 AND t.DELETE_FLAG = 0 ORDER BY t.QUEUE,t.id
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.system.security.domain.Menu">
+		delete from tty_sys_menu
+		where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index"
+				 open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.system.security.domain.Menu">
+		UPDATE tty_sys_menu t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+		where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index"
+				 open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+	</update>
+	<insert id="insert" parameterType="com.jc.system.security.domain.Menu">
+		INSERT INTO tty_sys_menu(ID,NAME,WEIGHT,PARENT_ID,ICON,MENU_TYPE,ACTION_NAME,QUEUE,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,MODIFY_USER,MODIFY_DATE,IS_SHOW,permission,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+		VALUES (#{id,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{weight,jdbcType=NUMERIC},#{parentId,jdbcType=VARCHAR},#{icon,jdbcType=VARCHAR},#{menuType,jdbcType=NUMERIC},#{actionName,jdbcType=VARCHAR},#{queue,jdbcType=NUMERIC},#{deleteFlag,jdbcType=NUMERIC},#{createUser,jdbcType=VARCHAR},#{createUserDept,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{modifyUser,jdbcType=VARCHAR},#{modifyDate,jdbcType=TIMESTAMP},#{isShow,jdbcType=NUMERIC},#{permission,jdbcType=VARCHAR},#{extStr1,jdbcType=VARCHAR},#{extStr2,jdbcType=VARCHAR},#{extStr3,jdbcType=VARCHAR},#{extStr4,jdbcType=VARCHAR},#{extStr5,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		INSERT INTO tty_sys_menu(ID,NAME,WEIGHT,PARENT_ID,ICON,MENU_TYPE,ACTION_NAME,DELETE_FLAG,QUEUE,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,MODIFY_USER,MODIFY_DATE,IS_SHOW,permission,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id,jdbcType=VARCHAR},#{item.name,jdbcType=VARCHAR},#{item.weight,jdbcType=NUMERIC},#{item.parentId,jdbcType=VARCHAR},#{item.icon,jdbcType=VARCHAR},#{item.menuType,jdbcType=NUMERIC},#{item.actionName,jdbcType=VARCHAR},#{item.deleteFlag,jdbcType=NUMERIC},#{item.queue,jdbcType=NUMERIC},#{item.createUser,jdbcType=VARCHAR},#{item.createUserDept,jdbcType=VARCHAR},#{item.createDate,jdbcType=TIMESTAMP},#{item.modifyUser,jdbcType=VARCHAR},#{item.modifyDate,jdbcType=TIMESTAMP},#{item.isShow,jdbcType=NUMERIC},#{item.permission,jdbcType=VARCHAR},#{item.extStr1,jdbcType=VARCHAR},#{item.extStr2,jdbcType=VARCHAR},#{item.extStr3,jdbcType=VARCHAR},#{item.extStr4,jdbcType=VARCHAR},#{item.extStr5,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.system.security.domain.Menu">
+		UPDATE tty_sys_menu
+		<set>
+			<if test="name != null">
+				NAME = #{name},
+			</if>
+			<if test="weight != null">
+				WEIGHT = #{weight},
+			</if>
+			<if test="parentId != null">
+				PARENT_ID = #{parentId},
+			</if>
+			<if test="icon != null">
+				ICON = #{icon},
+			</if>
+			<if test="menuType != null">
+				MENU_TYPE = #{menuType},
+			</if>
+			<if test="actionName != null">
+				ACTION_NAME = #{actionName},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG = #{deleteFlag},
+			</if>
+			<if test="queue != null">
+				QUEUE = #{queue},
+			</if>
+			<if test="createUser != null">
+				CREATE_USER = #{createUser},
+			</if>
+			<if test="createUserDept != null">
+				CREATE_USER_DEPT = #{createUserDept},
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="modifyUser != null">
+				MODIFY_USER = #{modifyUser},
+			</if>
+			<if test="modifyDate != null">
+				MODIFY_DATE = #{modifyDate},
+			</if>
+			<if test="isShow != null">
+				IS_SHOW = #{isShow},
+			</if>
+			<if test="permission != null">
+				permission = #{permission},
+			</if>
+			<if test="extStr1 != null">
+				EXT_STR1 = #{extStr1},
+			</if>
+			<if test="extStr2 != null">
+				EXT_STR2 = #{extStr2},
+			</if>
+			<if test="extStr3 != null">
+				EXT_STR3 = #{extStr3},
+			</if>
+			<if test="extStr4 != null">
+				EXT_STR4 = #{extStr4},
+			</if>
+			<if test="extStr5 != null">
+				EXT_STR5 = #{extStr5},
+			</if>
+		</set>
+		where ID = #{id}
+	</update>
+
+
+	<select id="queryWithRole" parameterType="com.jc.system.security.domain.Menu" resultType="com.jc.system.security.domain.Menu">
+		SELECT
+		t.ID id,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.PARENT_ID parentId,
+		t.ICON icon,
+		t.MENU_TYPE menuType,
+		t.ACTION_NAME actionName,
+		t.DELETE_FLAG deleteFlag,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_USER_DEPT createUserDept,
+		t.CREATE_DATE createDate,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.IS_SHOW isShow,
+		t.permission permission
+
+		FROM tty_sys_menu t
+		<where>
+			1=1
+			<if test="userId != '-99'">
+				and ID IN
+				(
+				SELECT MENU_ID FROM tty_sys_role_menu WHERE ROLE_ID IN
+				(
+				SELECT ROLE_ID FROM tty_sys_user_role WHERE USER_ID = #{userId}
+				)
+				)
+			</if>
+			<if test="parentId != null">
+				and t.PARENT_ID = #{parentId}
+			</if>
+			<if test="weight != null">
+				<if test="weight &lt; 100">
+					and <![CDATA[t.WEIGHT <= #{weight}]]>
+				</if>
+				<if test="weight &gt;= 100">
+					and <![CDATA[t.WEIGHT = 20 ]]> or <![CDATA[t.WEIGHT = 101 ]]> or t.WEIGHT = #{weight}
+				</if>
+				<if test="weight == 106">
+					or <![CDATA[t.WEIGHT = 25 ]]>
+				</if>
+			</if>
+			<if test="isShow != null">
+				and (t.IS_SHOW = #{isShow} or t.MENU_TYPE = #{menuType})
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+		</where>
+		order by t.QUEUE
+	</select>
+
+
+	<select id="queryUserMenu" parameterType="com.jc.system.security.domain.Menu" resultType="com.jc.system.security.domain.Menu">
+		SELECT
+		t.ID id,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.PARENT_ID parentId,
+		t.ICON icon,
+		t.MENU_TYPE menuType,
+		t.ACTION_NAME actionName,
+		t.DELETE_FLAG deleteFlag,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_USER_DEPT createUserDept,
+		t.CREATE_DATE createDate,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.IS_SHOW isShow,
+		t.permission permission
+		FROM tty_sys_menu t,tty_sys_role_menu r, tty_sys_user_role u
+		<where>
+			t.ID = r.MENU_ID and r.ROLE_ID = u.ROLE_ID
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="userId != null">
+				and u.USER_ID = #{userId}
+			</if>
+			<if test="weight != null">
+				and <![CDATA[t.WEIGHT <= #{weight}]]>
+			</if>
+		</where>
+	</select>
+
+	<select id="queryMenuForUrl" parameterType="com.jc.system.security.domain.Menu" resultType="com.jc.system.security.domain.Menu">
+		SELECT
+		t.ID id,
+		t.NAME name,
+		t.WEIGHT weight,
+		t.PARENT_ID parentId,
+		t.ICON icon,
+		t.MENU_TYPE menuType,
+		t.ACTION_NAME actionName,
+		t.DELETE_FLAG deleteFlag,
+		t.QUEUE queue,
+		t.CREATE_USER createUser,
+		t.CREATE_USER_DEPT createUserDept,
+		t.CREATE_DATE createDate,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.IS_SHOW isShow,
+		t.permission permission,
+		t.ext_str1 extStr1,
+		t.ext_str2 extStr2
+
+		FROM tty_sys_menu t
+		<where>
+			t.DELETE_FLAG = 0
+			<if test="extStr3 != null">
+				and t.ACTION_NAME like <![CDATA['%${extStr3}%']]>
+			</if>
+			<if test="extStr4 != null">
+				and t.ACTION_NAME like <![CDATA['%${extStr4}%']]>
+			</if>
+		</where>
+	</select>
+
+</mapper>

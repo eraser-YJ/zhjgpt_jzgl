@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+    <description>tag library for auth handlers.</description>
+    <tlib-version>1.0</tlib-version>
+    <short-name>simple</short-name>
+    <uri>/common-tags</uri>
+<tag>
+  <name>remindList</name>
+  <tag-class>com.jc.system.remind.RemindTag</tag-class>
+  <body-content>scriptless</body-content>  
+</tag> 
+      <!--  取值有四种，为empty，JSP,scriptless,tagdepentend -->
+      <!-- body-content包括一下三种情况 -->
+      <!-- JSP：接受所有JSP语法，如定制的或内部的tag、scripts、静态HTML、脚本元素、JSP指令和动作。如： -->
+      <!-- empty：空标记，即起始标记和结束标记之间没有内容。 -->
+      <!-- scriptless：接受文本、EL和JSP动作。 -->
+</taglib>

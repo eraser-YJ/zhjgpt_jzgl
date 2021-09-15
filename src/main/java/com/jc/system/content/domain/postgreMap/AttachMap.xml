@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.jc.foundation.domain.Attach"><select id="query" parameterType="com.jc.foundation.domain.Attach" resultType="com.jc.foundation.domain.Attach">
+		SELECT 
+			t.ID id,
+			t.RESOURCES_NAME resourcesName,
+			t.FILE_NAME fileName,
+			t.FILE_SIZE fileSize,
+			t.UPLOAD_TIME uploadTime,
+			<if test="isPaged == 1">
+				tb.BUSINESS_ID businessId,
+			</if>
+			<if test="isPaged == 0">
+				t.BUSINESS_ID businessId,
+			</if>
+			t.BUSINESS_SOURCE businessSource,
+			t.CONTENT_TYPE content_type,
+			t.EXT ext,
+			t.CATEGORY category,
+			t.USER_ID userid,
+			t.USER_NAME username			
+			<if test="isPaged == 1">
+			,tb.ID businessIndex,tb.IS_EDIT isEdit
+				FROM tty_sys_attach t,tty_sys_attach_business tb 
+	        	where  t.ID = tb.ATTACH_ID
+			</if>
+			<if test="isPaged == 0">
+				FROM tty_sys_attach t 
+				where 1=1 
+			</if>
+
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="resourcesName != null">
+				and t.RESOURCES_NAME = #{resourcesName}
+			</if>
+			<if test="fileName != null">
+				and t.FILE_NAME = #{fileName}
+			</if>
+			<if test="fileSize != null">
+				and t.FILE_SIZE = #{fileSize}
+			</if>
+			<if test="uploadTime != null">
+				and t.UPLOAD_TIME = #{uploadTime}
+			</if>
+			<if test="category != null and category != ''">
+				and t.CATEGORY = #{category}
+			</if>
+			<if test="userid != null and userid != ''">
+				and t.USER_ID = #{userid}
+			</if>	
+			<if test="username != null and username != ''">
+				and t.USER_NAME = #{username}
+			</if>	
+			<if test="isPaged == 1">
+				<if test="businessId != null">
+					and tb.BUSINESS_ID = #{businessId}
+				</if>
+				<if test="businessTable != null">
+					and tb.BUSINESS_TABLE = #{businessTable}
+				</if>  
+			</if>
+			order by t.upload_time desc
+	</select><select id="queryCount" parameterType="com.jc.foundation.domain.Attach" resultType="java.lang.Integer">
+		SELECT count(ID) 
+		FROM tty_sys_attach t
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="resourcesName != null">
+				and t.RESOURCES_NAME = #{resourcesName}
+			</if>
+			<if test="fileName != null">
+				and t.FILE_NAME = #{fileName}
+			</if>
+			<if test="fileSize != null">
+				and t.FILE_SIZE = #{fileSize}
+			</if>
+			<if test="uploadTime != null">
+				and t.UPLOAD_TIME = #{uploadTime}
+			</if>
+			<if test="businessId != null">
+				and t.BUSINESS_ID = #{businessId}
+			</if>
+			<if test="businessSource != null">
+				and t.BUSINESS_SOURCE = #{businessSource}
+			</if>
+		</where>
+	</select><select id="getAttachList" resultType="com.jc.foundation.domain.Attach" parameterType="java.util.Map">
+		SELECT 			
+		    ta.ID id,
+			ta.RESOURCES_NAME resourcesName,
+			ta.FILE_NAME fileName,
+			ta.FILE_SIZE fileSize,
+			ta.UPLOAD_TIME uploadTime
+			FROM tty_sys_attach ta,tty_sys_attach_business tb 
+		WHERE  ta.ID = tb.ATTACH_ID AND tb.BUSINESS_ID=#{business_id} AND tb.BUSINESS_TABLE=#{business_table}
+	</select><delete id="deletePhysical" parameterType="com.jc.foundation.domain.Attach">
+    	delete from tty_sys_attach
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete><update id="deleteLogic" parameterType="com.jc.foundation.domain.Attach">
+    	UPDATE tty_sys_remind t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+	<insert id="insert" parameterType="com.jc.foundation.domain.Attach" useGeneratedKeys="true">
+		INSERT INTO tty_sys_attach(ID,RESOURCES_NAME,FILE_NAME,FILE_SIZE,UPLOAD_TIME,BUSINESS_ID,BUSINESS_SOURCE,CONTENT_TYPE,EXT,CATEGORY,USER_ID,USER_NAME)
+			VALUES (#{id,jdbcType=VARCHAR},#{resourcesName,jdbcType=VARCHAR},#{fileName,jdbcType=VARCHAR},#{fileSize,jdbcType=NUMERIC},#{uploadTime,jdbcType=TIMESTAMP},#{businessId,jdbcType=NUMERIC},#{businessSource,jdbcType=VARCHAR},#{content_type,jdbcType=VARCHAR},#{ext,jdbcType=VARCHAR},#{category,jdbcType=VARCHAR},#{userid,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		INSERT INTO tty_sys_attach(ID,RESOURCES_NAME,FILE_NAME,FILE_SIZE,UPLOAD_TIME,BUSINESS_ID,BUSINESS_SOURCE,CONTENT_TYPE,EXT,CATEGORY)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id,jdbcType=VARCHAR},#{item.resourcesName,jdbcType=VARCHAR},#{item.fileName,jdbcType=VARCHAR},#{item.fileSize,jdbcType=NUMERIC},#{item.uploadTime,jdbcType=TIMESTAMP},#{item.businessId,jdbcType=NUMERIC},#{item.businessSource,jdbcType=VARCHAR},#{item.content_type,jdbcType=VARCHAR},#{item.ext,jdbcType=VARCHAR},#{item.category,jdbcType=VARCHAR},,#{item.userid,jdbcType=VARCHAR},#{item.username,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+	<update id="update" parameterType="com.jc.foundation.domain.Attach">
+	UPDATE tty_sys_attach
+	   <set>
+	   	<if test="resourcesName != null">
+	   		RESOURCES_NAME = #{resourcesName},
+	   	</if>
+	   	<if test="fileName != null">
+	   		FILE_NAME = #{fileName},
+	   	</if>
+	   	<if test="fileSize != null">
+	   		FILE_SIZE = #{fileSize},
+	   	</if>
+	   	<if test="uploadTime != null">
+	   		UPLOAD_TIME = #{uploadTime},
+	   	</if>
+	   	<if test="businessId != null">
+	   		BUSINESS_ID = #{businessId},
+	   	</if>
+	   	<if test="businessSource != null">
+	   		BUSINESS_SOURCE = #{businessSource},
+	   	</if>
+	   	<if test="content_type != null">
+	   		CONTENT_TYPE = #{content_type},
+	   	</if>
+	    <if test="ext != null">
+	   		EXT = #{ext},
+	   	</if>
+	   	<if test="category != null">
+	   		CATEGORY = #{category},
+	   	</if>
+	   	<if test="userid != null">
+			USER_ID = #{userid},
+		</if>	
+		<if test="username != null">
+			USER_NAME = #{username}
+		</if>	
+	   </set>
+	   where ID = #{id}
+	</update><select id="queryAttachByBusinessIds" parameterType="com.jc.foundation.domain.Attach" resultType="com.jc.foundation.domain.Attach">
+		SELECT
+		t.ID id,
+		t.RESOURCES_NAME resourcesName,
+		t.FILE_NAME fileName,
+		t.FILE_SIZE fileSize,
+		t.UPLOAD_TIME uploadTime,
+		tb.BUSINESS_ID businessId,
+		tb.BUSINESS_SOURCE businessSource,
+		t.CONTENT_TYPE content_type,
+		t.EXT ext,
+		t.CATEGORY category
+		FROM tty_sys_attach t,tty_sys_attach_business tb
+		WHERE t.ID = tb.ATTACH_ID
+		
+		<if test="businessIdArray != null">
+		    AND tb.BUSINESS_ID IN
+		   <foreach collection="businessIdArray" item="businessId" index="index" open="(" close=")" separator=",">
+	            #{businessId}
+	        </foreach>
+		</if>
+		<if test="businessTable != null">
+			AND tb.BUSINESS_TABLE = #{businessTable}
+		</if>
+		order by t.upload_time desc
+	</select></mapper>

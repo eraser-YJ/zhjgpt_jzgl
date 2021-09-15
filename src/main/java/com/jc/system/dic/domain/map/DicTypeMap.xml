@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.jc.system.dic.domain.DicType">
+	<insert id="insert" parameterType="com.jc.system.dic.domain.DicType" useGeneratedKeys="true" keyProperty="id">
+	INSERT INTO tty_sys_dics(ID,code,value,parent_id,use_flag,type_flag,dic_flag,default_value)
+		VALUES (#{id},#{code},#{value},#{parentId},1,1,0,0)
+	</insert>
+	<update id="update" parameterType="com.jc.system.dic.domain.DicType">
+	UPDATE tty_sys_dics
+	   <set>
+	   	<if test="code != null">
+	   		code = #{code},
+	   	</if>
+	   	<if test="value != null">
+	   		value = #{value},
+	   	</if>
+	   	<if test="parentId != null">
+	   		parent_id = #{parentId},
+	   	</if>
+	   </set>
+	   where id = #{id}
+	</update><select id="query" parameterType="com.jc.system.dic.domain.DicType" resultType="com.jc.system.dic.domain.DicType">
+		SELECT 
+			t.id id,
+			t.code code,
+			t.value value,
+			t.parent_id parentId,
+			t.parent_type parentType,
+			t.dic_flag dicFlag
+		FROM tty_sys_dics t
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="code != null">
+				and t.code = #{code}
+			</if>
+			<if test="value != null">
+				and t.value = #{value}
+			</if>
+			<if test="parentId != null">
+				and t.parent_id = #{parentId}
+			</if>
+			and t.type_flag = 1
+		</where>
+	</select><select id="queryCount" parameterType="com.jc.system.dic.domain.DicType" resultType="java.lang.Integer">
+		SELECT count(id) 
+		FROM tty_sys_dics t
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="code != null">
+				and t.code = #{code}
+			</if>
+			<if test="value != null">
+				and t.value = #{value}
+			</if>
+			<if test="parentId != null">
+				and t.parent_id = #{parentId}
+			</if>
+			and t.type_flag = 1
+		</where>
+	</select><delete id="deletePhysical" parameterType="com.jc.system.dic.domain.DicType">
+    	delete from tty_sys_dics
+      	<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="code != null">
+				and code = #{code}
+			</if>
+			<if test="parentId != null">
+				and parent_id = #{parentId}
+			</if>
+			and type_flag = 1
+		</where>
+ 	</delete></mapper>

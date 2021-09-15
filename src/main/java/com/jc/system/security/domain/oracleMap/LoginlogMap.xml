@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.Loginlog">
+
+	<select id="query" parameterType="com.jc.system.security.domain.Loginlog" resultType="com.jc.system.security.domain.Loginlog">
+		SELECT
+		t.ID id,
+		t.USER_ID userId,
+		t.LOGIN_NAME loginName,
+		t.DISPLAY_NAME displayName,
+		t.IP ip,
+		t.login_device loginDevice,
+		t.LOGIN_TIME loginTime,
+		t.LOGOUT_TIME logoutTime,
+		t.DELETE_FLAG deleteFlag,
+		t.CREATE_USER createUser,
+		t.CREATE_USER_DEPT createUserDept,
+		t.CREATE_USER_ORG createUserOrg,
+		t.CREATE_DATE createDate,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate
+
+		FROM tty_sys_loginlog t
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="userId != null">
+				and t.USER_ID = #{userId}
+			</if>
+			<if test="loginName != null">
+				and t.LOGIN_NAME like <![CDATA['%${loginName}%']]>
+			</if>
+			<if test="displayName != null">
+				and t.DISPLAY_NAME like <![CDATA['%${displayName}%']]>
+			</if>
+			<if test="ip != null">
+				and t.IP = #{ip}
+			</if>
+			<if test="loginDevice != null">
+				<if test="loginDevice != 0">
+					and t.login_device = #{loginDevice}
+				</if>
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="loginstatus != null">
+				<if test="loginstatus == 0">
+					and <![CDATA[t.LOGIN_TIME is not null]]>
+					<if test="loginTimeBegin != null">
+						and <![CDATA[t.LOGIN_TIME >= #{loginTimeBegin}]]>
+					</if>
+					<if test="loginTimeEnd != null">
+						and <![CDATA[t.LOGIN_TIME <= #{loginTimeEnd}]]>
+					</if>
+				</if>
+				<if test="loginstatus == 1">
+					and <![CDATA[t.LOGOUT_TIME is not null]]>
+					<if test="logoutTimeBegin != null">
+						and <![CDATA[t.LOGOUT_TIME >= #{logoutTimeBegin}]]>
+					</if>
+					<if test="logoutTimeEnd != null">
+						and <![CDATA[t.LOGOUT_TIME <= #{logoutTimeEnd}]]>
+					</if>
+				</if>
+				<if test="loginstatus == 2">
+					<if test="loginTimeBegin != null">
+						<if test="loginTimeEnd != null">
+							and ((<![CDATA[t.LOGIN_TIME >= #{loginTimeBegin}]]> and <![CDATA[t.LOGIN_TIME <= #{loginTimeEnd}]]>) or
+							(<![CDATA[t.LOGOUT_TIME >= #{logoutTimeBegin}]]> and <![CDATA[t.LOGOUT_TIME <= #{logoutTimeEnd}]]>))
+						</if>
+					</if>
+					<if test="loginTimeBegin != null">
+						<if test="loginTimeEnd == null">
+							and (<![CDATA[t.LOGIN_TIME >= #{loginTimeBegin}]]> or <![CDATA[t.LOGOUT_TIME >= #{logoutTimeBegin}]]>)
+						</if>
+					</if>
+					<if test="loginTimeBegin == null">
+						<if test="loginTimeEnd != null">
+							and (<![CDATA[t.LOGIN_TIME <= #{loginTimeEnd}]]> or <![CDATA[t.LOGOUT_TIME <= #{logoutTimeEnd}]]>)
+						</if>
+					</if>
+				</if>
+			</if>
+			<if test="orderBy != null">
+				order by ${orderBy}
+			</if>
+		</where>
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.system.security.domain.Loginlog" resultType="java.lang.Integer">
+		SELECT count(ID)
+		FROM tty_sys_loginlog t
+		<where>
+			<if test="dataAccessDynamicSQL != null">
+				${dataAccessDynamicSQL}
+			</if>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="userId != null">
+				and t.USER_ID = #{userId}
+			</if>
+			<if test="loginName != null">
+				and t.LOGIN_NAME like <![CDATA['%${loginName}%']]>
+			</if>
+			<if test="displayName != null">
+				and t.DISPLAY_NAME like <![CDATA['%${displayName}%']]>
+			</if>
+			<if test="ip != null">
+				and t.IP = #{ip}
+			</if>
+			<if test="loginDevice != null">
+				<if test="loginDevice != 0">
+					and t.login_device = #{loginDevice}
+				</if>
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="loginstatus != null">
+				<if test="loginstatus == 0">
+					and <![CDATA[t.LOGIN_TIME is not null]]>
+					<if test="loginTimeBegin != null">
+						and <![CDATA[t.LOGIN_TIME >= #{loginTimeBegin}]]>
+					</if>
+					<if test="loginTimeEnd != null">
+						and <![CDATA[t.LOGIN_TIME <= #{loginTimeEnd}]]>
+					</if>
+				</if>
+				<if test="loginstatus == 1">
+					and <![CDATA[t.LOGOUT_TIME is not null]]>
+					<if test="logoutTimeBegin != null">
+						and <![CDATA[t.LOGOUT_TIME >= #{logoutTimeBegin}]]>
+					</if>
+					<if test="logoutTimeEnd != null">
+						and <![CDATA[t.LOGOUT_TIME <= #{logoutTimeEnd}]]>
+					</if>
+				</if>
+				<if test="loginstatus == 2">
+					<if test="loginTimeBegin != null">
+						<if test="loginTimeEnd != null">
+							and ((<![CDATA[t.LOGIN_TIME >= #{loginTimeBegin}]]> and <![CDATA[t.LOGIN_TIME <= #{loginTimeEnd}]]>) or
+							(<![CDATA[t.LOGOUT_TIME >= #{logoutTimeBegin}]]> and <![CDATA[t.LOGOUT_TIME <= #{logoutTimeEnd}]]>))
+						</if>
+					</if>
+					<if test="loginTimeBegin != null">
+						<if test="loginTimeEnd == null">
+							and (<![CDATA[t.LOGIN_TIME >= #{loginTimeBegin}]]> or <![CDATA[t.LOGOUT_TIME >= #{logoutTimeBegin}]]>)
+						</if>
+					</if>
+					<if test="loginTimeBegin == null">
+						<if test="loginTimeEnd != null">
+							and (<![CDATA[t.LOGIN_TIME <= #{loginTimeEnd}]]> or <![CDATA[t.LOGOUT_TIME <= #{logoutTimeEnd}]]>)
+						</if>
+					</if>
+				</if>
+			</if>
+		</where>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.system.security.domain.Loginlog">
+		delete from tty_sys_loginlog
+		where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index"
+				 open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.system.security.domain.Loginlog">
+		UPDATE tty_sys_loginlog t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+		where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index"
+				 open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+	</update>
+
+	<insert id="insert" parameterType="com.jc.system.security.domain.Loginlog" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO tty_sys_loginlog(ID,USER_ID,LOGIN_NAME,DISPLAY_NAME,IP,login_device,LOGIN_TIME,LOGOUT_TIME,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+		VALUES
+		(#{id,jdbcType=VARCHAR},#{userId,jdbcType=VARCHAR},#{loginName,jdbcType=VARCHAR},#{displayName,jdbcType=VARCHAR},#{ip,jdbcType=VARCHAR},#{loginDevice,jdbcType=NUMERIC},#{loginTime,jdbcType=TIMESTAMP},#{logoutTime,jdbcType=TIMESTAMP},#{deleteFlag,jdbcType=NUMERIC},#{createUser,jdbcType=VARCHAR},#{createUserDept,jdbcType=VARCHAR},#{createUserOrg,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{modifyUser,jdbcType=VARCHAR},#{modifyDate,jdbcType=TIMESTAMP},#{extDate1,jdbcType=TIMESTAMP},#{extDate2,jdbcType=TIMESTAMP},#{extNum1,jdbcType=NUMERIC},#{extNum2,jdbcType=NUMERIC},#{extNum3,jdbcType=NUMERIC},#{extStr1,jdbcType=VARCHAR},#{extStr2,jdbcType=VARCHAR},#{extStr3,jdbcType=VARCHAR},#{extStr4,jdbcType=VARCHAR},#{extStr5,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		INSERT INTO tty_sys_loginlog(ID,USER_ID,LOGIN_NAME,DISPLAY_NAME,IP,login_device,LOGIN_TIME,LOGOUT_TIME,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{id},#{item.id},#{item.userId},#{item.loginName},#{item.displayName},#{item.ip},#{item.loginDevice},#{item.loginTime},#{item.logoutTime},#{item.deleteFlag},#{item.createUser},#{item.createUserDept},#{createUserOrg},#{item.createDate},#{item.modifyUser},#{item.modifyDate},#{item.extDate1},#{item.extDate2},#{item.extNum1},#{item.extNum2},#{item.extNum3},#{item.extStr1},#{item.extStr2},#{item.extStr3},#{item.extStr4},#{item.extStr5})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.system.security.domain.Loginlog">
+		UPDATE tty_sys_loginlog
+		<set>
+			<if test="userId != null">
+				USER_ID = #{userId},
+			</if>
+			<if test="loginName != null">
+				LOGIN_NAME = #{loginName},
+			</if>
+			<if test="displayName != null">
+				DISPLAY_NAME = #{displayName},
+			</if>
+			<if test="ip != null">
+				IP = #{ip},
+			</if>
+			<if test="loginDevice != null">
+				login_device = #{loginDevice},
+			</if>
+			<if test="loginTime != null">
+				LOGIN_TIME = #{loginTime},
+			</if>
+			<if test="logoutTime != null">
+				LOGOUT_TIME = #{logoutTime},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG = #{deleteFlag},
+			</if>
+			<if test="createUser != null">
+				CREATE_USER = #{createUser},
+			</if>
+			<if test="createUserDept != null">
+				CREATE_USER_DEPT = #{createUserDept},
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="modifyUser != null">
+				MODIFY_USER = #{modifyUser},
+			</if>
+			<if test="modifyDate != null">
+				MODIFY_DATE = #{modifyDate},
+			</if>
+			<if test="extDate1 != null">
+				EXT_DATE1 = #{extDate1},
+			</if>
+			<if test="extDate2 != null">
+				EXT_DATE2 = #{extDate2},
+			</if>
+			<if test="extNum1 != null">
+				EXT_NUM1 = #{extNum1},
+			</if>
+			<if test="extNum2 != null">
+				EXT_NUM2 = #{extNum2},
+			</if>
+			<if test="extNum3 != null">
+				EXT_NUM3 = #{extNum3},
+			</if>
+			<if test="extStr1 != null">
+				EXT_STR1 = #{extStr1},
+			</if>
+			<if test="extStr2 != null">
+				EXT_STR2 = #{extStr2},
+			</if>
+			<if test="extStr3 != null">
+				EXT_STR3 = #{extStr3},
+			</if>
+			<if test="extStr4 != null">
+				EXT_STR4 = #{extStr4},
+			</if>
+			<if test="extStr5 != null">
+				EXT_STR5 = #{extStr5},
+			</if>
+		</set>
+		where ID = #{id}
+	</update>
+
+</mapper>

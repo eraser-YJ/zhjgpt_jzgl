@@ -1,0 +1,44 @@
+SELECT
+  t.lzry_xm              lzry_xm,
+  t.lzry_sex             lzry_sex,
+  tsex.value             lzry_sex_value,
+  t.lzry_sfz_num         lzry_sfz_num,
+  t.lzry_tel             lzry_tel,
+  t.pay_moth             pay_moth,
+  t.pay_year             pay_year,
+  t.payoff_date          payoff_date,
+  t.pay_status           pay_status,
+  tpdStaus.value         pay_status,
+  t.pay_count            pay_count,
+  t.lzry_project_name    project_name,
+  t.pcp_project_num      project_num,
+  t.data_resource        dataSrc
+FROM pt_person_pay t
+  LEFT OUTER JOIN tty_sys_dics tsex
+    ON tsex.code = t.lzry_sex
+      AND tsex.parent_id = 'sex'
+  LEFT OUTER JOIN tty_sys_dics tpdStaus
+    ON tpdStaus.code = t.pay_status
+      AND tpdStaus.parent_id = 'pay_status'
+WHERE 1 = 1
+<if test="payYear != null">
+    and t.pay_year = #{payYear}
+</if>
+<if test="projectName != null">
+    and rel.project_name like concat('%',#{projectName},'%')
+</if>
+<if test="personName != null">
+    and t.lzry_xm like concat('%',#{personName},'%')
+</if>
+<if test="personCertNum != null">
+    and t.lzry_sfz_num like concat('%',#{personCertNum},'%')
+</if>
+<if test="payMoth != null">
+    and t.pay_moth = #{payMoth}
+</if>
+<if test="payStatus != null">
+    and t.pay_status = #{payStatus}
+</if>
+<if test="dataSrc != null">
+    and t.data_resource = #{dataSrc}
+</if>

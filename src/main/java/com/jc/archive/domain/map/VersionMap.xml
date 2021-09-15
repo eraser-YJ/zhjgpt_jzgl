@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.archive.domain.Version">
+
+	<select id="query" parameterType="com.jc.archive.domain.Version" resultType="com.jc.archive.domain.Version">
+		SELECT 
+			t.ID id,
+			t.BACK_UP_ID backUpId,
+			t.FOLDER_ID folderId,
+			t.DOC_STATE docState,
+			t.FILE_TYPE fileType,
+			t.CONTENT_TYPE contentType,
+			t.MODEL model,
+			t.collect_ID collectId,
+			t.DM_LINK dmLink,
+			t.DM_NAME dmName,
+			t.DM_ALIAS dmAlias,
+			t.DM_LOCK_STATUS dmLockStatus,
+			t.Physical_PATH physicalPath,
+			t.DM_DIR dmDir,
+			t.DM_TYPE dmType,
+			t.DM_SUFFIX dmSuffix,
+			t.WEIGHT weight,
+			t.KM_TITLE kmTitle,
+			t.DM_IN_RECYCLE dmInRecycle,
+			t.KEY_WORDS keyWords,
+			t.PERMISSION_VALUE permissionValue,
+			t.AUTHOR author,
+			t.CURRENT_VERSION currentVersion,
+			t.VERSION_DESC versionDesc,
+			t.DM_SIZE dmSize,
+			t.SEQ seq,
+			t.IS_VALID isValid,
+			t.PI_ID piId,
+			t.OPEN_DATE openDate,
+			t.KM_END_TIME kmEndTime,
+			t.KM_KEEP_TIME kmKeepTime,
+			t.KM_REMIND kmRemind,
+			t.KM_CONTENT kmContent,
+			t.KM_CLICK_NUM kmClickNum,
+			t.DELETE_FLAG deleteFlag,
+			t.CREATE_USER createUser,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_USER_ORG createUserOrg,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.EXT_DATE1 extDate1,
+			t.EXT_DATE2 extDate2,
+			t.EXT_NUM1 extNum1,
+			t.EXT_NUM2 extNum2,
+			t.EXT_NUM3 extNum3,
+			t.EXT_STR1 extStr1,
+			t.EXT_STR2 extStr2,
+			t.EXT_STR3 extStr3,
+			t.EXT_STR4 extStr4,
+			t.EXT_STR5 extStr5,
+			t.IS_CURRENT_USED isCurrentUsed ,
+			u.DISPLAY_NAME owner		
+			
+		FROM toa_archive_version t LEFT JOIN tty_sys_user u on t.create_user =u.ID
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+
+			<if test="backUpId != null">
+				and t.BACK_UP_ID = #{backUpId}
+			</if>
+
+			<if test="folderId != null">
+				and t.FOLDER_ID = #{folderId}
+			</if>
+
+			<if test="docState != null">
+				and t.DOC_STATE = #{docState}
+			</if>
+
+			<if test="fileType != null">
+				and t.FILE_TYPE = #{fileType}
+			</if>
+
+			<if test="contentType != null">
+				and t.CONTENT_TYPE = #{contentType}
+			</if>
+
+			<if test="model != null">
+				and t.MODEL = #{model}
+			</if>
+
+			<if test="collectId != null">
+				and t.collect_ID = #{collectId}
+			</if>
+
+			<if test="dmLink != null">
+				and t.DM_LINK = #{dmLink}
+			</if>
+
+			<if test="dmName != null">
+				and t.DM_NAME = #{dmName}
+			</if>
+
+			<if test="dmAlias != null">
+				and t.DM_ALIAS = #{dmAlias}
+			</if>
+
+			<if test="dmLockStatus != null">
+				and t.DM_LOCK_STATUS = #{dmLockStatus}
+			</if>
+
+			<if test="physicalPath != null">
+				and t.Physical_PATH = #{physicalPath}
+			</if>
+
+			<if test="dmDir != null">
+				and t.DM_DIR = #{dmDir}
+			</if>
+
+			<if test="dmType != null">
+				and t.DM_TYPE = #{dmType}
+			</if>
+
+			<if test="dmSuffix != null">
+				and t.DM_SUFFIX = #{dmSuffix}
+			</if>
+
+			<if test="weight != null">
+				and t.WEIGHT = #{weight}
+			</if>
+
+			<if test="kmTitle != null">
+				and t.KM_TITLE = #{kmTitle}
+			</if>
+
+			<if test="dmInRecycle != null">
+				and t.DM_IN_RECYCLE = #{dmInRecycle}
+			</if>
+
+			<if test="keyWords != null">
+				and t.KEY_WORDS = #{keyWords}
+			</if>
+
+			<if test="permissionValue != null">
+				and t.PERMISSION_VALUE = #{permissionValue}
+			</if>
+
+			<if test="author != null">
+				and t.AUTHOR = #{author}
+			</if>
+
+			<if test="currentVersion != null">
+				and t.CURRENT_VERSION = #{currentVersion}
+			</if>
+			
+			<if test="versionDesc!=null">
+				and t.VERSION_DESC =#{versionDesc}
+			</if>
+			<if test="dmSize != null">
+				and t.DM_SIZE = #{dmSize}
+			</if>
+
+			<if test="seq != null">
+				and t.SEQ = #{seq}
+			</if>
+
+			<if test="isValid != null">
+				and t.IS_VALID = #{isValid}
+			</if>
+
+			<if test="piId != null">
+				and t.PI_ID = #{piId}
+			</if>
+
+			<if test="openDate != null">
+				and t.OPEN_DATE = #{openDate}
+			</if>
+			<if test="openDateBegin != null">
+				and t.OPEN_DATE &gt;= #{openDateBegin}
+			</if>
+			<if test="openDateEnd != null">
+				and t.OPEN_DATE &lt;= #{openDateEnd}
+			</if>
+
+			<if test="kmEndTime != null">
+				and t.KM_END_TIME = #{kmEndTime}
+			</if>
+
+			<if test="kmKeepTime != null">
+				and t.KM_KEEP_TIME = #{kmKeepTime}
+			</if>
+
+			<if test="kmRemind != null">
+				and t.KM_REMIND = #{kmRemind}
+			</if>
+
+			<if test="kmContent != null">
+				and t.KM_CONTENT = #{kmContent}
+			</if>
+
+			<if test="kmClickNum != null">
+				and t.KM_CLICK_NUM = #{kmClickNum}
+			</if>
+
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+
+			<if test="extDate1 != null">
+				and t.EXT_DATE1 = #{extDate1}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.EXT_DATE1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.EXT_DATE1 &lt;= #{extDate1End}
+			</if>
+
+			<if test="extDate2 != null">
+				and t.EXT_DATE2 = #{extDate2}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.EXT_DATE2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.EXT_DATE2 &lt;= #{extDate2End}
+			</if>
+
+			<if test="extNum1 != null">
+				and t.EXT_NUM1 = #{extNum1}
+			</if>
+
+			<if test="extNum2 != null">
+				and t.EXT_NUM2 = #{extNum2}
+			</if>
+
+			<if test="extNum3 != null">
+				and t.EXT_NUM3 = #{extNum3}
+			</if>
+
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+			<if test="isCurrentUsed!=null">
+				and t.IS_CURRENT_USED=#{isCurrentUsed}
+			</if>
+		</where>
+		
+		<if test="orderBy != null">
+				order by ${orderBy}
+		</if>
+	</select>
+	
+	
+	<select id="queryCount" parameterType="com.jc.archive.domain.Version" resultType="java.lang.Long">
+		SELECT count(t.ID) 
+		FROM toa_archive_version t LEFT JOIN tty_sys_user u on t.create_user =u.ID
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+
+			<if test="backUpId != null">
+				and t.BACK_UP_ID = #{backUpId}
+			</if>
+
+			<if test="folderId != null">
+				and t.FOLDER_ID = #{folderId}
+			</if>
+
+			<if test="docState != null">
+				and t.DOC_STATE = #{docState}
+			</if>
+
+			<if test="fileType != null">
+				and t.FILE_TYPE = #{fileType}
+			</if>
+
+			<if test="contentType != null">
+				and t.CONTENT_TYPE = #{contentType}
+			</if>
+
+			<if test="model != null">
+				and t.MODEL = #{model}
+			</if>
+
+			<if test="collectId != null">
+				and t.collect_ID = #{collectId}
+			</if>
+
+			<if test="dmLink != null">
+				and t.DM_LINK = #{dmLink}
+			</if>
+
+			<if test="dmName != null">
+				and t.DM_NAME = #{dmName}
+			</if>
+
+			<if test="dmAlias != null">
+				and t.DM_ALIAS = #{dmAlias}
+			</if>
+
+			<if test="dmLockStatus != null">
+				and t.DM_LOCK_STATUS = #{dmLockStatus}
+			</if>
+
+			<if test="physicalPath != null">
+				and t.Physical_PATH = #{physicalPath}
+			</if>
+
+			<if test="dmDir != null">
+				and t.DM_DIR = #{dmDir}
+			</if>
+
+			<if test="dmType != null">
+				and t.DM_TYPE = #{dmType}
+			</if>
+
+			<if test="dmSuffix != null">
+				and t.DM_SUFFIX = #{dmSuffix}
+			</if>
+
+			<if test="weight != null">
+				and t.WEIGHT = #{weight}
+			</if>
+
+			<if test="kmTitle != null">
+				and t.KM_TITLE = #{kmTitle}
+			</if>
+
+			<if test="dmInRecycle != null">
+				and t.DM_IN_RECYCLE = #{dmInRecycle}
+			</if>
+
+			<if test="keyWords != null">
+				and t.KEY_WORDS = #{keyWords}
+			</if>
+
+			<if test="permissionValue != null">
+				and t.PERMISSION_VALUE = #{permissionValue}
+			</if>
+
+			<if test="author != null">
+				and t.AUTHOR = #{author}
+			</if>
+
+			<if test="currentVersion != null">
+				and t.CURRENT_VERSION = #{currentVersion}
+			</if>
+			
+			<if test="versionDesc !=null ">
+				and t.VERSION_DESC=#{versionDesc}
+			</if>
+			<if test="dmSize != null">
+				and t.DM_SIZE = #{dmSize}
+			</if>
+
+			<if test="seq != null">
+				and t.SEQ = #{seq}
+			</if>
+
+			<if test="isValid != null">
+				and t.IS_VALID = #{isValid}
+			</if>
+
+			<if test="piId != null">
+				and t.PI_ID = #{piId}
+			</if>
+
+			<if test="openDate != null">
+				and t.OPEN_DATE = #{openDate}
+			</if>
+			<if test="openDateBegin != null">
+				and t.OPEN_DATE &gt;= #{openDateBegin}
+			</if>
+			<if test="openDateEnd != null">
+				and t.OPEN_DATE &lt;= #{openDateEnd}
+			</if>
+
+			<if test="kmEndTime != null">
+				and t.KM_END_TIME = #{kmEndTime}
+			</if>
+
+			<if test="kmKeepTime != null">
+				and t.KM_KEEP_TIME = #{kmKeepTime}
+			</if>
+
+			<if test="kmRemind != null">
+				and t.KM_REMIND = #{kmRemind}
+			</if>
+
+			<if test="kmContent != null">
+				and t.KM_CONTENT = #{kmContent}
+			</if>
+
+			<if test="kmClickNum != null">
+				and t.KM_CLICK_NUM = #{kmClickNum}
+			</if>
+
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+
+			<if test="extDate1 != null">
+				and t.EXT_DATE1 = #{extDate1}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.EXT_DATE1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.EXT_DATE1 &lt;= #{extDate1End}
+			</if>
+
+			<if test="extDate2 != null">
+				and t.EXT_DATE2 = #{extDate2}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.EXT_DATE2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.EXT_DATE2 &lt;= #{extDate2End}
+			</if>
+
+			<if test="extNum1 != null">
+				and t.EXT_NUM1 = #{extNum1}
+			</if>
+
+			<if test="extNum2 != null">
+				and t.EXT_NUM2 = #{extNum2}
+			</if>
+
+			<if test="extNum3 != null">
+				and t.EXT_NUM3 = #{extNum3}
+			</if>
+
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+			<if test="isCurrentUsed!=null">
+				and t.IS_CURRENT_USED=#{isCurrentUsed}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.archive.domain.Version">
+    	delete from toa_archive_version
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.archive.domain.Version">
+    	UPDATE toa_archive_version t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+
+	<insert id="insert" parameterType="com.jc.archive.domain.Version" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO toa_archive_version(ID,BACK_UP_ID,FOLDER_ID,DOC_STATE,FILE_TYPE,CONTENT_TYPE,MODEL,collect_ID,DM_LINK,DM_NAME,DM_ALIAS,DM_LOCK_STATUS,Physical_PATH,DM_DIR,DM_TYPE,DM_SUFFIX,WEIGHT,KM_TITLE,DM_IN_RECYCLE,KEY_WORDS,PERMISSION_VALUE,AUTHOR,CURRENT_VERSION,DM_SIZE,SEQ,IS_VALID,PI_ID,OPEN_DATE,KM_END_TIME,KM_KEEP_TIME,KM_REMIND,KM_CONTENT,KM_CLICK_NUM,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,VERSION_DESC,IS_CURRENT_USED)
+			VALUES (#{id},#{backUpId},#{folderId},#{docState,jdbcType=VARCHAR},#{fileType,jdbcType=VARCHAR},#{contentType,jdbcType=VARCHAR},#{model},#{collectId},#{dmLink,jdbcType=VARCHAR},#{dmName,jdbcType=VARCHAR},#{dmAlias,jdbcType=VARCHAR},#{dmLockStatus,jdbcType=VARCHAR},#{physicalPath,jdbcType=VARCHAR},#{dmDir,jdbcType=VARCHAR},#{dmType,jdbcType=VARCHAR},#{dmSuffix,jdbcType=VARCHAR},#{weight},#{kmTitle,jdbcType=VARCHAR},#{dmInRecycle},#{keyWords,jdbcType=VARCHAR},#{permissionValue,jdbcType=VARCHAR},#{author,jdbcType=VARCHAR},#{currentVersion},#{dmSize,jdbcType=VARCHAR},#{seq,jdbcType=VARCHAR},#{isValid,jdbcType=VARCHAR},#{piId,jdbcType=VARCHAR},#{openDate,jdbcType=TIMESTAMP},#{kmEndTime},#{kmKeepTime},#{kmRemind},#{kmContent,jdbcType=VARCHAR},#{kmClickNum},#{deleteFlag},#{createUser},#{createUserDept},#{createUserOrg},#{createDate,jdbcType=TIMESTAMP},#{modifyUser},#{modifyDate,jdbcType=TIMESTAMP},#{extDate1,jdbcType=TIMESTAMP},#{extDate2,jdbcType=TIMESTAMP},#{extNum1},#{extNum2},#{extNum3},#{extStr1,jdbcType=VARCHAR},#{extStr2,jdbcType=VARCHAR},#{extStr3,jdbcType=VARCHAR},#{extStr4,jdbcType=VARCHAR},#{extStr5,jdbcType=VARCHAR},#{versionDesc,jdbcType=VARCHAR},#{isCurrentUsed})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		INSERT INTO toa_archive_version(ID,BACK_UP_ID,FOLDER_ID,DOC_STATE,FILE_TYPE,CONTENT_TYPE,MODEL,collect_ID,DM_LINK,DM_NAME,DM_ALIAS,DM_LOCK_STATUS,Physical_PATH,DM_DIR,DM_TYPE,DM_SUFFIX,WEIGHT,KM_TITLE,DM_IN_RECYCLE,KEY_WORDS,PERMISSION_VALUE,AUTHOR,CURRENT_VERSION,DM_SIZE,SEQ,IS_VALID,PI_ID,OPEN_DATE,KM_END_TIME,KM_KEEP_TIME,KM_REMIND,KM_CONTENT,KM_CLICK_NUM,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,VERSION_DESC,IS_CURRENT_USED)
+			VALUES
+			<foreach collection="list" item="item" index="index" separator=","> 
+				(#{item.id},#{item.backUpId},#{item.folderId},#{item.docState,jdbcType=VARCHAR},#{item.fileType,jdbcType=VARCHAR},#{item.contentType,jdbcType=VARCHAR},#{item.model},#{item.collectId},#{item.dmLink,jdbcType=VARCHAR},#{item.dmName,jdbcType=VARCHAR},#{item.dmAlias,jdbcType=VARCHAR},#{item.dmLockStatus,jdbcType=VARCHAR},#{item.physicalPath,jdbcType=VARCHAR},#{item.dmDir,jdbcType=VARCHAR},#{item.dmType,jdbcType=VARCHAR},#{item.dmSuffix,jdbcType=VARCHAR},#{item.weight},#{item.kmTitle,jdbcType=VARCHAR},#{item.dmInRecycle},#{item.keyWords,jdbcType=VARCHAR},#{item.permissionValue,jdbcType=VARCHAR},#{item.author,jdbcType=VARCHAR},#{item.currentVersion},#{item.dmSize,jdbcType=VARCHAR},#{item.seq,jdbcType=VARCHAR},#{item.isValid,jdbcType=VARCHAR},#{item.piId,jdbcType=VARCHAR},#{item.openDate,jdbcType=TIMESTAMP},#{item.kmEndTime},#{item.kmKeepTime},#{item.kmRemind},#{item.kmContent,jdbcType=VARCHAR},#{item.kmClickNum},#{item.deleteFlag},#{item.createUser},#{item.createUserDept},#{item.createUserOrg},#{item.createDate,jdbcType=TIMESTAMP},#{item.modifyUser},#{item.modifyDate,jdbcType=TIMESTAMP},#{item.extDate1,jdbcType=TIMESTAMP},#{item.extDate2,jdbcType=TIMESTAMP},#{item.extNum1},#{item.extNum2},#{item.extNum3},#{item.extStr1,jdbcType=VARCHAR},#{item.extStr2,jdbcType=VARCHAR},#{item.extStr3,jdbcType=VARCHAR},#{item.extStr4,jdbcType=VARCHAR},#{item.extStr5,jdbcType=VARCHAR},#{versionDesc,jdbcType=VARCHAR},#{isCurrentUsed})
+			</foreach> 
+	</insert>
+
+	<update id="update" parameterType="com.jc.archive.domain.Version">
+	UPDATE toa_archive_version set
+	   	<if test="backUpId != null">
+	   		BACK_UP_ID = #{backUpId},
+	   	</if>
+	   	<if test="folderId != null">
+	   		FOLDER_ID = #{folderId},
+	   	</if>
+	   	<if test="docState != null">
+	   		DOC_STATE = #{docState},
+	   	</if>
+	   	<if test="fileType != null">
+	   		FILE_TYPE = #{fileType},
+	   	</if>
+	   	<if test="contentType != null">
+	   		CONTENT_TYPE = #{contentType},
+	   	</if>
+	   	<if test="model != null">
+	   		MODEL = #{model},
+	   	</if>
+	   	<if test="collectId != null">
+	   		collect_ID = #{collectId},
+	   	</if>
+	   	<if test="dmLink != null">
+	   		DM_LINK = #{dmLink},
+	   	</if>
+	   	<if test="dmName != null">
+	   		DM_NAME = #{dmName},
+	   	</if>
+	   	<if test="dmAlias != null">
+	   		DM_ALIAS = #{dmAlias},
+	   	</if>
+	   	<if test="dmLockStatus != null">
+	   		DM_LOCK_STATUS = #{dmLockStatus},
+	   	</if>
+	   	<if test="physicalPath != null">
+	   		Physical_PATH = #{physicalPath},
+	   	</if>
+	   	<if test="dmDir != null">
+	   		DM_DIR = #{dmDir},
+	   	</if>
+	   	<if test="dmType != null">
+	   		DM_TYPE = #{dmType},
+	   	</if>
+	   	<if test="dmSuffix != null">
+	   		DM_SUFFIX = #{dmSuffix},
+	   	</if>
+	   	<if test="weight != null">
+	   		WEIGHT = #{weight},
+	   	</if>
+	   	<if test="kmTitle != null">
+	   		KM_TITLE = #{kmTitle},
+	   	</if>
+	   	<if test="dmInRecycle != null">
+	   		DM_IN_RECYCLE = #{dmInRecycle},
+	   	</if>
+	   	<if test="keyWords != null">
+	   		KEY_WORDS = #{keyWords},
+	   	</if>
+	   	<if test="permissionValue != null">
+	   		PERMISSION_VALUE = #{permissionValue},
+	   	</if>
+	   	<if test="author != null">
+	   		AUTHOR = #{author},
+	   	</if>
+	   	<if test="currentVersion != null">
+	   		CURRENT_VERSION = #{currentVersion},
+	   	</if>
+	   	<if test="versionDesc !=null">
+	   		VERSION_DESC=#{versionDesc},
+	   	</if>
+	   	<if test="dmSize != null">
+	   		DM_SIZE = #{dmSize},
+	   	</if>
+	   	<if test="seq != null">
+	   		SEQ = #{seq},
+	   	</if>
+	   	<if test="isValid != null">
+	   		IS_VALID = #{isValid},
+	   	</if>
+	   	<if test="piId != null">
+	   		PI_ID = #{piId},
+	   	</if>
+	   	<if test="openDate != null">
+	   		OPEN_DATE = #{openDate},
+	   	</if>
+	   	<if test="kmEndTime != null">
+	   		KM_END_TIME = #{kmEndTime},
+	   	</if>
+	   	<if test="kmKeepTime != null">
+	   		KM_KEEP_TIME = #{kmKeepTime},
+	   	</if>
+	   	<if test="kmRemind != null">
+	   		KM_REMIND = #{kmRemind},
+	   	</if>
+	   	<if test="kmContent != null">
+	   		KM_CONTENT = #{kmContent},
+	   	</if>
+	   	<if test="kmClickNum != null">
+	   		KM_CLICK_NUM = #{kmClickNum},
+	   	</if>
+	   	<if test="deleteFlag != null">
+	   		DELETE_FLAG = #{deleteFlag},
+	   	</if>
+	   	<if test="createUser != null">
+	   		CREATE_USER = #{createUser},
+	   	</if>
+	   	<if test="createUserDept != null">
+	   		CREATE_USER_DEPT = #{createUserDept},
+	   	</if>
+	   	<if test="createUserOrg != null">
+	   		CREATE_USER_ORG = #{createUserOrg},
+	   	</if>
+	   	<if test="createDate != null">
+	   		CREATE_DATE = #{createDate},
+	   	</if>
+	   	<if test="modifyUser != null">
+	   		MODIFY_USER = #{modifyUser},
+	   	</if>
+	   	<if test="extDate1 != null">
+	   		EXT_DATE1 = #{extDate1},
+	   	</if>
+	   	<if test="extDate2 != null">
+	   		EXT_DATE2 = #{extDate2},
+	   	</if>
+	   	<if test="extNum1 != null">
+	   		EXT_NUM1 = #{extNum1},
+	   	</if>
+	   	<if test="extNum2 != null">
+	   		EXT_NUM2 = #{extNum2},
+	   	</if>
+	   	<if test="extNum3 != null">
+	   		EXT_NUM3 = #{extNum3},
+	   	</if>
+	   	<if test="extStr1 != null">
+	   		EXT_STR1 = #{extStr1},
+	   	</if>
+	   	<if test="extStr2 != null">
+	   		EXT_STR2 = #{extStr2},
+	   	</if>
+	   	<if test="extStr3 != null">
+	   		EXT_STR3 = #{extStr3},
+	   	</if>
+	   	<if test="extStr4 != null">
+	   		EXT_STR4 = #{extStr4},
+	   	</if>
+	   	<if test="extStr5 != null">
+	   		EXT_STR5 = #{extStr5},
+	   	</if>
+	   	<if test="isCurrentUsed!=null">
+	   		IS_CURRENT_USED=#{isCurrentUsed}
+	   	</if>
+	   	 where ID = #{id} 
+	</update>
+	<select id="getMaxVersion" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT MAX(t.CURRENT_VERSION) FROM TOA_ARCHIVE_VERSION t WHERE t.BACK_UP_ID=#{backUpId}
+	</select>
+</mapper>

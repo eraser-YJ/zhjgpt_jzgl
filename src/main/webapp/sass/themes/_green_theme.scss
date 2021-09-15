@@ -1,0 +1,26 @@
+﻿//按钮圆角
+$global-button-border-radius :true;
+//左菜单边角颜色方块是否显示
+$global-nav-grid-is-show	 :false;
+//左菜单背景和文字颜色
+$global-nav-text-hover-color :#fff;
+$global-nav-bg-color		 :#009999;
+
+//按钮
+$global-button-bg-color			:#009999;
+$global-button-bg-hover-color	:#006666;
+
+//导航  									-layout/header
+$global-head-text-color 	:#fff;
+$global-head-bg-color		:$global-button-bg-color;
+$global-head-bg-hover-color	:$global-button-bg-hover-color;
+$global-head-border-color	:lighten($global-button-bg-color,2.5%);
+//查询条件按钮颜色
+$global-search-shrinkage-bg-color : $global-button-bg-color;
+
+//表单和列表 header中按钮	
+$global-button-green-border-color	:#ccc;
+$global-button-green-bg-color		:#fff;
+$global-button-green-text-color		:#555;
+//分页
+$global-page-hover-bg-color : $global-button-bg-color;

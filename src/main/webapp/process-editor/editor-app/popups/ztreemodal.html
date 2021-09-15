@@ -1,0 +1,49 @@
+
+<div class="modal" ng-controller="ActivitiPersonModalSelectCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close()">&times;</button>
+                <h2>{{'PROPERTY.ZTREEMODAL.TITLE' | translate:property}}</h2>
+            </div>
+            <div class="modal-body ztreemodal">
+                <div class="row">
+                    <div class="col-xs-4 item ztree-container">
+                        <ul class="ztree" id="personTreeSection"></ul>
+                    </div>
+                    <div class="col-xs-4 item">
+                        <div class="alternative-title">
+                            <label class="checkbox" ng-if="!statusAll.error">暂无数据</label>
+                            <label class="checkbox" ng-if="statusAll.error">
+                                <input type="checkbox"  ng-click="alternativeAllSelect($event);" ng-checked="statusAll.checkbox"/>
+                                全部选中 <span>{{statusAll.name}}</span>
+                            </label>
+                        </div>
+                        <div class="alternative-content">
+                            <label class="checkbox" ng-repeat="person in ztreePersonSelsed" >
+                                <input type="checkbox" ng-click="alternativeSelect($index,$event);" ng-checked="person.checked"/>{{person.name}}
+                                <span>{{getType(person.type);}}</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 item">
+                        <select id="alternativeContainer" class="alternative-selected" multiple>
+                            <option ng-repeat="person in personDefinitions | unique: 'id'" value="{{$index}}">
+                                {{person.name}}
+                                <span>{{getType(person.type);}}</span>
+                            </option>
+                        </select>
+                        <div class="select-del">
+                            <a class="first" ng-click="removeSelectPerson();">删除</a>
+                            <a ng-click="removeAllSelectPerson();">全删</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="cancel()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+                <button ng-click="save()" class="btn btn-primary" translate>ACTION.SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>

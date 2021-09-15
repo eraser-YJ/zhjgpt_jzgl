@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.csmp.project.domain.CmProjectVisaOrder">
+
+	<insert id="insert" parameterType="com.jc.csmp.project.domain.CmProjectVisaOrder" useGeneratedKeys="true" keyProperty="id">
+		insert into cm_project_visa_order (id,modify_type,PI_ID,audit_status,code,project_id,contract_id,visa_reason,visa_date,visa_scope,visa_change,project_amount,visa_amount,checked_amount,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,CREATE_USER_ORG,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3)
+		values (#{id},#{modifyType},#{piId},#{auditStatus},#{code},#{projectId},#{contractId},#{visaReason},#{visaDate},#{visaScope},#{visaChange},#{projectAmount},#{visaAmount},#{checkedAmount},#{deleteFlag},#{createUser},#{createUserDept},#{createDate},#{createUserOrg},#{modifyUser},#{modifyDate},#{extStr1},#{extStr2},#{extStr3},#{extStr4},#{extStr5},#{extDate1},#{extDate2},#{extNum1},#{extNum2},#{extNum3})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		insert into cm_project_visa_order (id,modify_type,PI_ID,audit_status,code,project_id,contract_id,visa_reason,visa_date,visa_scope,visa_change,project_amount,visa_amount,checked_amount,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,CREATE_USER_ORG,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id},#{item.modifyType},#{item.piId},#{item.auditStatus},#{item.code},#{item.projectId},#{item.contractId},#{item.visaReason},#{item.visaDate},#{item.visaScope},#{item.visaChange},#{item.projectAmount},#{item.visaAmount},#{item.checkedAmount},#{item.deleteFlag},#{item.createUser},#{item.createUserDept},#{item.createDate},#{item.createUserOrg},#{item.modifyUser},#{item.modifyDate},#{item.extStr1},#{item.extStr2},#{item.extStr3},#{item.extStr4},#{item.extStr5},#{item.extDate1},#{item.extDate2},#{item.extNum1},#{item.extNum2},#{item.extNum3})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.csmp.project.domain.CmProjectVisaOrder">
+		update cm_project_visa_order set
+		<if test="id != null">id=#{id},</if>
+		<if test="piId != null">PI_ID=#{piId},</if>
+		<if test="modifyType != null"> modify_type = #{modifyType}, </if>
+		<if test="auditStatus != null">audit_status=#{auditStatus},</if>
+		<if test="code != null">code=#{code},</if>
+		<if test="projectId != null">project_id=#{projectId},</if>
+		<if test="contractId != null">contract_id=#{contractId},</if>
+		<if test="visaReason != null">visa_reason=#{visaReason},</if>
+		<if test="visaDate != null">visa_date=#{visaDate},</if>
+		<if test="visaScope != null">visa_scope=#{visaScope},</if>
+		<if test="visaChange != null">visa_change=#{visaChange},</if>
+		<if test="projectAmount != null">project_amount=#{projectAmount},</if>
+		<if test="visaAmount != null">visa_amount=#{visaAmount},</if>
+		<if test="checkedAmount != null">checked_amount=#{checkedAmount},</if>
+		<if test="deleteFlag != null">DELETE_FLAG=#{deleteFlag},</if>
+		<if test="createUser != null">CREATE_USER=#{createUser},</if>
+		<if test="createUserDept != null">CREATE_USER_DEPT=#{createUserDept},</if>
+		<if test="createDate != null">CREATE_DATE=#{createDate},</if>
+		<if test="createUserOrg != null">CREATE_USER_ORG=#{createUserOrg},</if>
+		<if test="modifyUser != null">MODIFY_USER=#{modifyUser},</if>
+		<if test="modifyDate != null">MODIFY_DATE=#{modifyDate},</if>
+		<if test="extStr1 != null">EXT_STR1=#{extStr1},</if>
+		<if test="extStr2 != null">EXT_STR2=#{extStr2},</if>
+		<if test="extStr3 != null">EXT_STR3=#{extStr3},</if>
+		<if test="extStr4 != null">EXT_STR4=#{extStr4},</if>
+		<if test="extStr5 != null">EXT_STR5=#{extStr5},</if>
+		<if test="extDate1 != null">EXT_DATE1=#{extDate1},</if>
+		<if test="extDate2 != null">EXT_DATE2=#{extDate2},</if>
+		<if test="extNum1 != null">EXT_NUM1=#{extNum1},</if>
+		<if test="extNum2 != null">EXT_NUM2=#{extNum2},</if>
+		<if test="extNum3 != null">EXT_NUM3=#{extNum3},</if>
+	   	MODIFY_DATE = #{modifyDateNew} where ID = #{id}
+	</update>
+
+	<sql id="Base_Column_List" >
+		t.id id, t.PI_ID piId, t.audit_status auditStatus, t.code code, t.project_id projectId, t.contract_id contractId, t.visa_reason visaReason, t.modify_type modifyType,
+		t.visa_date visaDate, t.visa_scope visaScope, t.visa_change visaChange, t.project_amount projectAmount, t.visa_amount visaAmount, t.checked_amount checkedAmount,
+		t.DELETE_FLAG deleteFlag, t.CREATE_USER createUser, t.CREATE_USER_DEPT createUserDept, t.CREATE_DATE createDate, t.CREATE_USER_ORG createUserOrg,
+		t.MODIFY_USER modifyUser, t.MODIFY_DATE modifyDate, t.EXT_STR1 extStr1, t.EXT_STR2 extStr2, t.EXT_STR3 extStr3, t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5, t.EXT_DATE1 extDate1, t.EXT_DATE2 extDate2, t.EXT_NUM1 extNum1, t.EXT_NUM2 extNum2, t.EXT_NUM3 extNum3,
+		project.project_name projectName, project.project_number projectNumber, contract.contract_code contractCode, contract.contract_name contractName
+	</sql>
+	
+	<sql id="Base_Query_Where" >
+		<if test="id != null"> and t.id = #{id} </if>
+		<if test="modifyType != null"> and t.modify_type = #{modifyType} </if>
+		<if test="piId != null"> and t.PI_ID = #{piId} </if>
+		<if test="auditStatus != null"> and t.audit_status = #{auditStatus} </if>
+		<if test="code != null"> and t.code = #{code} </if>
+		<if test="projectId != null"> and t.project_id = #{projectId} </if>
+		<if test="contractId != null"> and t.contract_id = #{contractId} </if>
+		<if test="visaReason != null"> and t.visa_reason = #{visaReason} </if>
+		<if test="visaDateBegin != null"> and t.visa_date &gt;= #{visaDateBegin} </if>
+		<if test="visaDateEnd != null"> and t.visa_date &lt;= #{visaDateEnd} </if>
+		<if test="visaDate != null"> and t.visa_date = #{visaDate} </if>
+		<if test="visaScope != null"> and t.visa_scope = #{visaScope} </if>
+		<if test="visaChange != null"> and t.visa_change = #{visaChange} </if>
+		<if test="projectAmount != null"> and t.project_amount = #{projectAmount} </if>
+		<if test="visaAmount != null"> and t.visa_amount = #{visaAmount} </if>
+		<if test="checkedAmount != null"> and t.checked_amount = #{checkedAmount} </if>
+		<if test="deleteFlag != null"> and t.DELETE_FLAG = #{deleteFlag} </if>
+		<if test="createUser != null"> and t.CREATE_USER = #{createUser} </if>
+		<if test="createUserDept != null"> and t.CREATE_USER_DEPT = #{createUserDept} </if>
+		<if test="createDateBegin != null"> and t.CREATE_DATE &gt;= #{createDateBegin} </if>
+		<if test="createDateEnd != null"> and t.CREATE_DATE &lt;= #{createDateEnd} </if>
+		<if test="createDate != null"> and t.CREATE_DATE = #{createDate} </if>
+		<if test="createUserOrg != null"> and t.CREATE_USER_ORG = #{createUserOrg} </if>
+		<if test="modifyUser != null"> and t.MODIFY_USER = #{modifyUser} </if>
+		<if test="modifyDateBegin != null"> and t.MODIFY_DATE &gt;= #{modifyDateBegin} </if>
+		<if test="modifyDateEnd != null"> and t.MODIFY_DATE &lt;= #{modifyDateEnd} </if>
+		<if test="modifyDate != null"> and t.MODIFY_DATE = #{modifyDate} </if>
+		<if test="extStr1 != null"> and t.EXT_STR1 = #{extStr1} </if>
+		<if test="extStr2 != null"> and t.EXT_STR2 = #{extStr2} </if>
+		<if test="extStr3 != null"> and t.EXT_STR3 = #{extStr3} </if>
+		<if test="extStr4 != null"> and t.EXT_STR4 = #{extStr4} </if>
+		<if test="extStr5 != null"> and t.EXT_STR5 = #{extStr5} </if>
+		<if test="extDate1Begin != null"> and t.EXT_DATE1 &gt;= #{extDate1Begin} </if>
+		<if test="extDate1End != null"> and t.EXT_DATE1 &lt;= #{extDate1End} </if>
+		<if test="extDate1 != null"> and t.EXT_DATE1 = #{extDate1} </if>
+		<if test="extDate2Begin != null"> and t.EXT_DATE2 &gt;= #{extDate2Begin} </if>
+		<if test="extDate2End != null"> and t.EXT_DATE2 &lt;= #{extDate2End} </if>
+		<if test="extDate2 != null"> and t.EXT_DATE2 = #{extDate2} </if>
+		<if test="extNum1 != null"> and t.EXT_NUM1 = #{extNum1} </if>
+		<if test="extNum2 != null"> and t.EXT_NUM2 = #{extNum2} </if>
+		<if test="extNum3 != null"> and t.EXT_NUM3 = #{extNum3} </if>
+		<if test="primaryKeys != null"> and t.id in <foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=","> #{primaryKey} </foreach> </if>
+		<if test="contractName != null"> and contract.contract_name like <![CDATA['%${contractName}%']]> </if>
+		<if test="contractCode != null"> and contract.contract_code = #{contractCode} </if>
+		<if test="projectName != null"> and project.project_name like <![CDATA['%${projectName}%']]> </if>
+		<if test="projectNumber != null"> and project.project_number = #{projectNumber} </if>
+	</sql>
+
+	<select id="query" parameterType="com.jc.csmp.project.domain.CmProjectVisaOrder" resultType="com.jc.csmp.project.domain.CmProjectVisaOrder">
+		SELECT distinct
+		<include refid="Base_Column_List" />
+		FROM cm_project_visa_order t
+		join cm_project_data_auth dataAuth on (dataAuth.business_id = t.project_id or dataAuth.business_id = t.contract_id)
+		join cm_project_info project on project.id = t.project_id
+		join cm_contract_info contract on contract.id = t.contract_id
+		<where>
+			<include refid="Base_Query_Where"/>
+			<if test="deptCodeCondition != null"> and dataAuth.dept_code like <![CDATA['%${deptCodeCondition}%']]> </if>
+		</where>
+		<if test="orderBy != null"> order by ${orderBy} </if>
+	</select>
+
+	<select id="queryCount" parameterType="com.jc.csmp.project.domain.CmProjectVisaOrder" resultType="java.lang.Long">
+		SELECT count(distinct t.ID) FROM cm_project_visa_order t
+		join cm_project_data_auth dataAuth on (dataAuth.business_id = t.project_id or dataAuth.business_id = t.contract_id)
+		join cm_project_info project on project.id = t.project_id
+		join cm_contract_info contract on contract.id = t.contract_id
+		<where>
+			<include refid="Base_Query_Where"/>
+			<if test="deptCodeCondition != null"> and dataAuth.dept_code like <![CDATA['%${deptCodeCondition}%']]> </if>
+		</where>
+	</select>
+
+	<select id="workflowTodoQuery" parameterType="com.jc.csmp.project.domain.CmProjectVisaOrder" resultType="com.jc.csmp.project.domain.CmProjectVisaOrder">
+		SELECT
+		<include refid="Base_Column_List" />,
+		d.definitionId_ AS "workflowBean.definitionId_",
+		d.business_Key_ AS "workflowBean.business_Key_",
+		d.act_id AS "workflowBean.curNodeId_",
+		d.proc_inst_id AS "workflowBean.instanceId_",
+		d.task_id AS "workflowBean.taskId_"
+		FROM cm_project_visa_order t,workflow_todo d,cm_project_info project, cm_contract_info contract
+		where t.PI_ID = d.business_key_ and t.project_id = project.id and t.contract_id = contract.id
+		<include refid="Base_Query_Where"/>
+		<if test="curUserId != null"> and d.assignee = #{curUserId} </if>
+		<if test="orderBy != null"> order by ${orderBy} </if>
+	</select>
+
+	<select id="workflowTodoQueryCount" parameterType="com.jc.csmp.project.domain.CmProjectVisaOrder" resultType="java.lang.Long">
+		SELECT count(t.ID) FROM cm_project_visa_order t,workflow_todo d,cm_project_info project, cm_contract_info contract
+		where t.PI_ID = d.business_key_ and t.project_id = project.id and t.contract_id = contract.id
+		<include refid="Base_Query_Where"/>
+		<if test="curUserId != null"> and d.assignee = #{curUserId} </if>
+	</select>
+
+	<select id="workflowDoneQuery" parameterType="com.jc.csmp.project.domain.CmProjectVisaOrder" resultType="com.jc.csmp.project.domain.CmProjectVisaOrder">
+		SELECT
+		<include refid="Base_Column_List" />,
+		d.definitionId_ AS "workflowBean.definitionId_",
+		d.business_Key_ AS "workflowBean.business_Key_",
+		d.act_id AS "workflowBean.curNodeId_",
+		d.proc_inst_id AS "workflowBean.instanceId_",
+		d.task_id AS "workflowBean.taskId_"
+		FROM cm_project_visa_order t,workflow_done d where t.PI_ID = d.business_key_
+		<include refid="Base_Query_Where"/>
+		<if test="curUserId != null"> and d.assignee = #{curUserId} </if>
+		<if test="orderBy != null"> order by ${orderBy} </if>
+	</select>
+
+	<select id="workflowDoneQueryCount" parameterType="com.jc.csmp.project.domain.CmProjectVisaOrder" resultType="java.lang.Long">
+		SELECT count(t.ID) FROM cm_project_visa_order t,workflow_done d where t.PI_ID = d.business_key_
+		<include refid="Base_Query_Where"/>
+		<if test="curUserId != null"> and d.assignee = #{curUserId} </if>
+	</select>
+
+	<select id="workflowInstanceQuery" parameterType="com.jc.csmp.project.domain.CmProjectVisaOrder" resultType="com.jc.csmp.project.domain.CmProjectVisaOrder">
+		SELECT
+		<include refid="Base_Column_List" />,
+		d.definitionId_ AS "workflowBean.definitionId_",
+		d.business_Key_ AS "workflowBean.business_Key_",
+		d.proc_inst_id AS "workflowBean.instanceId_"
+		FROM cm_project_visa_order t,workflow_instance d where t.PI_ID = d.business_key_
+		<include refid="Base_Query_Where"/>
+		<if test="curUserId != null"> and d.create_user = #{curUserId} </if>
+		<if test="orderBy != null"> order by ${orderBy} </if>
+	</select>
+
+	<select id="workflowInstanceQueryCount" parameterType="com.jc.csmp.project.domain.CmProjectVisaOrder" resultType="java.lang.Long">
+		SELECT count(t.ID) FROM cm_project_visa_order t,workflow_instance d where t.PI_ID = d.business_key_
+		<include refid="Base_Query_Where"/>
+		<if test="curUserId != null"> and d.create_user = #{curUserId} </if>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.csmp.project.domain.CmProjectVisaOrder">
+    	delete from cm_project_visa_order
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.csmp.project.domain.CmProjectVisaOrder">
+    	UPDATE cm_project_visa_order t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</update>
+</mapper>

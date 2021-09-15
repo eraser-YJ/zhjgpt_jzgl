@@ -1,0 +1,142 @@
+﻿/* 标签与徽章*/
+.label,.badge{
+	display:inline-block;
+	padding:2px 4px;
+	font-size:11.844px;
+	font-weight:bold;
+	line-height:14px;
+	color:#fff;
+	text-shadow:0 -1px 0 rgba(0,0,0,0.25);
+	white-space:nowrap;
+	vertical-align:baseline;
+	background-color:#999;
+}
+.label{
+	@include border-radius(3px);
+}
+.badge{
+	padding-right:9px;
+	padding-left:9px;
+	@include border-radius(9px);
+	/*behavior:url(js/ie/PIE.htc);*/
+	z-index: 10;
+	position: relative;
+}
+.postscript .badgefive{
+	width: 25px;
+	height:18px;
+	padding-right:2px;
+	padding-left:2px;
+	@include border-radius(5px);
+	/*behavior:url(js/ie/PIE.htc)*/
+	z-index: 10;
+	position: relative;
+	top:10px;
+}
+.label:empty,.badge:empty{
+	display:none;
+}
+a.label:hover,a.label:focus,a.badge:hover,a.badge:focus{
+	color:#fff;
+	text-decoration:none;
+	cursor:pointer;
+}
+.label-important,.badge-important{
+	background-color:#b94a48;
+}
+.label-important[href],.badge-important[href]{
+	background-color:#953b39;
+}
+.label-warning,.badge-warning{
+	background-color:#f89406;
+}
+.label-warning[href],.badge-warning[href]{
+	background-color:#c67605;
+}
+.label-success,.badge-success{
+	background-color:#468847;
+}
+.label-success[href],.badge-success[href]{
+	background-color:#356635;
+}
+.label-info,.badge-info{
+	background-color:#3a87ad;
+}
+.label-info[href],.badge-info[href]{
+	background-color:#2d6987;
+}
+.label-inverse,.badge-inverse{
+	background-color:#333;
+}
+.label-inverse[href],.badge-inverse[href]{
+	background-color:#1a1a1a;
+}
+.btn .label,.btn .badge{
+	position:relative;
+	top:-1px;
+}
+.btn-mini .label,.btn-mini .badge{
+	top:0;
+}
+
+/* 折叠插件*/
+.nav-collapse.collapse{
+	height: auto;
+	overflow: visible;
+}
+.collapse{
+	position: relative;
+	height: 0;
+	overflow: hidden;
+	-webkit-transition: height 0.35s ease;
+	-moz-transition: height 0.35s ease;
+	-o-transition: height 0.35s ease;
+	transition: height 0.35s ease;
+}
+.collapse.in{
+	height: auto;
+}
+.accordion{
+	margin-bottom:20px
+}
+.accordion-group{
+	margin-bottom:2px;
+	border:1px solid #e5e5e5;
+	@include border-radius(4px);
+}
+.accordion-heading{
+	border-bottom:0;
+}
+.accordion-heading .accordion-toggle{
+	display:block;
+	padding:8px 15px;
+}
+.accordion-toggle{
+	cursor:pointer;
+}
+.accordion-inner{
+	padding:9px 15px;
+	border-top:1px solid #e5e5e5;
+}
+
+/* 重点内容展示块*/
+.hero-unit{
+	padding:60px;
+	margin-bottom:30px;
+	font-size:18px;
+	font-weight:200;
+	line-height:30px;
+	color:inherit;
+	background-color:#eee;
+	@include border-radius(6px);
+}
+.hero-unit h1{
+	margin-bottom:0;
+	font-size:60px;
+	line-height:1;
+	letter-spacing:-1px;
+	color:inherit;
+}
+.hero-unit li{
+	line-height:30px;
+}

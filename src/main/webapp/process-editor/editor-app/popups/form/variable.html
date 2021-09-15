@@ -1,0 +1,17 @@
+<div ng-repeat="property in selectedItem">
+    <div ng-controller="ActivitiVariableSelectCtrl">
+        <div class="form-inline m-b-10">
+                <input type="text" class="form-control variabel-text"  ng-model="variableId" placeholder="请输入变量名称">
+                <select class="form-control variabel-text" ng-model="variableType">
+                    <option>number</option>
+                    <option>string</option>
+                    <option>array</option>
+                    <option>date</option>
+                </select>
+            <button type="submit" class="btn btn-default" ng-click="addNewVariableDefinition();">添加</button>
+            <button type="submit" class="btn btn-default" ng-click="removeVariableDefinition();">删除</button>
+        </div>
+
+        <div ng-if="variableRetrieved" class="kis-listener-grid" ng-grid="gridVariableOptions"></div>
+    </div>
+</div>

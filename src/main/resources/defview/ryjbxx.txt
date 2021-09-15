@@ -1,0 +1,72 @@
+SELECT
+  CONCAT(p.id,'_',IFNULL(profess.id,1))      id,
+  p.person_name                    person_name,
+  p.person_cert_num                person_cert_num,
+  p.person_sex                     person_sex,
+  tsex.value                       person_sex_value,
+  p.person_education               person_education,
+  tedu.value                       person_education_value,
+  p.person_xuewei                  person_xuewei,
+  txuewei.value                    person_xuewei_value,
+  p.person_nation                  person_nation,
+  tnation.value                    person_nation_value,
+  profess.professional_type        reg_type,
+  profess.professional_cert_num    reg_num,
+  tjslx.value                      gwlx,
+  p.person_tel                     person_tel,
+  p.person_lxr                     person_lxr,
+  p.person_address                 person_address,
+  cinfo.class_bzmc                 class_bzmc,
+  cinfo.class_bzgz                 class_bzgz,
+  cinfo.class_jcrq                 class_jcrq,
+  cinfo.class_ccrq                 class_ccrq,
+  info.projectName                project_name,
+  info.projectNumber              project_number,
+  p.data_resource                  dataSrc
+FROM pt_person_achievement yj
+  INNER JOIN pt_person_info p
+    ON p.person_cert_num = yj.person_zjnum
+  INNER JOIN pt_project_info info
+    ON info.projectNumber = yj.achievement_pnum
+  LEFT OUTER JOIN pt_class_info cinfo
+    ON cinfo.class_num = p.person_class_num
+  LEFT OUTER JOIN pt_professional_info profess
+    ON profess.professional_zjnum = p.person_cert_num
+  LEFT OUTER JOIN tty_sys_dics tsex
+    ON tsex.code = p.person_sex
+      AND tsex.parent_id = 'sex'
+  LEFT OUTER JOIN tty_sys_dics tnation
+    ON tnation.code = p.person_nation
+      AND tnation.parent_id = 'ethnic'
+  LEFT OUTER JOIN tty_sys_dics tjslx
+    ON tjslx.code = p.person_jslx
+      AND tjslx.parent_id = 'person_jslx'
+  LEFT OUTER JOIN tty_sys_dics tedu
+    ON tedu.code = p.person_education
+      AND tedu.parent_id = 'person_education'
+  LEFT OUTER JOIN tty_sys_dics txuewei
+    ON txuewei.code = p.person_education
+      AND txuewei.parent_id = 'person_xuewei'
+WHERE 1 = 1
+<if test="id != null">
+    and CONCAT(p.id,'_',IFNULL(profess.id,1)) = #{id}
+</if>
+<if test="projectId != null">
+    and info.id = #{projectId}
+</if>
+<if test="projectNumber != null">
+    and info.projectNumber like concat('%',#{projectNumber},'%')
+</if>
+<if test="projectName != null">
+    and info.projectName like concat('%',#{projectName},'%')
+</if>
+<if test="personName != null">
+    and p.person_name like concat('%',#{personName},'%')
+</if>
+<if test="personCertNum != null">
+    and p.person_cert_num like concat('%',#{personCertNum},'%')
+</if>
+<if test="dataSrc != null">
+    and p.data_resource = #{dataSrc}
+</if>
+ORDER BY p.person_name,p.dlh_data_modify_date_ DESC

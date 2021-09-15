@@ -1,0 +1,24 @@
+{
+	"文件夹说明" : {
+		"configuration" : "设计器的属性配置及工具栏和后台交互（重点）",
+		"css" 			: "样式文件",
+		"editor"		: "activiti设计器的oryx插件基于做的流程拖拽",
+		"fonts"			: "字体图标..",
+		"i18n"			: "国际化文件",
+		"images"		: "图片",
+		"lib"			: "引用angular，bootstrap等ui，js的文件",
+		"partials"		: "左侧元素选项栏的html文件",
+		"popups"		: "弹出框的html，保存，修改元素等html",
+		"stencilsets"	: "bpmn各种元素图标，（svg放在配置文件）"
+	},
+	"主要文件说明" : {
+		"stencilset.json" 		: "定义元素的属性，规则的配置文件，页面的展示就是根据这个配置文件",
+		"editor.html"			: "定义了这个页面的布局，顶部，左侧的工具栏，右侧的画布和元素属性编辑栏",
+		"app-cfg.js"			: "配置调用接口的地址",
+		"app.js"				: "angularJS的入口文件，注入需要使用的模块，以及国际化和请求模型json信息",
+		"stencil-controller.js"	: "编辑窗口的控制器，包括了元素的快捷方式，元素的属性保存updatePropertyInModel",
+		"toolbar-controller.js"	: "定义快捷键对应工具栏的按钮",
+		"configuration\\properties.js" 	: "定义各属性的读取写入的html配置 ",
+		"configuration\\url-config.js"	: "定义接口的相应地址（平常做集成到自己系统主要看这里，实现这2个接口即可）"
+	}
+}

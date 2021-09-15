@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.csmp.safe.supervision.domain.SafetySupervision">
+
+	<insert id="insert" parameterType="com.jc.csmp.safe.supervision.domain.SafetySupervision" useGeneratedKeys="true" keyProperty="id">
+		insert into cm_safety_supervision (id,pi_id,project_id,project_number,project_name,project_address,build_properties,Investment_category,build_area,investment_amount,project_type,structure_type,plan_start_date,plan_end_date,advice_file_name,advice_old_name,item_code,is_advice,build_unit,supervision_unit,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,CREATE_USER_ORG,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3)
+		values (#{id},#{piId},#{projectId},#{projectNumber},#{projectName},#{projectAddress},#{buildProperties},#{investmentCategory},#{buildArea},#{investmentAmount},#{projectType},#{structureType},#{planStartDate},#{planEndDate},#{adviceFileName},#{adviceOldName},#{itemCode},#{isAdvice},#{buildUnit},#{supervisionUnit},#{deleteFlag},#{createUser},#{createUserDept},#{createDate},#{createUserOrg},#{modifyUser},#{modifyDate},#{extStr1},#{extStr2},#{extStr3},#{extStr4},#{extStr5},#{extDate1},#{extDate2},#{extNum1},#{extNum2},#{extNum3})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		insert into cm_safety_supervision (id,pi_id,project_id,project_name,project_address,build_properties,Investment_category,build_area,investment_amount,project_type,structure_type,plan_start_date,plan_end_date,advice_file_name,advice_old_name,item_code,is_advice,build_unit,supervision_unit,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,CREATE_USER_ORG,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id},#{item.piId},#{item.projectId},#{item.projectName},#{item.projectAddress},#{item.buildProperties},#{item.investmentCategory},#{item.buildArea},#{item.investmentAmount},#{item.projectType},#{item.structureType},#{item.planStartDate},#{item.planEndDate},#{item.adviceFileName},{item.adviceOldName},{item.itemCode},{item.isAdvice},{item.buildUnit},{item.supervisionUnit},#{item.deleteFlag},#{item.createUser},#{item.createUserDept},#{item.createDate},#{item.createUserOrg},#{item.modifyUser},#{item.modifyDate},#{item.extStr1},#{item.extStr2},#{item.extStr3},#{item.extStr4},#{item.extStr5},#{item.extDate1},#{item.extDate2},#{item.extNum1},#{item.extNum2},#{item.extNum3})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.csmp.safe.supervision.domain.SafetySupervision">
+		update cm_safety_supervision set
+		<if test="id != null">id=#{id},</if>
+		<if test="piId != null">pi_id=#{piId},</if>
+		<if test="projectId != null">project_id=#{projectId},</if>
+		<if test="projectNumber != null">project_number=#{projectNumber},</if>
+		<if test="projectName != null">project_name=#{projectName},</if>
+		<if test="projectAddress != null">project_address=#{projectAddress},</if>
+		<if test="buildProperties != null">build_properties=#{buildProperties},</if>
+		<if test="investmentCategory != null">Investment_category=#{investmentCategory},</if>
+		<if test="buildArea != null">build_area=#{buildArea},</if>
+		<if test="investmentAmount != null">investment_amount=#{investmentAmount},</if>
+		<if test="projectType != null">project_type=#{projectType},</if>
+		<if test="structureType != null">structure_type=#{structureType},</if>
+		<if test="planStartDate != null">plan_start_date=#{planStartDate},</if>
+		<if test="planEndDate != null">plan_end_date=#{planEndDate},</if>
+
+		<if test="adviceFileName != null">advice_file_name=#{adviceFileName},</if>
+		<if test="adviceOldName != null">advice_old_name=#{adviceOldName},</if>
+		<if test="itemCode != null">item_code=#{itemCode},</if>
+		<if test="isAdvice != null">is_advice=#{isAdvice},</if>
+		<if test="buildUnit != null">build_unit=#{buildUnit},</if>
+		<if test="supervisionUnit != null">supervision_unit=#{supervisionUnit},</if>
+
+		<if test="deleteFlag != null">DELETE_FLAG=#{deleteFlag},</if>
+		<if test="createUser != null">CREATE_USER=#{createUser},</if>
+		<if test="createUserDept != null">CREATE_USER_DEPT=#{createUserDept},</if>
+		<if test="createDate != null">CREATE_DATE=#{createDate},</if>
+		<if test="createDateBegin != null"> and t.CREATE_DATE &gt;= #{createDateBegin} </if>
+		<if test="createDateEnd != null"> and t.CREATE_DATE &lt;= #{createDateEnd} </if>
+		<if test="createUserOrg != null">CREATE_USER_ORG=#{createUserOrg},</if>
+		<if test="modifyUser != null">MODIFY_USER=#{modifyUser},</if>
+		<if test="modifyDate != null">MODIFY_DATE=#{modifyDate},</if>
+		<if test="extStr1 != null">EXT_STR1=#{extStr1},</if>
+		<if test="extStr2 != null">EXT_STR2=#{extStr2},</if>
+		<if test="extStr3 != null">EXT_STR3=#{extStr3},</if>
+		<if test="extStr4 != null">EXT_STR4=#{extStr4},</if>
+		<if test="extStr5 != null">EXT_STR5=#{extStr5},</if>
+		<if test="extDate1 != null">EXT_DATE1=#{extDate1},</if>
+		<if test="extDate2 != null">EXT_DATE2=#{extDate2},</if>
+		<if test="extNum1 != null">EXT_NUM1=#{extNum1},</if>
+		<if test="extNum2 != null">EXT_NUM2=#{extNum2},</if>
+		<if test="extNum3 != null">EXT_NUM3=#{extNum3},</if>
+	   	MODIFY_DATE = #{modifyDateNew} where ID = #{id}
+	</update>
+
+
+	<sql id="Base_Column_List" >
+		t.id id,
+		t.pi_id piId,
+		t.project_id projectId,
+		t.project_number projectNumber,
+		t.project_name projectName,
+		t.project_address projectAddress,
+		t.build_properties buildProperties,
+		t.Investment_category investmentCategory,
+		t.build_area buildArea,
+		t.investment_amount investmentAmount,
+		t.project_type projectType,
+		t.structure_type structureType,
+		t.plan_start_date planStartDate,
+		t.plan_end_date planEndDate,
+		t.advice_file_name adviceFileName,
+		t.advice_old_name adviceOldName,
+		t.item_code itemCode,
+		t.is_advice isAdvice,
+		t.build_unit buildUnit,
+		t.supervision_unit supervisionUnit,
+		t.DELETE_FLAG deleteFlag,
+		t.CREATE_USER createUser,
+		t.CREATE_USER_DEPT createUserDept,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_ORG createUserOrg,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5,
+		t.EXT_DATE1 extDate1,
+		t.EXT_DATE2 extDate2,
+		t.EXT_NUM1 extNum1,
+		t.EXT_NUM2 extNum2,
+		t.EXT_NUM3 extNum3
+	</sql>
+	
+	<sql id="Base_Query_Where" >
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="piId != null">
+				and t.pi_id = #{piId}
+			</if>
+			<if test="projectId != null">
+				and t.project_id = #{projectId}
+			</if>
+		<if test="projectNumber != null">
+			and t.project_number like <![CDATA['%${projectNumber}%']]>
+		</if>
+			<if test="projectName != null">
+				and t.project_name like <![CDATA['%${projectName}%']]>
+			</if>
+			<if test="projectAddress != null">
+				and t.project_address = #{projectAddress}
+			</if>
+			<if test="buildProperties != null">
+				and t.build_properties = #{buildProperties}
+			</if>
+			<if test="investmentCategory != null">
+				and t.Investment_category = #{investmentCategory}
+			</if>
+			<if test="buildArea != null">
+				and t.build_area = #{buildArea}
+			</if>
+			<if test="investmentAmount != null">
+				and t.investment_amount = #{investmentAmount}
+			</if>
+			<if test="projectType != null">
+				and t.project_type = #{projectType}
+			</if>
+			<if test="structureType != null">
+				and t.structure_type = #{structureType}
+			</if>
+			<if test="planStartDateBegin != null">
+				and t.plan_start_date &gt;= #{planStartDateBegin}
+			</if>
+			<if test="planStartDateEnd != null">
+				and t.plan_start_date &lt;= #{planStartDateEnd}
+			</if>
+			<if test="planStartDate != null">
+				and t.plan_start_date = #{planStartDate}
+			</if>
+			<if test="planEndDateBegin != null">
+				and t.plan_end_date &gt;= #{planEndDateBegin}
+			</if>
+			<if test="planEndDateEnd != null">
+				and t.plan_end_date &lt;= #{planEndDateEnd}
+			</if>
+			<if test="planEndDate != null">
+				and t.plan_end_date = #{planEndDate}
+			</if>
+
+			<if test="adviceFileName != null">
+				and t.advice_file_name = #{adviceFileName}
+			</if>
+			<if test="adviceOldName != null">
+				and t.advice_old_name = #{adviceOldName}
+			</if>
+			<if test="itemCode != null">
+				and t.item_code = #{itemCode}
+			</if>
+			<if test="isAdvice != null">
+				and t.is_advice = #{isAdvice}
+			</if>
+			<if test="buildUnit != null">
+				and t.build_unit = #{buildUnit}
+			</if>
+			<if test="supervisionUnit != null">
+				and t.supervision_unit = #{supervisionUnit}
+			</if>
+
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.EXT_DATE1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.EXT_DATE1 &lt;= #{extDate1End}
+			</if>
+			<if test="extDate1 != null">
+				and t.EXT_DATE1 = #{extDate1}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.EXT_DATE2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.EXT_DATE2 &lt;= #{extDate2End}
+			</if>
+			<if test="extDate2 != null">
+				and t.EXT_DATE2 = #{extDate2}
+			</if>
+			<if test="extNum1 != null">
+				and t.EXT_NUM1 = #{extNum1}
+			</if>
+			<if test="extNum2 != null">
+				and t.EXT_NUM2 = #{extNum2}
+			</if>
+			<if test="extNum3 != null">
+				and t.EXT_NUM3 = #{extNum3}
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+	</sql>
+	<select id="query" parameterType="com.jc.csmp.safe.supervision.domain.SafetySupervision" resultType="com.jc.csmp.safe.supervision.domain.SafetySupervision">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM cm_safety_supervision t
+		<where>
+		<include refid="Base_Query_Where"/>
+		</where>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="queryCount" parameterType="com.jc.csmp.safe.supervision.domain.SafetySupervision" resultType="java.lang.Long">
+		SELECT count(t.ID) FROM cm_safety_supervision t
+		<where>
+		<include refid="Base_Query_Where"/>
+		</where>
+	</select>
+
+	<select id="workflowTodoQuery" parameterType="com.jc.csmp.safe.supervision.domain.SafetySupervision" resultType="com.jc.csmp.safe.supervision.domain.SafetySupervision">
+		SELECT
+		<include refid="Base_Column_List" />,
+		d.definitionId_ AS "workflowBean.definitionId_",
+		d.business_Key_ AS "workflowBean.business_Key_",
+		d.act_id AS "workflowBean.curNodeId_",
+		d.proc_inst_id AS "workflowBean.instanceId_",
+		d.task_id AS "workflowBean.taskId_"
+		FROM cm_safety_supervision t,workflow_todo d where t.PI_ID = d.business_key_
+		<include refid="Base_Query_Where"/>
+		<if test="curUserId != null">
+			and d.assignee = #{curUserId}
+		</if>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="workflowTodoQueryCount" parameterType="com.jc.csmp.safe.supervision.domain.SafetySupervision" resultType="java.lang.Long">
+		SELECT count(t.ID)
+		FROM cm_safety_supervision t,workflow_todo d where t.PI_ID = d.business_key_
+		<include refid="Base_Query_Where"/>
+		<if test="curUserId != null">
+			and d.assignee = #{curUserId}
+		</if>
+	</select>
+
+	<select id="workflowDoneQuery" parameterType="com.jc.csmp.safe.supervision.domain.SafetySupervision" resultType="com.jc.csmp.safe.supervision.domain.SafetySupervision">
+		SELECT
+		<include refid="Base_Column_List" />,
+		d.definitionId_ AS "workflowBean.definitionId_",
+		d.business_Key_ AS "workflowBean.business_Key_",
+		d.act_id AS "workflowBean.curNodeId_",
+		d.proc_inst_id AS "workflowBean.instanceId_",
+		d.task_id AS "workflowBean.taskId_"
+		FROM cm_safety_supervision t,workflow_done d
+		where t.PI_ID = d.business_key_
+		<include refid="Base_Query_Where"/>
+		<if test="curUserId != null">
+			and d.assignee = #{curUserId}
+		</if>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="workflowDoneQueryCount" parameterType="com.jc.csmp.safe.supervision.domain.SafetySupervision" resultType="java.lang.Long">
+		SELECT count(t.ID)
+		FROM cm_safety_supervision t,workflow_done d
+		where t.PI_ID = d.business_key_
+		<include refid="Base_Query_Where"/>
+		<if test="curUserId != null">
+			and d.assignee = #{curUserId}
+		</if>
+	</select>
+
+	<select id="workflowInstanceQuery" parameterType="com.jc.csmp.safe.supervision.domain.SafetySupervision" resultType="com.jc.csmp.safe.supervision.domain.SafetySupervision">
+		SELECT
+		<include refid="Base_Column_List" />,
+		d.definitionId_ AS "workflowBean.definitionId_",
+		d.business_Key_ AS "workflowBean.business_Key_",
+		d.proc_inst_id AS "workflowBean.instanceId_",
+		d.flowStatus AS "workflowBean.flowStatus_"
+		FROM cm_safety_supervision t,workflow_instance d
+		where t.PI_ID = d.business_key_
+		<include refid="Base_Query_Where"/>
+		<if test="curUserId != null">
+			and d.create_user = #{curUserId}
+		</if>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="workflowInstanceQueryCount" parameterType="com.jc.csmp.safe.supervision.domain.SafetySupervision" resultType="java.lang.Long">
+		SELECT count(t.ID)
+		FROM cm_safety_supervision t,workflow_instance d
+		where t.PI_ID = d.business_key_
+		<include refid="Base_Query_Where"/>
+		<if test="curUserId != null">
+			and d.create_user = #{curUserId}
+		</if>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.csmp.safe.supervision.domain.SafetySupervision">
+    	delete from cm_safety_supervision
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.csmp.safe.supervision.domain.SafetySupervision">
+    	UPDATE cm_safety_supervision t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</update>
+</mapper>

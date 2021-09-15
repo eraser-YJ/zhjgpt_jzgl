@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.systemMap">
+
+	<select id="query" parameterType="string" resultType="com.jc.system.security.domain.User">
+		SELECT
+		t.ID as id ,
+		t.CODE as code,
+		t.DISPLAY_NAME as displayName ,
+		t.LOGIN_NAME as loginName ,
+		t.PASSWORD as password ,
+		t.DEPT_ID as deptId,
+		t.STATUS as status ,
+		t.IS_ADMIN as isAdmin ,
+		t.CREATE_USER as createUser ,
+		t.CREATE_DATE as createDate ,
+		t.DUTY_ID as dutyId ,
+		t.DELETE_FLAG as deleteFlag,
+		t.LOCK_TYPE as lockType,
+		t.LOCK_START_DATE as lockStartDate,
+		t.PHOTO as photo,
+		t.USER_LEVEL userLevel,
+		t.MODIFY_PWD_FLAG as modifyPwdFlag,
+		t.KEY_CODE as keyCode,
+		t.THEME as theme
+
+		FROM
+		tty_sys_user t where t.LOGIN_NAME = #{0} AND t.DELETE_FLAG = 0
+	</select>
+
+	<select id="queryMenus" parameterType="string" resultType="com.jc.system.security.domain.Menu">
+		SELECT
+
+		t.ID as id,
+		t.NAME as name,
+		t.PARENT_ID as parentId,
+		t.QUEUE AS queue,
+		t.MENU_TYPE as menuType,
+		t.PERMISSION as permission,
+		t.IS_SHOW as isShow,
+		t.ACTION_NAME as actionName,
+		t.DELETE_FLAG as deleteFlag,
+		t.CREATE_USER as createUser,
+		t.CREATE_DATE as createDate
+
+		FROM tty_sys_menu t WHERE ID IN
+		(
+		<!--
+			SELECT MENU_ID FROM tty_sys_role_menu WHERE ROLE_ID IN
+			(
+				SELECT ROLE_ID FROM tty_sys_user_role WHERE USER_ID = #{userId}
+			)
+		-->
+		SELECT MENU_ID FROM tty_sys_role_menu a INNER JOIN tty_sys_user_role b ON a.ROLE_ID = b.ROLE_ID
+		WHERE b.USER_ID = #{userId}
+		)
+
+		AND t.DELETE_FLAG = 0 ORDER BY QUEUE DESC
+	</select>
+
+	<select id="querySetting" parameterType="com.jc.system.security.domain.Setting" resultType="com.jc.system.security.domain.Setting">
+		SELECT
+		t.ID id,
+		t.setting_key settingKey,
+		t.setting_value settingValue,
+		t.setting_comment settingComment,
+		t.setting_input_type settingInputType,
+		t.setting_input_size settingInputSize,
+		t.setting_input_default settingInputDefault,
+		t.setting_input_remark settingInputRemark,
+		t.setting_input_validate settingInputValidate,
+		t.DELETE_FLAG deleteFlag,
+		t.CREATE_USER_ORG createUserOrg,
+		t.CREATE_USER_DEPT createUserDept,
+		t.CREATE_USER createUser,
+		t.CREATE_DATE createDate,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate
+
+		FROM tty_sys_setting t
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="settingKey != null">
+				and t.setting_key = #{settingKey}
+			</if>
+			<if test="settingValue != null">
+				and t.setting_value = #{settingValue}
+			</if>
+		</where>
+		order by setting_input_queue
+	</select>
+
+	<!--
+        <select id="queryUserOrgId" parameterType="com.jc.system.security.domain.Department" statementType="CALLABLE">
+              {call SP_GET_USER_ORG_ID(#{id,jdbcType=BIGINT,mode=IN},#{orgId,jdbcType=BIGINT,mode=OUT},#{orgName,jdbcType=VARCHAR,mode=OUT})}
+        </select>
+    -->
+
+	<select id="queryParentDeptForAllDept" parameterType="com.jc.system.security.domain.Department" resultType = "com.jc.system.security.domain.Department">
+		select
+		ID  id,
+		NAME   name,
+		DEPT_TYPE   deptType
+		FROM tty_sys_department  WHERE id =  (select parent_id from  tty_sys_department where id = #{id})
+	</select>
+
+	<select id="getParentDept" parameterType="com.jc.system.security.domain.Department" resultType = "com.jc.system.security.domain.Department">
+		select
+		ID  id,
+		NAME   name,
+		DEPT_TYPE   deptType
+		FROM tty_sys_department  WHERE id =  (select parent_id from  tty_sys_department where   delete_flag =0 and id = #{id}) and  delete_flag =0
+	</select>
+
+	<select id="getRoot" parameterType="string" resultType = "com.jc.system.security.domain.Department">
+		select
+		ID  id,
+		NAME   name,
+		DEPT_TYPE   deptType
+		FROM tty_sys_department  WHERE id = #{0}
+	</select>
+</mapper>

@@ -1,0 +1,187 @@
+<div ng-repeat="property in selectedItem">
+    <div ng-controller="ActivitiOperationCtrl">
+        <ul class="nav nav-tabs short">
+            <li ng-class="{'active' : operation.todo == true}">
+                <a href="javascript:void(0);" ng-click="tab('todo')">待办</a>
+            </li>
+            <li ng-class="{'active' : operation.have == true}">
+                <a href="javascript:void(0);" ng-click="tab('have')">已办</a>
+            </li>
+        </ul>
+        <div ng-if="operation.todo">
+            <ul class="nav nav-tabs short">
+                <li class="active">
+                    <a href="#caozuo" aria-controls="home" role="tab" data-toggle="tab">操作设置</a>
+                </li>
+                <li>
+                    <a href="#qita" aria-controls="home" role="tab" data-toggle="tab">退回和拿回设置</a>
+                </li>
+                <li>
+                    <a href="#tijiao" aria-controls="home" role="tab" data-toggle="tab">提交设置</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="caozuo">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">系统操作列表</label>
+                            <div class="col-sm-9">
+                                <label class="checkbox-inline" ng-repeat="oNode in buttons.todoSystemList" for="{{oNode.id}}">
+                                    <input type="checkbox" id="{{oNode.id}}"
+                                           ng-model="oNode.selected"
+                                           ng-change="changeNodeValue();"
+                                           ng-checked="oNode.selected"
+                                    >{{oNode.name}}
+                                </label>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                            <label class="col-sm-3 control-label">自定义操作列表</label>
+                            <div class="col-sm-9">
+                                <div ng-if="translationsRetrieved" class="default-grid" ng-grid="gridOptions" style="height:200px;"></div>
+                                <div class="btn-group">
+                                    <a class="btn">添加</a>
+                                    <a class="btn">删除</a>
+                                    <a class="btn">全删</a>
+                                </div>
+                            </div>
+                        </div>-->
+                    </form>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="qita">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <div class="checkbox">
+                                    <label>
+                                        允许退回至以下指定节点
+                                    </label>
+                                </div>
+                                <div class="p-t-10">
+                                    <table class="table table-bordered td-first-center">
+                                        <thead>
+                                        <tr>
+                                            <th><input type="checkbox" ng-checked="ohterLeftAll" ng-click="selectAllOperation($event , 'left');"></th>
+                                            <th>{{'PROPERTY.OPERATIONODE.NAME' | translate}}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="backnode in nodes.operateBackNode">
+                                                <th scope="row">
+                                                    <input type="checkbox"
+                                                           ng-model="backnode.selected"
+                                                           value="{{backnode.id}}"
+                                                           ng-checked="backnode.selected"
+                                                           ng-change="changeNodeValue('left');">
+                                                </th>
+                                                <td>{{backnode.name}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="checkbox">
+                                    <label>
+                                        允许从此节点拿回的节点
+                                    </label>
+                                </div>
+                                <div class="p-t-10">
+                                    <table class="table table-bordered td-first-center">
+                                        <thead>
+                                        <tr>
+                                            <th><input type="checkbox" ng-checked="ohterRightAll" ng-click="selectAllOperation($event , 'right');"></th>
+                                            <th>{{'PROPERTY.OPERATIONODE.NAME' | translate}}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="backnode in nodes.operateAsternNode">
+                                            <th scope="row">
+                                                <input type="checkbox"
+                                                       ng-model="backnode.selected"
+                                                       value="{{backnode.id}}"
+                                                       ng-checked="backnode.selected"
+                                                       ng-change="changeNodeValue('right');">
+                                            </th>
+                                            <td>{{backnode.name}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tijiao">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+						                                        限制提交至以下指定节点
+                                    </label>
+                                </div>
+                                <div class="p-t-10">
+                                    <table class="table table-bordered td-first-center">
+                                        <thead>
+                                        <tr>
+                                            <th><input type="checkbox" ng-checked="submitAll" ng-click="selectAllOperation($event , 'submit');"></th>
+                                            <th>{{'PROPERTY.OPERATIONODE.NAME' | translate}}</th>
+                                            <th>{{'PROPERTY.OPERATIONODE.GROUP' | translate}}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="submitnode in nodes.operateSubmitNode">
+                                                <th scope="row">
+                                                    <input type="checkbox"
+                                                           ng-model="submitnode.selected"
+                                                           value="{{submitnode.id}}"
+                                                           ng-checked="submitnode.selected"
+                                                           ng-change="changeNodeValue('submit');">
+                                                </th>
+                                                <td>{{submitnode.name}}</td>
+                                                <td>
+	                                                <input type="text" id="{{submitnode.id}}_group" name="{{submitnode.id}}_group" 
+								                        value="{{submitnode.group}}" ng-keyup="changeNodeValue('submit');" style="width: 200px;">
+								                    <span class="text-danger" id="{{submitnode.id}}_exceedError" style="display:none;">请输入一个正确的数字!!!</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div ng-if="operation.have">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">系统操作列表</label>
+                    <div class="col-sm-9">
+                        <label class="checkbox-inline" ng-repeat="hNode in buttons.haveSystemList" for="{{hNode.id}}">
+                            <input type="checkbox" id="{{hNode.id}}"
+                                   ng-model="hNode.selected"
+                                   ng-change="changeNodeValue();"
+                                   ng-checked="hNode.selected"
+                            >{{hNode.name}}
+                        </label>
+                    </div>
+                </div>
+                <!--<div class="form-group">
+                    <label class="col-sm-3 control-label">自定义操作列表</label>
+                    <div class="col-sm-9">
+                        <div ng-if="translationsRetrieved" class="default-grid" ng-grid="gridOptions" style="height:200px;"></div>
+                        <div class="btn-group">
+                            <a class="btn">添加</a>
+                            <a class="btn">删除</a>
+                            <a class="btn">全删</a>
+                        </div>
+                    </div>
+                </div>-->
+            </form>
+        </div>
+    </div>
+</div>

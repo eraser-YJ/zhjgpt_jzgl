@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system">
+
+	<select id="getSysdate" resultType="string">
+		SELECT SYSDATE() AS sysdate 
+	</select>
+	<sql id="relationSql"> 
+		join twr_horizon_instance b
+  		LEFT JOIN  vd_horizon_todo a ON a.DATAID = b.WORKID 
+  		LEFT JOIN tw_horizon_author c ON a.DATAID = c.WORKID 
+  		LEFT JOIN tw_horizon_instance d ON a.DATAID = d.ID 
+  		LEFT JOIN tty_workflow_template e ON d.FLOWID = e.flow_id AND e.DELETE_FLAG = 0 
+  		LEFT JOIN tty_workflow_type f  ON e.type_id = f.id 
+  		</sql>
+
+
+		<sql id="columnSql">
+			e.flow_name flowName,
+			a.DATAID workId,
+			a.title processTitle,
+			REPLACE(a.`realuserid`,'U_','') confirmUser,
+			c.flowstatus flowStatus,
+			(CASE WHEN ((`c`.`FLOWSTATUS` = '8') AND (`a`.`status` = '1')) THEN '3' WHEN (`a`.`status` = '4') THEN 3 WHEN (`a`.`status` = '2') THEN 3 ELSE `a`.`status` END) processStatus,
+			a.SENDUSERID applyUserId
+		</sql>
+		
+		
+		<sql id="groupSql"> 
+		GROUP BY 
+		REPLACE(a.realuserid,'U_',''),
+    	(CASE WHEN ((c.FLOWSTATUS = '8') AND (a.status = '1')) THEN '3' WHEN (a.status = '4') THEN 3 WHEN (a.status = '2') THEN 3 ELSE a.status END),
+    	a.dataid
+    	</sql>
+    	
+    	
+    	<sql id="statusSql"> 
+    	(CASE WHEN ((c.FLOWSTATUS = '8') AND (a.status = '1')) THEN '3' WHEN (a.status = '4') THEN 3 WHEN (a.status = '2') THEN 3 ELSE a.status END)
+    	</sql>
+	
+	
+
+</mapper>

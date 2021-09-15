@@ -1,0 +1,24 @@
+<div ng-controller="KisBpmExceedModePropertyCtrl" ng-style="myStyleObj">
+    <label class="radio-inline" for="exceedModeStop" style="padding: 0;">
+        <input type="radio"
+               id="exceedModeStop"
+               name="exceedModeInlineRadioOptions"
+               ng-checked="exceedType == 'stop'"
+               ng-click="clickRadio('stop');">停止
+    </label>
+    <label class="radio-inline" for="exceedModeAuto" style="padding: 0;padding-left: 20px;">
+        <input type="radio"
+               id="exceedModeAuto"
+               name="exceedModeInlineRadioOptions"
+               ng-checked="exceedType == 'auto'"
+               ng-click="clickRadio('auto');">自动提交
+    </label>
+    <label class="radio-inline" for="exceedModeCustom" style="padding: 0;padding-left: 20px;">
+        <input type="radio"
+               id="exceedModeCustom"
+               name="exceedModeInlineRadioOptions"
+               ng-checked="exceedType == 'custom'"
+               ng-click="clickRadio('custom');">自定义
+    </label>
+    <input ng-show="exceedType == 'custom'" type="text" ng-blur="save();" maxlength="50" ng-model="customEvent" class="form-control" style="width: 285px;display: inline-block;"/>
+</div>

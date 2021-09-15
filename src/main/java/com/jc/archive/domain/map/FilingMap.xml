@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.archive.domain.Filing">
+
+	<select id="query" parameterType="com.jc.archive.domain.Filing" resultType="com.jc.archive.domain.Filing">
+		SELECT 
+			t.id id,
+			t.file_name fileName,
+			t.file_path filePath,
+			t.document_id documentId,
+			t.fize_size fizeSize,
+			t.file_type fileType,
+			t.FORM_CONTENT formContent
+		FROM toa_archive_filing t
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+
+			<if test="fileName != null">
+				and t.file_name = #{fileName}
+			</if>
+
+			<if test="formType!=null">
+				and t.file_type in (1,2)
+			</if>
+			
+			<if test="filePath != null">
+				and t.file_path = #{filePath}
+			</if>
+
+			<if test="documentId != null">
+				and t.document_id = #{documentId}
+			</if>
+
+			<if test="fizeSize != null">
+				and t.fize_size = #{fizeSize}
+			</if>
+			
+			<if test="fileType!=null">
+				and t.file_type=#{fileType}
+			</if>
+			<if test="formContent!=null">
+				and t.FORM_CONTENT=#{formContent}
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="queryCount" parameterType="com.jc.archive.domain.Filing" resultType="java.lang.Long">
+		SELECT count(id) 
+		FROM toa_archive_filing t
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+
+			<if test="fileName != null">
+				and t.file_name = #{fileName}
+			</if>
+
+			<if test="filePath != null">
+				and t.file_path = #{filePath}
+			</if>
+
+			<if test="documentId != null">
+				and t.document_id = #{documentId}
+			</if>
+
+			<if test="fizeSize != null">
+				and t.fize_size = #{fizeSize}
+			</if>
+			
+			<if test="fileType!=null">
+				and t.file_type=#{fileType}
+			</if>
+			
+			<if test="formContent!=null">
+				and t.FORM_CONTENT=#{formContent}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.archive.domain.Filing">
+    	delete from toa_archive_filing
+      		where id in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.archive.domain.Filing">
+    	UPDATE toa_archive_filing t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+
+	<insert id="insert" parameterType="com.jc.archive.domain.Filing" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO toa_archive_filing(id,file_name,file_path,document_id,fize_size,file_type,form_content)
+			VALUES (#{id},#{fileName,jdbcType=VARCHAR},#{filePath,jdbcType=VARCHAR},#{documentId},#{fizeSize,jdbcType=VARCHAR},#{fileType},#{formContent,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		INSERT INTO toa_archive_filing(id,file_name,file_path,document_id,fize_size,file_type,form_content)
+			VALUES
+			<foreach collection="list" item="item" index="index" separator=","> 
+				(#{item.id},#{item.fileName,jdbcType=VARCHAR},#{item.filePath,jdbcType=VARCHAR},#{item.documentId},#{item.fizeSize,jdbcType=VARCHAR},#{fileType},#{formContent,jdbcType=VARCHAR})
+			</foreach> 
+	</insert>
+
+	<update id="update" parameterType="com.jc.archive.domain.Filing">
+	UPDATE toa_archive_filing set
+	   	<if test="fileName != null">
+	   		file_name = #{fileName},
+	   	</if>
+	   	<if test="filePath != null">
+	   		file_path = #{filePath},
+	   	</if>
+	   	<if test="documentId != null">
+	   		document_id = #{documentId},
+	   	</if>
+	   	<if test="fizeSize != null">
+	   		fize_size = #{fizeSize},
+	   	</if>
+	   	<if test="fileType!=null">
+	   		file_type=#{fileType}
+	   	</if>
+	   	<if test="formContent!=null">
+			FORM_CONTENT=#{formContent}
+		</if>
+	   	MODIFY_DATE = #{modifyDateNew} where id = #{id} and MODIFY_DATE = #{modifyDate}
+	</update>
+	<update id="updateformContent" parameterType="com.jc.archive.domain.Filing">
+		UPDATE toa_archive_filing set
+			FORM_CONTENT=#{formContent}
+		 where id = #{id}
+	</update>
+	<select id="queryDownLoad" parameterType="com.jc.archive.domain.Filing" resultType="com.jc.archive.domain.Filing">
+		SELECT 
+			t.id id,
+			t.file_name fileName,
+			t.file_path filePath,
+			t.document_id documentId,
+			t.fize_size fizeSize,
+			t.file_type fileType,
+			t.FORM_CONTENT formContent
+		FROM toa_archive_filing t
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+
+			<if test="documentId != null">
+				and t.document_id = #{documentId}
+			</if>
+
+			<if test="fileType!=null">
+				and t.file_type in (1,2)
+			</if>
+			
+		</where>
+	</select>
+	
+	<delete id="deleteList"  parameterType="com.jc.archive.domain.Filing">
+    	delete from toa_archive_filing
+      		where id  = #{id}
+ 	</delete>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 组织接口实现类 -->
+    <bean id="cfsOrganizationImpl" class="com.jc.cfs.util.OrganizationImpl"/>
+    <!-- 上传接口实现类 -->
+    <bean id="cfsUploadImpl" class="com.jc.cfs.util.UploadImpl"/>
+    <!-- 字典接口实现类 -->
+    <bean id="dicDataImpl" class="com.jc.cfs.util.DicDataImpl"/>
+    <!-- 数据源 -->
+    <alias name="dataSource" alias="cfsDataSource"/>
+    <!-- 缓存 -->
+    <alias name="cacheManagerSystem" alias="cacheManagerCfs"/>
+    <!-- 表单引擎上下文 -->
+    <bean class="com.jc.cfs.core.CFSContext">
+        <!-- 方法监控开关 0:关 1:开 -->
+        <property name="monitorFlag" value="1"/>
+        <!-- 操作日志监控开关 0:关 1:开 -->
+        <property name="operlogFlag" value="1"/>
+    </bean>
+    <!-- 工作流表单列表实现接口 -->
+    <bean class="com.jc.workflow.util.WorkflowContent">
+        <property name="formImplClass" value="com.jc.cfs.workflow.util.FormImpl"/>
+    </bean>
+    <!-- 表单引擎操作日志aop代理 -->
+    <bean id="operLogAspect" class="com.jc.cfs.aspectj.OperLogAspect_XML"/>
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="logPointCut" expression="execution(* com.jc.cfs..web.*Controller.*(..))" />
+        <aop:advisor pointcut-ref="logPointCut" advice-ref="operLogAspect" />
+    </aop:config>
+
+</beans>

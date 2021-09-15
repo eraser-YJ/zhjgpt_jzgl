@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.csmp.project.plan.domain.CmProjectPlanTemplateTask">
+
+	<insert id="insert" parameterType="com.jc.csmp.project.plan.domain.CmProjectPlanTemplateTask" useGeneratedKeys="true" keyProperty="id">
+		insert into cm_project_plan_template_task (id, template_id, stage_id, task_number, task_name, plan_day, plan_work_day, self_weight, queue,
+		DELETE_FLAG, CREATE_USER, CREATE_USER_DEPT, CREATE_DATE, CREATE_USER_ORG, MODIFY_USER, MODIFY_DATE, EXT_STR1, EXT_STR2, EXT_STR3, EXT_STR4, EXT_STR5, EXT_DATE1, EXT_DATE2, EXT_NUM1, EXT_NUM2, EXT_NUM3)
+		values (#{id}, #{templateId}, #{stageId}, #{taskNumber}, #{taskName}, #{planDay}, #{planWorkDay}, #{selfWeight}, #{queue},
+		#{deleteFlag}, #{createUser}, #{createUserDept}, #{createDate}, #{createUserOrg}, #{modifyUser}, #{modifyDate}, #{extStr1}, #{extStr2}, #{extStr3}, #{extStr4}, #{extStr5}, #{extDate1}, #{extDate2}, #{extNum1}, #{extNum2}, #{extNum3})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		insert into cm_project_plan_template_task (id, template_id, stage_id, task_number, task_name, plan_day, plan_work_day, self_weight, queue,
+		DELETE_FLAG, CREATE_USER, CREATE_USER_DEPT, CREATE_DATE, CREATE_USER_ORG, MODIFY_USER, MODIFY_DATE, EXT_STR1, EXT_STR2, EXT_STR3, EXT_STR4, EXT_STR5, EXT_DATE1, EXT_DATE2, EXT_NUM1, EXT_NUM2, EXT_NUM3)
+			VALUES
+			<foreach collection="list" item="item" index="index" separator=",">
+				(#{item.id}, #{item.templateId}, #{item.stageId}, #{item.taskNumber}, #{item.taskName}, #{item.planDay}, #{item.planWorkDay}, #{item.selfWeight}, #{item.queue},
+				#{item.deleteFlag}, #{item.createUser}, #{item.createUserDept}, #{item.createDate}, #{item.createUserOrg}, #{item.modifyUser}, #{item.modifyDate}, #{item.extStr1}, #{item.extStr2}, #{item.extStr3}, #{item.extStr4}, #{item.extStr5}, #{item.extDate1}, #{item.extDate2}, #{item.extNum1}, #{item.extNum2}, #{item.extNum3})
+			</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.csmp.project.plan.domain.CmProjectPlanTemplateTask">
+		update cm_project_plan_template_task set
+		<if test="id != null"> id = #{id}, </if>
+		<if test="templateId != null"> template_id = #{templateId}, </if>
+		<if test="stageId != null"> stage_id = #{stageId}, </if>
+		<if test="taskNumber != null"> task_number = #{taskNumber}, </if>
+		<if test="taskName != null"> task_name = #{taskName}, </if>
+		<if test="planDay != null"> plan_day = #{planDay}, </if>
+		<if test="planWorkDay != null"> plan_work_day = #{planWorkDay}, </if>
+		<if test="selfWeight != null"> self_weight = #{selfWeight}, </if>
+		<if test="queue != null"> queue = #{queue}, </if>
+		<if test="deleteFlag != null"> DELETE_FLAG = #{deleteFlag}, </if>
+		<if test="createUser != null"> CREATE_USER = #{createUser}, </if>
+		<if test="createUserDept != null"> CREATE_USER_DEPT = #{createUserDept}, </if>
+		<if test="createUserOrg != null"> CREATE_USER_ORG = #{createUserOrg}, </if>
+		<if test="createDate != null"> CREATE_DATE = #{createDate}, </if>
+		<if test="modifyUser != null"> MODIFY_USER = #{modifyUser}, </if>
+		<if test="extStr1 != null"> EXT_STR1 = #{extStr1}, </if>
+		<if test="extStr2 != null"> EXT_STR2 = #{extStr2}, </if>
+		<if test="extStr3 != null"> EXT_STR3 = #{extStr3}, </if>
+		<if test="extStr4 != null"> EXT_STR4 = #{extStr4}, </if>
+		<if test="extStr5 != null"> EXT_STR5 = #{extStr5}, </if>
+		<if test="extDate1 != null"> EXT_DATE1 = #{extDate1}, </if>
+		<if test="extDate2 != null"> EXT_DATE2 = #{extDate2}, </if>
+		<if test="extNum1 != null"> EXT_NUM1 = #{extNum1}, </if>
+		<if test="extNum2 != null"> EXT_NUM2 = #{extNum2}, </if>
+		<if test="extNum3 != null"> EXT_NUM3 = #{extNum3}, </if>
+		MODIFY_DATE = #{modifyDateNew} where ID = #{id}
+	</update>
+
+	<sql id="Base_Column_List" >
+		t.id, t.template_id templateId, t.stage_id stageId, t.task_number taskNumber, t.task_name taskName, t.plan_day planDay, t.plan_work_day planWorkDay,
+		t.self_weight selfWeight, t.queue, stage.stage_name stageName,
+		t.DELETE_FLAG deleteFlag, t.CREATE_DATE createDate, t.CREATE_USER createUser, t.CREATE_USER_DEPT createUserDept, t.CREATE_USER_ORG createUserOrg,
+		t.MODIFY_DATE modifyDate, t.MODIFY_USER modifyUser, t.EXT_STR1 extStr1, t.EXT_STR2 extStr2, t.EXT_STR3 extStr3, t.EXT_STR4 extStr4, t.EXT_STR5 extStr5,
+		t.EXT_DATE1 extDate1, t.EXT_DATE2 extDate2, t.EXT_NUM1 extNum1, t.EXT_NUM2 extNum2, t.EXT_NUM3 extNum3
+	</sql>
+
+	<sql id="Base_Query_Where" >
+		<where>
+			<if test="id != null"> and t.id = #{id} </if>
+			<if test="templateId != null"> and t.template_id = #{templateId} </if>
+			<if test="queue != null"> and t.queue = #{queue} </if>
+			<if test="taskName != null"> and t.task_name like <![CDATA['%${taskName}%']]> </if>
+			<if test="stageId != null"> and t.stage_id = #{stageId} </if>
+			<if test="taskNumber != null"> and t.task_number = #{taskNumber} </if>
+			<if test="planDay != null"> and t.plan_day = #{planDay} </if>
+			<if test="planWorkDay != null"> and t.plan_work_day = #{planWorkDay} </if>
+			<if test="selfWeight != null"> and t.self_weight = #{selfWeight} </if>
+			<if test="deleteFlag != null"> and t.DELETE_FLAG = #{deleteFlag} </if>
+			<if test="createUser != null"> and t.CREATE_USER = #{createUser} </if>
+			<if test="createUserDept != null"> and t.CREATE_USER_DEPT = #{createUserDept} </if>
+			<if test="createUserOrg != null"> and t.CREATE_USER_ORG = #{createUserOrg} </if>
+			<if test="createDate != null"> and t.CREATE_DATE = #{createDate} </if>
+			<if test="createDateBegin != null"> and t.CREATE_DATE &gt;= #{createDateBegin} </if>
+			<if test="createDateEnd != null"> and t.CREATE_DATE &lt;= #{createDateEnd} </if>
+			<if test="modifyDate != null"> and t.MODIFY_DATE = #{modifyDate} </if>
+			<if test="modifyDateBegin != null"> and t.MODIFY_DATE &gt;= #{modifyDateBegin} </if>
+			<if test="modifyDateEnd != null"> and t.MODIFY_DATE &lt;= #{modifyDateEnd} </if>
+			<if test="modifyUser != null"> and t.MODIFY_USER = #{modifyUser} </if>
+			<if test="extStr1 != null"> and t.EXT_STR1 = #{extStr1} </if>
+			<if test="extStr2 != null"> and t.EXT_STR2 = #{extStr2} </if>
+			<if test="extStr3 != null"> and t.EXT_STR3 = #{extStr3} </if>
+			<if test="extStr4 != null"> and t.EXT_STR4 = #{extStr4} </if>
+			<if test="extStr5 != null"> and t.EXT_STR5 = #{extStr5} </if>
+			<if test="extDate1 != null"> and t.EXT_DATE1 = #{extDate1} </if>
+			<if test="extDate1Begin != null"> and t.EXT_DATE1 &gt;= #{extDate1Begin} </if>
+			<if test="extDate1End != null"> and t.EXT_DATE1 &lt;= #{extDate1End} </if>
+			<if test="extDate2 != null"> and t.EXT_DATE2 = #{extDate2} </if>
+			<if test="extDate2Begin != null"> and t.EXT_DATE2 &gt;= #{extDate2Begin} </if>
+			<if test="extDate2End != null"> and t.EXT_DATE2 &lt;= #{extDate2End} </if>
+			<if test="extNum1 != null"> and t.EXT_NUM1 = #{extNum1} </if>
+			<if test="extNum2 != null"> and t.EXT_NUM2 = #{extNum2} </if>
+			<if test="extNum3 != null"> and t.EXT_NUM3 = #{extNum3} </if>
+			<if test="stageIds != null"> and t.stage_id in <foreach collection="stageIds" item="stageId" index="index" open="(" close=")" separator=","> #{stageId} </foreach> </if>
+		</where>
+	</sql>
+
+	<select id="query" parameterType="com.jc.csmp.project.plan.domain.CmProjectPlanTemplateTask" resultType="com.jc.csmp.project.plan.domain.CmProjectPlanTemplateTask">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM cm_project_plan_template_task t
+		join cm_project_plan_template_stage stage on t.stage_id = stage.id
+		<include refid="Base_Query_Where"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.csmp.project.plan.domain.CmProjectPlanTemplateTask" resultType="java.lang.Long">
+		SELECT count(t.ID) FROM cm_project_plan_template_task t join cm_project_plan_template_stage stage on t.stage_id = stage.id
+		<include refid="Base_Query_Where"/>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.csmp.project.plan.domain.CmProjectPlanTemplateTask">
+    	delete from cm_project_plan_template_task where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.csmp.project.plan.domain.CmProjectPlanTemplateTask">
+    	UPDATE cm_project_plan_template_task t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate} where ID in
+		<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+			#{primaryKey}
+		</foreach>
+ 	</update>
+</mapper>

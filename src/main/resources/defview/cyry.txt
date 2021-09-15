@@ -1,0 +1,46 @@
+SELECT
+  CONCAT(p.id,'_',profess.id)   AS id,
+  p.person_name,
+  p.person_cert_num,
+  p.person_sex,
+  tsex.value                    AS person_sex_value,
+  p.person_nation,
+  tnation.value                 AS person_nation_value,
+  profess.professional_type     AS reg_type,
+  profess.professional_cert_num AS reg_num,
+  tjslx.value                   AS gwlx,
+  p.person_tel,
+  p.person_address,
+  cinfo.class_bzmc,
+  cinfo.class_bzgz,
+  cinfo.class_jcrq,
+  cinfo.class_ccrq
+FROM pt_person_achievement yj
+  INNER JOIN pt_person_info p
+    ON p.person_cert_num = yj.person_zjnum
+  INNER JOIN pt_project_info info
+    ON info.projectNumber = yj.achievement_pnum
+  LEFT OUTER JOIN pt_class_info cinfo
+    ON cinfo.class_num = p.person_class_num
+  LEFT OUTER JOIN pt_professional_info profess
+    ON profess.professional_zjnum = p.person_cert_num
+  LEFT OUTER JOIN tty_sys_dics tsex
+    ON tsex.code = p.person_sex
+      AND tsex.parent_id = 'sex'
+  LEFT OUTER JOIN tty_sys_dics tnation
+    ON tnation.code = p.person_nation
+      AND tnation.parent_id = 'ethnic'
+  LEFT OUTER JOIN tty_sys_dics tjslx
+    ON tjslx.code = p.person_jslx
+      AND tjslx.parent_id = 'person_jslx'
+WHERE 1 = 1
+<if test="id != null">
+ and CONCAT(p.id,'_',profess.id) = #{id}
+</if>
+<if test="projectId != null">
+ and info.id = #{projectId}
+</if>
+<if test="projectCode != null">
+ and info.projectNumber = #{projectCode}
+</if>
+ORDER BY p.person_name,p.dlh_data_modify_date_ DESC

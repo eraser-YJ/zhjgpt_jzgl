@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+<Resource name="jndi/horizon"  auth="Container"
+          type="javax.sql.DataSource"
+          driverClassName="com.mysql.jdbc.Driver"
+          url="jdbc:mysql://192.168.200.25:3306/jcap_basic?useUnicode=true&amp;characterEncoding=utf-8"
+          maxActive="50"
+          maxldle="10"
+          maxWait="5000"
+          username="goa"
+          password="goa"/>
+</Context>

@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.archive.domain.Folder">
+
+	<select id="query" parameterType="com.jc.archive.domain.Folder" resultType="com.jc.archive.domain.Folder">
+		SELECT 
+			t.ID id,
+			t.FOLDER_TYPE folderType,
+			t.NODE_TYPE nodeType,
+			t.PARENT_FOLDER_ID parentFolderId,
+			t.FOLDER_NAME folderName,
+			t.FOLDER_PATH folderPath,
+			t.DM_IN_RECYCLE dmInRecycle,
+			t.KM_MANAGER_ID kmManagerId,
+			t.KM_SORT kmSort,
+			t.KM_DEADLINE kmDeadline,
+			t.WEIGHT weight,
+			t.KM_STANDARD_COUNT kmStandardCount,
+			t.KM_APP_FLAG kmAppFlag,
+			t.KM_STANDARD_TIME kmStandardTime,
+			t.PERMISSION_VALUE permissionValue,
+			t.DELETE_FLAG deleteFlag,
+			t.CREATE_USER createUser,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_USER_ORG createUserOrg,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.EXT_DATE1 extDate1,
+			t.EXT_DATE2 extDate2,
+			t.EXT_NUM1 extNum1,
+			t.EXT_NUM2 extNum2,
+			t.EXT_NUM3 extNum3,
+			t.EXT_STR1 extStr1,
+			t.EXT_STR2 extStr2,
+			t.EXT_STR3 extStr3,
+			t.EXT_STR4 extStr4,
+			t.EXT_STR5 extStr5,
+			u.DISPLAY_NAME owner
+			
+		FROM toa_archive_folder t LEFT JOIN tty_sys_user u on t.create_user =u.ID
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+
+			<if test="folderType != null">
+				and t.FOLDER_TYPE = #{folderType}
+			</if>
+
+			<if test="nodeType != null">
+				and t.NODE_TYPE = #{nodeType}
+			</if>
+
+			<if test="parentFolderId != null">
+				and t.PARENT_FOLDER_ID = #{parentFolderId}
+			</if>
+
+			<if test="folderName != null">
+				<if test="folderName != ''">
+
+					and t.FOLDER_NAME like <![CDATA['%${folderName}%']]>
+				</if>
+			</if>
+
+			<if test="folderPath != null">
+				and t.FOLDER_PATH = #{folderPath}
+			</if>
+
+			<if test="dmInRecycle != null">
+				and t.DM_IN_RECYCLE = #{dmInRecycle}
+			</if>
+
+			<if test="kmManagerId != null">
+				and t.KM_MANAGER_ID = #{kmManagerId}
+			</if>
+
+			<if test="kmSort != null">
+				and t.KM_SORT = #{kmSort}
+			</if>
+
+			<if test="kmDeadline != null">
+				and t.KM_DEADLINE = #{kmDeadline}
+			</if>
+
+			<if test="weight != null">
+				and t.WEIGHT = #{weight}
+			</if>
+
+			<if test="kmStandardCount != null">
+				and t.KM_STANDARD_COUNT = #{kmStandardCount}
+			</if>
+
+			<if test="kmAppFlag != null">
+				and t.KM_APP_FLAG = #{kmAppFlag}
+			</if>
+
+			<if test="kmStandardTime != null">
+				and t.KM_STANDARD_TIME = #{kmStandardTime}
+			</if>
+
+			<if test="permissionValue != null">
+				and t.PERMISSION_VALUE = #{permissionValue}
+			</if>
+
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+
+			<if test="extDate1 != null">
+				and t.EXT_DATE1 = #{extDate1}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.EXT_DATE1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.EXT_DATE1 &lt;= #{extDate1End}
+			</if>
+
+			<if test="extDate2 != null">
+				and t.EXT_DATE2 = #{extDate2}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.EXT_DATE2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.EXT_DATE2 &lt;= #{extDate2End}
+			</if>
+
+			<if test="extNum1 != null">
+				and t.EXT_NUM1 = #{extNum1}
+			</if>
+
+			<if test="extNum2 != null">
+				and t.EXT_NUM2 = #{extNum2}
+			</if>
+
+			<if test="extNum3 != null">
+				and t.EXT_NUM3 = #{extNum3}
+			</if>
+
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+		<if test="orderBy!=null">
+			order by  ${orderBy}
+		</if>
+	</select>
+	
+	
+	<select id="queryCount" parameterType="com.jc.archive.domain.Folder" resultType="java.lang.Long">
+		SELECT count(ID) 			
+		FROM toa_archive_folder t <!-- LEFT JOIN tty_sys_user u on t.create_user =u.ID -->
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+
+			<if test="folderType != null">
+				and t.FOLDER_TYPE = #{folderType}
+			</if>
+
+			<if test="nodeType != null">
+				and t.NODE_TYPE = #{nodeType}
+			</if>
+
+			<if test="parentFolderId != null">
+				and t.PARENT_FOLDER_ID = #{parentFolderId}
+			</if>
+
+			<if test="folderName != null">
+				and t.FOLDER_NAME = #{folderName}
+			</if>
+
+			<if test="folderPath != null">
+				and t.FOLDER_PATH = #{folderPath}
+			</if>
+
+			<if test="dmInRecycle != null">
+				and t.DM_IN_RECYCLE = #{dmInRecycle}
+			</if>
+
+			<if test="kmManagerId != null">
+				and t.KM_MANAGER_ID = #{kmManagerId}
+			</if>
+
+			<if test="kmSort != null">
+				and t.KM_SORT = #{kmSort}
+			</if>
+
+			<if test="kmDeadline != null">
+				and t.KM_DEADLINE = #{kmDeadline}
+			</if>
+
+			<if test="weight != null">
+				and t.WEIGHT = #{weight}
+			</if>
+
+			<if test="kmStandardCount != null">
+				and t.KM_STANDARD_COUNT = #{kmStandardCount}
+			</if>
+
+			<if test="kmAppFlag != null">
+				and t.KM_APP_FLAG = #{kmAppFlag}
+			</if>
+
+			<if test="kmStandardTime != null">
+				and t.KM_STANDARD_TIME = #{kmStandardTime}
+			</if>
+
+			<if test="permissionValue != null">
+				and t.PERMISSION_VALUE = #{permissionValue}
+			</if>
+
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+
+			<if test="extDate1 != null">
+				and t.EXT_DATE1 = #{extDate1}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.EXT_DATE1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.EXT_DATE1 &lt;= #{extDate1End}
+			</if>
+
+			<if test="extDate2 != null">
+				and t.EXT_DATE2 = #{extDate2}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.EXT_DATE2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.EXT_DATE2 &lt;= #{extDate2End}
+			</if>
+
+			<if test="extNum1 != null">
+				and t.EXT_NUM1 = #{extNum1}
+			</if>
+
+			<if test="extNum2 != null">
+				and t.EXT_NUM2 = #{extNum2}
+			</if>
+
+			<if test="extNum3 != null">
+				and t.EXT_NUM3 = #{extNum3}
+			</if>
+
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+			
+		</where>
+ 			<!--  <if test="dataAccessDynamicSQL != null">
+		${dataAccessDynamicSQL}
+</if>  -->
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.archive.domain.Folder">
+    	delete from toa_archive_folder
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.archive.domain.Folder">
+    	UPDATE toa_archive_folder t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+ 	
+ 	<update id="deleteDirToRecycle"  parameterType="com.jc.archive.domain.Folder">
+    	UPDATE toa_archive_folder t set t.DM_IN_RECYCLE = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+
+	<insert id="insert" parameterType="com.jc.archive.domain.Folder" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO toa_archive_folder(id,FOLDER_TYPE,NODE_TYPE,PARENT_FOLDER_ID,FOLDER_NAME,FOLDER_PATH,DM_IN_RECYCLE,KM_MANAGER_ID,KM_SORT,KM_DEADLINE,WEIGHT,KM_STANDARD_COUNT,KM_APP_FLAG,KM_STANDARD_TIME,PERMISSION_VALUE,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+			VALUES (#{id},#{folderType,jdbcType=VARCHAR},#{nodeType,jdbcType=VARCHAR},#{parentFolderId},#{folderName,jdbcType=VARCHAR},#{folderPath,jdbcType=VARCHAR},#{dmInRecycle},#{kmManagerId},#{kmSort},#{kmDeadline},#{weight},#{kmStandardCount},#{kmAppFlag,jdbcType=VARCHAR},#{kmStandardTime},#{permissionValue,jdbcType=VARCHAR},#{deleteFlag},#{createUser},#{createUserDept},#{createUserOrg},#{createDate,jdbcType=TIMESTAMP},#{modifyUser},#{modifyDate,jdbcType=TIMESTAMP},#{extDate1,jdbcType=TIMESTAMP},#{extDate2,jdbcType=TIMESTAMP},#{extNum1},#{extNum2},#{extNum3},#{extStr1,jdbcType=VARCHAR},#{extStr2,jdbcType=VARCHAR},#{extStr3,jdbcType=VARCHAR},#{extStr4,jdbcType=VARCHAR},#{extStr5,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		INSERT INTO toa_archive_folder(id,FOLDER_TYPE,NODE_TYPE,PARENT_FOLDER_ID,FOLDER_NAME,FOLDER_PATH,DM_IN_RECYCLE,KM_MANAGER_ID,KM_SORT,KM_DEADLINE,WEIGHT,KM_STANDARD_COUNT,KM_APP_FLAG,KM_STANDARD_TIME,PERMISSION_VALUE,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+			VALUES
+			<foreach collection="list" item="item" index="index" separator=","> 
+				(#{item.id},#{item.nodeType,jdbcType=VARCHAR},#{item.parentFolderId},#{item.folderName,jdbcType=VARCHAR},#{item.folderPath,jdbcType=VARCHAR},#{item.dmInRecycle},#{item.kmManagerId},#{item.kmSort},#{item.kmDeadline},#{item.weight},#{item.kmStandardCount},#{item.kmAppFlag,jdbcType=VARCHAR},#{item.kmStandardTime},#{item.permissionValue,jdbcType=VARCHAR},#{item.deleteFlag},#{item.createUser},#{item.createUserDept},#{item.createUserOrg},#{item.createDate,jdbcType=TIMESTAMP},#{item.modifyUser},#{item.modifyDate,jdbcType=TIMESTAMP},#{item.extDate1,jdbcType=TIMESTAMP},#{item.extDate2,jdbcType=TIMESTAMP},#{item.extNum1},#{item.extNum2},#{item.extNum3},#{item.extStr1,jdbcType=VARCHAR},#{item.extStr2,jdbcType=VARCHAR},#{item.extStr3,jdbcType=VARCHAR},#{item.extStr4,jdbcType=VARCHAR},#{item.extStr5,jdbcType=VARCHAR})
+			</foreach> 
+	</insert>
+
+	<update id="update" parameterType="com.jc.archive.domain.Folder">
+	UPDATE toa_archive_folder set
+	   	<if test="folderType != null">
+	   		FOLDER_TYPE = #{folderType},
+	   	</if>
+	   	<if test="nodeType != null">
+	   		NODE_TYPE = #{nodeType},
+	   	</if>
+	   	<if test="parentFolderId != null">
+	   		PARENT_FOLDER_ID = #{parentFolderId},
+	   	</if>
+	   	<if test="folderName != null">
+	   		FOLDER_NAME = #{folderName},
+	   	</if>
+	   	<if test="folderPath != null">
+	   		FOLDER_PATH = #{folderPath},
+	   	</if>
+	   	<if test="dmInRecycle != null">
+	   		DM_IN_RECYCLE = #{dmInRecycle},
+	   	</if>
+	   	<if test="kmManagerId != null">
+	   		KM_MANAGER_ID = #{kmManagerId},
+	   	</if>
+	   	<if test="kmSort != null">
+	   		KM_SORT = #{kmSort},
+	   	</if>
+	   	<if test="kmDeadline != null">
+	   		KM_DEADLINE = #{kmDeadline},
+	   	</if>
+	   	<if test="weight != null">
+	   		WEIGHT = #{weight},
+	   	</if>
+	   	<if test="kmStandardCount != null">
+	   		KM_STANDARD_COUNT = #{kmStandardCount},
+	   	</if>
+	   	<if test="kmAppFlag != null">
+	   		KM_APP_FLAG = #{kmAppFlag},
+	   	</if>
+	   	<if test="kmStandardTime != null">
+	   		KM_STANDARD_TIME = #{kmStandardTime},
+	   	</if>
+	   	<if test="permissionValue != null">
+	   		PERMISSION_VALUE = #{permissionValue},
+	   	</if>
+	   	<if test="deleteFlag != null">
+	   		DELETE_FLAG = #{deleteFlag},
+	   	</if>
+	   	<if test="createUser != null">
+	   		CREATE_USER = #{createUser},
+	   	</if>
+	   	<if test="createUserDept != null">
+	   		CREATE_USER_DEPT = #{createUserDept},
+	   	</if>
+	   	<if test="createUserOrg != null">
+	   		CREATE_USER_ORG = #{createUserOrg},
+	   	</if>
+	   	<if test="createDate != null">
+	   		CREATE_DATE = #{createDate},
+	   	</if>
+	   	<if test="modifyUser != null">
+	   		MODIFY_USER = #{modifyUser},
+	   	</if>
+	   	<if test="extDate1 != null">
+	   		EXT_DATE1 = #{extDate1},
+	   	</if>
+	   	<if test="extDate2 != null">
+	   		EXT_DATE2 = #{extDate2},
+	   	</if>
+	   	<if test="extNum1 != null">
+	   		EXT_NUM1 = #{extNum1},
+	   	</if>
+	   	<if test="extNum2 != null">
+	   		EXT_NUM2 = #{extNum2},
+	   	</if>
+	   	<if test="extNum3 != null">
+	   		EXT_NUM3 = #{extNum3},
+	   	</if>
+	   	<if test="extStr1 != null">
+	   		EXT_STR1 = #{extStr1},
+	   	</if>
+	   	<if test="extStr2 != null">
+	   		EXT_STR2 = #{extStr2},
+	   	</if>
+	   	<if test="extStr3 != null">
+	   		EXT_STR3 = #{extStr3},
+	   	</if>
+	   	<if test="extStr4 != null">
+	   		EXT_STR4 = #{extStr4},
+	   	</if>
+	   	<if test="extStr5 != null">
+	   		EXT_STR5 = #{extStr5},
+	   	</if>
+	   	MODIFY_DATE = #{modifyDateNew} where ID = #{id} and MODIFY_DATE = #{modifyDate}
+	</update>
+	<select id="getFolderTree" parameterType="java.lang.String" resultType="com.jc.archive.domain.Folder">
+		SELECT 
+			t.ID id,
+			t.FOLDER_TYPE folderType,
+			t.NODE_TYPE nodeType,
+			t.PARENT_FOLDER_ID parentFolderId,
+			t.FOLDER_NAME folderName,
+			t.FOLDER_PATH folderPath,
+			t.DM_IN_RECYCLE dmInRecycle,
+			t.KM_MANAGER_ID kmManagerId,
+			t.KM_SORT kmSort,
+			t.KM_DEADLINE kmDeadline,
+			t.WEIGHT weight,
+			t.KM_STANDARD_COUNT kmStandardCount,
+			t.KM_APP_FLAG kmAppFlag,
+			t.KM_STANDARD_TIME kmStandardTime,
+			t.PERMISSION_VALUE permissionValue,
+			t.DELETE_FLAG deleteFlag,
+			t.CREATE_USER createUser,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_USER_ORG createUserOrg,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.EXT_DATE1 extDate1,
+			t.EXT_DATE2 extDate2,
+			t.EXT_NUM1 extNum1,
+			t.EXT_NUM2 extNum2,
+			t.EXT_NUM3 extNum3,
+			t.EXT_STR1 extStr1,
+			t.EXT_STR2 extStr2,
+			t.EXT_STR3 extStr3,
+			t.EXT_STR4 extStr4,
+			t.EXT_STR5 extStr5,
+			u.DISPLAY_NAME owner
+			
+		FROM toa_archive_folder t where t.path like '#{path}%'
+	</select>
+	
+	<select id="getFolderPermission" parameterType="com.jc.archive.domain.Folder" resultType="com.jc.archive.domain.Folder">
+		SELECT
+			DISTINCT(a.id) id,
+			a.FOLDER_TYPE folderType,
+			a.NODE_TYPE nodeType,
+			a.PARENT_FOLDER_ID parentFolderId,
+			a.FOLDER_NAME folderName,
+			a.FOLDER_PATH folderPath,
+			a.DM_IN_RECYCLE dmInRecycle,
+			a.KM_MANAGER_ID kmManagerId,
+			a.KM_SORT kmSort,
+			a.KM_DEADLINE kmDeadline,
+			a.WEIGHT weight,
+			a.KM_STANDARD_COUNT kmStandardCount,
+			a.KM_APP_FLAG kmAppFlag,
+			a.KM_STANDARD_TIME kmStandardTime,
+			a.PERMISSION_VALUE permissionValue,
+			a.DELETE_FLAG deleteFlag,
+			a.CREATE_USER createUser,
+			a.CREATE_USER_DEPT createUserDept,
+			a.CREATE_USER_ORG createUserOrg,
+			a.CREATE_DATE createDate,
+			a.MODIFY_USER modifyUser,
+			a.MODIFY_DATE modifyDate,
+			u.DISPLAY_NAME owner
+		FROM
+			toa_archive_folder a LEFT JOIN tty_sys_user u on a.create_user =u.ID,
+			toa_archive_permission b,
+			toa_archive_sub_permission c
+		WHERE a.id = b.folder_id
+			AND b.id = c.permission_id
+			AND a.folder_type = '4'
+			AND (
+			(
+			c.control_id = #{createUser}
+			AND c.data_type = '1'
+			)
+			OR (
+			c.control_id = #{createUserDept}
+			AND c.data_type = '2'
+			)
+			OR (
+			c.control_id = #{createUserOrg}
+			AND c.data_type = '2'
+			)
+			)
+			AND a.DELETE_FLAG = 0
+			AND a.DM_IN_RECYCLE = 0
+			AND a.FOLDER_NAME != '根目录'
+			AND b.PERMISSION_VALUE = '1111000000'
+			AND a.PARENT_FOLDER_ID = #{parentFolderId}
+			AND a.DELETE_FLAG=0
+			AND a.CREATE_USER_ORG = #{createUserOrg}
+			
+		<if test="orderBy!=null">
+			order by ${orderBy}
+		</if>
+	</select>
+	
+		<update id="updateAllChildPath" parameterType="com.jc.archive.domain.Folder">
+	UPDATE toa_archive_folder set
+	   	FOLDER_PATH =REPLACE(FOLDER_PATH,#{oldFolderPath}, #{folderPath})
+	   	 where FOLDER_PATH like '${oldFolderPath}%' and Folder_type=#{folderType}
+	</update>
+</mapper>

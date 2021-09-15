@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.SysRole">
+
+	<select id="query" parameterType="com.jc.system.security.domain.SysRole" resultType="com.jc.system.security.domain.SysRole">
+		SELECT 
+			t.ID id,
+			t.NAME name,
+			t.DESCRIPTION description,
+			t.DEPT_ID deptId,
+			t.DELETE_FLAG deleteFlag,
+			t.CREATE_USER_ORG createUserOrg,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_USER createUser,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.REMARK1 remark1,
+			t.REMARK2 remark2,
+			t.QUEUE queue
+			
+		FROM tty_sys_role t WHERE DELETE_FLAG = 0
+		<if test="id != null">
+			and t.ID = #{id}
+		</if>
+		<if test="name != null">
+			and t.NAME = #{name}
+		</if>
+		<if test="description != null">
+			and t.DESCRIPTION = #{description}
+		</if>
+		<if test="deptId != null">
+			and t.DEPT_ID = #{deptId}
+		</if>
+		<if test="deleteFlag != null">
+			and t.DELETE_FLAG = #{deleteFlag}
+		</if>
+		<if test="createUserOrg != null">
+			and t.CREATE_USER_ORG = #{createUserOrg}
+		</if>
+		<if test="createUserDept != null">
+			and t.CREATE_USER_DEPT = #{createUserDept}
+		</if>
+		<if test="createUser != null">
+			and t.CREATE_USER = #{createUser}
+		</if>
+		<if test="createDate != null">
+			and t.CREATE_DATE = #{createDate}
+		</if>
+		<if test="modifyUser != null">
+			and t.MODIFY_USER = #{modifyUser}
+		</if>
+		<if test="modifyDate != null">
+			and t.MODIFY_DATE = #{modifyDate}
+		</if>
+	
+		<if test="queue != null">
+			and t.QUEUE = #{queue}
+		</if>
+	</select>
+	
+	
+	<select id="queryCount" parameterType="com.jc.system.security.domain.SysRole" resultType="java.lang.Integer">
+		SELECT count(ID) 
+		FROM tty_sys_role t
+		<where>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="name != null">
+				and t.NAME = #{name}
+			</if>
+			<if test="description != null">
+				and t.DESCRIPTION = #{description}
+			</if>
+			<if test="deptId != null">
+				and t.DEPT_ID = #{deptId}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			
+			<if test="queue != null">
+				and t.QUEUE = #{queue}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteByIds"  parameterType="com.jc.system.security.domain.SysRole">
+    	delete from tty_sys_role
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+
+	<insert id="insert" parameterType="com.jc.system.security.domain.SysRole">
+	INSERT INTO tty_sys_role(ID,NAME,DESCRIPTION,DEPT_ID,DELETE_FLAG,CREATE_USER_ORG,CREATE_USER_DEPT,CREATE_USER,CREATE_DATE,MODIFY_USER,MODIFY_DATE,QUEUE)
+		VALUES (#{id},#{name},#{description},#{deptId},#{deleteFlag},#{createUserOrg},#{createUserDept},#{createUser},#{createDate},#{modifyUser},#{modifyDate},#{queue})
+	</insert>
+
+	<update id="update" parameterType="com.jc.system.security.domain.SysRole">
+	UPDATE tty_sys_role
+	   <set>
+	   	<if test="name != null">
+	   		NAME = #{name},
+	   	</if>
+	   	<if test="description != null">
+	   		DESCRIPTION = #{description},
+	   	</if>
+	   	<if test="deptId != null">
+	   		DEPT_ID = #{deptId},
+	   	</if>
+	   	<if test="deleteFlag != null">
+	   		DELETE_FLAG = #{deleteFlag},
+	   	</if>
+	   	<if test="createUserOrg != null">
+	   		CREATE_USER_ORG = #{createUserOrg},
+	   	</if>
+	   	<if test="createUserDept != null">
+	   		CREATE_USER_DEPT = #{createUserDept},
+	   	</if>
+	   	<if test="createUser != null">
+	   		CREATE_USER = #{createUser},
+	   	</if>
+	   	<if test="createDate != null">
+	   		CREATE_DATE = #{createDate},
+	   	</if>
+	   	<if test="modifyUser != null">
+	   		MODIFY_USER = #{modifyUser},
+	   	</if>
+	   	<if test="modifyDate != null">
+	   		MODIFY_DATE = #{modifyDate},
+	   	</if>
+	   	<if test="remark1 != null">
+	   		REMARK1 = #{remark1},
+	   	</if>
+	   	<if test="remark2 != null">
+	   		REMARK2 = #{remark2},
+	   	</if>
+	   	<if test="queue != null">
+	   		QUEUE = #{queue},
+	   	</if>
+	   </set>
+	   where ID = #{id}
+	</update>
+
+</mapper>

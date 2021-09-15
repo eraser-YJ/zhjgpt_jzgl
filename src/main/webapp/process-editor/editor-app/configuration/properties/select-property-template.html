@@ -1,0 +1,19 @@
+
+<!--    这个是用来实现变换用户节点样式的Controller
+<div ng-controller="KisBpmSelectPropertyCtrl">
+    <select class="form-control"
+            ng-model="transact"
+            ng-options="transact.name for transact in selectTransactData"
+            ng-change="changeSelectValue();"
+            ng-disabled="selectTransactStatus">
+        <option value="" selected>请选择</option>
+    </select>
+</div>-->
+
+<div ng-controller="KisBpmBaseSelectPropertyCtrl">
+    <select class="form-control"
+            ng-model="selectProperty"
+            ng-options="selectProperty.name for selectProperty in selectPropertyData"
+            ng-change="changeSelectValue();">
+    </select>
+</div>

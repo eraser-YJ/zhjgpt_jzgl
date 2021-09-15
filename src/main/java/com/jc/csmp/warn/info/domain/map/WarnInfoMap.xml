@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.csmp.warn.info.domain.WarnInfo">
+
+	<insert id="insert" parameterType="com.jc.csmp.warn.info.domain.WarnInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into scs_warn_info (id,warn_status,target_type,target_id,target_code,target_project_code,target_project_name,warn_time,warn_reason_code,warn_reason_code_value,warn_reason,process_result,process_time,process_user,process_user_name,num01,num02,num03,num04,num05,num06,num07,num08,num09,num10,num11,num12,num13,num14,num15,num16,num17,num18,num19,num20,num21,num22,num23,num24,num25,str01,str02,str03,str04,str05,str06,str07,str08,str09,str10,str11,str12,str13,str14,str15,str16,str17,str18,str19,str20,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,CREATE_USER_ORG,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3)
+		values (#{id},#{warnStatus},#{targetType},#{targetId},#{targetCode},#{targetProjectCode},#{targetProjectName},#{warnTime},#{warnReasonCode},#{warnReasonCodeValue},#{warnReason},#{processResult},#{processTime},#{processUser},#{processUserName},#{num01},#{num02},#{num03},#{num04},#{num05},#{num06},#{num07},#{num08},#{num09},#{num10},#{num11},#{num12},#{num13},#{num14},#{num15},#{num16},#{num17},#{num18},#{num19},#{num20},#{num21},#{num22},#{num23},#{num24},#{num25},#{str01},#{str02},#{str03},#{str04},#{str05},#{str06},#{str07},#{str08},#{str09},#{str10},#{str11},#{str12},#{str13},#{str14},#{str15},#{str16},#{str17},#{str18},#{str19},#{str20},#{deleteFlag},#{createUser},#{createUserDept},#{createDate},#{createUserOrg},#{modifyUser},#{modifyDate},#{extStr1},#{extStr2},#{extStr3},#{extStr4},#{extStr5},#{extDate1},#{extDate2},#{extNum1},#{extNum2},#{extNum3})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		insert into scs_warn_info (id,warn_status,target_type,target_id,target_code,target_project_code,target_project_name,warn_time,warn_reason_code,warn_reason_code_value,warn_reason,process_result,process_time,process_user,process_user_name,num01,num02,num03,num04,num05,num06,num07,num08,num09,num10,num11,num12,num13,num14,num15,num16,num17,num18,num19,num20,num21,num22,num23,num24,num25,str01,str02,str03,str04,str05,str06,str07,str08,str09,str10,str11,str12,str13,str14,str15,str16,str17,str18,str19,str20,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_DATE,CREATE_USER_ORG,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id},#{item.warnStatus},#{item.targetType},#{item.targetId},#{item.targetCode},#{item.targetProjectCode},#{item.targetProjectName},#{item.warnTime},#{item.warnReasonCode},#{item.warnReasonCodeValue},#{item.warnReason},#{item.processResult},#{item.processTime},#{item.processUser},#{item.processUserName},#{item.num01},#{item.num02},#{item.num03},#{item.num04},#{item.num05},#{item.num06},#{item.num07},#{item.num08},#{item.num09},#{item.num10},#{item.num11},#{item.num12},#{item.num13},#{item.num14},#{item.num15},#{item.num16},#{item.num17},#{item.num18},#{item.num19},#{item.num20},#{item.num21},#{item.num22},#{item.num23},#{item.num24},#{item.num25},#{item.str01},#{item.str02},#{item.str03},#{item.str04},#{item.str05},#{item.str06},#{item.str07},#{item.str08},#{item.str09},#{item.str10},#{item.str11},#{item.str12},#{item.str13},#{item.str14},#{item.str15},#{item.str16},#{item.str17},#{item.str18},#{item.str19},#{item.str20},#{item.deleteFlag},#{item.createUser},#{item.createUserDept},#{item.createDate},#{item.createUserOrg},#{item.modifyUser},#{item.modifyDate},#{item.extStr1},#{item.extStr2},#{item.extStr3},#{item.extStr4},#{item.extStr5},#{item.extDate1},#{item.extDate2},#{item.extNum1},#{item.extNum2},#{item.extNum3})
+		</foreach>
+	</insert>
+	<update id="updateResult" parameterType="com.jc.csmp.warn.info.domain.WarnInfo">
+		update scs_warn_info set
+		<if test="warnStatus != null">warn_status=#{warnStatus},</if>
+		<if test="processResult != null">process_result=#{processResult},</if>
+		<if test="processTime != null">process_time=#{processTime},</if>
+		<if test="processUser != null">process_user=#{processUser},</if>
+		<if test="processUserName != null">process_user_name=#{processUserName},</if>
+		MODIFY_DATE = #{modifyDateNew} where ID = #{id}
+	</update>
+
+	<update id="update" parameterType="com.jc.csmp.warn.info.domain.WarnInfo">
+		update scs_warn_info set
+		<if test="id != null">id=#{id},</if>
+		<if test="warnStatus != null">warn_status=#{warnStatus},</if>
+		<if test="targetType != null">target_type=#{targetType},</if>
+		<if test="targetId != null">target_id=#{targetId},</if>
+		<if test="targetCode != null">target_code=#{targetCode},</if>
+		<if test="targetProjectCode != null">target_project_code=#{targetProjectCode},</if>
+		<if test="targetProjectName != null">target_project_name=#{targetProjectName},</if>
+		<if test="warnTime != null">warn_time=#{warnTime},</if>
+		<if test="warnReasonCode != null">warn_reason_code=#{warnReasonCode},</if>
+		<if test="warnReasonCodeValue != null">warn_reason_code_value=#{warnReasonCodeValue},</if>
+		<if test="warnReason != null">warn_reason=#{warnReason},</if>
+		<if test="processResult != null">process_result=#{processResult},</if>
+		<if test="processTime != null">process_time=#{processTime},</if>
+		<if test="processUser != null">process_user=#{processUser},</if>
+		<if test="processUserName != null">process_user_name=#{processUserName},</if>
+		<if test="num01 != null">num01=#{num01},</if>
+		<if test="num02 != null">num02=#{num02},</if>
+		<if test="num03 != null">num03=#{num03},</if>
+		<if test="num04 != null">num04=#{num04},</if>
+		<if test="num05 != null">num05=#{num05},</if>
+		<if test="num06 != null">num06=#{num06},</if>
+		<if test="num07 != null">num07=#{num07},</if>
+		<if test="num08 != null">num08=#{num08},</if>
+		<if test="num09 != null">num09=#{num09},</if>
+		<if test="num10 != null">num10=#{num10},</if>
+		<if test="num11 != null">num11=#{num11},</if>
+		<if test="num12 != null">num12=#{num12},</if>
+		<if test="num13 != null">num13=#{num13},</if>
+		<if test="num14 != null">num14=#{num14},</if>
+		<if test="num15 != null">num15=#{num15},</if>
+		<if test="num16 != null">num16=#{num16},</if>
+		<if test="num17 != null">num17=#{num17},</if>
+		<if test="num18 != null">num18=#{num18},</if>
+		<if test="num19 != null">num19=#{num19},</if>
+		<if test="num20 != null">num20=#{num20},</if>
+		<if test="num21 != null">num21=#{num21},</if>
+		<if test="num22 != null">num22=#{num22},</if>
+		<if test="num23 != null">num23=#{num23},</if>
+		<if test="num24 != null">num24=#{num24},</if>
+		<if test="num25 != null">num25=#{num25},</if>
+		<if test="str01 != null">str01=#{str01},</if>
+		<if test="str02 != null">str02=#{str02},</if>
+		<if test="str03 != null">str03=#{str03},</if>
+		<if test="str04 != null">str04=#{str04},</if>
+		<if test="str05 != null">str05=#{str05},</if>
+		<if test="str06 != null">str06=#{str06},</if>
+		<if test="str07 != null">str07=#{str07},</if>
+		<if test="str08 != null">str08=#{str08},</if>
+		<if test="str09 != null">str09=#{str09},</if>
+		<if test="str10 != null">str10=#{str10},</if>
+		<if test="str11 != null">str11=#{str11},</if>
+		<if test="str12 != null">str12=#{str12},</if>
+		<if test="str13 != null">str13=#{str13},</if>
+		<if test="str14 != null">str14=#{str14},</if>
+		<if test="str15 != null">str15=#{str15},</if>
+		<if test="str16 != null">str16=#{str16},</if>
+		<if test="str17 != null">str17=#{str17},</if>
+		<if test="str18 != null">str18=#{str18},</if>
+		<if test="str19 != null">str19=#{str19},</if>
+		<if test="str20 != null">str20=#{str20},</if>
+		<if test="deleteFlag != null">DELETE_FLAG=#{deleteFlag},</if>
+		<if test="createUser != null">CREATE_USER=#{createUser},</if>
+		<if test="createUserDept != null">CREATE_USER_DEPT=#{createUserDept},</if>
+		<if test="createDate != null">CREATE_DATE=#{createDate},</if>
+		<if test="createUserOrg != null">CREATE_USER_ORG=#{createUserOrg},</if>
+		<if test="modifyUser != null">MODIFY_USER=#{modifyUser},</if>
+		<if test="modifyDate != null">MODIFY_DATE=#{modifyDate},</if>
+		<if test="extStr1 != null">EXT_STR1=#{extStr1},</if>
+		<if test="extStr2 != null">EXT_STR2=#{extStr2},</if>
+		<if test="extStr3 != null">EXT_STR3=#{extStr3},</if>
+		<if test="extStr4 != null">EXT_STR4=#{extStr4},</if>
+		<if test="extStr5 != null">EXT_STR5=#{extStr5},</if>
+		<if test="extDate1 != null">EXT_DATE1=#{extDate1},</if>
+		<if test="extDate2 != null">EXT_DATE2=#{extDate2},</if>
+		<if test="extNum1 != null">EXT_NUM1=#{extNum1},</if>
+		<if test="extNum2 != null">EXT_NUM2=#{extNum2},</if>
+		<if test="extNum3 != null">EXT_NUM3=#{extNum3},</if>
+		MODIFY_DATE = #{modifyDateNew} where ID = #{id}
+	</update>
+
+
+	<sql id="Base_Column_List" >
+		t.id id,
+		t.warn_status warnStatus,
+		t.target_type targetType,
+		t.target_id targetId,
+		t.target_code targetCode,
+		t.target_project_code targetProjectCode,
+		t.target_project_name targetProjectName,
+		t.warn_time warnTime,
+		t.warn_reason_code warnReasonCode,
+		t.warn_reason_code_value warnReasonCodeValue,
+		t.warn_reason warnReason,
+		t.process_result processResult,
+		t.process_time processTime,
+		t.process_user processUser,
+		t.process_user_name processUserName,
+		t.num01 num01,
+		t.num02 num02,
+		t.num03 num03,
+		t.num04 num04,
+		t.num05 num05,
+		t.num06 num06,
+		t.num07 num07,
+		t.num08 num08,
+		t.num09 num09,
+		t.num10 num10,
+		t.num11 num11,
+		t.num12 num12,
+		t.num13 num13,
+		t.num14 num14,
+		t.num15 num15,
+		t.num16 num16,
+		t.num17 num17,
+		t.num18 num18,
+		t.num19 num19,
+		t.num20 num20,
+		t.num21 num21,
+		t.num22 num22,
+		t.num23 num23,
+		t.num24 num24,
+		t.num25 num25,
+		t.str01 str01,
+		t.str02 str02,
+		t.str03 str03,
+		t.str04 str04,
+		t.str05 str05,
+		t.str06 str06,
+		t.str07 str07,
+		t.str08 str08,
+		t.str09 str09,
+		t.str10 str10,
+		t.str11 str11,
+		t.str12 str12,
+		t.str13 str13,
+		t.str14 str14,
+		t.str15 str15,
+		t.str16 str16,
+		t.str17 str17,
+		t.str18 str18,
+		t.str19 str19,
+		t.str20 str20,
+		t.DELETE_FLAG deleteFlag,
+		t.CREATE_USER createUser,
+		t.CREATE_USER_DEPT createUserDept,
+		t.CREATE_DATE createDate,
+		t.CREATE_USER_ORG createUserOrg,
+		t.MODIFY_USER modifyUser,
+		t.MODIFY_DATE modifyDate,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5,
+		t.EXT_DATE1 extDate1,
+		t.EXT_DATE2 extDate2,
+		t.EXT_NUM1 extNum1,
+		t.EXT_NUM2 extNum2,
+		t.EXT_NUM3 extNum3
+	</sql>
+
+	<sql id="Base_Query_Where" >
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="warnStatus != null">
+				and t.warn_status = #{warnStatus}
+			</if>
+			<if test="targetType != null">
+				and t.target_type = #{targetType}
+			</if>
+			<if test="targetId != null">
+				and t.target_id = #{targetId}
+			</if>
+			<if test="targetCode != null">
+				and t.target_code = #{targetCode}
+			</if>
+			<if test="targetProjectCode != null">
+				and t.target_project_code = #{targetProjectCode}
+			</if>
+			<if test="targetProjectName != null">
+				and t.target_project_name like concat('%',#{targetProjectName},'%')
+			</if>
+			<if test="warnTimeBegin != null">
+				and t.warn_time &gt;= #{warnTimeBegin}
+			</if>
+			<if test="warnTimeEnd != null">
+				and t.warn_time &lt;= #{warnTimeEnd}
+			</if>
+			<if test="warnTime != null">
+				and t.warn_time = #{warnTime}
+			</if>
+			<if test="warnReasonCode != null">
+				and t.warn_reason_code = #{warnReasonCode}
+			</if>
+			<if test="warnReasonCodeValue != null">
+				and t.warn_reason_code_value = #{warnReasonCodeValue}
+			</if>
+			<if test="warnReason != null">
+				and t.warn_reason like concat('%',#{warnReason},'%')
+			</if>
+			<if test="processResult != null">
+				and t.process_result = #{processResult}
+			</if>
+			<if test="processTimeBegin != null">
+				and t.process_time &gt;= #{processTimeBegin}
+			</if>
+			<if test="processTimeEnd != null">
+				and t.process_time &lt;= #{processTimeEnd}
+			</if>
+			<if test="processTime != null">
+				and t.process_time = #{processTime}
+			</if>
+			<if test="processUser != null">
+				and t.process_user = #{processUser}
+			</if>
+			<if test="processUserName != null">
+				and t.process_user_name = #{processUserName}
+			</if>
+			<if test="num01 != null">
+				and t.num01 = #{num01}
+			</if>
+			<if test="num02 != null">
+				and t.num02 = #{num02}
+			</if>
+			<if test="num03 != null">
+				and t.num03 = #{num03}
+			</if>
+			<if test="num04 != null">
+				and t.num04 = #{num04}
+			</if>
+			<if test="num05 != null">
+				and t.num05 = #{num05}
+			</if>
+			<if test="num06 != null">
+				and t.num06 = #{num06}
+			</if>
+			<if test="num07 != null">
+				and t.num07 = #{num07}
+			</if>
+			<if test="num08 != null">
+				and t.num08 = #{num08}
+			</if>
+			<if test="num09 != null">
+				and t.num09 = #{num09}
+			</if>
+			<if test="num10 != null">
+				and t.num10 = #{num10}
+			</if>
+			<if test="num11 != null">
+				and t.num11 = #{num11}
+			</if>
+			<if test="num12 != null">
+				and t.num12 = #{num12}
+			</if>
+			<if test="num13 != null">
+				and t.num13 = #{num13}
+			</if>
+			<if test="num14 != null">
+				and t.num14 = #{num14}
+			</if>
+			<if test="num15 != null">
+				and t.num15 = #{num15}
+			</if>
+			<if test="num16 != null">
+				and t.num16 = #{num16}
+			</if>
+			<if test="num17 != null">
+				and t.num17 = #{num17}
+			</if>
+			<if test="num18 != null">
+				and t.num18 = #{num18}
+			</if>
+			<if test="num19 != null">
+				and t.num19 = #{num19}
+			</if>
+			<if test="num20 != null">
+				and t.num20 = #{num20}
+			</if>
+			<if test="num21 != null">
+				and t.num21 = #{num21}
+			</if>
+			<if test="num22 != null">
+				and t.num22 = #{num22}
+			</if>
+			<if test="num23 != null">
+				and t.num23 = #{num23}
+			</if>
+			<if test="num24 != null">
+				and t.num24 = #{num24}
+			</if>
+			<if test="num25 != null">
+				and t.num25 = #{num25}
+			</if>
+			<if test="str01 != null">
+				and t.str01 = #{str01}
+			</if>
+			<if test="str02 != null">
+				and t.str02 = #{str02}
+			</if>
+			<if test="str03 != null">
+				and t.str03 = #{str03}
+			</if>
+			<if test="str04 != null">
+				and t.str04 = #{str04}
+			</if>
+			<if test="str05 != null">
+				and t.str05 = #{str05}
+			</if>
+			<if test="str06 != null">
+				and t.str06 = #{str06}
+			</if>
+			<if test="str07 != null">
+				and t.str07 = #{str07}
+			</if>
+			<if test="str08 != null">
+				and t.str08 = #{str08}
+			</if>
+			<if test="str09 != null">
+				and t.str09 = #{str09}
+			</if>
+			<if test="str10 != null">
+				and t.str10 = #{str10}
+			</if>
+			<if test="str11 != null">
+				and t.str11 = #{str11}
+			</if>
+			<if test="str12 != null">
+				and t.str12 = #{str12}
+			</if>
+			<if test="str13 != null">
+				and t.str13 = #{str13}
+			</if>
+			<if test="str14 != null">
+				and t.str14 = #{str14}
+			</if>
+			<if test="str15 != null">
+				and t.str15 = #{str15}
+			</if>
+			<if test="str16 != null">
+				and t.str16 = #{str16}
+			</if>
+			<if test="str17 != null">
+				and t.str17 = #{str17}
+			</if>
+			<if test="str18 != null">
+				and t.str18 = #{str18}
+			</if>
+			<if test="str19 != null">
+				and t.str19 = #{str19}
+			</if>
+			<if test="str20 != null">
+				and t.str20 = #{str20}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.EXT_DATE1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.EXT_DATE1 &lt;= #{extDate1End}
+			</if>
+			<if test="extDate1 != null">
+				and t.EXT_DATE1 = #{extDate1}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.EXT_DATE2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.EXT_DATE2 &lt;= #{extDate2End}
+			</if>
+			<if test="extDate2 != null">
+				and t.EXT_DATE2 = #{extDate2}
+			</if>
+			<if test="extNum1 != null">
+				and t.EXT_NUM1 = #{extNum1}
+			</if>
+			<if test="extNum2 != null">
+				and t.EXT_NUM2 = #{extNum2}
+			</if>
+			<if test="extNum3 != null">
+				and t.EXT_NUM3 = #{extNum3}
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+			<if test="targetName != null">
+				and info.equipment_name like concat('%',#{targetName},'%')
+			</if>
+		</where>
+	</sql>
+	<select id="query" parameterType="com.jc.csmp.warn.info.domain.WarnInfo" resultType="com.jc.csmp.warn.info.domain.WarnInfo">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM scs_warn_info t
+		left outer join scs_equipment_info info on info.equipment_code = t.target_code
+		<include refid="Base_Query_Where"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.csmp.warn.info.domain.WarnInfo" resultType="java.lang.Long">
+		SELECT count(t.ID) FROM scs_warn_info t
+		left outer join scs_equipment_info info on info.equipment_code = t.target_code
+		<include refid="Base_Query_Where"/>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.csmp.warn.info.domain.WarnInfo">
+		delete from scs_warn_info
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.csmp.warn.info.domain.WarnInfo">
+		UPDATE scs_warn_info t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+	</update>
+</mapper>

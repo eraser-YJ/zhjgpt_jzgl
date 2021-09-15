@@ -1,0 +1,15 @@
+
+<div class="form-group form-container" ng-repeat="property in selectedItem" ng-class="{'clear' : $index%2 == 0}">
+    <label class="col-sm-3 control-label" ng-if="!property.hidden"><span class="required" ng-hide="property.hiddenRequired">*</span>{{ property.title }}： </label>
+    <div class="col-sm-9 form-right" ng-click="propertyNodeClicked($index)">
+        <ng-include
+                src="getPropertyNodeTemplateUrl($index)" ng-if="!property.hasReadWriteMode"></ng-include>
+
+        <ng-include src="getPropertyNodeReadModeTemplateUrl($index)"
+                    ng-if="property.hasReadWriteMode && property.mode == 'read'"></ng-include>
+
+        <ng-include src="getPropertyNodeWriteModeTemplateUrl($index)"
+                    ng-if="property.hasReadWriteMode && property.mode == 'write'"></ng-include>
+
+    </div>
+</div>

@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML><HEAD><TITLE>weboffice��ʾҳ��</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312"><LINK 
+href="style.css" type=text/css rel=stylesheet>
+<SCRIPT src="./main.js" type=text/javascript></SCRIPT>
+<!-- --------------------=== ����Weboffice��ʼ������ ===--------------------- -->
+<SCRIPT language=javascript event=NotifyCtrlReady for=WebOffice1>
+/****************************************************
+*
+*	��װ����Weboffice(ִ��<object>...</object>)
+*	�ؼ���ִ�� "WebOffice1_NotifyCtrlReady"����
+*
+****************************************************/
+    WebOffice_Event_Flash("NotifyCtrlReady");
+	WebOffice1_NotifyCtrlReady()
+</SCRIPT>
+
+<SCRIPT language=javascript event=NotifyWordEvent(eventname) for=WebOffice1>
+<!--
+WebOffice_Event_Flash("NotifyWordEvent");
+ WebOffice1_NotifyWordEvent(eventname);
+ 
+//-->
+</SCRIPT>
+
+<SCRIPT language=javascript event=NotifyToolBarClick(iIndex) for=WebOffice1>
+<!--
+  WebOffice_Event_Flash("NotifyToolBarClick");
+ WebOffice1_NotifyToolBarClick(iIndex);
+//-->
+</SCRIPT>
+
+<SCRIPT language=javascript>
+/****************************************************
+*
+*		�ؼ���ʼ��WebOffice����
+*
+****************************************************/
+function WebOffice1_NotifyCtrlReady() {
+	document.all.WebOffice1.SetWindowText("��ȨXX(��ͨ��ӿ��Զ���)", 0);
+	document.all.WebOffice1.OptionFlag |= 128;
+	// �½��ĵ�
+	//document.all.WebOffice1.LoadOriginalFile("", "doc");
+	spnWebOfficeInfo.innerText="----   ������ϰ�װ��WebOffice�汾Ϊ:V" + document.all.WebOffice1.GetOcxVersion() +"\t\t\t��ʵ���Ǹ�ݰ汾V6046��д";
+}
+var flag=false;
+function menuOnClick(id){
+	var id=document.getElementById(id);
+	var dis=id.style.display;
+	if(dis!="none"){
+		id.style.display="none";
+		
+	}else{
+		id.style.display="block";
+	}
+}
+/****************************************************
+*
+*		����office�¼����?��
+*
+****************************************************/
+var vNoCopy = 0;
+var vNoPrint = 0;
+var vNoSave = 0;
+var vClose=0;
+function no_copy(){
+	vNoCopy = 1;
+}
+function yes_copy(){
+	vNoCopy = 0;
+}
+
+
+function no_print(){
+	vNoPrint = 1;
+}
+function yes_print(){
+	vNoPrint = 0;
+}
+
+
+function no_save(){
+	vNoSave = 1;
+}
+function yes_save(){
+	vNoSave = 0;
+}
+function EnableClose(flag){
+ vClose=flag;
+}
+function CloseWord(){
+	
+  document.all.WebOffice1.CloseDoc(0); 
+}
+
+function WebOffice1_NotifyWordEvent(eventname) {
+	if(eventname=="DocumentBeforeSave"){
+		if(vNoSave){
+			document.all.WebOffice1.lContinue = 0;
+			alert("���ĵ��Ѿ���ֹ����");
+		}else{
+			document.all.WebOffice1.lContinue = 1;
+		}
+	}else if(eventname=="DocumentBeforePrint"){
+		if(vNoPrint){
+			document.all.WebOffice1.lContinue = 0;
+			alert("���ĵ��Ѿ���ֹ��ӡ");
+		}else{
+			document.all.WebOffice1.lContinue = 1;
+		}
+	}else if(eventname=="WindowSelectionChange"){
+		if(vNoCopy){
+			document.all.WebOffice1.lContinue = 0;
+			//alert("���ĵ��Ѿ���ֹ����");
+		}else{
+			document.all.WebOffice1.lContinue = 1;
+		}
+	}else   if(eventname =="DocumentBeforeClose"){
+	    if(vClose==0){
+	    	document.all.WebOffice1.lContinue=0;
+	    } else{
+	    	//alert("word");
+		    document.all.WebOffice1.lContinue = 1;
+		  }
+ }
+	//alert(eventname); 
+}
+</SCRIPT>
+<LINK href="../css/style.css" type=text/css rel=stylesheet>
+<META content="MSHTML 6.00.2900.5921" name=GENERATOR></HEAD>
+<BODY style="BACKGROUND: #ccc" onunload="return window_onunload()">
+<CENTER>
+<DIV 
+style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: #fff; PADDING-BOTTOM: 0px; MARGIN: -10px 0px 0px; WIDTH: 1024px; PADDING-TOP: 10px; HEIGHT: 750px" 
+align=center>
+<FORM name=myform>
+<TABLE class=TableBlock width="90%">
+  <TBODY>
+  <TR class=TableHeader>
+    <TD colSpan=2 valign=middle>
+      <font size=3> WebOffice��ʾҳ��</font> <font color="#ff0000" size=-1><Span ID=spnWebOfficeInfo align="right"></Span></font></TD></TR>
+      <tr>
+	<td width="100">
+	�¼��б?
+	</td>
+	<td >
+	<textarea  name="commandtext" cols=100 rows=3></textarea><br>							    
+	</td>
+	</tr>
+</TBODY></TABLE><BR>
+<TABLE class=TableBlock width="90%">
+  <TBODY>
+  <TR>
+    <TD class=leftTableData vAlign=top width="15%">
+      <DIV class=menuItem onclick="menuOnClick('chc')">���ýӿڵ��� </DIV>
+      <DIV id=chc style="DISPLAY: none"><!-- ---------------=== �ô��ļ���ʽ��value�������Զ��� ===------------------------- --><SELECT 
+      id=doctype size=1 name=doctype> <OPTION value=doc selected>Word</OPTION> 
+        <OPTION value=xls>Excel</OPTION> <OPTION value=wps>wps</OPTION></SELECT> <INPUT class=btn id=CreateFile onclick=newDoc() type=button value=�½��ĵ� name=CreateFile> 
+<INPUT class=btn onclick="return docOpen()" type=button value=�򿪱����ļ� name=button> 
+<INPUT class=btn id=showPrint onclick=showPrintDialog() type=button value=��ʾ�Ի��� name=CreateFile4> 
+<INPUT class=btn id=zhiPrints onclick=zhiPrint() type=button value=ֱ�Ӵ�ӡ name=zhiPrints> 
+<INPUT class=btn id=CreateFile2 onclick=newSave() type=button value=���� name=CreateFile2> 
+<INPUT class=btn id=CreateFile3 onclick=SaveAsTo() type=button value=���Ϊ name=CreateFile3> 
+ 
+      </DIV>
+      <DIV class=menuItem onclick="menuOnClick('docSafe')">�ĵ���ȫ���� </DIV>
+      <DIV id=docSafe style="DISPLAY: none">�������룺 <INPUT style="WIDTH: 74px" 
+      maxLength=10 value=Password name=docPwd> <INPUT class=btn onclick="return ProtectFull()" type=button value=�����ĵ�> <INPUT class=btn onclick="return UnProtect()" type=button value=��� name=button3> 
+<INPUT class=btn onclick="return notPrint()" type=button value=���ô�ӡ> <INPUT class=btn onclick="return okPrint()" type=button value=���ô�ӡ name=button3> 
+<INPUT class=btn onclick="return notSave()" type=button value=��ֹ���� name=button10> 
+<INPUT class=btn onclick="return okSave()" type=button value=���?�� name=button32> 
+<INPUT class=btn onclick="return notCopy()" type=button value=��ֹ���� name=button11> 
+<INPUT class=btn onclick="return okCopy()" type=button value=���?�� name=button33> 
+<INPUT class=btn onclick="return notDrag()" type=button value=��ֹ�϶� name=but11> 
+<INPUT class=btn onclick="return okDrag()" type=button value=�����϶� name=but33> 
+      �¼����Ʒ�ʽ�� <INPUT class=btn onclick="return no_print()" type=button value=���ô�ӡ> <INPUT class=btn onclick="return yes_print()" type=button value=���ô�ӡ name=button3> 
+<INPUT class=btn onclick="return no_save()" type=button value=��ֹ���� name=button10> 
+<INPUT class=btn onclick="return yes_save()" type=button value=���?�� name=button32> 
+<INPUT class=btn onclick="return no_copy()" type=button value=��ֹ���� name=button11> 
+<INPUT class=btn onclick="return yes_copy()" type=button value=���?�� name=button33> 
+      </DIV>
+      <DIV class=menuItem onclick="menuOnClick('recension')">�޶����� </DIV>
+      <DIV id=recension style="DISPLAY: none"><INPUT style="WIDTH: 74px" 
+      maxLength=10 value=Test name=UserName> <INPUT class=btn onclick="return SetUserName()" type=button value=�����û� name=button2> 
+<INPUT class=btn onclick="return ProtectRevision()" type=button value=�޶��ĵ� name=button4> 
+<INPUT class=btn onclick="return ExitRevisions()" type=button value=�˳��޶� name=button42> 
+<INPUT class=btn onclick="return ShowRevisions()" type=button value=��ʾ�޶� name=button5> 
+<INPUT class=btn onclick="return UnShowRevisions()" type=button value=�����޶� name=button6> 
+<INPUT class=btn onclick="return AcceptAllRevisions()" type=button value=���������޶� name=button7> 
+<INPUT class=btn onclick="return unAcceptAllRevisions()" type=button value=�ܾ������޶� name=button72> 
+<INPUT class=btn onclick="return GetRevAllInfo()" type=button value=��ȡ�޶���Ϣ name=button922> 
+      </DIV>
+      <DIV class=menuItem onclick="menuOnClick('markset')">��ǩ���� </DIV>
+      <DIV id=markset style="DISPLAY: none"><INPUT class=btn onclick="return addBookmark()" type=button value=������ǩ name=button8> 
+		<INPUT class=btn onclick="return taohong()" type=button value=�׺� name=button8> 
+      </DIV>
+      <DIV class=menuItem onclick="menuOnClick('off03menu')">Office03�˵����� </DIV>
+      <DIV id=off03menu style="DISPLAY: none">
+      <INPUT class=btn onclick="return hideAll('','','','')" type=button value=�������� name=button12> 
+      <INPUT class=btn onclick="return notMenu()" type=button value=���ز˵� name=button12> 
+<INPUT class=btn onclick="return okMenu()" type=button value=��ʾ�˵� name=button12> 
+<INPUT class=btn onclick="return notOfter()" type=button value=���س��� name=button12> 
+<INPUT class=btn onclick="return okOfter()" type=button value=��ʾ���� name=button12> 
+<INPUT class=btn onclick="return notFormat()" type=button value=���ظ�ʽ name=button12> 
+<INPUT class=btn onclick="return okFormat()" type=button value=��ʾ��ʽ name=button12> 
+
+      </DIV>
+      <DIV class=menuItem onclick="menuOnClick('off03menuItem')">Office03�˵��� 
+      </DIV>
+      <DIV id=off03menuItem style="DISPLAY: none"><INPUT class=btn onclick="return hideFileMenu()" type=button value=�����ļ� name=button122> 
+<INPUT class=btn onclick="return showFileMenu()" type=button value=��ʾ�ļ� name=button123> 
+<INPUT class=btn onclick="return hideEditMenu()" type=button value=���ر༭ name=button124> 
+<INPUT class=btn onclick="return showEditMenu()" type=button value=��ʾ�༭ name=button125> 
+      </DIV>
+      <DIV class=menuItem onclick="menuOnClick('off03tool')">Office03�������� </DIV>
+      <DIV id=off03tool style="DISPLAY: none"><INPUT class=btn onclick="return hideNewItem()" type=button value=�����½� name=button1222> 
+<INPUT class=btn onclick="return showNewItem()" type=button value=��ʾ�½� name=button1232> 
+<INPUT class=btn onclick="return hideOpenItem()" type=button value=���ش� name=button1242> 
+<INPUT class=btn onclick="return showOpenItem()" type=button value=��ʾ�� name=button1252> 
+<INPUT class=btn onclick="return hideSaveItem()" type=button value=���ر��� name=button1242> 
+<INPUT class=btn onclick="return showSaveItem()" type=button value=��ʾ���� name=button1252> 
+      </DIV>
+      <DIV class=menuItem onclick="menuOnClick('off07menu')">Office07�˵����� </DIV>
+      <DIV id=off07menu style="DISPLAY: none">
+      <INPUT class=btn onclick="return hideAll('hideall','','','')" type=button value=����ȫ�� name=button12222>
+      <INPUT class=btn onclick="return hideAll('showmenu','','','')" type=button value=��ʾȫ�� name=button12222>
+      <INPUT class=btn onclick="return hideAll('','','','')" type=button value=���ع����� name=button12222>
+      <INPUT class=btn onclick="return hideAll('show','','','')" type=button value=��ʾ������ name=button12222>
+      <INPUT class=btn onclick="return beginMenu_onclick()" type=button value=���ؿ�ʼ name=button12222> 
+<INPUT class=btn onclick="return insertMenu_onclick()" type=button value=���ز��� name=button12322> 
+<INPUT class=btn onclick="return pageMenu_onclick()" type=button value=����ҳ�沼�� name=button12422> 
+<INPUT class=btn onclick="return adducMenu_onclick()" type=button value=�������� name=button12522> 
+<INPUT class=btn onclick="return emailMenu_onclick()" type=button value=�����ʼ� name=button12422> 
+<INPUT class=btn onclick="return checkMenu_onclick()" type=button value=�������� name=button12522> 
+<INPUT class=btn onclick="return viewMenu_onclick()" type=button value=������ͼ name=button125222> 
+<INPUT class=btn onclick="return empolderMenu_onclick()" type=button value=���ؿ������� name=button124222> 
+<INPUT class=btn onclick="return loadMenu_onclick()" type=button value=���ؼ����� name=button125222> 
+<INPUT class=btn onclick="return allHideMenu_onclick()" type=button value=����ȫ�� name=button1242222> 
+<INPUT class=btn onclick="return nullityCopy_onclick()" type=button value=������Ч name=button12422222> 
+<INPUT class=btn onclick="return nullityAffix_onclick()" type=button value=ճ����Ч name=button12422223> 
+<INPUT class=btn onclick="return affixCopy_onclick()" type=button value=�ָ� name=button1252222> 
+      </DIV>
+      <DIV class=menuItem onclick="menuOnClick('webofficeTool')">weboffice������ 
+      </DIV>
+      <DIV id=webofficeTool style="DISPLAY: none"><INPUT language=javascript class=btn onclick="return bToolBar_onclick()" type=button value=������(��/��) name=bToolBar> 
+<INPUT language=javascript class=btn onclick="return bToolBar_New_onclick()" type=button value=�½��ĵ�(��/��) name=bToolBar_New> 
+<INPUT language=javascript class=btn onclick="return bToolBar_Open_onclick()" type=button value=���ĵ�(��/��) name=bToolBar_Open> 
+<INPUT language=javascript class=btn onclick="return bToolBar_Save_onclick()" type=button value=�����ĵ�(��/��) name=bToolBar_Save> 
+      </DIV>
+       <DIV class=menuItem onclick="menuOnClick('tools')">�Զ��幤����</DIV>
+      <DIV id=tools style="DISPLAY: none"><INPUT class=btn onclick="return SetCustomToolBtn(0,'��չťһ')" type=button value=�����չťһ name=EnableClose1> 
+      <INPUT class=btn onclick="return SetCustomToolBtn(1,'��չť��')" type=button value=�����չť�� name=EnableClose1>
+      <INPUT class=btn onclick="return SetCustomToolBtn(2,'��չť��')" type=button value=�����չť�� name=EnableClose1>
+      <INPUT class=btn onclick="return SetCustomToolBtn(3,'��չť��')" type=button value=�����չť�� name=EnableClose1>
+      <INPUT class=btn onclick="return SetCustomToolBtn(4,'��չť��')" type=button value=�����չť�� name=EnableClose1>
+
+      </DIV>
+
+       <DIV class=menuItem onclick="menuOnClick('word')">����word�رհ�ť </DIV>
+      <DIV id=word style="DISPLAY: none"><INPUT class=btn onclick="return EnableClose(0)" type=button value=����Word�ر� name=EnableClose1> 
+<INPUT class=btn onclick="return EnableClose(1)" type=button value=����Word�ر� name=EnableClose2> 
+<INPUT class=btn onclick="return CloseWord()" type=button value=�ر�Word name=closeWord> 
+      </DIV>
+      <DIV class=menuItem onclick="menuOnClick('face')">����</DIV>
+      <DIV id=face style="DISPLAY: none"><INPUT class=btn onclick="return ChangeFace(1)" type=button value=��ܰ���� name=EnableClose1> 
+      <INPUT class=btn onclick="return ChangeFace(2)" type=button value=������� name=EnableClose1>
+      <INPUT class=btn onclick="return ChangeFace(3)" type=button value=office��� name=EnableClose1>
+      </DIV>
+      
+      <DIV class=menuItem onclick="menuOnClick('base64')">base64</DIV>
+      <DIV id=base64 style="DISPLAY: none"><INPUT class=btn id=CreateFile4 onclick=GetFileBase64() type=button value=��ȡ�ĵ���base64ֵ name=CreateFile4> 
+			<INPUT class=btn id=CreateFile5 onclick=SaveBinaryFileFromBase64() type=button value=��base64ֵ����ļ� name=CreateFile5>
+			<textarea name="FileBase64" rows="5"></textarea>
+      </DIV>
+      
+			<DIV class=menuItem onclick="menuOnClick('other')">���� </DIV>
+      <DIV id=other style="DISPLAY: none"><INPUT language=javascript class=btn onclick="return bToolBar_FullScreen_onclick()" type=button value="ȫ  ��" name=bToolBar_FullScreen> 
+<INPUT class=btn id=CreateFile32 onclick=TestVBA() type=button value=VBA���� name=CreateFile32> 
+<INPUT class=btn onclick="return UnActiveExcel()" type=button value=�˳�Excel�༭״̬ name=EnableClose1>
+      </DIV>
+      </TD>
+    <TD class=TableData vAlign=top width="85%">
+    	<!-- -----------------------------== װ��weboffice�ؼ� ==--------------------------------- -->
+      <SCRIPT src="LoadWebOffice.js"></SCRIPT>
+			<!-- --------------------------------== ����װ�ؿؼ� ==----------------------------------- -->
+			</TD></TR></TBODY></TABLE></FORM></DIV></CENTER></BODY></HTML>

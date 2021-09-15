@@ -1,0 +1,125 @@
+﻿/*!
+ * 进度条
+ *
+ * Copyright 2012 Stefan Petre
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
+@-webkit-keyframes progress-bar-stripes{
+	from{
+		background-position:40px 0;
+	}
+	to{
+		background-position:0 0;
+	}
+}
+@keyframes progress-bar-stripes{
+	from{
+		background-position:40px 0;
+	}
+	to{
+		background-position:0 0;
+	}
+}
+.progress{
+	height:20px;
+	overflow:hidden;
+	background-color:#f7f7f7;
+	@include box-shadow(inset 0 1px 2px rgba(0,0,0,.1));
+	position: relative;
+	text-align: center;
+}
+.progress-bar-wait{
+	background-color:#f7f7f7;
+}
+/*待接收*/
+.progress-bar{
+	position: absolute;
+	left: 0;
+	z-index: 1;
+	float:left;
+	width:0;
+	height:100%;
+	font-size:12px;
+	line-height:20px;
+	color:#fff;
+	text-align:center;
+	background-color:#00C0EF;
+	@include box-shadow(inset 0 -1px 0 rgba(0,0,0,.15));
+	-webkit-transition:width .6s ease;
+	transition:width .6s ease;
+}
+/*正常*/
+.progress-bar-normal{
+	background-color:#00C0EF;
+}
+/*正常*/
+.progress-bar+.progress-text{
+	position: relative;
+	z-index: 2;
+	color: #333;
+}
+.progress-striped .progress-bar{
+	background-image:-webkit-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+	background-image:linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+	background-size:40px 40px;
+}
+.progress.active .progress-bar{
+	-webkit-animation:progress-bar-stripes 2s linear infinite;
+	animation:progress-bar-stripes 2s linear infinite;
+}
+.progress-bar-done{
+	background-color:#00a65a;
+}
+/*完成*/
+.progress-striped .progress-bar-done{
+	background-image:-webkit-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+	background-image:linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+}
+.progress-bar-cancel{
+	background-color:#555;
+}
+/*取消*/
+.progress-striped .progress-bar-cancel{
+	background-image:-webkit-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+	background-image:linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+}
+.progress-bar-delay{
+	background-color:#f3a641;
+}
+/*延期*/
+.progress-striped .progress-bar-delay{
+	background-image:-webkit-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+	background-image:linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+}
+.progress-bar-overTime{
+	background-color:#fb6b5b;
+}
+/*超期*/
+.progress-striped .progress-bar-overTime{
+	background-image:-webkit-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+	background-image:linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+}
+.fileprogress{
+	height:20px;
+	overflow:hidden;
+	background-color:#f5f5f5;
+	@include box-shadow(inset 0 1px 2px rgba(0,0,0,.1));
+	position: relative;
+	text-align: center;
+}
+.fileprogress .fileprogress-bar{
+	position: absolute;
+	left: 0;
+	z-index: 1;
+	float:left;
+	width:0;
+	height:100%;
+	font-size:12px;
+	line-height:20px;
+	color:#fff;
+	text-align:center;
+	background-color:#00C0EF;
+	@include box-shadow(inset 0 -1px 0 rgba(0,0,0,.15));
+	-webkit-transition:width .6s ease;transition:width .6s ease;
+}

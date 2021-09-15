@@ -1,0 +1,26 @@
+总结：
+1. [:] = map，[] = 数组/List
+2. 长度都是size()
+3. list或数组去重复unique()，没有发现对应java的Set写法
+
+
+import com.jc.csmp.common.tool.NumUtil;
+import com.jc.csmp.warn.info.domain.WarnInfo;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
+def process(paraData,stdData){
+    def resData = new WarnInfo();
+    def resCheck = NumUtil.between(paraData.heigth,stdData.minHeigth,stdData.maxHeigth);
+    if(resCheck<0){
+        resData.setWarnReasonCode("0001");
+        resData.setWarnReason("高度低于规定最小值");
+    } else if(resCheck>0){
+        resData.setWarnReasonCode("0002");
+        resData.setWarnReason("高度大于规定最大值");
+    }
+    resData.setNum01(NumUtil.valueBigDecimalOf(paraData.heigth))
+    return resData ;
+}

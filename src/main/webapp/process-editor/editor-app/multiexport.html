@@ -1,0 +1,23 @@
+
+<div class="modal" ng-controller="MultiExportCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-hidden="true" ng-click="close()">&times;</button>
+                <h2>{{title}}</h2>
+            </div>
+            <div class="modal-body ztree-centent">
+                <div class="col-xs-12">
+		      		<div>
+						<ul class="ztree" id="ztreeSectionExport"></ul>
+					</div>
+		      </div>
+            </div>
+            <div class="modal-footer">
+                <span class="text-danger">{{vaildDefErrorInfo}}</span>
+                <button ng-disabled="!!vaildDefErrorInfo" ng-click="export()" class="btn btn-primary" translate>导出</button>
+                <button ng-disabled="!!vaildDefErrorInfo" ng-click="cancel()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+            </div>
+        </div>
+    </div>
+</div>

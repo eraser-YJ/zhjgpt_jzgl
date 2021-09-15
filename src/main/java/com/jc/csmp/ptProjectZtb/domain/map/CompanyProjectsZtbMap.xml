@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.csmp.ptProjectZtb.domain.CompanyProjectsZtb">
+
+	<insert id="insert" parameterType="com.jc.csmp.ptProjectZtb.domain.CompanyProjectsZtb" useGeneratedKeys="true" keyProperty="id">
+		insert into pt_company_projects_ztb (id,pcp_zblx,pcp_zbfs,pcp_zbdwmc,pcp_zbrq,pcp_zbje,pcp_zbtzs,pcp_xq,pcp_project_num,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3,dlh_data_id_,dlh_data_modify_date_,dlh_data_src_,dlh_data_user_,pcp_area)
+		values (#{id},#{pcpZblx},#{pcpZbfs},#{pcpZbdwmc},#{pcpZbrq},#{pcpZbje},#{pcpZbtzs},#{pcpXq},#{pcpProjectNum},#{extStr1},#{extStr2},#{extStr3},#{extStr4},#{extStr5},#{extDate1},#{extDate2},#{extNum1},#{extNum2},#{extNum3},#{dlhDataId},#{dlhDataModifyDate},#{dlhDataSrc},#{dlhDataUser},#{pcpArea})		
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		insert into pt_company_projects_ztb (id,pcp_zblx,pcp_zbfs,pcp_zbdwmc,pcp_zbrq,pcp_zbje,pcp_zbtzs,pcp_xq,pcp_project_num,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3,dlh_data_id_,dlh_data_modify_date_,dlh_data_src_,dlh_data_user_,pcp_area)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id},#{item.pcpZblx},#{item.pcpZbfs},#{item.pcpZbdwmc},#{item.pcpZbrq},#{item.pcpZbje},#{item.pcpZbtzs},#{item.pcpXq},#{item.pcpProjectNum},#{item.extStr1},#{item.extStr2},#{item.extStr3},#{item.extStr4},#{item.extStr5},#{item.extDate1},#{item.extDate2},#{item.extNum1},#{item.extNum2},#{item.extNum3},#{item.dlhDataId},#{item.dlhDataModifyDate},#{item.dlhDataSrc},#{item.dlhDataUser},#{item.pcpArea})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.csmp.ptProjectZtb.domain.CompanyProjectsZtb">
+		update pt_company_projects_ztb set
+		<if test="id != null">id=#{id},</if>
+		<if test="pcpZblx != null">pcp_zblx=#{pcpZblx},</if>
+		<if test="pcpZbfs != null">pcp_zbfs=#{pcpZbfs},</if>
+		<if test="pcpZbdwmc != null">pcp_zbdwmc=#{pcpZbdwmc},</if>
+		<if test="pcpZbrq != null">pcp_zbrq=#{pcpZbrq},</if>
+		<if test="pcpZbje != null">pcp_zbje=#{pcpZbje},</if>
+		<if test="pcpZbtzs != null">pcp_zbtzs=#{pcpZbtzs},</if>
+		<if test="pcpXq != null">pcp_xq=#{pcpXq},</if>
+		<if test="pcpProjectNum != null">pcp_project_num=#{pcpProjectNum},</if>
+		<if test="extStr1 != null">EXT_STR1=#{extStr1},</if>
+		<if test="extStr2 != null">EXT_STR2=#{extStr2},</if>
+		<if test="extStr3 != null">EXT_STR3=#{extStr3},</if>
+		<if test="extStr4 != null">EXT_STR4=#{extStr4},</if>
+		<if test="extStr5 != null">EXT_STR5=#{extStr5},</if>
+		<if test="extDate1 != null">EXT_DATE1=#{extDate1},</if>
+		<if test="extDate2 != null">EXT_DATE2=#{extDate2},</if>
+		<if test="extNum1 != null">EXT_NUM1=#{extNum1},</if>
+		<if test="extNum2 != null">EXT_NUM2=#{extNum2},</if>
+		<if test="extNum3 != null">EXT_NUM3=#{extNum3},</if>
+		<if test="dlhDataId != null">dlh_data_id_=#{dlhDataId},</if>
+		<if test="dlhDataModifyDate != null">dlh_data_modify_date_=#{dlhDataModifyDate},</if>
+		<if test="dlhDataSrc != null">dlh_data_src_=#{dlhDataSrc},</if>
+		<if test="dlhDataUser != null">dlh_data_user_=#{dlhDataUser},</if>
+		<if test="pcpArea != null">pcp_area=#{pcpArea},</if>
+	   	MODIFY_DATE = #{modifyDateNew} where ID = #{id} and MODIFY_DATE = #{modifyDate}
+	</update>
+
+
+	<sql id="Base_Column_List" >
+		t.id id,
+		t.pcp_zblx pcpZblx,
+		t.pcp_zbfs pcpZbfs,
+		t.pcp_zbdwmc pcpZbdwmc,
+		t.pcp_zbrq pcpZbrq,
+		t.pcp_zbje pcpZbje,
+		t.pcp_zbtzs pcpZbtzs,
+		t.pcp_xq pcpXq,
+		t.pcp_project_num pcpProjectNum,
+		t.EXT_STR1 extStr1,
+		t.EXT_STR2 extStr2,
+		t.EXT_STR3 extStr3,
+		t.EXT_STR4 extStr4,
+		t.EXT_STR5 extStr5,
+		t.EXT_DATE1 extDate1,
+		t.EXT_DATE2 extDate2,
+		t.EXT_NUM1 extNum1,
+		t.EXT_NUM2 extNum2,
+		t.EXT_NUM3 extNum3,
+		t.dlh_data_id_ dlhDataId,
+		t.dlh_data_modify_date_ dlhDataModifyDate,
+		t.dlh_data_src_ dlhDataSrc,
+		t.dlh_data_user_ dlhDataUser,
+		t.pcp_area pcpArea
+	</sql>
+	
+	<sql id="Base_Query_Where" >
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="pcpZblx != null">
+				and t.pcp_zblx = #{pcpZblx}
+			</if>
+			<if test="pcpZbfs != null">
+				and t.pcp_zbfs = #{pcpZbfs}
+			</if>
+			<if test="pcpZbdwmc != null">
+				and t.pcp_zbdwmc = #{pcpZbdwmc}
+			</if>
+			<if test="pcpZbrqBegin != null">
+				and t.pcp_zbrq &gt;= #{pcpZbrqBegin}
+			</if>
+			<if test="pcpZbrqEnd != null">
+				and t.pcp_zbrq &lt;= #{pcpZbrqEnd}
+			</if>
+			<if test="pcpZbrq != null">
+				and t.pcp_zbrq = #{pcpZbrq}
+			</if>
+			<if test="pcpZbje != null">
+				and t.pcp_zbje = #{pcpZbje}
+			</if>
+			<if test="pcpZbtzs != null">
+				and t.pcp_zbtzs = #{pcpZbtzs}
+			</if>
+			<if test="pcpXq != null">
+				and t.pcp_xq = #{pcpXq}
+			</if>
+			<if test="pcpProjectNum != null">
+				and t.pcp_project_num = #{pcpProjectNum}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.EXT_DATE1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.EXT_DATE1 &lt;= #{extDate1End}
+			</if>
+			<if test="extDate1 != null">
+				and t.EXT_DATE1 = #{extDate1}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.EXT_DATE2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.EXT_DATE2 &lt;= #{extDate2End}
+			</if>
+			<if test="extDate2 != null">
+				and t.EXT_DATE2 = #{extDate2}
+			</if>
+			<if test="extNum1 != null">
+				and t.EXT_NUM1 = #{extNum1}
+			</if>
+			<if test="extNum2 != null">
+				and t.EXT_NUM2 = #{extNum2}
+			</if>
+			<if test="extNum3 != null">
+				and t.EXT_NUM3 = #{extNum3}
+			</if>
+			<if test="dlhDataId != null">
+				and t.dlh_data_id_ = #{dlhDataId}
+			</if>
+			<if test="dlhDataModifyDateBegin != null">
+				and t.dlh_data_modify_date_ &gt;= #{dlhDataModifyDateBegin}
+			</if>
+			<if test="dlhDataModifyDateEnd != null">
+				and t.dlh_data_modify_date_ &lt;= #{dlhDataModifyDateEnd}
+			</if>
+			<if test="dlhDataModifyDate != null">
+				and t.dlh_data_modify_date_ = #{dlhDataModifyDate}
+			</if>
+			<if test="dlhDataSrc != null">
+				and t.dlh_data_src_ = #{dlhDataSrc}
+			</if>
+			<if test="dlhDataUser != null">
+				and t.dlh_data_user_ = #{dlhDataUser}
+			</if>
+			<if test="pcpArea != null">
+				and t.pcp_area = #{pcpArea}
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+	</sql>
+	<select id="query" parameterType="com.jc.csmp.ptProjectZtb.domain.CompanyProjectsZtb" resultType="com.jc.csmp.ptProjectZtb.domain.CompanyProjectsZtb">
+		SELECT
+		t.bidding_dljgmc biddingDljgmc,
+		t.bidding_dljgbm biddingDljgbm,
+		t.project_num pcpProjectNum,
+		t.bidding_tsss biddingTsss,
+		t.bidding_yysl biddingYysl,
+		t.bidding_remark biddingRemark,
+		t.bidding_type biddingType,
+		i.`projectName` AS projectName
+		FROM pt_bidding_info t,`pt_project_info` i WHERE t.`project_num`= i.`projectNumber`
+		<if test="biddingType != null">
+			and t.bidding_type = #{biddingType}
+		</if>
+		<if test="biddingDljgbm != null">
+			and t.bidding_dljgbm = #{biddingDljgbm}
+		</if>
+		<if test="biddingDljgmc != null">
+			and t.bidding_dljgmc = #{biddingDljgmc}
+		</if>
+		<if test="projectName != null">
+			and i.projectName = #{projectName}
+		</if>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+
+
+	<select id="queryCount" parameterType="com.jc.csmp.ptProjectZtb.domain.CompanyProjectsZtb" resultType="java.lang.Long">
+		SELECT count(t.dlh_data_id_) FROM pt_bidding_info t,`pt_project_info` i WHERE t.`project_num`= i.`projectNumber`
+		<if test="biddingType != null">
+			and t.bidding_type = #{biddingType}
+		</if>
+        <if test="biddingDljgbm != null">
+            and t.bidding_dljgbm = #{biddingDljgbm}
+        </if>
+		<if test="biddingDljgmc != null">
+			and t.bidding_dljgmc = #{biddingDljgmc}
+		</if>
+		<if test="projectName != null">
+			and i.projectName = #{projectName}
+		</if>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.csmp.ptProjectZtb.domain.CompanyProjectsZtb">
+    	delete from pt_company_projects_ztb
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.csmp.ptProjectZtb.domain.CompanyProjectsZtb">
+    	UPDATE pt_company_projects_ztb t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+		<where>
+			<if test="id != null">
+				and t.id = #{id}
+			</if>
+			<if test="primaryKeys != null">
+				and t.id in
+				<foreach collection="primaryKeys" item="primaryKey" index="index" open="(" close=")" separator=",">
+					#{primaryKey}
+				</foreach>
+			</if>
+		</where>
+ 	</update>
+
+	<select id="queryEchartsForZ" resultType="com.jc.csmp.ptProject.vo.EchartsVo">
+		SELECT
+		  dic.value value,
+		  IFNULL (aj.cc1, 0) cc1,
+		  IFNULL (aj.cc2, 0) cc2
+		FROM
+		  (SELECT
+			CODE,
+			VALUE
+		  FROM
+			tty_sys_dics t
+		  WHERE t.parent_id = 'bidding_type') dic
+		  LEFT OUTER JOIN
+			(SELECT
+			  c.bidding_type,
+			  SUM(c.bidding_tsss) cc1,
+			  SUM(c.bidding_yysl) cc2
+			FROM
+			  `pt_bidding_info` c
+			GROUP BY c.bidding_type) aj
+			ON dic.code = aj.bidding_type
+	</select>
+	<select id="queryEchartsForLjjn" parameterType="com.jc.csmp.ptProjectZtb.domain.CompanyProjectsZtb" resultType="com.jc.csmp.ptProject.vo.EchartsVo">
+		SELECT a.year AS NAME,IFNULL(b.cc,0) AS cc,IFNULL(b.cc1,0) AS cc1,IFNULL(b.cc2,0) AS cc2
+			FROM (
+				SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 4 YEAR),'%Y') AS YEAR
+				UNION ALL
+				SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 3 YEAR),'%Y') AS YEAR
+				UNION ALL
+				SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 2 YEAR),'%Y') AS YEAR
+				UNION ALL
+				SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 YEAR),'%Y') AS YEAR
+				UNION ALL
+				SELECT DATE_FORMAT(CURDATE(),'%Y') AS YEAR
+				) a LEFT JOIN (
+				SELECT project_area,
+				DATE_FORMAT(realStartDate,'%Y') AS DATETIME,
+				(SELECT COUNT(*) AS cc FROM pt_project_info WHERE project_ljjn = 'project_ljjn_1' <if test="pcpArea != null">and project_area = #{pcpArea}</if>) AS cc,
+				(SELECT COUNT(*) AS cc FROM pt_project_info WHERE project_ljjn = 'project_ljjn_2' <if test="pcpArea != null">and project_area = #{pcpArea}</if>) AS cc1,
+				(SELECT COUNT(*) AS cc FROM pt_project_info WHERE project_ljjn = 'project_ljjn_3' <if test="pcpArea != null">and project_area = #{pcpArea}</if>) AS cc2
+				FROM `pt_project_info`
+				WHERE 1=1
+				<if test="pcpArea != null">
+					and project_area = #{pcpArea}
+				</if>
+				GROUP BY DATE_FORMAT(realStartDate,'%Y')
+			) b ON a.YEAR = b.datetime
+	</select>
+	<select id="queryWinbiddingForPm" resultType="com.jc.csmp.ptProjectZtb.vo.WinbiddingVo">
+        SELECT
+          t.bidding_dljgmc biddingDljgmc,
+          IFNULL((SELECT COUNT(i.id) FROM `pt_winbidding_info` i WHERE i.winbidding_type = 'winbidding_type_1' AND i.bidding_dljgbm = t.bidding_dljgbm),0) AS kcCc,
+          IFNULL((SELECT COUNT(i.id) FROM `pt_winbidding_info` i WHERE i.winbidding_type = 'winbidding_type_2' AND i.bidding_dljgbm = t.bidding_dljgbm),0) AS sjCc,
+          IFNULL((SELECT COUNT(i.id) FROM `pt_winbidding_info` i WHERE i.winbidding_type = 'winbidding_type_3' AND i.bidding_dljgbm = t.bidding_dljgbm),0) AS sgCc,
+          IFNULL((SELECT COUNT(i.id) FROM `pt_winbidding_info` i WHERE i.winbidding_type = 'winbidding_type_4' AND i.bidding_dljgbm = t.bidding_dljgbm),0) AS jlCc,
+          IFNULL((SELECT COUNT(i.id) FROM `pt_winbidding_info` i WHERE i.winbidding_type = 'winbidding_type_5' AND i.bidding_dljgbm = t.bidding_dljgbm),0) AS kcsjCc,
+          IFNULL((SELECT COUNT(i.id) FROM `pt_winbidding_info` i WHERE i.winbidding_type = 'winbidding_type_6' AND i.bidding_dljgbm = t.bidding_dljgbm),0) AS hwclCc,
+          IFNULL((SELECT SUM(i.winbidding_zbje) FROM `pt_winbidding_info` i WHERE i.winbidding_type IN ('winbidding_type_6','winbidding_type_5','winbidding_type_4','winbidding_type_3','winbidding_type_2','winbidding_type_1') AND i.bidding_dljgbm = t.bidding_dljgbm),0) AS total
+        FROM
+          `pt_winbidding_info` t
+        GROUP BY t.`bidding_dljgbm`
+	</select>
+	<select id="queryWinbiddingForPmCount" resultType="java.lang.Long">
+       SELECT COUNT(*) FROM (SELECT
+          t.bidding_dljgmc biddingDljgmc,
+          IFNULL((SELECT COUNT(i.id) FROM `pt_winbidding_info` i WHERE i.winbidding_type = 'winbidding_type_1' AND i.bidding_dljgbm = t.bidding_dljgbm),0) AS kcCc,
+          IFNULL((SELECT COUNT(i.id) FROM `pt_winbidding_info` i WHERE i.winbidding_type = 'winbidding_type_2' AND i.bidding_dljgbm = t.bidding_dljgbm),0) AS sjCc,
+          IFNULL((SELECT COUNT(i.id) FROM `pt_winbidding_info` i WHERE i.winbidding_type = 'winbidding_type_3' AND i.bidding_dljgbm = t.bidding_dljgbm),0) AS sgCc,
+          IFNULL((SELECT COUNT(i.id) FROM `pt_winbidding_info` i WHERE i.winbidding_type = 'winbidding_type_4' AND i.bidding_dljgbm = t.bidding_dljgbm),0) AS jlCc,
+          IFNULL((SELECT COUNT(i.id) FROM `pt_winbidding_info` i WHERE i.winbidding_type = 'winbidding_type_5' AND i.bidding_dljgbm = t.bidding_dljgbm),0) AS kcsjCc,
+          IFNULL((SELECT COUNT(i.id) FROM `pt_winbidding_info` i WHERE i.winbidding_type = 'winbidding_type_6' AND i.bidding_dljgbm = t.bidding_dljgbm),0) AS hwclCc,
+          IFNULL((SELECT SUM(i.winbidding_zbje) FROM `pt_winbidding_info` i WHERE i.winbidding_type IN ('winbidding_type_6','winbidding_type_5','winbidding_type_4','winbidding_type_3','winbidding_type_2','winbidding_type_1') AND i.bidding_dljgbm = t.bidding_dljgbm),0) AS total
+        FROM
+          `pt_winbidding_info` t
+        GROUP BY t.`bidding_dljgbm`)a
+	</select>
+	<select id="queryBiddingXzjd" parameterType="com.jc.csmp.ptProjectZtb.domain.CompanyProjectsZtb" resultType="com.jc.csmp.ptProjectZtb.vo.WinbiddingVo">
+        SELECT
+		  t.project_num projectNum,
+		  t.project_name projectName,
+		  t.jd_type jdType,
+		  t.jd_time jdTime,
+		  t.jd_org jdOrg,
+		  t.jd_remark jdRemark
+		FROM
+		  `pt_bidding_xzjd` t
+		  where 1=1
+		<if test="jdType != null">
+			and t.jd_type = #{jdType}
+		</if>
+		<if test="projectName != null">
+			and t.project_name = #{projectName}
+		</if>
+	</select>
+
+	<select id="queryXzjdCount" parameterType="com.jc.csmp.ptProjectZtb.domain.CompanyProjectsZtb" resultType="java.lang.Long">
+		SELECT count(t.id) FROM pt_bidding_xzjd t
+		where 1=1
+		<if test="jdType != null">
+			and t.jd_type = #{jdType}
+		</if>
+		<if test="jdTimeBegin != null">
+			and t.jd_time &gt;= #{jdTimeBegin}
+		</if>
+		<if test="jdTimeEnd != null">
+			and t.jd_time &lt;= #{jdTimeEnd}
+		</if>
+		<if test="projectName != null">
+			and t.project_name = #{projectName}
+		</if>
+	</select>
+
+	<select id="queryProjectApprover" parameterType="com.jc.csmp.ptProjectZtb.domain.CompanyProjectsZtb" resultType="com.jc.csmp.ptProjectZtb.domain.CompanyProjectsZtb">
+			SELECT
+			  t.`projectName` projectName,
+			  t.`projectNumber` pcpProjectNum,
+			  "立项用地规划许可" AS projectType,
+			  t.`project_area` pcpArea,
+			  t.`approvalNumber` biddingDljgbm,
+			  a.`approvalDate` pcpZbrq
+			FROM
+			  `pt_project_approval` a,
+			  `pt_project_info` t
+			WHERE a.`projectNumber` = t.`projectNumber`
+            <if test="projectName != null">
+                and t.projectName = #{projectName}
+            </if>
+            <if test="pcpArea != null">
+                and t.project_area = #{pcpArea}
+            </if>
+			UNION
+			SELECT
+			  t.`projectName` projectName,
+			  t.`projectNumber` pcpProjectNum,
+			  "施工许可" AS projectType,
+			  t.`project_area` pcpArea,
+			  a.`constructionNumber` biddingDljgbm,
+			  a.`sendDate` pcpZbrq
+			FROM
+			  `pt_project_construction` a,
+			  `pt_project_info` t
+			WHERE a.`projectNumber` = t.`projectNumber`
+            <if test="projectName != null">
+                and t.projectName = #{projectName}
+            </if>
+            <if test="pcpArea != null">
+                and t.project_area = #{pcpArea}
+            </if>
+			UNION
+			SELECT
+			  t.`projectName` projectName,
+			  t.`projectNumber` pcpProjectNum,
+			  "竣工验收" AS projectType,
+			  t.`project_area` pcpArea,
+			  a.`pcp_zbfs` biddingDljgbm,
+			  a.`pcp_zbtzs` pcpZbrq
+			FROM
+			  `pt_company_projects_jgys` a,
+			  `pt_project_info` t
+			WHERE a.`pcp_project_num` = t.`projectNumber`
+            <if test="projectName != null">
+                and t.projectName = #{projectName}
+            </if>
+            <if test="pcpArea != null">
+                and t.project_area = #{pcpArea}
+            </if>
+	</select>
+	<select id="queryProjectApproverCount" parameterType="com.jc.csmp.ptProjectZtb.domain.CompanyProjectsZtb" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM (SELECT
+        t.`projectName` projectName,
+        t.`projectNumber` pcpProjectNum,
+        "立项用地规划许可" AS projectType,
+        t.`project_area` pcpArea,
+        t.`approvalNumber` biddingDljgbm,
+        a.`approvalDate` pcpZbrq
+        FROM
+        `pt_project_approval` a,
+        `pt_project_info` t
+        WHERE a.`projectNumber` = t.`projectNumber`
+        <if test="projectName != null">and t.projectName = #{projectName}
+        </if>
+        <if test="pcpArea != null">
+            and t.project_area = #{pcpArea}
+        </if>
+        UNION
+        SELECT
+        t.
+        `projectName` projectName,
+        t.
+        `projectNumber` pcpProjectNum,
+        "施工许可" AS projectType,
+        t.
+        `project_area` pcpArea,
+        a.`constructionNumber` biddingDljgbm,
+        a.`sendDate` pcpZbrq
+        FROM
+        `pt_project_construction` a,
+        `pt_project_info` t
+        WHERE a.`projectNumber` = t.
+        `projectNumber`
+        <if test="projectName !=null">
+            and t.projectName = #{projectName}
+        </if>
+        <if test="pcpArea != null">
+            and t.project_area = #{pcpArea}
+        </if>
+        UNION
+        SELECT
+        t.`projectName`
+        projectName,
+        t.`projectNumber`
+        pcpProjectNum,
+        "竣工验收" AS projectType,
+        t.
+        `project_area` pcpArea,
+        a.
+        `pcp_zbfs`
+        biddingDljgbm,
+        a.`pcp_zbtzs` pcpZbrq
+        FROM
+        `pt_company_projects_jgys` a,
+        `pt_project_info` t
+        WHERE a.
+        `pcp_project_num` = t.`projectNumber`
+        <if test="projectName != null">and t.projectName = #{projectName}
+        </if>
+        <if test="pcpArea != null">
+            and t.project_area = #{pcpArea}
+        </if> ) a
+	</select>
+
+</mapper>

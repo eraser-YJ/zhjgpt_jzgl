@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.UserRecycle">
+
+	<insert id="insert" parameterType="com.jc.system.security.domain.UserRecycle" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO tty_sys_user_recycle(ID,CODE,display_name,LOGIN_NAME,PASSWORD,SEX,KIND,DUTY_ID,LEVEL,DEPT_ID,STATUS,ENTRY_DATE,LEADER_ID,DEPT_LEADER,CHARGE_LEADER,POLITICAL,CARD_NO,WEIGHT,ORDER_NO,JOB_TITLE,MOBILE,OFFICE_TEL,group_tel,EMAIL,ENTRY_POLITICAL_DATE,BIRTHDAY,ETHNIC,HOMETOWN,DEGREE,CERNAME,MARITAL_STATUS,PAY_CARD_NO,CARD_BANK,CARD_NAME,LAST_LONGIN_DATE,WRONG_COUNT,LOCK_START_DATE,OFFICE_ADDRESS,IS_DRIVER,IS_LEADER,IS_CHECK,OPEN_CALE,QUESTION,ANSWER,PHOTO,IS_ADMIN,LOCK_TYPE,modify_pwd_flag,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,THEME,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+			VALUES (#{id},#{code},#{displayName},#{loginName},#{password},#{sex},#{kind},#{dutyId},#{level},#{deptId},#{status},#{entryDate},#{leaderId},#{deptLeader},#{chargeLeader},#{political},#{cardNo},#{weight},#{orderNo},#{jobTitle},#{mobile},#{officeTel},#{groupTel},#{email},#{entryPoliticalDate},#{birthday},#{ethnic},#{hometown},#{degree},#{cername},#{maritalStatus},#{payCardNo},#{cardBank},#{cardName},#{lastLonginDate},#{wrongCount},#{lockStartDate},#{officeAddress},#{isDriver},#{isLeader},#{isCheck},#{openCale},#{question},#{answer},#{photo},#{isAdmin},#{lockType},#{modifyPwdFlag},#{deleteFlag},#{createUser},#{createUserDept},#{createUserOrg},#{createDate},#{modifyUser},#{modifyDate},#{theme},#{extDate1},#{extDate2},#{extNum1},#{extNum2},#{extNum3},#{extStr1},#{extStr2},#{extStr3},#{extStr4},#{extStr5})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		INSERT INTO tty_sys_user_recycle(ID,CODE,display_name,LOGIN_NAME,PASSWORD,SEX,KIND,DUTY_ID,LEVEL,DEPT_ID,STATUS,ENTRY_DATE,LEADER_ID,DEPT_LEADER,CHARGE_LEADER,POLITICAL,CARD_NO,WEIGHT,ORDER_NO,JOB_TITLE,MOBILE,OFFICE_TEL,group_tel,EMAIL,ENTRY_POLITICAL_DATE,BIRTHDAY,ETHNIC,HOMETOWN,DEGREE,CERNAME,MARITAL_STATUS,PAY_CARD_NO,CARD_BANK,CARD_NAME,LAST_LONGIN_DATE,WRONG_COUNT,LOCK_START_DATE,OFFICE_ADDRESS,IS_DRIVER,IS_LEADER,IS_CHECK,OPEN_CALE,QUESTION,ANSWER,PHOTO,IS_ADMIN,LOCK_TYPE,modify_pwd_flag,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,THEME,EXT_DATE1,EXT_DATE2,EXT_NUM1,EXT_NUM2,EXT_NUM3,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+			VALUES
+			<foreach collection="list" item="item" index="index" separator=","> 
+				(#{id},#{item.id},#{item.code},#{item.displayName},#{item.loginName},#{item.password},#{item.sex},#{item.kind},#{item.dutyId},#{item.level},#{item.deptId},#{item.status},#{item.entryDate},#{item.leaderId},#{item.deptLeader},#{item.chargeLeader},#{item.political},#{item.cardNo},#{item.weight},#{item.orderNo},#{item.jobTitle},#{item.mobile},#{item.officeTel},#{item.groupTel},#{item.email},#{item.entryPoliticalDate},#{item.birthday},#{item.ethnic},#{item.hometown},#{item.degree},#{item.cername},#{item.maritalStatus},#{item.payCardNo},#{item.cardBank},#{item.cardName},#{item.lastLonginDate},#{item.wrongCount},#{item.lockStartDate},#{item.officeAddress},#{item.isDriver},#{item.isLeader},#{item.isCheck},#{item.openCale},#{item.question},#{item.answer},#{item.photo},#{item.isAdmin},#{item.lockType},#{item.modifyPwdFlag},#{item.deleteFlag},#{item.createUser},#{item.createUserDept},#{item.createUserOrg},#{item.createDate},#{item.modifyUser},#{item.modifyDate},#{item.theme},#{item.extDate1},#{item.extDate2},#{item.extNum1},#{item.extNum2},#{item.extNum3},#{item.extStr1},#{item.extStr2},#{item.extStr3},#{item.extStr4},#{item.extStr5})
+			</foreach> 
+	</insert>
+
+	<update id="update" parameterType="com.jc.system.security.domain.UserRecycle">
+	UPDATE tty_sys_user_recycle set
+	   	<if test="code != null">
+	   		CODE = #{code},
+	   	</if>
+	   	<if test="displayName != null">
+	   		display_name = #{displayName},
+	   	</if>
+	   	<if test="loginName != null">
+	   		LOGIN_NAME = #{loginName},
+	   	</if>
+	   	<if test="password != null">
+	   		PASSWORD = #{password},
+	   	</if>
+	   	<if test="sex != null">
+	   		SEX = #{sex},
+	   	</if>
+	   	<if test="kind != null">
+	   		KIND = #{kind},
+	   	</if>
+	   	<if test="dutyId != null">
+	   		DUTY_ID = #{dutyId},
+	   	</if>
+	   	<if test="level != null">
+	   		LEVEL = #{level},
+	   	</if>
+	   	<if test="deptId != null">
+	   		DEPT_ID = #{deptId},
+	   	</if>
+	   	<if test="status != null">
+	   		STATUS = #{status},
+	   	</if>
+	   	<if test="entryDate != null">
+	   		ENTRY_DATE = #{entryDate},
+	   	</if>
+	   	<if test="leaderId != null">
+	   		LEADER_ID = #{leaderId},
+	   	</if>
+	   	<if test="deptLeader != null">
+	   		DEPT_LEADER = #{deptLeader},
+	   	</if>
+	   	<if test="chargeLeader != null">
+	   		CHARGE_LEADER = #{chargeLeader},
+	   	</if>
+	   	<if test="political != null">
+	   		POLITICAL = #{political},
+	   	</if>
+	   	<if test="cardNo != null">
+	   		CARD_NO = #{cardNo},
+	   	</if>
+	   	<if test="weight != null">
+	   		WEIGHT = #{weight},
+	   	</if>
+	   	<if test="orderNo != null">
+	   		ORDER_NO = #{orderNo},
+	   	</if>
+	   	<if test="jobTitle != null">
+	   		JOB_TITLE = #{jobTitle},
+	   	</if>
+	   	<if test="mobile != null">
+	   		MOBILE = #{mobile},
+	   	</if>
+	   	<if test="officeTel != null">
+	   		OFFICE_TEL = #{officeTel},
+	   	</if>
+	   	<if test="groupTel != null">
+	   		group_tel = #{groupTel},
+	   	</if>
+	   	<if test="email != null">
+	   		EMAIL = #{email},
+	   	</if>
+	   	<if test="entryPoliticalDate != null">
+	   		ENTRY_POLITICAL_DATE = #{entryPoliticalDate},
+	   	</if>
+	   	<if test="birthday != null">
+	   		BIRTHDAY = #{birthday},
+	   	</if>
+	   	<if test="ethnic != null">
+	   		ETHNIC = #{ethnic},
+	   	</if>
+	   	<if test="hometown != null">
+	   		HOMETOWN = #{hometown},
+	   	</if>
+	   	<if test="degree != null">
+	   		DEGREE = #{degree},
+	   	</if>
+	   	<if test="cername != null">
+	   		CERNAME = #{cername},
+	   	</if>
+	   	<if test="maritalStatus != null">
+	   		MARITAL_STATUS = #{maritalStatus},
+	   	</if>
+	   	<if test="payCardNo != null">
+	   		PAY_CARD_NO = #{payCardNo},
+	   	</if>
+	   	<if test="cardBank != null">
+	   		CARD_BANK = #{cardBank},
+	   	</if>
+	   	<if test="cardName != null">
+	   		CARD_NAME = #{cardName},
+	   	</if>
+	   	<if test="lastLonginDate != null">
+	   		LAST_LONGIN_DATE = #{lastLonginDate},
+	   	</if>
+	   	<if test="wrongCount != null">
+	   		WRONG_COUNT = #{wrongCount},
+	   	</if>
+	   	<if test="lockStartDate != null">
+	   		LOCK_START_DATE = #{lockStartDate},
+	   	</if>
+	   	<if test="officeAddress != null">
+	   		OFFICE_ADDRESS = #{officeAddress},
+	   	</if>
+	   	<if test="isDriver != null">
+	   		IS_DRIVER = #{isDriver},
+	   	</if>
+	   	<if test="isLeader != null">
+	   		IS_LEADER = #{isLeader},
+	   	</if>
+	   	<if test="isCheck != null">
+	   		IS_CHECK = #{isCheck},
+	   	</if>
+	   	<if test="openCale != null">
+	   		OPEN_CALE = #{openCale},
+	   	</if>
+	   	<if test="question != null">
+	   		QUESTION = #{question},
+	   	</if>
+	   	<if test="answer != null">
+	   		ANSWER = #{answer},
+	   	</if>
+	   	<if test="photo != null">
+	   		PHOTO = #{photo},
+	   	</if>
+	   	<if test="isAdmin != null">
+	   		IS_ADMIN = #{isAdmin},
+	   	</if>
+	   	<if test="lockType != null">
+	   		LOCK_TYPE = #{lockType},
+	   	</if>
+	   	<if test="modifyPwdFlag != null">
+	   		modify_pwd_flag = #{modifyPwdFlag},
+	   	</if>
+	   	<if test="deleteFlag != null">
+	   		DELETE_FLAG = #{deleteFlag},
+	   	</if>
+	   	<if test="createUser != null">
+	   		CREATE_USER = #{createUser},
+	   	</if>
+	   	<if test="createUserDept != null">
+	   		CREATE_USER_DEPT = #{createUserDept},
+	   	</if>
+	   	<if test="createUserOrg != null">
+	   		CREATE_USER_ORG = #{createUserOrg},
+	   	</if>
+	   	<if test="createDate != null">
+	   		CREATE_DATE = #{createDate},
+	   	</if>
+	   	<if test="modifyUser != null">
+	   		MODIFY_USER = #{modifyUser},
+	   	</if>
+	   	<if test="theme != null">
+	   		THEME = #{theme},
+	   	</if>
+	   	<if test="extDate1 != null">
+	   		EXT_DATE1 = #{extDate1},
+	   	</if>
+	   	<if test="extDate2 != null">
+	   		EXT_DATE2 = #{extDate2},
+	   	</if>
+	   	<if test="extNum1 != null">
+	   		EXT_NUM1 = #{extNum1},
+	   	</if>
+	   	<if test="extNum2 != null">
+	   		EXT_NUM2 = #{extNum2},
+	   	</if>
+	   	<if test="extNum3 != null">
+	   		EXT_NUM3 = #{extNum3},
+	   	</if>
+	   	<if test="extStr1 != null">
+	   		EXT_STR1 = #{extStr1},
+	   	</if>
+	   	<if test="extStr2 != null">
+	   		EXT_STR2 = #{extStr2},
+	   	</if>
+	   	<if test="extStr3 != null">
+	   		EXT_STR3 = #{extStr3},
+	   	</if>
+	   	<if test="extStr4 != null">
+	   		EXT_STR4 = #{extStr4},
+	   	</if>
+	   	<if test="extStr5 != null">
+	   		EXT_STR5 = #{extStr5},
+	   	</if>
+	   	MODIFY_DATE = #{modifyDateNew} where ID = #{id} and MODIFY_DATE = #{modifyDate}
+	</update>
+
+	<select id="query" parameterType="com.jc.system.security.domain.UserRecycle" resultType="com.jc.system.security.domain.UserRecycle">
+		SELECT 
+			t.ID id,
+			t.CODE code,
+			t.display_name displayName,
+			t.LOGIN_NAME loginName,
+			t.PASSWORD password,
+			t.SEX sex,
+			t.KIND kind,
+			t.DUTY_ID dutyId,
+			t.LEVEL level,
+			t.DEPT_ID deptId,
+			t.STATUS status,
+			t.ENTRY_DATE entryDate,
+			t.LEADER_ID leaderId,
+			t.DEPT_LEADER deptLeader,
+			t.CHARGE_LEADER chargeLeader,
+			t.POLITICAL political,
+			t.CARD_NO cardNo,
+			t.WEIGHT weight,
+			t.ORDER_NO orderNo,
+			t.JOB_TITLE jobTitle,
+			t.MOBILE mobile,
+			t.OFFICE_TEL officeTel,
+			t.group_tel groupTel,
+			t.EMAIL email,
+			t.ENTRY_POLITICAL_DATE entryPoliticalDate,
+			t.BIRTHDAY birthday,
+			t.ETHNIC ethnic,
+			t.HOMETOWN hometown,
+			t.DEGREE degree,
+			t.CERNAME cername,
+			t.MARITAL_STATUS maritalStatus,
+			t.PAY_CARD_NO payCardNo,
+			t.CARD_BANK cardBank,
+			t.CARD_NAME cardName,
+			t.LAST_LONGIN_DATE lastLonginDate,
+			t.WRONG_COUNT wrongCount,
+			t.LOCK_START_DATE lockStartDate,
+			t.OFFICE_ADDRESS officeAddress,
+			t.IS_DRIVER isDriver,
+			t.IS_LEADER isLeader,
+			t.IS_CHECK isCheck,
+			t.OPEN_CALE openCale,
+			t.QUESTION question,
+			t.ANSWER answer,
+			t.PHOTO photo,
+			t.IS_ADMIN isAdmin,
+			t.LOCK_TYPE lockType,
+			t.modify_pwd_flag modifyPwdFlag,
+			t.DELETE_FLAG deleteFlag,
+			t.CREATE_USER createUser,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_USER_ORG createUserOrg,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.THEME theme,
+			t.EXT_DATE1 extDate1,
+			t.EXT_DATE2 extDate2,
+			t.EXT_NUM1 extNum1,
+			t.EXT_NUM2 extNum2,
+			t.EXT_NUM3 extNum3,
+			t.EXT_STR1 extStr1,
+			t.EXT_STR2 extStr2,
+			t.EXT_STR3 extStr3,
+			t.EXT_STR4 extStr4,
+			t.EXT_STR5 extStr5
+			
+		FROM tty_sys_user_recycle t
+		<where>
+		
+		
+
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="code != null">
+				and t.CODE = #{code}
+			</if>
+			<if test="displayName != null">
+				and t.display_name = #{displayName}
+			</if>
+			<if test="loginName != null">
+				and t.LOGIN_NAME = #{loginName}
+			</if>
+			<if test="password != null">
+				and t.PASSWORD = #{password}
+			</if>
+			<if test="sex != null">
+				and t.SEX = #{sex}
+			</if>
+			<if test="kind != null">
+				and t.KIND = #{kind}
+			</if>
+			<if test="dutyId != null">
+				and t.DUTY_ID = #{dutyId}
+			</if>
+			<if test="level != null">
+				and t.LEVEL = #{level}
+			</if>
+			<if test="deptId != null">
+				and t.DEPT_ID = #{deptId}
+			</if>
+			<if test="status != null">
+				and t.STATUS = #{status}
+			</if>
+			<if test="entryDate != null">
+				and t.ENTRY_DATE = #{entryDate}
+			</if>
+			<if test="entryDateBegin != null">
+				and t.ENTRY_DATE &gt;= #{entryDateBegin}
+			</if>
+			<if test="entryDateEnd != null">
+				and t.ENTRY_DATE &lt;= #{entryDateEnd}
+			</if>
+			<if test="leaderId != null">
+				and t.LEADER_ID = #{leaderId}
+			</if>
+			<if test="deptLeader != null">
+				and t.DEPT_LEADER = #{deptLeader}
+			</if>
+			<if test="chargeLeader != null">
+				and t.CHARGE_LEADER = #{chargeLeader}
+			</if>
+			<if test="political != null">
+				and t.POLITICAL = #{political}
+			</if>
+			<if test="cardNo != null">
+				and t.CARD_NO = #{cardNo}
+			</if>
+			<if test="weight != null">
+				and t.WEIGHT = #{weight}
+			</if>
+			<if test="orderNo != null">
+				and t.ORDER_NO = #{orderNo}
+			</if>
+			<if test="jobTitle != null">
+				and t.JOB_TITLE = #{jobTitle}
+			</if>
+			<if test="mobile != null">
+				and t.MOBILE = #{mobile}
+			</if>
+			<if test="officeTel != null">
+				and t.OFFICE_TEL = #{officeTel}
+			</if>
+			<if test="groupTel != null">
+				and t.group_tel = #{groupTel}
+			</if>
+			<if test="email != null">
+				and t.EMAIL = #{email}
+			</if>
+			<if test="entryPoliticalDate != null">
+				and t.ENTRY_POLITICAL_DATE = #{entryPoliticalDate}
+			</if>
+			<if test="entryPoliticalDateBegin != null">
+				and t.ENTRY_POLITICAL_DATE &gt;= #{entryPoliticalDateBegin}
+			</if>
+			<if test="entryPoliticalDateEnd != null">
+				and t.ENTRY_POLITICAL_DATE &lt;= #{entryPoliticalDateEnd}
+			</if>
+			<if test="birthday != null">
+				and t.BIRTHDAY = #{birthday}
+			</if>
+			<if test="birthdayBegin != null">
+				and t.BIRTHDAY &gt;= #{birthdayBegin}
+			</if>
+			<if test="birthdayEnd != null">
+				and t.BIRTHDAY &lt;= #{birthdayEnd}
+			</if>
+			<if test="ethnic != null">
+				and t.ETHNIC = #{ethnic}
+			</if>
+			<if test="hometown != null">
+				and t.HOMETOWN = #{hometown}
+			</if>
+			<if test="degree != null">
+				and t.DEGREE = #{degree}
+			</if>
+			<if test="cername != null">
+				and t.CERNAME = #{cername}
+			</if>
+			<if test="maritalStatus != null">
+				and t.MARITAL_STATUS = #{maritalStatus}
+			</if>
+			<if test="payCardNo != null">
+				and t.PAY_CARD_NO = #{payCardNo}
+			</if>
+			<if test="cardBank != null">
+				and t.CARD_BANK = #{cardBank}
+			</if>
+			<if test="cardName != null">
+				and t.CARD_NAME = #{cardName}
+			</if>
+			<if test="lastLonginDate != null">
+				and t.LAST_LONGIN_DATE = #{lastLonginDate}
+			</if>
+			<if test="lastLonginDateBegin != null">
+				and t.LAST_LONGIN_DATE &gt;= #{lastLonginDateBegin}
+			</if>
+			<if test="lastLonginDateEnd != null">
+				and t.LAST_LONGIN_DATE &lt;= #{lastLonginDateEnd}
+			</if>
+			<if test="wrongCount != null">
+				and t.WRONG_COUNT = #{wrongCount}
+			</if>
+			<if test="lockStartDate != null">
+				and t.LOCK_START_DATE = #{lockStartDate}
+			</if>
+			<if test="lockStartDateBegin != null">
+				and t.LOCK_START_DATE &gt;= #{lockStartDateBegin}
+			</if>
+			<if test="lockStartDateEnd != null">
+				and t.LOCK_START_DATE &lt;= #{lockStartDateEnd}
+			</if>
+			<if test="officeAddress != null">
+				and t.OFFICE_ADDRESS = #{officeAddress}
+			</if>
+			<if test="isDriver != null">
+				and t.IS_DRIVER = #{isDriver}
+			</if>
+			<if test="isLeader != null">
+				and t.IS_LEADER = #{isLeader}
+			</if>
+			<if test="isCheck != null">
+				and t.IS_CHECK = #{isCheck}
+			</if>
+			<if test="openCale != null">
+				and t.OPEN_CALE = #{openCale}
+			</if>
+			<if test="question != null">
+				and t.QUESTION = #{question}
+			</if>
+			<if test="answer != null">
+				and t.ANSWER = #{answer}
+			</if>
+			<if test="photo != null">
+				and t.PHOTO = #{photo}
+			</if>
+			<if test="isAdmin != null">
+				and t.IS_ADMIN = #{isAdmin}
+			</if>
+			<if test="lockType != null">
+				and t.LOCK_TYPE = #{lockType}
+			</if>
+			<if test="modifyPwdFlag != null">
+				and t.modify_pwd_flag = #{modifyPwdFlag}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+			<if test="theme != null">
+				and t.THEME = #{theme}
+			</if>
+			<if test="extDate1 != null">
+				and t.EXT_DATE1 = #{extDate1}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.EXT_DATE1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.EXT_DATE1 &lt;= #{extDate1End}
+			</if>
+			<if test="extDate2 != null">
+				and t.EXT_DATE2 = #{extDate2}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.EXT_DATE2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.EXT_DATE2 &lt;= #{extDate2End}
+			</if>
+			<if test="extNum1 != null">
+				and t.EXT_NUM1 = #{extNum1}
+			</if>
+			<if test="extNum2 != null">
+				and t.EXT_NUM2 = #{extNum2}
+			</if>
+			<if test="extNum3 != null">
+				and t.EXT_NUM3 = #{extNum3}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+	
+	
+	<select id="queryCount" parameterType="com.jc.system.security.domain.UserRecycle" resultType="java.lang.Long">
+		SELECT count(t.ID) 
+		FROM tty_sys_user_recycle t
+		<where>
+		
+		
+
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="code != null">
+				and t.CODE = #{code}
+			</if>
+			<if test="displayName != null">
+				and t.display_name = #{displayName}
+			</if>
+			<if test="loginName != null">
+				and t.LOGIN_NAME = #{loginName}
+			</if>
+			<if test="password != null">
+				and t.PASSWORD = #{password}
+			</if>
+			<if test="sex != null">
+				and t.SEX = #{sex}
+			</if>
+			<if test="kind != null">
+				and t.KIND = #{kind}
+			</if>
+			<if test="dutyId != null">
+				and t.DUTY_ID = #{dutyId}
+			</if>
+			<if test="level != null">
+				and t.LEVEL = #{level}
+			</if>
+			<if test="deptId != null">
+				and t.DEPT_ID = #{deptId}
+			</if>
+			<if test="status != null">
+				and t.STATUS = #{status}
+			</if>
+			<if test="entryDate != null">
+				and t.ENTRY_DATE = #{entryDate}
+			</if>
+			<if test="entryDateBegin != null">
+				and t.ENTRY_DATE &gt;= #{entryDateBegin}
+			</if>
+			<if test="entryDateEnd != null">
+				and t.ENTRY_DATE &lt;= #{entryDateEnd}
+			</if>
+			<if test="leaderId != null">
+				and t.LEADER_ID = #{leaderId}
+			</if>
+			<if test="deptLeader != null">
+				and t.DEPT_LEADER = #{deptLeader}
+			</if>
+			<if test="chargeLeader != null">
+				and t.CHARGE_LEADER = #{chargeLeader}
+			</if>
+			<if test="political != null">
+				and t.POLITICAL = #{political}
+			</if>
+			<if test="cardNo != null">
+				and t.CARD_NO = #{cardNo}
+			</if>
+			<if test="weight != null">
+				and t.WEIGHT = #{weight}
+			</if>
+			<if test="orderNo != null">
+				and t.ORDER_NO = #{orderNo}
+			</if>
+			<if test="jobTitle != null">
+				and t.JOB_TITLE = #{jobTitle}
+			</if>
+			<if test="mobile != null">
+				and t.MOBILE = #{mobile}
+			</if>
+			<if test="officeTel != null">
+				and t.OFFICE_TEL = #{officeTel}
+			</if>
+			<if test="groupTel != null">
+				and t.group_tel = #{groupTel}
+			</if>
+			<if test="email != null">
+				and t.EMAIL = #{email}
+			</if>
+			<if test="entryPoliticalDate != null">
+				and t.ENTRY_POLITICAL_DATE = #{entryPoliticalDate}
+			</if>
+			<if test="entryPoliticalDateBegin != null">
+				and t.ENTRY_POLITICAL_DATE &gt;= #{entryPoliticalDateBegin}
+			</if>
+			<if test="entryPoliticalDateEnd != null">
+				and t.ENTRY_POLITICAL_DATE &lt;= #{entryPoliticalDateEnd}
+			</if>
+			<if test="birthday != null">
+				and t.BIRTHDAY = #{birthday}
+			</if>
+			<if test="birthdayBegin != null">
+				and t.BIRTHDAY &gt;= #{birthdayBegin}
+			</if>
+			<if test="birthdayEnd != null">
+				and t.BIRTHDAY &lt;= #{birthdayEnd}
+			</if>
+			<if test="ethnic != null">
+				and t.ETHNIC = #{ethnic}
+			</if>
+			<if test="hometown != null">
+				and t.HOMETOWN = #{hometown}
+			</if>
+			<if test="degree != null">
+				and t.DEGREE = #{degree}
+			</if>
+			<if test="cername != null">
+				and t.CERNAME = #{cername}
+			</if>
+			<if test="maritalStatus != null">
+				and t.MARITAL_STATUS = #{maritalStatus}
+			</if>
+			<if test="payCardNo != null">
+				and t.PAY_CARD_NO = #{payCardNo}
+			</if>
+			<if test="cardBank != null">
+				and t.CARD_BANK = #{cardBank}
+			</if>
+			<if test="cardName != null">
+				and t.CARD_NAME = #{cardName}
+			</if>
+			<if test="lastLonginDate != null">
+				and t.LAST_LONGIN_DATE = #{lastLonginDate}
+			</if>
+			<if test="lastLonginDateBegin != null">
+				and t.LAST_LONGIN_DATE &gt;= #{lastLonginDateBegin}
+			</if>
+			<if test="lastLonginDateEnd != null">
+				and t.LAST_LONGIN_DATE &lt;= #{lastLonginDateEnd}
+			</if>
+			<if test="wrongCount != null">
+				and t.WRONG_COUNT = #{wrongCount}
+			</if>
+			<if test="lockStartDate != null">
+				and t.LOCK_START_DATE = #{lockStartDate}
+			</if>
+			<if test="lockStartDateBegin != null">
+				and t.LOCK_START_DATE &gt;= #{lockStartDateBegin}
+			</if>
+			<if test="lockStartDateEnd != null">
+				and t.LOCK_START_DATE &lt;= #{lockStartDateEnd}
+			</if>
+			<if test="officeAddress != null">
+				and t.OFFICE_ADDRESS = #{officeAddress}
+			</if>
+			<if test="isDriver != null">
+				and t.IS_DRIVER = #{isDriver}
+			</if>
+			<if test="isLeader != null">
+				and t.IS_LEADER = #{isLeader}
+			</if>
+			<if test="isCheck != null">
+				and t.IS_CHECK = #{isCheck}
+			</if>
+			<if test="openCale != null">
+				and t.OPEN_CALE = #{openCale}
+			</if>
+			<if test="question != null">
+				and t.QUESTION = #{question}
+			</if>
+			<if test="answer != null">
+				and t.ANSWER = #{answer}
+			</if>
+			<if test="photo != null">
+				and t.PHOTO = #{photo}
+			</if>
+			<if test="isAdmin != null">
+				and t.IS_ADMIN = #{isAdmin}
+			</if>
+			<if test="lockType != null">
+				and t.LOCK_TYPE = #{lockType}
+			</if>
+			<if test="modifyPwdFlag != null">
+				and t.modify_pwd_flag = #{modifyPwdFlag}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+			<if test="theme != null">
+				and t.THEME = #{theme}
+			</if>
+			<if test="extDate1 != null">
+				and t.EXT_DATE1 = #{extDate1}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.EXT_DATE1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.EXT_DATE1 &lt;= #{extDate1End}
+			</if>
+			<if test="extDate2 != null">
+				and t.EXT_DATE2 = #{extDate2}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.EXT_DATE2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.EXT_DATE2 &lt;= #{extDate2End}
+			</if>
+			<if test="extNum1 != null">
+				and t.EXT_NUM1 = #{extNum1}
+			</if>
+			<if test="extNum2 != null">
+				and t.EXT_NUM2 = #{extNum2}
+			</if>
+			<if test="extNum3 != null">
+				and t.EXT_NUM3 = #{extNum3}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.system.security.domain.UserRecycle">
+    	delete from tty_sys_user_recycle
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.system.security.domain.UserRecycle">
+    	UPDATE tty_sys_user_recycle t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+
+</mapper>

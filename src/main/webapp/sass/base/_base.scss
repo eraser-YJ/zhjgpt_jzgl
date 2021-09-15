@@ -1,0 +1,656 @@
+﻿/* 公共样式 */
+
+
+/* 页面标题 */
+.page-header{
+	padding-bottom:9px;
+	margin:20px 0 30px;
+	border-bottom:1px solid $global-border-eee-color;
+}
+/* 圆，圆角，边框 */
+.img-circle{
+	@include border-radius(500px);
+	/*behavior:url(js/ie/PIE.htc)*/
+}
+.img-rounded{
+	@include border-radius(6px);
+	/*behavior:url(js/ie/PIE.htc)*/
+}
+.img-polaroid{
+	padding:4px;
+	background-color:#fff;
+	border:1px solid #ccc;
+	border:1px solid rgba(0,0,0,0.2);
+	@include box-shadow(0 1px 3px rgba(0,0,0,0.1));
+	/*behavior:url(js/ie/PIE.htc)*/
+}
+/* input宽度 */
+.input-mini{
+	width:60px;
+}
+.input-small{
+	width:90px;
+}
+.input-medium{
+	width:150px;
+}
+.input-large{
+	width:210px;
+}
+.input-xlarge{
+	width:270px;
+}
+.input-xxlarge{
+	width:530px;
+}
+
+/* 无样式列表，行内列表 */
+ul.unstyled,ol.unstyled{
+	margin-left:0;
+	list-style:none;
+}
+ul.inline,ol.inline{
+	margin-left:0;
+	list-style:none;
+}
+ul.inline>li,ol.inline>li{
+	display:inline-block;
+	padding-right:5px;
+	padding-left:5px;
+}
+/* 水平描述 */
+.dl-horizontal:before,.dl-horizontal:after{
+	display:table;
+	line-height:0;
+	content:"";
+}
+.dl-horizontal:after{
+	clear:both;
+}
+.dl-horizontal dt{
+	float:left;
+	width:160px;
+	overflow:hidden;
+	clear:left;
+	text-align:right;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+.dl-horizontal dd{
+	margin-left:180px;
+}
+/* 表单文本组 */
+.control-group{
+	margin-bottom:10px;
+}
+legend+.control-group{
+	margin-top:20px;
+	-webkit-margin-top-collapse:separate;
+}
+/* 水平表单 */
+.form-horizontal .control-group{
+	margin-bottom:20px;
+}
+.form-horizontal .control-group:before,.form-horizontal .control-group:after{
+	display:table;
+	line-height:0;
+	content:"";
+}
+.form-horizontal .control-group:after{
+	clear:both;
+}
+.form-horizontal .control-label{
+	float:left;
+	width:160px;
+	padding-top:5px;
+	text-align:right;
+}
+.form-horizontal .controls{
+	margin-left:180px;
+}
+.form-horizontal .help-block{
+	margin-bottom:0;
+}
+.form-horizontal input+.help-block,.form-horizontal select+.help-block,.form-horizontal textarea+.help-block,.form-horizontal .uneditable-input+.help-block,.form-horizontal .input-prepend+.help-block,.form-horizontal .input-append+.help-block{
+	margin-top:10px;
+}
+.form-horizontal .form-actions{
+	padding-left:180px;
+}
+
+p{
+	margin:0 0 10px;
+}
+hr{
+	margin:20px 0;
+	border:0;
+	border-top:1px solid $global-border-eee-color;
+	border-bottom:1px solid $global-border-fff-color;
+}
+abbr[title],abbr[data-original-title]{
+	cursor:help;
+	border-bottom:1px dotted $global-border-999-color;
+}
+abbr.initialism{
+	font-size:90%;
+	text-transform:uppercase;
+}
+blockquote{
+	padding:0 0 0 15px;
+	margin:0 0 20px;
+	border-left:5px solid $global-border-eee-color;
+}
+blockquote p{
+	margin-bottom:0;
+	font-size:17.5px;
+	font-weight:300;
+	line-height:1.25;
+}
+blockquote small{
+	display:block;
+	line-height:20px;
+	color:$global-h-small-color;
+}
+blockquote small:before{
+	content:'\2014 \00A0';
+}
+blockquote.pull-right{
+	float:right;
+	padding-right:15px;
+	padding-left:0;
+	border-right:5px solid $global-border-eee-color;
+	border-left:0;
+}
+blockquote.pull-right p,blockquote.pull-right small{
+	text-align:right;
+}
+blockquote.pull-right small:before{
+	content:'';
+}
+blockquote.pull-right small:after{
+	content:'\00A0 \2014';
+}
+q:before,q:after,blockquote:before,blockquote:after{
+	content:"";
+}
+address{
+	display:block;
+	margin-bottom:20px;
+	font-style:normal;
+	line-height:20px;
+}
+code,pre{
+	padding:0 3px 2px;
+	font-family:Monaco,Menlo,Consolas,"Courier New",monospace;
+	font-size:12px;
+	color:#333;
+	@include border-radius(3px);
+}
+code{
+	padding:2px 4px;
+	color:#d14;
+	white-space:nowrap;
+	background-color:#f7f7f9;
+	border:1px solid #e1e1e8;
+}
+pre{
+	display:block;
+	padding:9.5px;
+	margin:0 0 10px;
+	font-size:13px;
+	line-height:20px;
+	word-break:break-all;
+	word-wrap:break-word;
+	white-space:pre;
+	white-space:pre-wrap;
+	background-color:#f5f5f5;
+	border:1px solid #ccc;
+	border:1px solid rgba(0,0,0,0.15);
+	@include border-radius(4px);
+}
+pre.prettyprint{
+	margin-bottom:20px;
+}
+pre code{
+	padding:0;
+	color:inherit;
+	white-space:pre;
+	white-space:pre-wrap;
+	background-color:transparent;
+	border:0;
+}
+.pre-scrollable{
+	max-height:340px;
+	overflow-y:scroll;
+}
+fieldset{
+	padding:0;
+	margin:0;
+	border:0;
+}
+legend{
+	display:block;
+	width:100%;
+	padding:0;
+	margin-bottom:20px;
+	font-size:21px;
+	line-height:40px;
+	color:#333;
+	border:0;
+	border-bottom:1px solid #e5e5e5;
+}
+legend small{
+	font-size:15px;
+	color:$global-h-small-color;
+}
+label,input,button,select,textarea{
+	font-size:$global-body-size;
+	font-weight:normal;
+	line-height:$global-body-line-height;
+}
+label{
+	display:block;
+	margin-bottom:5px;
+}
+/* select,textarea,input 公共 */
+[data-toggle="buttons"]>.btn>input[type="radio"], [data-toggle="buttons"]>.btn>input[type="checkbox"] {
+	display: none;
+}
+select,textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],.uneditable-input{
+	display:inline-block;
+	padding:4px 6px;
+	margin-bottom:10px;
+	font-size:14px;
+	line-height:20px;
+	color:$global-input-color;
+	vertical-align:middle;
+}
+textarea{
+	height:auto;
+}
+textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input{
+	background-color:$global-input-bg-color;
+	border:1px solid $global-input-border-color;
+	-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+	-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+	box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+	-webkit-transition:border linear .2s,box-shadow linear .2s;
+	-moz-transition:border linear .2s,box-shadow linear .2s;
+	-o-transition:border linear .2s,box-shadow linear .2s;
+	transition:border linear .2s,box-shadow linear .2s;
+}
+textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type="datetime"]:focus,input[type="datetime-local"]:focus,input[type="date"]:focus,input[type="month"]:focus,input[type="time"]:focus,input[type="week"]:focus,input[type="number"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="color"]:focus,.uneditable-input:focus{
+	border-color:rgba(82,168,236,0.8);
+	outline:0;
+	outline:thin dotted \9;
+	-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+	-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+	box-shadow:inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+}
+input[type="radio"],input[type="checkbox"]{
+	margin:4px 0 0;
+	margin-top:1px \9;
+	line-height:normal;
+}
+input[type="file"],input[type="image"],input[type="submit"],input[type="reset"],input[type="button"],input[type="radio"],input[type="checkbox"]{
+	width:auto;
+}
+input[type="text"]+button[type="button"]:focus{
+	outline:0;
+}
+select,input[type="file"]{
+	height:30px;
+	line-height:30px;
+}
+select{
+	width:220px;
+	background-color:$global-input-bg-color;
+	border:1px solid $global-input-border-color;
+}
+select[multiple],select[size]{
+	height:auto;
+}
+select:focus,input[type="file"]:focus,input[type="radio"]:focus,input[type="checkbox"]:focus{
+	outline:thin dotted #333;
+	outline:5px auto -webkit-focus-ring-color;
+	outline-offset:-2px;
+}
+.uneditable-input,.uneditable-textarea{
+	color: $global-h-small-color;
+	cursor:not-allowed;
+	background-color:#fcfcfc;
+	border-color:#ccc;
+	-webkit-box-shadow:inset 0 1px 2px rgba(0,0,0,0.025);
+	-moz-box-shadow:inset 0 1px 2px rgba(0,0,0,0.025);
+	box-shadow:inset 0 1px 2px rgba(0,0,0,0.025);
+}
+.uneditable-input{
+	overflow:hidden;
+	white-space:nowrap;
+}
+.uneditable-textarea{
+	width:auto;
+	height:auto;
+}
+
+input::-moz-placeholder,textarea::-moz-placeholder{
+	@include opacity(0);
+}
+input:-ms-input-placeholder,textarea:-ms-input-placeholder{
+	@include opacity(0);
+}
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
+	@include opacity(0);
+}
+input.placeholder,textarea.placeholder{
+	color: $global-border-999-color !important;
+}
+
+.radio,.checkbox{
+	min-height:20px;
+	padding-left:20px;
+}
+.radio input[type="radio"],.checkbox input[type="checkbox"]{
+	float:left;
+	margin-left:-20px;
+}
+.controls>.radio:first-child,.controls>.checkbox:first-child{
+	padding-top:5px;
+}
+.radio.inline{
+	display:inline-block;
+	margin-bottom:0;
+	vertical-align:middle;
+	margin-right:10px;
+}
+.checkbox.inline{
+	display:inline-block;margin-bottom:0;vertical-align:middle;margin-right:10px}
+.radio.inline+.radio.inline,.checkbox.inline+.checkbox.inline{
+	margin-right:10px;
+}
+input[class*="span"],select[class*="span"],textarea[class*="span"],.uneditable-input[class*="span"],.row-fluid input[class*="span"],.row-fluid select[class*="span"],.row-fluid textarea[class*="span"],.row-fluid .uneditable-input[class*="span"]{
+	float:none;
+	margin-left:0;
+}
+.input-append input[class*="span"],.input-append .uneditable-input[class*="span"],.input-prepend input[class*="span"],.input-prepend .uneditable-input[class*="span"],.row-fluid input[class*="span"],.row-fluid select[class*="span"],.row-fluid textarea[class*="span"],.row-fluid .uneditable-input[class*="span"],.row-fluid .input-prepend [class*="span"],.row-fluid .input-append [class*="span"]{
+	display:inline-block;
+}
+input,textarea,.uneditable-input{
+	margin-left:0;
+}
+input[disabled],select[disabled],textarea[disabled],input[readonly],select[readonly],textarea[readonly]{
+	cursor:not-allowed;
+	background-color:$global-disabled-color;
+}
+input[type="radio"][disabled],input[type="checkbox"][disabled],input[type="radio"][readonly],input[type="checkbox"][readonly]{
+	background-color:transparent;
+}
+/*行内多文本框 */
+.controls-row [class*="span"]+[class*="span"]{
+	margin-left:20px;
+}
+@for $i from 0 through 11 {
+	input.span#{$i+1},textarea.span#{$i+1},.uneditable-input.span#{$i+1}{
+		width:#{46 + ($i * 80)}px
+	}
+}
+.controls-row:before,.controls-row:after{
+	display:table;
+	line-height:0;
+	content:"";
+}
+.controls-row:after{
+	clear:both;
+}
+.controls-row [class*="span"],.row-fluid .controls-row [class*="span"]{
+	float:left;
+}
+.controls-row .checkbox[class*="span"],.controls-row .radio[class*="span"]{
+	padding-top:5px;
+}
+
+input:focus:invalid,textarea:focus:invalid,select:focus:invalid{
+	color:$global-invalid-color;
+	border-color: $global-invalid-border-color;
+}
+input:focus:invalid:focus,textarea:focus:invalid:focus,select:focus:invalid:focus{
+	border-color:$global-invalid-border-color;
+	@include box-shadow(0 0 6px lighten($global-invalid-color,12%));
+}
+
+/* 表单帮助文本 */
+.help-block,.help-inline{
+	color: $global-body-color;
+}
+.help-block{
+	display:block;
+	margin-bottom:10px;
+}
+.help-inline{
+	display:inline-block;
+	padding-left:5px;
+	vertical-align:middle;
+}
+/* 前缀和附加输入框 */
+.input-append,.input-prepend{
+	display:inline-block;
+	margin-bottom:10px;
+	font-size:0;
+	white-space:nowrap;
+	vertical-align:middle;
+}
+.input-append input,.input-prepend input,.input-append select,.input-prepend select,.input-append .uneditable-input,.input-prepend .uneditable-input,.input-append .dropdown-menu,.input-prepend .dropdown-menu,.input-append .popover,.input-prepend .popover{
+	font-size:14px;
+}
+.input-append input,.input-prepend input,.input-append select,.input-prepend select,.input-append .uneditable-input,.input-prepend .uneditable-input{
+	position:relative;
+	margin-bottom:0;
+	*margin-left:0;
+	vertical-align:top;
+}
+.input-append input:focus,.input-prepend input:focus,.input-append select:focus,.input-prepend select:focus,.input-append .uneditable-input:focus,.input-prepend .uneditable-input:focus{
+	z-index:2;
+}
+.input-append .add-on,.input-prepend .add-on{
+	display:inline-block;
+	width:auto;
+	height:20px;
+	min-width:16px;
+	padding:4px 5px;
+	font-size:$global-body-size;
+	font-weight:normal;
+	line-height:$global-body-line-height;
+	text-align:center;
+	background-color:$global-disabled-color;
+	border:1px solid $global-input-border-color;
+	@include box-shadow(0 1px 0 $global-border-fff-color);
+}
+.input-append .add-on,.input-prepend .add-on,.input-append .btn,.input-prepend .btn,.input-append .btn-group>.dropdown-toggle,.input-prepend .btn-group>.dropdown-toggle{
+	vertical-align:top;
+}
+.input-append .active,.input-prepend .active{
+	background-color:#a9dba9;
+	border-color:#46a546;
+}
+.input-prepend .add-on,.input-prepend .btn{
+	margin-right:-1px;
+}
+.input-append .add-on,.input-append .btn,.input-append .btn-group{
+	margin-left:-1px;
+}
+.input-prepend.input-append .add-on:first-child,.input-prepend.input-append .btn:first-child{
+	margin-right:-1px;
+}
+.input-prepend.input-append .add-on:last-child,.input-prepend.input-append .btn:last-child{
+	margin-left:-1px;
+}
+.input-prepend.input-append .btn-group:first-child{
+	margin-left:0;
+}
+/* 搜索表单 */
+input.search-query{
+	padding-right:14px;
+	padding-right:4px \9;
+	padding-left:14px;
+	padding-left:4px \9;
+	margin-bottom:0;
+	@include border-radius(15px);
+}
+.form-search .input-append .search-query,.form-search .input-prepend .search-query{
+	@include border-radius(0);
+}
+.form-search .input-append .search-query{
+	@include border-radius(14px 0 0 14px);
+}
+.form-search .input-append .btn{
+	@include border-radius(0 14px 14px 0);
+}
+.form-search .input-prepend .search-query{
+	@include border-radius(0 14px 14px 0);
+}
+.form-search .input-prepend .btn{
+	@include border-radius(14px 0 0 14px);
+}
+.form-search input,.form-inline input,.form-horizontal input,.form-search textarea,.form-inline textarea,.form-horizontal textarea,.form-search select,.form-inline select,.form-horizontal select,.form-search .help-inline,.form-inline .help-inline,.form-horizontal .help-inline,.form-search .uneditable-input,.form-inline .uneditable-input,.form-horizontal .uneditable-input,.form-search .input-prepend,.form-inline .input-prepend,.form-horizontal .input-prepend,.form-search .input-append,.form-inline .input-append,.form-horizontal .input-append{
+	display:inline-block;
+	*display:inline;
+	margin-bottom:0;
+	vertical-align:middle;
+	*zoom:1;
+}
+.form-search .hide,.form-inline .hide,.form-horizontal .hide{
+	display:none;
+}
+.form-search label,.form-inline label,.form-search .btn-group,.form-inline .btn-group{
+	display:inline-block;
+}
+.form-search .input-append,.form-inline .input-append,.form-search .input-prepend,.form-inline .input-prepend{
+	margin-bottom:0;
+}
+.form-search .radio,.form-search .checkbox,.form-inline .radio,.form-inline .checkbox{
+	padding-left:0;
+	margin-bottom:0;
+	vertical-align:middle;
+}
+.form-search .radio input[type="radio"],.form-search .checkbox input[type="checkbox"],.form-inline .radio input[type="radio"],.form-inline .checkbox input[type="checkbox"]{
+	float:left;
+	margin-right:3px;
+	margin-left:0;
+}
+/* table 公共 */
+table{
+	max-width:100%;
+	background-color:transparent;
+	border-collapse:collapse;
+	border-spacing:0;
+}
+.table{
+	width:100%;
+	margin-bottom:20px;
+	border:1px solid $global-table-border-color;
+	border-left:0;
+}
+.panel.plan-box .table{
+	width:100%;
+	margin-bottom:0;
+	border:0;
+}
+.table th,.table td{
+	padding:$global-table-td-padding;
+	line-height:$global-table-td-line-height;
+	text-align:left;
+	vertical-align:top;
+	border-top:1px solid $global-td-border-color;
+}
+.table th{
+	font-weight:bold;
+}
+.table thead th{
+	vertical-align:bottom;
+}
+.table caption+thead tr:first-child th,.table caption+thead tr:first-child td,.table colgroup+thead tr:first-child th,.table colgroup+thead tr:first-child td,.table thead:first-child tr:first-child th,.table thead:first-child tr:first-child td{
+	border-top:0;
+}
+.table tbody+tbody{
+	border-top:2px solid $global-td-border-color;
+}
+.table .table{
+	background-color:$global-table-bg-color;
+}
+.table th,.table td{
+	border-left:1px solid $global-table-border-color;
+}
+.table caption+thead tr:first-child th,.table caption+tbody tr:first-child th,.table caption+tbody tr:first-child td,.table colgroup+thead tr:first-child th,.table colgroup+tbody tr:first-child th,.table colgroup+tbody tr:first-child td,.table thead:first-child tr:first-child th,.table tbody:first-child tr:first-child th,.table tbody:first-child tr:first-child td{
+	border-top:0;
+}
+.table-striped tbody>tr:nth-child(odd)>td,.table-striped tbody>tr:nth-child(odd)>th{
+	background-color:$global-table-bg-color;
+}
+.table-striped tbody>tr>td>p,.table-striped tbody>tr>td>p>a{
+	word-break:break-all;
+}
+.table-hover tbody tr:hover>td,.table-hover tbody tr:hover>th{
+	background-color:$global-table-tr-hover-color;
+}
+table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span"],.row-fluid table th[class*="span"]{
+	display:table-cell;
+	float:none;
+	margin-left:0;
+}
+
+@for $i from 0 through 11 {
+	.table td.span#{$i+1},.table th.span#{$i+1}{
+		float:none;
+		width:#{44 + ($i * 80)}px;
+		margin-left:0;
+	}
+}
+.table tbody tr.success>td{
+	background-color:$global-table-tr-success-color;
+}
+.table tbody tr.error>td{
+	background-color:$global-table-tr-error-color;
+}
+.table tbody tr.warning>td{
+	background-color:$global-table-tr-warning-color;
+}
+.table tbody tr.info>td{
+	background-color:$global-table-tr-info-color;
+}
+
+.table-hover tbody tr.success:hover>td{
+	background-color:$global-tr-hover-success-color;
+}
+.table-hover tbody tr.error:hover>td{
+	background-color:$global-tr-hover-error-color;
+}
+.table-hover tbody tr.warning:hover>td{
+	background-color:$global-tr-hover-warning-color;
+}
+.table-hover tbody tr.info:hover>td{
+	background-color:$global-tr-hover-info-color;
+}
+.auth-staff tbody>tr>td{
+	table-layout: fixed;
+	word-break:break-all;
+}
+.scrollable{-webkit-overflow-scrolling:touch;overflow-x:hidden;overflow-y:auto;}
+::-webkit-scrollbar{width:7px;height:7px;}
+::-webkit-scrollbar-thumb{background-color:rgba(50,50,50,0.3);}
+::-webkit-scrollbar-thumb:hover{background-color:rgba(50,50,50,0.6);}
+::-webkit-scrollbar-track{background-color:rgba(50,50,50,0.1);}
+::-webkit-scrollbar-track:hover{background-color:rgba(50,50,50,0.2);}

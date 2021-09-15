@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.api.domain.ApiMeta">
+
+	<insert id="insert" parameterType="com.jc.system.api.domain.ApiMeta" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO tty_sys_api_service(ID,UUID,SUBSYSTEM,APP_NAME,API_NAME,URI,PARAMS,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,ext_date1,ext_date2,ext_num1,ext_num2,ext_num3,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+			VALUES (#{id},#{uuid},#{subsystem},#{appName},#{apiName},#{uri},#{params},#{deleteFlag},#{createUser},#{createUserDept},#{createUserOrg},#{createDate},#{modifyUser},#{modifyDate},#{extDate1},#{extDate2},#{extNum1},#{extNum2},#{extNum3},#{extStr1},#{extStr2},#{extStr3},#{extStr4},#{extStr5})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		INSERT INTO tty_sys_api_service(ID,UUID,SUBSYSTEM,APP_NAME,API_NAME,URI,PARAMS,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,ext_date1,ext_date2,ext_num1,ext_num2,ext_num3,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+			VALUES
+			<foreach collection="list" item="item" index="index" separator=","> 
+				(#{id},#{item.id},#{item.uuid},#{subsystem},#{item.appName},#{item.apiName},#{item.uri},#{item.params},#{item.deleteFlag},#{item.createUser},#{item.createUserDept},#{item.createUserOrg},#{item.createDate},#{item.modifyUser},#{item.modifyDate},#{item.extDate1},#{item.extDate2},#{item.extNum1},#{item.extNum2},#{item.extNum3},#{item.extStr1},#{item.extStr2},#{item.extStr3},#{item.extStr4},#{item.extStr5})
+			</foreach> 
+	</insert>
+
+	<update id="update" parameterType="com.jc.system.api.domain.ApiMeta">
+	UPDATE tty_sys_api_service set
+	   	<if test="uuid != null">
+	   		UUID = #{uuid},
+	   	</if>
+	   	<if test="subsystem != null">
+	   		SUBSYSTEM = #{subsystem},
+	   	</if>
+	   	<if test="appName != null">
+	   		APP_NAME = #{appName},
+	   	</if>
+	   	<if test="apiName != null">
+	   		API_NAME = #{apiName},
+	   	</if>
+	   	<if test="uri != null">
+	   		URI = #{uri},
+	   	</if>
+	   	<if test="params != null">
+	   		PARAMS = #{params},
+	   	</if>
+	   	<if test="deleteFlag != null">
+	   		DELETE_FLAG = #{deleteFlag},
+	   	</if>
+	   	<if test="createUser != null">
+	   		CREATE_USER = #{createUser},
+	   	</if>
+	   	<if test="createUserDept != null">
+	   		CREATE_USER_DEPT = #{createUserDept},
+	   	</if>
+	   	<if test="createUserOrg != null">
+	   		CREATE_USER_ORG = #{createUserOrg},
+	   	</if>
+	   	<if test="createDate != null">
+	   		CREATE_DATE = #{createDate},
+	   	</if>
+	   	<if test="modifyUser != null">
+	   		MODIFY_USER = #{modifyUser},
+	   	</if>
+	   	<if test="extDate1 != null">
+	   		ext_date1 = #{extDate1},
+	   	</if>
+	   	<if test="extDate2 != null">
+	   		ext_date2 = #{extDate2},
+	   	</if>
+	   	<if test="extNum1 != null">
+	   		ext_num1 = #{extNum1},
+	   	</if>
+	   	<if test="extNum2 != null">
+	   		ext_num2 = #{extNum2},
+	   	</if>
+	   	<if test="extNum3 != null">
+	   		ext_num3 = #{extNum3},
+	   	</if>
+	   	<if test="extStr1 != null">
+	   		EXT_STR1 = #{extStr1},
+	   	</if>
+	   	<if test="extStr2 != null">
+	   		EXT_STR2 = #{extStr2},
+	   	</if>
+	   	<if test="extStr3 != null">
+	   		EXT_STR3 = #{extStr3},
+	   	</if>
+	   	<if test="extStr4 != null">
+	   		EXT_STR4 = #{extStr4},
+	   	</if>
+	   	<if test="extStr5 != null">
+	   		EXT_STR5 = #{extStr5},
+	   	</if>
+	   	MODIFY_DATE = #{modifyDateNew} where ID = #{id} and MODIFY_DATE = #{modifyDate}
+	</update>
+
+	<select id="query" parameterType="com.jc.system.api.domain.ApiMeta" resultType="com.jc.system.api.domain.ApiMeta">
+		SELECT 
+			t.ID id,
+			t.UUID uuid,
+			t.SUBSYSTEM subsystem,
+			t.APP_NAME appName,
+			t.API_NAME apiName,
+			t.URI uri,
+			t.PARAMS params,
+			t.DELETE_FLAG deleteFlag,
+			t.CREATE_USER createUser,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_USER_ORG createUserOrg,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			t.ext_date1 extDate1,
+			t.ext_date2 extDate2,
+			t.ext_num1 extNum1,
+			t.ext_num2 extNum2,
+			t.ext_num3 extNum3,
+			t.EXT_STR1 extStr1,
+			t.EXT_STR2 extStr2,
+			t.EXT_STR3 extStr3,
+			t.EXT_STR4 extStr4,
+			t.EXT_STR5 extStr5
+			
+		FROM tty_sys_api_service t
+		<where>
+		
+		
+
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="uuid != null">
+				and t.UUID = #{uuid}
+			</if>
+			<if test="subsystem != null">
+		   		and t.SUBSYSTEM = #{subsystem}
+		   	</if>
+			<if test="appName != null">
+				and t.APP_NAME like '%${appName}%'
+			</if>
+			<if test="apiName != null">
+				and t.API_NAME like '%${apiName}%'
+			</if>
+			<if test="uri != null">
+				and t.URI = #{uri}
+			</if>
+			<if test="params != null">
+				and t.PARAMS = #{params}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+			<if test="extDate1 != null">
+				and t.ext_date1 = #{extDate1}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.ext_date1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.ext_date1 &lt;= #{extDate1End}
+			</if>
+			<if test="extDate2 != null">
+				and t.ext_date2 = #{extDate2}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.ext_date2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.ext_date2 &lt;= #{extDate2End}
+			</if>
+			<if test="extNum1 != null">
+				and t.ext_num1 = #{extNum1}
+			</if>
+			<if test="extNum2 != null">
+				and t.ext_num2 = #{extNum2}
+			</if>
+			<if test="extNum3 != null">
+				and t.ext_num3 = #{extNum3}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+	
+	
+	<select id="queryCount" parameterType="com.jc.system.api.domain.ApiMeta" resultType="java.lang.Long">
+		SELECT count(t.ID) 
+		FROM tty_sys_api_service t
+		<where>
+		
+		
+
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="uuid != null">
+				and t.UUID = #{uuid}
+			</if>
+			<if test="subsystem != null">
+				and t.SUBSYSTEM = #{subsystem}
+		   	</if>
+			<if test="appName != null">
+				and t.APP_NAME like '%${appName}%'
+			</if>
+			<if test="apiName != null">
+				and t.API_NAME like '%${apiName}%'
+			</if>
+			<if test="uri != null">
+				and t.URI = #{uri}
+			</if>
+			<if test="params != null">
+				and t.PARAMS = #{params}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="createDateBegin != null">
+				and t.CREATE_DATE &gt;= #{createDateBegin}
+			</if>
+			<if test="createDateEnd != null">
+				and t.CREATE_DATE &lt;= #{createDateEnd}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="modifyDateBegin != null">
+				and t.MODIFY_DATE &gt;= #{modifyDateBegin}
+			</if>
+			<if test="modifyDateEnd != null">
+				and t.MODIFY_DATE &lt;= #{modifyDateEnd}
+			</if>
+			<if test="extDate1 != null">
+				and t.ext_date1 = #{extDate1}
+			</if>
+			<if test="extDate1Begin != null">
+				and t.ext_date1 &gt;= #{extDate1Begin}
+			</if>
+			<if test="extDate1End != null">
+				and t.ext_date1 &lt;= #{extDate1End}
+			</if>
+			<if test="extDate2 != null">
+				and t.ext_date2 = #{extDate2}
+			</if>
+			<if test="extDate2Begin != null">
+				and t.ext_date2 &gt;= #{extDate2Begin}
+			</if>
+			<if test="extDate2End != null">
+				and t.ext_date2 &lt;= #{extDate2End}
+			</if>
+			<if test="extNum1 != null">
+				and t.ext_num1 = #{extNum1}
+			</if>
+			<if test="extNum2 != null">
+				and t.ext_num2 = #{extNum2}
+			</if>
+			<if test="extNum3 != null">
+				and t.ext_num3 = #{extNum3}
+			</if>
+			<if test="extStr1 != null">
+				and t.EXT_STR1 = #{extStr1}
+			</if>
+			<if test="extStr2 != null">
+				and t.EXT_STR2 = #{extStr2}
+			</if>
+			<if test="extStr3 != null">
+				and t.EXT_STR3 = #{extStr3}
+			</if>
+			<if test="extStr4 != null">
+				and t.EXT_STR4 = #{extStr4}
+			</if>
+			<if test="extStr5 != null">
+				and t.EXT_STR5 = #{extStr5}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.system.api.domain.ApiMeta">
+    	delete from tty_sys_api_service
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.system.api.domain.ApiMeta">
+    	UPDATE tty_sys_api_service t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+
+</mapper>

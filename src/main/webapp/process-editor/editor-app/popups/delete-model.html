@@ -1,0 +1,19 @@
+
+<div class="modal" ng-controller="DeleteModelCtrl">
+    <div class="modal-dialog" style="width:300px;margin-top: 12%;">
+        <div class="modal-content">
+            <div class="modal-header confirm">
+                <h2>{{title}}流程</h2>
+            </div>
+            <div class="modal-body">
+                <p class="content">
+                    您确定要执行此操作吗 ?
+                </p>
+                <div class="pull-right">
+                    <button class="btn btn-primary" ng-click="delete()" ng-disabled="status.loading" translate>ACTION.REMOVE</button>
+                    <button type="button" class="btn" ng-click="close()" ng-disabled="status.loading" translate>ACTION.CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

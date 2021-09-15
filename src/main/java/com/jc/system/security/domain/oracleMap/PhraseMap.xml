@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.Phrase">
+
+	<select id="query" parameterType="com.jc.system.security.domain.Phrase" resultType="com.jc.system.security.domain.Phrase">
+		SELECT 
+			t.ID id,
+			t.CONTENT content,
+			t.PHRASE_TYPE phraseType,
+			t.DELETE_FLAG deleteFlag,
+			t.CREATE_USER createUser,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_USER_ORG createUserOrg,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			u.display_name userName
+			
+		FROM tty_sys_phrase t, tty_sys_user u
+		<where>
+			t.CREATE_USER = u.ID
+			<if test="dataAccessDynamicSQL != null">
+				${dataAccessDynamicSQL}
+			</if>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="content != null">
+				and t.CONTENT = #{content}
+			</if>
+			<if test="phraseType != null">
+				and t.PHRASE_TYPE = #{phraseType}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="orderBy != null">
+				order by ${orderBy}
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="queryCount" parameterType="com.jc.system.security.domain.Phrase" resultType="java.lang.Integer">
+		SELECT count(t.ID) 
+		FROM tty_sys_phrase t, tty_sys_user u
+		<where>
+			t.CREATE_USER = u.ID
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="content != null">
+				and t.CONTENT = #{content}
+			</if>
+			<if test="phraseType != null">
+				and t.PHRASE_TYPE = #{phraseType}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.system.security.domain.Phrase">
+    	delete from tty_sys_phrase
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.system.security.domain.Phrase">
+    	UPDATE tty_sys_phrase t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+	<insert id="insert" parameterType="com.jc.system.security.domain.Phrase" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO tty_sys_phrase(ID,CONTENT,PHRASE_TYPE,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+			VALUES
+			(#{id,jdbcType=VARCHAR},#{content,jdbcType=VARCHAR},#{phraseType,jdbcType=VARCHAR},#{deleteFlag,jdbcType=NUMERIC},#{createUser,jdbcType=VARCHAR},#{createUserDept,jdbcType=VARCHAR},#{createUserOrg,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{modifyUser,jdbcType=VARCHAR},#{modifyDate,jdbcType=TIMESTAMP},#{extStr1,jdbcType=VARCHAR},#{extStr2,jdbcType=VARCHAR},#{extStr3,jdbcType=VARCHAR},#{extStr4,jdbcType=VARCHAR},#{extStr5,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		INSERT INTO tty_sys_phrase(ID,CONTENT,PHRASE_TYPE,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id,jdbcType=VARCHAR},#{item.content,jdbcType=VARCHAR},#{item.phraseType,jdbcType=VARCHAR},#{item.deleteFlag,jdbcType=NUMERIC},#{item.createUser,jdbcType=VARCHAR},#{item.createUserDept,jdbcType=VARCHAR},#{item.createUserOrg,jdbcType=VARCHAR},#{item.createDate,jdbcType=TIMESTAMP},#{item.modifyUser,jdbcType=VARCHAR},#{item.modifyDate,jdbcType=TIMESTAMP},#{item.extStr1,jdbcType=VARCHAR},#{item.extStr2,jdbcType=VARCHAR},#{item.extStr3,jdbcType=VARCHAR},#{item.extStr4,jdbcType=VARCHAR},#{item.extStr5,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.system.security.domain.Phrase">
+	UPDATE tty_sys_phrase
+	   <set>
+	   	<if test="content != null">
+	   		CONTENT = #{content},
+	   	</if>
+	   	<if test="phraseType != null">
+	   		PHRASE_TYPE = #{phraseType},
+	   	</if>
+	   	<if test="deleteFlag != null">
+	   		DELETE_FLAG = #{deleteFlag},
+	   	</if>
+	   	<if test="createUser != null">
+	   		CREATE_USER = #{createUser},
+	   	</if>
+	   	<if test="createUserDept != null">
+	   		CREATE_USER_DEPT = #{createUserDept},
+	   	</if>
+	   	<if test="createUserOrg != null">
+	   		CREATE_USER_ORG = #{createUserOrg},
+	   	</if>
+	   	<if test="createDate != null">
+	   		CREATE_DATE = #{createDate},
+	   	</if>
+	   	<if test="modifyUser != null">
+	   		MODIFY_USER = #{modifyUser},
+	   	</if>
+	   	<if test="modifyDate != null">
+	   		MODIFY_DATE = #{modifyDate},
+	   	</if>
+	   	<if test="extStr1 != null">
+	   		EXT_STR1 = #{extStr1},
+	   	</if>
+	   	<if test="extStr2 != null">
+	   		EXT_STR2 = #{extStr2},
+	   	</if>
+	   	<if test="extStr3 != null">
+	   		EXT_STR3 = #{extStr3},
+	   	</if>
+	   	<if test="extStr4 != null">
+	   		EXT_STR4 = #{extStr4},
+	   	</if>
+	   	<if test="extStr5 != null">
+	   		EXT_STR5 = #{extStr5},
+	   	</if>
+	   </set>
+	   where ID = #{id}
+	</update>
+	
+	<select id="queryForUser" parameterType="com.jc.system.security.domain.Phrase" resultType="com.jc.system.security.domain.Phrase">
+		SELECT 
+			t.ID id,
+			t.CONTENT content,
+			t.PHRASE_TYPE phraseType,
+			t.DELETE_FLAG deleteFlag,
+			t.CREATE_USER createUser,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_USER_ORG createUserOrg,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			u.display_name userName
+			
+		FROM tty_sys_phrase t, tty_sys_user u
+		<where>
+			t.CREATE_USER = u.ID
+			<if test="phraseType != null">
+				<if test="phraseType == 0">
+					and (t.PHRASE_TYPE = #{phraseType} or t.CREATE_USER = #{createUser})
+				</if>
+				<if test="phraseType == 1">
+					and t.CREATE_USER = #{createUser}
+				</if>
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="orderBy != null">
+				order by ${orderBy}
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="queryCountForUser" parameterType="com.jc.system.security.domain.Phrase" resultType="java.lang.Integer">
+		SELECT count(t.ID) 
+		FROM tty_sys_phrase t, tty_sys_user u
+		<where>
+			t.CREATE_USER = u.ID
+			<if test="phraseType != null">
+				<if test="phraseType == 0">
+					and (t.PHRASE_TYPE = #{phraseType} or t.CREATE_USER = #{createUser})
+				</if>
+				<if test="phraseType == 1">
+					and t.CREATE_USER = #{createUser}
+				</if>
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="orderBy != null">
+				order by ${orderBy}
+			</if>
+		</where>
+	</select>
+
+</mapper>

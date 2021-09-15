@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<business>
+	<!-- 元素: function 可1-n个 ref-table 可1-n个 属性: id 自定义业务id,必填项 table-name:必填项 ,workflowVaildClass:流程实例删除流程时，调用的校验方法，需要实现接口com.jc.workflow.core.instance.IWorkflowDeleteValid
+		column-name:必填项 comment:可选项 <function id="function1" table-name="table1" 
+		comment="comment1" column-name="column1"> <ref-table table-name="table2" 
+		column-name="table2_column" comment=""/> <ref-table table-name="table3" column-name="table3_column" 
+		/> </function> -->
+
+
+
+	<!--行政办公@会务管理@基础设置@会议类型@删除校验   （校验 会议室表的）-->
+	<!-- <function id="function1" table-name="table1" comment="comment1" piIdColumn="pi_id" workflowVaildClass="com.jc.worklfow.service.valid"
+		column-name="column1">
+		<ref-table table-name="table2" column-name="table2_column"
+			comment="" />
+		<ref-table table-name="table3" column-name="table3_column" />
+	</function> -->
+
+	<function id="workflowBusiness" table-name="tty_workflow_business" comment="workflowTest" piIdColumn="workflow_id"
+		workflowVaildClass="com.jc.workflow.service.impl.businessValid" column-name="id">
+		<ref-table table-name="tty_workflow_business_detail" column-name="business_id"
+			comment="" />
+	</function>
+	
+		
+	<function id="suggestTypeDelete" table-name="toa_ic_suggest_type" comment="建议类型表" column-name="ID">
+		<ref-table table-name="toa_ic_suggest" column-name="suggest_type_id" comment="建议类型id" />
+	</function>
+	<function id="receiveDoc" table-name="toa_doc_receive" comment="receiveType" column-name="PI_ID">
+	</function>
+	<function id="sendDoc" table-name="toa_doc_send" comment="sendType" column-name="PI_ID">
+	</function>
+	<!-- 删除车辆信息 校验是否使用中 -->
+	<function id="carInfo" table-name="toa_ao_car_info" comment="carInfo" column-name="ID">
+		<ref-table table-name="toa_ao_car_apply" column-name="CAR_ID" comment=""/> 
+		<ref-table table-name="TOA_AO_CAR_DRIVER_OVERTIME" column-name="CAR_ID" comment=""/> 
+		<ref-table table-name="TOA_AO_CAR_PECCANCY" column-name="CAR_ID" comment=""/> 
+		<ref-table table-name="TOA_AO_CAR_GASRECORD" column-name="CAR_ID" comment=""/> 
+		<ref-table table-name="TOA_AO_CAR_REPAIRRECORD" column-name="CAR_ID" comment=""/> 
+	</function>
+	
+	<!--行政办公@会务管理@基础设置@会议类型@删除校验   （校验 制度类型）-->
+	<function id="regimeType" table-name="toa_ao_regime_type" comment="regimeType" column-name="ID">
+		<ref-table table-name="toa_ao_regime" column-name="TYPE_ID" comment=""/> 
+	</function>
+	<!--信息删除校验 -->
+	<function id="columnId" table-name="toa_im_column" comment="columnId" column-name="ID">
+		<ref-table table-name="toa_im_info" column-name="COLUMN_ID" comment=""/> 
+	</function>
+	<!--信息新建栏目校验上级栏目是否已删除 -->
+	<function id="parentColumnId" table-name="toa_im_column" comment="parentColumnId" column-name="ID">
+	</function>
+	
+	
+	<!--个人办公 -->
+    <function id="plan" table-name="tty_po_plan" comment="plan"  column-name="ID" piIdColumn="pi_id">
+		<ref-table table-name="tty_po_plan_detail" column-name="PLAN_ID" comment="" />
+		<ref-table table-name="tty_po_anno" column-name="BUSINESS_ID" comment="" />
+	</function>
+	
+	<!--个人办公工作计划批注 -->
+	<function id="planAnno" table-name="tty_po_plan" comment="planAnno"  column-name="id">
+	</function>
+	
+	<!--个人办公工作日程批注 -->
+	<function id="diaryAnno" table-name="tty_po_diary" comment="diaryAnno"  column-name="id">
+	</function>
+
+	<!--个人办公转发 -->
+	<function id="planSendAndRead" table-name="tty_po_plan" comment="planSendAndRead"  column-name="id">
+	</function>
+	
+	<!-- 会议室 -->
+	<function id="meetingRoom" table-name="TOA_AO_MEETING_ROOM" comment="会议室"  column-name="id">
+		<ref-table table-name="TOA_AO_MEETING_INFO" column-name="ROOM_ID" comment="" />
+	</function>
+	
+	<!--会议室类型-->
+	<function id="meetingType" table-name="TOA_AO_MEETING_TYPE" comment="会议室类型"  column-name="id">
+		<ref-table table-name="TOA_AO_MEETING_INFO" column-name="TYPE_NAME" comment="" />
+	</function>
+	
+	<!--会议申请-->
+	<function id="meetingInfo" table-name="TOA_AO_MEETING_INFO" comment="会议"  column-name="id">
+		<ref-table table-name="TOA_AO_MEETING_SUMMARY" column-name="MEET_ID" comment="" />
+	</function>
+	
+	<!--邮箱文件夹-->
+	<function id="mailFolder" table-name="TTY_IC_MAIL_FOLDER" comment="邮箱文件夹"  column-name="id">
+		<ref-table table-name="TTY_IC_MAIL_RECORD" column-name="FOLDER_ID" comment="" />
+	</function>
+	
+	<!-- 用车查询，车辆调度，调度记录，出车删除校验 -->
+	<function id="carUseSearch" table-name="toa_ao_car_apply" comment="用车"  piIdColumn="pi_id"
+		workflowVaildClass="com.jc.oa.ao.domain.validator.CarDispatchValid" column-name="id" >
+		<ref-table table-name="toa_ao_car_apply" column-name="id" />
+	</function>
+	
+	<!--个人办公督办协办批注 -->
+	<function id="workTaskAnno" table-name="tty_po_task" comment="workTaskAnno"  column-name="id">
+	</function>
+	
+	<!--个人办公工作日志批注 -->
+	<function id="workLogAnno" table-name="tty_po_worklog" comment="workLogAnno"  column-name="id">
+	</function>
+	
+	<!-- 会议查询 -->
+	<function id="meetingSearch" table-name="toa_ao_meeting_info" comment="会议"  column-name="id">
+	</function>
+	
+	<!-- 会议查询 -->
+	<function id="regimeSearch" table-name="toa_ao_regime" comment="制度"  column-name="id">
+	</function>
+	
+	<!-- 制度模版 -->
+	<function id="regimeTemplate" table-name="toa_ao_regime_template" comment="模版"  column-name="id">
+	</function>
+</business>

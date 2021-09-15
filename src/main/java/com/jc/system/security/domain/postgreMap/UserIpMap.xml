@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.UserIp">
+
+	<select id="query" parameterType="com.jc.system.security.domain.UserIp" resultType="com.jc.system.security.domain.UserIp">
+		SELECT 
+			t.ID id,
+			t.USER_ID userId,
+			t.BIND_TYPE bindType,
+			t.USER_START_IP userStartIp,
+			t.USER_END_IP userEndIp,
+			t.USER_IP_DESC userIpDesc,
+			t.DELETE_FLAG deleteFlag,
+			t.CREATE_USER createUser,
+			t.CREATE_USER_DEPT createUserDept,
+			t.CREATE_USER_ORG createUserOrg,
+			t.CREATE_DATE createDate,
+			t.MODIFY_USER modifyUser,
+			t.MODIFY_DATE modifyDate,
+			u.display_name userName,
+			d.NAME deptName
+			
+		FROM tty_sys_user_ip t, tty_sys_user u, tty_sys_department d
+		<where>
+			and t.USER_ID = u.ID and u.DEPT_ID = d.ID 
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="userId != null">
+				and t.USER_ID = #{userId}
+			</if>
+			<if test="bindType != null">
+				and t.BIND_TYPE = #{bindType}
+			</if>
+			<if test="userStartIp != null">
+				and t.USER_START_IP = #{userStartIp}
+			</if>
+			<if test="userEndIp != null">
+				and t.USER_END_IP = #{userEndIp}
+			</if>
+			<if test="userIpDesc != null">
+				and t.USER_IP_DESC = #{userIpDesc}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="deptName != null">
+				and d.NAME like <![CDATA['%${deptName}%']]>
+			</if>
+			<if test="orderBy != null">
+				order by ${orderBy}
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="queryCount" parameterType="com.jc.system.security.domain.UserIp" resultType="java.lang.Integer">
+		SELECT count(t.ID) 
+		FROM tty_sys_user_ip t, tty_sys_user u, tty_sys_department d
+		<where>
+			and t.USER_ID = u.ID and u.DEPT_ID = d.ID 
+			<if test="dataAccessDynamicSQL != null">
+				${dataAccessDynamicSQL}
+			</if>
+			<if test="id != null">
+				and t.ID = #{id}
+			</if>
+			<if test="userId != null">
+				and t.USER_ID = #{userId}
+			</if>
+			<if test="bindType != null">
+				and t.BIND_TYPE = #{bindType}
+			</if>
+			<if test="userStartIp != null">
+				and t.USER_START_IP = #{userStartIp}
+			</if>
+			<if test="userEndIp != null">
+				and t.USER_END_IP = #{userEndIp}
+			</if>
+			<if test="userIpDesc != null">
+				and t.USER_IP_DESC = #{userIpDesc}
+			</if>
+			<if test="deleteFlag != null">
+				and t.DELETE_FLAG = #{deleteFlag}
+			</if>
+			<if test="createUser != null">
+				and t.CREATE_USER = #{createUser}
+			</if>
+			<if test="createUserDept != null">
+				and t.CREATE_USER_DEPT = #{createUserDept}
+			</if>
+			<if test="createUserOrg != null">
+				and t.CREATE_USER_ORG = #{createUserOrg}
+			</if>
+			<if test="createDate != null">
+				and t.CREATE_DATE = #{createDate}
+			</if>
+			<if test="modifyUser != null">
+				and t.MODIFY_USER = #{modifyUser}
+			</if>
+			<if test="modifyDate != null">
+				and t.MODIFY_DATE = #{modifyDate}
+			</if>
+			<if test="deptName != null">
+				and d.NAME like <![CDATA['%${deptName}%']]>
+			</if>
+		</where>
+	</select>
+
+	<delete id="deletePhysical"  parameterType="com.jc.system.security.domain.UserIp">
+    	delete from tty_sys_user_ip
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+
+	<update id="deleteLogic"  parameterType="com.jc.system.security.domain.UserIp">
+    	UPDATE tty_sys_user_ip t set t.delete_flag = 1,t.modify_user = #{modifyUser},t.modify_date = #{modifyDate}
+      		where ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</update>
+
+	<insert id="insert" parameterType="com.jc.system.security.domain.UserIp" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO tty_sys_user_ip(ID,USER_ID,BIND_TYPE,USER_START_IP,USER_END_IP,USER_IP_DESC,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,ext_num1,ext_num2,ext_num3)
+			VALUES (#{id,jdbcType=VARCHAR},#{userId,jdbcType=VARCHAR},#{bindType,jdbcType=NUMERIC},#{userStartIp,jdbcType=VARCHAR},#{userEndIp,jdbcType=VARCHAR},#{userIpDesc,jdbcType=VARCHAR},#{deleteFlag,jdbcType=NUMERIC},#{createUser,jdbcType=VARCHAR},#{createUserDept,jdbcType=VARCHAR},#{createUserOrg,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{modifyUser,jdbcType=VARCHAR},#{modifyDate,jdbcType=TIMESTAMP},#{extStr1,jdbcType=VARCHAR},#{extStr2,jdbcType=VARCHAR},#{extStr3,jdbcType=VARCHAR},#{extStr4,jdbcType=VARCHAR},#{extStr5,jdbcType=VARCHAR},#{extDate1,jdbcType=TIMESTAMP},#{extDate2,jdbcType=TIMESTAMP},#{extNum1,jdbcType=NUMERIC},#{extNum2,jdbcType=NUMERIC},#{extNum3,jdbcType=NUMERIC})
+	</insert>
+
+	<insert id="insertList" parameterType="list">
+		INSERT INTO tty_sys_user_ip(ID,USER_ID,BIND_TYPE,USER_START_IP,USER_END_IP,USER_IP_DESC,DELETE_FLAG,CREATE_USER,CREATE_USER_DEPT,CREATE_USER_ORG,CREATE_DATE,MODIFY_USER,MODIFY_DATE,EXT_STR1,EXT_STR2,EXT_STR3,EXT_STR4,EXT_STR5,EXT_DATE1,EXT_DATE2,ext_num1,ext_num2,ext_num3)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id,jdbcType=VARCHAR},#{item.userId,jdbcType=VARCHAR},#{item.bindType,jdbcType=NUMERIC},#{item.userStartIp,jdbcType=VARCHAR},#{item.userEndIp,jdbcType=VARCHAR},#{item.userIpDesc,jdbcType=VARCHAR},#{item.deleteFlag,jdbcType=NUMERIC},#{item.createUser,jdbcType=VARCHAR},#{item.createUserDept,jdbcType=VARCHAR},#{item.createUserOrg,jdbcType=VARCHAR},#{item.createDate,jdbcType=TIMESTAMP},#{item.modifyUser,jdbcType=VARCHAR},#{item.modifyDate,jdbcType=TIMESTAMP},#{item.extStr1,jdbcType=VARCHAR},#{item.extStr2,jdbcType=VARCHAR},#{item.extStr3,jdbcType=VARCHAR},#{item.extStr4,jdbcType=VARCHAR},#{item.extStr5,jdbcType=VARCHAR},#{item.extDate1,jdbcType=TIMESTAMP},#{item.extDate2,jdbcType=TIMESTAMP},#{item.extNum1,jdbcType=NUMERIC},#{item.extNum2,jdbcType=NUMERIC},#{item.extNum3,jdbcType=NUMERIC})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.jc.system.security.domain.UserIp">
+	UPDATE tty_sys_user_ip
+	   <set>
+	   	<if test="userId != null">
+	   		USER_ID = #{userId},
+	   	</if>
+	   	<if test="bindType != null">
+	   		BIND_TYPE = #{bindType},
+	   	</if>
+	   	<if test="userStartIp != null">
+	   		USER_START_IP = #{userStartIp},
+	   	</if>
+	   	<if test="userEndIp != null">
+	   		USER_END_IP = #{userEndIp},
+	   	</if>
+	   	<if test="userIpDesc != null">
+	   		USER_IP_DESC = #{userIpDesc},
+	   	</if>
+	   	<if test="deleteFlag != null">
+	   		DELETE_FLAG = #{deleteFlag},
+	   	</if>
+	   	<if test="createUser != null">
+	   		CREATE_USER = #{createUser},
+	   	</if>
+	   	<if test="createUserDept != null">
+	   		CREATE_USER_DEPT = #{createUserDept},
+	   	</if>
+	   	<if test="createUserOrg != null">
+	   		CREATE_USER_ORG = #{createUserOrg},
+	   	</if>
+	   	<if test="createDate != null">
+	   		CREATE_DATE = #{createDate},
+	   	</if>
+	   	<if test="modifyUser != null">
+	   		MODIFY_USER = #{modifyUser},
+	   	</if>
+	   	<if test="modifyDate != null">
+	   		MODIFY_DATE = #{modifyDate},
+	   	</if>
+	   	<if test="extStr1 != null">
+	   		EXT_STR1 = #{extStr1},
+	   	</if>
+	   	<if test="extStr2 != null">
+	   		EXT_STR2 = #{extStr2},
+	   	</if>
+	   	<if test="extStr3 != null">
+	   		EXT_STR3 = #{extStr3},
+	   	</if>
+	   	<if test="extStr4 != null">
+	   		EXT_STR4 = #{extStr4},
+	   	</if>
+	   	<if test="extStr5 != null">
+	   		EXT_STR5 = #{extStr5},
+	   	</if>
+	   	<if test="extDate1 != null">
+	   		EXT_DATE1 = #{extDate1},
+	   	</if>
+	   	<if test="extDate2 != null">
+	   		EXT_DATE2 = #{extDate2},
+	   	</if>
+	   	<if test="extNum1 != null">
+	   		ext_num1 = #{extNum1},
+	   	</if>
+	   	<if test="extNum2 != null">
+	   		ext_num2 = #{extNum2},
+	   	</if>
+	   	<if test="extNum3 != null">
+	   		ext_num3 = #{extNum3},
+	   	</if>
+	   </set>
+	   where ID = #{id}
+	</update>
+
+</mapper>

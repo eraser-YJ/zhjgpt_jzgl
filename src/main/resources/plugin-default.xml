@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plugin xmlns="http://www.jc.com"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.jc.com  plugin.xsd">
+    <uuid>c9862ae9-23a1-11e6-97ff-005056822d09</uuid>
+    <name>default</name>
+    <description>当前子系统系统</description>
+    <version>1.2</version>
+    <db>
+    </db>
+    <menus>
+    </menus>
+    <services>
+    </services>
+</plugin>

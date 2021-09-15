@@ -1,0 +1,25 @@
+SELECT * FROM (
+SELECT
+  t.name,
+  t.address,
+  t.bseCompanyBuild,
+  t.bseCompanySupervise,
+  t.bseCompanyRoadWork,
+  DATE_FORMAT(t.projectcreatedate,'%Y-%m-%d') bdate,
+  DATE_FORMAT(t.finishdate,'%Y-%m-%d') edate,
+  t.status buildNature,
+  1 src1,
+  1 src2,
+  t.bseContyname
+FROM pt_smz_projectlist t
+WHERE 1=1
+
+<if test="name != null">
+    and t.name like concat('%',#{name},'%')
+</if>
+<if test="bseCompanyBuild != null">
+    and t.bseCompanyBuild like concat('%',#{bseCompanyBuild},'%')
+</if>
+
+GROUP BY t.name
+) TEMP

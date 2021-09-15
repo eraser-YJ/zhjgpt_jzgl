@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.system.security.domain.RoleExts">
+
+	<select id="query" parameterType="com.jc.system.security.domain.RoleExts" resultType="com.jc.system.security.domain.RoleExts">
+		SELECT 	
+		ROLE_ID as roleId, 
+		PERMISSION_TYPE as permissionType,
+		WEIGHT_RULE as weightRule,
+		WEIGHT as weight
+		FROM tty_sys_role_ext where 1 = 1
+			<if test="roleId != null">
+				and ROLE_ID = #{roleId}
+			</if>
+			<if test="primaryKeys != null">
+				and ROLE_ID in 
+				<foreach collection="primaryKeys" item="primaryKey" index="index"
+		            open="(" close=")" separator=",">
+		            #{primaryKey}
+	        	</foreach>
+	        </if>
+	</select>
+
+	<insert id="insertList" parameterType="com.jc.system.security.domain.RoleExts">
+		INSERT INTO tty_sys_role_ext
+		(ID,ROLE_ID,PERMISSION_TYPE,WEIGHT,WEIGHT_RULE)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator="," >
+			(#{item.id,jdbcType=VARCHAR},#{item.roleId,jdbcType=VARCHAR},#{item.permissionType,jdbcType=NUMERIC},#{item.weight,jdbcType=NUMERIC},#{item.weightRule,jdbcType=NUMERIC})
+		</foreach>
+	</insert>
+	
+ 	
+ 	<update id="deleteLogic"  parameterType="com.jc.system.security.domain.RoleExts">
+		<![CDATA[
+    		UPDATE tty_sys_role_ext set 
+    	]]>
+      	<where>			
+			<if test="roleId != null">
+				 ROLE_ID = #{roleId}
+			</if>
+		</where>
+ 	</update>
+	<delete id="deletePhysical"  parameterType="com.jc.system.security.domain.RoleExts">
+    	delete from tty_sys_role_ext
+      		where ROLE_ID in
+      		<foreach collection="primaryKeys" item="primaryKey" index="index"
+	            open="(" close=")" separator=",">
+	            #{primaryKey}
+	        </foreach>
+ 	</delete>
+</mapper>

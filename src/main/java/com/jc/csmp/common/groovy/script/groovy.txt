@@ -1,0 +1,20 @@
+import com.jc.script.TestBean;
+import com.jc.script.HttpUtil;
+def sayHello1(){
+	TestBean bean = new TestBean();
+	bean.setCode('123');
+	bean.setName('name');
+	HttpUtil.print(bean);
+}
+def sayHello(jsonIn){
+	def jsonSlurper = new groovy.json.JsonSlurper()
+	// assembly json
+	//def json = groovy.json.JsonOutput.toJson([name: 'xxxx', ID: 12]);
+	def output = jsonSlurper.parseText(jsonIn);	
+	println(output.name); 
+	if(output.age>11) 
+		return groovy.json.JsonOutput.toJson(output); 
+	else 
+		output.name += '>12';
+		return groovy.json.JsonOutput.toJson(output);
+}

@@ -1,0 +1,140 @@
+﻿//body字体 和 颜色
+$global-body-size  				: 14px !default;
+$global-body-line-height 		: 20px !default;
+//按钮是启用圆角
+$global-button-border-radius	: false !default;;
+$global-button-border-radius-px : 4px !default;;
+// 颜色参数 
+// global 				全局使用
+// global-a-color 		全局a标签文字颜色
+// global-a-hover-color 全局a标签hover颜色
+// 
+$global-body-color 				: #555 !default;
+$global-a-color    				: #43a0f2 !default;
+$global-a-hover-color			: #4a647e !default;
+$global-h-small-color			: #999 !default;
+//边框默认颜色
+$global-border-eee-color 		: #eee !default;
+$global-border-fff-color 		: #fff !default;
+$global-border-999-color 		: $global-h-small-color !default;
+//input文字默认颜色
+$global-input-color		  		: $global-body-color !important !default;
+$global-input-border-color		: #ccc !default;
+$global-input-bg-color	  		: $global-border-fff-color !default;
+//禁用disabled颜色
+$global-disabled-color	  		: $global-border-eee-color !default;
+//表单验证	base
+$global-invalid-color	  		: #b94a48 !default;
+$global-invalid-border-color 	: #ee5f5b !default;
+
+//table 公共样式颜色						-base/base
+$global-table-border-color		: #ededed !default;
+$global-table-bg-color	  		: $global-input-bg-color !default;
+$global-td-border-color	  		: #ddd !default;
+$global-table-td-padding  		: 8px !default;
+$global-table-td-line-height	:$global-body-line-height !default;
+$global-table-tr-hover-color	:#f5f5f5 !default;
+$global-table-tr-success-color	:#dff0d8 !default;
+$global-table-tr-error-color	:#f2dede !default;
+$global-table-tr-warning-color	:#fcf8e3 !default;
+$global-table-tr-info-color		:#d9edf7 !default;
+//tr:hover
+$global-tr-hover-success-color	:#d0e9c6 !default;
+$global-tr-hover-error-color	:#ebcccc !default;
+$global-tr-hover-warning-color	:#faf2cc !default;
+$global-tr-hover-info-color		:#c4e3f3 !default;
+//弹出式菜单  								-components/bootstrap_dropdown
+$global-dropdown-border-color   :$global-input-border-color !default;
+$global-dropdown-bg-color   	:$global-input-bg-color !default;
+$global-dropdown-max-height		:210px !default;
+//按钮 										-components/button  
+$global-button-padding			:4px 12px !default;
+$global-button-size				:$global-body-size !default;
+$global-button-line-height		:$global-body-line-height !default;
+$global-button-text-color		:$global-input-bg-color !default;
+$global-button-bg-color			:#0063A6 !default;
+$global-button-border1-color	:$global-input-border-color !default;
+$global-button-border2-color	:#e6e6e6 !default;
+$global-button-border3-color	:rgba(0,0,0,0.1) !default;
+$global-button-bg-hover-color	:#004F84 !default;
+$global-button-active-color		:#8ec165 !default;
+$global-button-disabled-color	:#333 !default;
+$global-button-link-color		:#08c !default;
+$global-button-link-hover-color	:#005580 !default;
+$global-button-link-disabled-color	:$global-button-disabled-color !default;
+
+//表单和列表 header中按钮					-base/global-button
+$global-button-green-border-color		:#54a754 !default;
+$global-button-green-bg-color			:#60c060 !default;
+$global-button-green-text-color			:#fff !default;
+//form表单按钮
+$global-button-header-width				:87px !default;
+$global-button-header-height			:36px !default;
+$global-button-margin-right				:10px !default;	
+$global-button-header-line-height		:26px !default;
+
+$global-button-priamry-text-color		:#555 !default;
+$global-button-priamry-bg-color			:#fff !default;
+$global-button-priamry-border-color		:#ccc !default;
+
+$global-button-dark-text-color			:#fff !default;
+$global-button-dark-bg-color			:#0063a6 !default;
+$global-button-dark-border-color		:#00497b !default;
+
+$global-button-light-text-color			:#fff !default;
+$global-button-light-bg-color			:#60aae9 !default;
+$global-button-light-border-color		:#4b8ec7 !default;
+//人员选择树按钮颜色
+$global-button-btn-file-bg-color		:#096 !default;	
+//list列表中按钮
+$global-a-icon-remove-bg-color			:#fa6a5a !default;
+$global-a-icon-remove-border-color		:#996666 !default;
+
+//nav 左菜单  								-layout/nav_primary
+$global-nav-disabled-color		:$global-h-small-color !default;
+$global-nav-border-color		:#ececec !default;
+$global-nav-bg-color			:$global-nav-border-color !default;
+$global-nav-text-hover-color	:#444 !default;
+$global-nav-text-color			:#717171 !default;
+$global-nav-grid-is-show		:true !default;
+
+
+//tabs   									-components/tabs
+$global-tabs-border-color		:$global-td-border-color !default;
+$global-tabs-border2-color		:$global-border-eee-color !default;
+$global-tabs-border-hover-color :$global-h-small-color !default;
+$global-tabs-min-width			:74px !default;
+//pagination 分页样式   					-components/pagination
+$global-page-padding			:$global-button-padding !default;
+$global-page-text-color			:$global-h-small-color !default;
+$global-page-border-color		:$global-td-border-color !default;
+$global-page-bg-color			:$global-input-bg-color !default;
+$global-page-bg-hover-color		:$global-table-tr-hover-color !default;
+$global-page-hover-text-color	:$global-input-bg-color !default;
+$global-page-hover-bg-color		:#00a65a !default;
+$global-page-disabled-color		:$global-h-small-color !default;
+$global-page-disabled-bg-color	:$global-input-bg-color !default;
+$global-page-margin-left		:8px !default;
+//导航  									-layout/header
+$global-head-text-color 		:#fff !default;
+$global-head-bg-color			:$global-button-bg-color !default;
+$global-head-bg-hover-color		:$global-button-bg-hover-color !default;
+$global-head-border-color		:lighten($global-button-bg-color,2.5%) !default;
+//查询条件按钮颜色
+$global-search-shrinkage-bg-color	:#5fa9e8 !default;
+//table list列表样式 和表单样式 			-layout/table
+$global-table-top-colors		:#fb6b5b,#ffc333,#8ec165,#60aae9,#aece4e,#00c0ef,#f3a641,#00a65a !default;
+$global-table-color-index 		:1 !default;
+$global-table-border-gray-color :#ededed !default;
+//table表单样式   							-layout/table
+$global-form-border-red			:#fb6b5b !default;
+$global-form-border-black		:#000 !default;
+$global-form-bg-color			:#f9f8f5 !default;
+$global-form-td-height			:45px !default;
+$global-form-text-color			:#333 !default;
+$global-form-table-bg-color		:#fff !default;
+$global-form-table-td-padding	 :8px !default;
+$global-panel-table-border-color :$global-td-border-color !default;
+$global-panel-footer-bg-color	 :#f5f5f5 !default;
+$global-panel-table-td-padding	 :6px 15px !default;
+$global-table-tr-striped-color	 :#fdfcfb !default;
